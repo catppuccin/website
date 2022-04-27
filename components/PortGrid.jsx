@@ -43,6 +43,7 @@ export default class PortGrid extends Component {
                 flexDirection={'column'} 
                 p='2rem' 
                 height={'80%'}
+                minHeight={'80vh'}
             >
                 <SearchBar 
                     ports={this.state.ports} 
