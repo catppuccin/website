@@ -5,7 +5,8 @@ const theme = extendTheme({
         global: () => ({
             body: {
                 bg: "#1E1E2E",
-                fontFamily: 'Fredoka One, cursive'
+                fontFamily: 'Fredoka One, cursive',
+                overflowX: "hidden",
             },
             h2: {
                 color: "#D9E0EE",

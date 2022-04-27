@@ -1,11 +1,11 @@
-import {Component, useState, useEffect} from "react";
+import {Component, useState, useEffect, lazy, Suspense} from "react";
 import GetPorts from "../utils/GetPorts";
 import { 
     SimpleGrid,
     Box,
 } from '@chakra-ui/react'
-import PortCard from "./PortCard";
 import SearchBar from "./SearchBar";
+import PortCard from "./PortCard";
 
 export default class PortGrid extends Component {
     constructor(props) {

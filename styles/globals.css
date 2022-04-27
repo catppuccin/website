@@ -18,3 +18,23 @@ a {
 * {
   box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+  scroll-behavior: smooth;
+  width: 8px;
+  height:8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb {
+  background: 	#6E6C7E;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: 	#6E6C7E;
+}
