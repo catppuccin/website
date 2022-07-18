@@ -1,4 +1,4 @@
-export default function GetPorts() {
+export default async function GetPorts() {
     return fetch('https://api.github.com/orgs/catppuccin/repos?per_page=100&sort=full_name&direction=asc')
     .then(response => response.json())
     .then(data => {
@@ -18,6 +18,7 @@ export default function GetPorts() {
                 updated: port.updated_at,
                 owner_av: port.owner.avatar_url,
                 contributors_url: port.contributors_url,
+                default_branch: port.default_branch,
             }
         })
         //console.log(PortData)

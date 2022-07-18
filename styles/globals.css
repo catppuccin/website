@@ -1,40 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.bunny.net/css?family=work-sans:400,500,500i,600,600i,700,700i,800,800i,900,900i');
 
-html,
-body {
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-::-webkit-scrollbar {
-  scroll-behavior: smooth;
-  width: 8px;
-  height:8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-  background-clip: content-box;
-}
-
-::-webkit-scrollbar-thumb {
-  background: 	#6E6C7E;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: 	#6E6C7E;
+  color: #818cf8 !important;
+  text-decoration: underline !important;
 }
