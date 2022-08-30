@@ -38,7 +38,11 @@ const slugToIcon: SlugToColor = {
   "windows-terminal": "text",
   tmux: "green",
   monkeytype: "text",
-  emacs: "blue"
+  emacs: "blue",
+  obsidian: "mauve",
+  gtk: "green",
+  lastfm: "red",
+  insomnia: "blue",
 };
 
 export default function getIconColor(slug: string) {

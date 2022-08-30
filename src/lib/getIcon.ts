@@ -5,7 +5,6 @@ import {
   SiVim,
   SiDiscord,
   SiAlacritty,
-  SiGnome,
   SiIterm2,
   SiLastdotfm,
   SiAnilist,
@@ -31,9 +30,14 @@ import {
   SiWindowsterminal,
   SiTmux,
   SiGnuemacs,
+  SiInsomnia
 } from "react-icons/si";
 import { FiCode } from "react-icons/fi";
 import MonkeyType from "../icons/monkeytype.svg"
+import GnomeTerminal from "../icons/gnometerminal.svg"
+import Obsidian from "../icons/obsidian.svg"
+import GTK from "../icons/gtk.svg"
+import Kitty from "../icons/kitty.svg"
 
 type SlugToIcon = {
   [key: string]: JSX.Element;
@@ -61,13 +65,11 @@ const slugToIcon: SlugToIcon = {
   alacritty: SiAlacritty({
     size: "2.5rem",
   }),
-  "gnome-terminal": SiGnome({
-    size: "2.5rem",
-  }),
+  "gnome-terminal": GnomeTerminal(),
   iterm: SiIterm2({
     size: "2.5rem",
   }),
-  "last.fm": SiLastdotfm({
+  lastfm: SiLastdotfm({
     size: "2.5rem",
   }),
   anilist: SiAnilist({
@@ -145,7 +147,13 @@ const slugToIcon: SlugToIcon = {
   monkeytype: MonkeyType(),
   emacs: SiGnuemacs({
     size: "2.5rem",
-  })
+  }),
+  obsidian: Obsidian(),
+  gtk: GTK(),
+  insomnia: SiInsomnia({
+    size: "2.5rem",
+  }),
+  kitty: Kitty(),
 }
 
 export default function getIcon(slug: string) {

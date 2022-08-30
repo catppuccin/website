@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@catppuccin/tailwindcss': ^0.1.0
+  '@formkit/auto-animate': 1.0.0-beta.1
   '@octokit/rest': ^19.0.3
   '@svgr/webpack': ^6.3.1
   '@types/node': 18.0.0
@@ -20,6 +21,7 @@ specifiers:
   zod: ^3.17.3
 
 dependencies:
+  '@formkit/auto-animate': 1.0.0-beta.1_react@18.2.0
   '@octokit/rest': 19.0.3
   next: 12.2.3_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
@@ -1344,6 +1346,20 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@formkit/auto-animate/1.0.0-beta.1_react@18.2.0:
+    resolution: {integrity: sha512-I3OWOBaPZKSJL4bsooXI8kC3q7bcgibD2oML0P/Lir6MnbvUe/0/7EH8br024juvM/Ulm9C9xGx9CJUQYrOWSA==}
+    peerDependencies:
+      react: ^16.8.0
+      vue: ^3.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /@humanwhocodes/config-array/0.9.5:
     resolution: {integrity: sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==}
