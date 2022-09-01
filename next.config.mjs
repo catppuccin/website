@@ -15,6 +15,10 @@ function defineNextConfig(config) {
 export default defineNextConfig({
   reactStrictMode: true,
   swcMinify: true,
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
   webpack: (config, options) => {
     config.module.rules.push({
       test: /\.svg$/i,
