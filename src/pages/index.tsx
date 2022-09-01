@@ -19,7 +19,7 @@ export default function Home({ content }: { content: string }): JSX.Element {
               <a href="https://github.com/catppuccin/catppuccin/stargazers">
                 <img
                   alt="Stargazers"
-                  src="https://img.shields.io/github/stars/catppuccin/catppuccin?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41"
+                  src="https://img.shields.io/github/stars/catppuccin?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41"
                 />
               </a>
               <a href="https://github.com/catppuccin/catppuccin/releases/latest">
