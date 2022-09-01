@@ -42,8 +42,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 &nbsp;
 
-<p align="center"><a href="https://vercel.com?utm_source=catppuccin&utm_campaign=oss"><img src="https://raw.githubusercontent.com/catppuccin/website/main/powered-by-vercel.svg?sanitize=true"/></a></p>
-
 <p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
 <p align="center">Copyright &copy; 2021-present <a href="https://github.com/catppuccin" target="_blank">Catppuccin Org</a>
 <p align="center"><a href="https://github.com/catppuccin/catppuccin/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a></p>
+
+<p align="center"><a href="https://vercel.com?utm_source=catppuccin&utm_campaign=oss"><img src="https://raw.githubusercontent.com/catppuccin/website/main/powered-by-vercel.svg?sanitize=true"/></a></p>
