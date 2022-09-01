@@ -9,7 +9,8 @@
     color-scheme: dark;
   }
 
-  html, body {
+  html,
+  body {
     @apply bg-base text-text;
   }
 

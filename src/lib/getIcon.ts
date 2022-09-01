@@ -30,14 +30,14 @@ import {
   SiWindowsterminal,
   SiTmux,
   SiGnuemacs,
-  SiInsomnia
+  SiInsomnia,
 } from "react-icons/si";
 import { FiCode } from "react-icons/fi";
-import MonkeyType from "../icons/monkeytype.svg"
-import GnomeTerminal from "../icons/gnometerminal.svg"
-import Obsidian from "../icons/obsidian.svg"
-import GTK from "../icons/gtk.svg"
-import Kitty from "../icons/kitty.svg"
+import MonkeyType from "../icons/monkeytype.svg";
+import GnomeTerminal from "../icons/gnometerminal.svg";
+import Obsidian from "../icons/obsidian.svg";
+import GTK from "../icons/gtk.svg";
+import Kitty from "../icons/kitty.svg";
 
 type SlugToIcon = {
   [key: string]: JSX.Element;
@@ -154,7 +154,7 @@ const slugToIcon: SlugToIcon = {
     size: "2.5rem",
   }),
   kitty: Kitty(),
-}
+};
 
 export default function getIcon(slug: string) {
   return slugToIcon[slug] || FiCode({ size: "2.5rem" });

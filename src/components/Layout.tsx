@@ -1,6 +1,6 @@
-import type { ReactElement } from 'react'
-import Head from 'next/head'
-import Image from 'next/image'
+import type { ReactElement } from "react";
+import Head from "next/head";
+import Image from "next/image";
 import PoweredByVercel from "./PoweredByVercel";
 import Link from "next/link";
 
@@ -20,20 +20,26 @@ const navItems = [
   {
     label: "Donate",
     href: "https://donate.catppuccin.com",
-  }
-]
+  },
+];
 
-export default function Layout({children, title}: {children: ReactElement, title?: string}): ReactElement {
+export default function Layout({
+  children,
+  title,
+}: {
+  children: ReactElement;
+  title?: string;
+}): ReactElement {
   return (
     <>
       <Head>
-        <title>{`Catppuccin Theme` + (title ? ` ${title}` : '')}</title>
+        <title>{`Catppuccin Theme` + (title ? ` ${title}` : "")}</title>
       </Head>
       <main>
         <div className="h-48 anim-gradient flex flex-col">
           <div className="h-12 bg-mantle/70 backdrop-blur flex items-center w-screen fixed z-10">
             <ul className="flex uppercase font-bold text-lg max-w-3xl mx-auto gap-6 lg:gap-12">
-              {navItems.map(({label, href}) => (
+              {navItems.map(({ label, href }) => (
                 <li key={label}>
                   <Link href={href}>
                     <a>{label}</a>
@@ -45,7 +51,12 @@ export default function Layout({children, title}: {children: ReactElement, title
           <div className="grid place-items-center flex-grow mt-12">
             <Link href="/">
               <a>
-                <Image src="/500x500_circle.png" alt="Catppuccin Logo (round)" width={120} height={120}/>
+                <Image
+                  src="/500x500_circle.png"
+                  alt="Catppuccin Logo (round)"
+                  width={120}
+                  height={120}
+                />
               </a>
             </Link>
           </div>
@@ -53,8 +64,8 @@ export default function Layout({children, title}: {children: ReactElement, title
         {children}
       </main>
       <footer className="flex justify-center items-center">
-        <PoweredByVercel/>
+        <PoweredByVercel />
       </footer>
     </>
-  )
+  );
 }

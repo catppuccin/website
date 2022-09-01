@@ -1,11 +1,11 @@
 export default function SearchBar(props: any) {
   const handleChange = (e: any) => {
     e.preventDefault();
-    const filteredPorts = props.ports.filter(
-        (port: any) => port.name.toLowerCase().includes(e.target.value.toLowerCase())
-    )
+    const filteredPorts = props.ports.filter((port: any) =>
+      port.name.toLowerCase().includes(e.target.value.toLowerCase())
+    );
     props.setFilteredPorts(filteredPorts);
-  }
+  };
   return (
     <div className="flex items-center w-full">
       <input
