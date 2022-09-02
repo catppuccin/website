@@ -15,6 +15,7 @@
     "@octokit/graphql": "^5.0.1",
     "@octokit/rest": "^19.0.4",
     "next": "12.2.5",
+    "next-themes": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
@@ -27,6 +28,7 @@
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
     "unified": "^10.1.2",
+    "usehooks-ts": "^2.6.0",
     "zod": "^3.18.0"
   },
   "devDependencies": {

@@ -14,6 +14,7 @@ specifiers:
   eslint: 8.22.0
   eslint-config-next: 12.2.5
   next: 12.2.5
+  next-themes: ^0.2.0
   postcss: ^8.4.16
   prettier: ^2.7.1
   react: 18.2.0
@@ -30,6 +31,7 @@ specifiers:
   tailwindcss: ^3.1.8
   typescript: 4.8.2
   unified: ^10.1.2
+  usehooks-ts: ^2.6.0
   zod: ^3.18.0
 
 dependencies:
@@ -37,6 +39,7 @@ dependencies:
   '@octokit/graphql': 5.0.1
   '@octokit/rest': 19.0.4
   next: 12.2.5_biqbaboplfbrettd7655fr4n2y
+  next-themes: 0.2.0_3xcjr4wz26biff45sz3jtokgje
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
@@ -49,6 +52,7 @@ dependencies:
   remark-parse: 10.0.1
   remark-rehype: 10.1.0
   unified: 10.1.2
+  usehooks-ts: 2.6.0_react@18.2.0
   zod: 3.18.0
 
 devDependencies:
@@ -3807,6 +3811,18 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
+  /next-themes/0.2.0_3xcjr4wz26biff45sz3jtokgje:
+    resolution: {integrity: sha512-myhpDL4vadBD9YDSHiewqvzorGzB03N84e+3LxCwHRlM/hiBOaW+UsKsQojQAzC7fdcJA0l2ppveXcYaVV+hxQ==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 12.2.5_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /next/12.2.5_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-tBdjqX5XC/oFs/6gxrZhjmiq90YWizUYU6qOWAfat7zJwrwapJ+BYgX2PmiacunXMaRpeVT4vz5MSPSLgNkrpA==}
     engines: {node: '>=12.22.0'}
@@ -4781,6 +4797,14 @@ packages:
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /usehooks-ts/2.6.0_react@18.2.0:
+    resolution: {integrity: sha512-Kj/4oc2nOxRDGTDb2v1ZulF7+tpeXFuqI6cUesM0Vic7TPPDlFORxKh4ivsYg+NTvX/YbM+lhqqkfFTiIt23eg==}
+    peerDependencies:
+      react: '>=16.9.0'
     dependencies:
       react: 18.2.0
     dev: false
