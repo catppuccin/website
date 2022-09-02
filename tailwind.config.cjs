@@ -5,6 +5,7 @@ module.exports = {
     {
       pattern: /(bg|text|fill|hover:shadow|shadow)-.+/,
     },
+    "mocha", "macchiato", "frappe", "latte"
   ],
   theme: {
     extend: {
@@ -37,5 +38,8 @@ module.exports = {
       }),
     },
   },
-  plugins: [require("@catppuccin/tailwindcss"), require("@tailwindcss/typography")],
+  plugins: [
+    require("@catppuccin/tailwindcss")({defaultFlavour: ""}),
+    require("@tailwindcss/typography")
+  ],
 };

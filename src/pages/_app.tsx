@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import type { AppType } from "next/dist/shared/lib/utils";
 import Head from "next/head";
+import { ThemeProvider } from "next-themes";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -55,10 +56,16 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <link rel="manifest" href="manifest.json" />
         <link rel="icon" sizes="192x192" href="favicon-192.png" />
       </Head>
-    <Component {...pageProps} />
-  </>
-  )
-    ;
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="mocha"
+        enableSystem={false}
+        themes={["mocha", "macchiato", "frappe", "latte"]}
+      >
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
+  );
 };
 
 export default MyApp;
