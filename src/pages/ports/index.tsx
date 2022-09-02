@@ -1,13 +1,13 @@
-import GetPorts from "../lib/getPorts";
+import GetPorts from "../../lib/getPorts";
 import { FiStar } from "react-icons/fi";
 import { VscRepoForked } from "react-icons/vsc";
-import getIcon from "../lib/getIcon";
-import getIconColor from "../lib/getIconColor";
+import getIcon from "../../lib/getIcon";
+import getIconColor from "../../lib/getIconColor";
 import { useState } from "react";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../../components/SearchBar";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Link from "next/link";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 
 export default function Home(props: any) {
   const [filteredPorts, setFilteredPorts] = useState(
