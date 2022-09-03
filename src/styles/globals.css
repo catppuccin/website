@@ -1,5 +1,5 @@
 @import "catppuccin-highlight.css";
-@import url(https://fonts.bunny.net/css?family=epilogue:200,300,400,700,800,900|work-sans:100,200,300,700,800,900|fira-code:400,700|inter:300,400,500,700);
+@import url(https://fonts.bunny.net/css?family=fira-code:400,700|inter:300,400,500,700);
 
 @tailwind base;
 @tailwind components;

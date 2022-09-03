@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -8,12 +10,12 @@ module.exports = {
     "mocha", "macchiato", "frappe", "latte"
   ],
   theme: {
+    fontFamily: {
+      sans: ["Inter", ...defaultTheme.fontFamily.sans],
+      serif: defaultTheme.fontFamily.serif,
+      mono: ["Fira Code", ...defaultTheme.fontFamily.mono],
+    },
     extend: {
-      fontFamily: {
-        "work-sans": ["Work Sans", "sans-serif"],
-        "epilogue": ["Epilogue", "sans-serif"],
-        "inter": ["Inter", "sans-serif"],
-      },
       typography: (theme) => ({
         DEFAULT: {
           css: {
@@ -32,6 +34,9 @@ module.exports = {
             },
             code: {
               color: theme('colors.rosewater'),
+            },
+            pre: {
+              background: theme('colors.base')
             }
           },
         },
