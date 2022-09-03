@@ -1,47 +1,45 @@
 import { useTheme } from "next-themes";
-import {useIsMounted} from "usehooks-ts";
+import { useIsMounted } from "usehooks-ts";
+import { FaMoon, FaSun, FaCloudMoon, FaCloudSun } from "react-icons/fa";
 
-const flavours = [
-  {
+const flavours = {
+  mocha: {
     name: "Mocha",
-    className: "mocha",
+    icon: <FaMoon />,
   },
-  {
+  macchiato: {
     name: "Macchiato",
-    className: "macchiato",
+    icon: <FaCloudMoon />,
   },
-  {
-    name: "Frappé",
+  frappe: {
     className: "frappe",
+    icon: <FaCloudSun />,
   },
-  {
-    name: "Latte",
+  latte: {
     className: "latte",
+    icon: <FaSun />,
   },
-];
+};
 
 const ThemeChanger = (): JSX.Element => {
   const { theme, setTheme } = useTheme();
-  const mounted = useIsMounted()
+  const mounted = useIsMounted();
 
   if (!mounted) {
     return <></>;
   }
 
   return (
-    <div className="flex flex-col gap-4 rounded-lg bg-crust p-4 text-text shadow">
-      {flavours.map((flavour) => (
-        <button
-          key={flavour.name}
-          className={`${flavour.className} group flex items-baseline justify-between rounded-lg border border-crust bg-base p-2 text-text transition-transform hover:scale-110`}
-          onClick={() => setTheme(flavour.className)}
-        >
-          <span>{flavour.name}</span>
-          {theme === flavour.className && (
-            <span className="h-3 w-3 rounded-full bg-rosewater group-hover:animate-bounce" />
-          )}
-        </button>
-      ))}
+    <div>
+      <button
+        onClick={() => {
+          const nextThemeIdx =
+            (currentThemeIdx + 1) % Object.keys(flavours).length;
+          setTheme(Object.keys(flavours)[nextThemeIdx] || "mocha");
+        }}
+      >
+        {flavours[theme].icon}
+      </button>
     </div>
   );
 };
