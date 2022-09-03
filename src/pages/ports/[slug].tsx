@@ -13,14 +13,12 @@ export default function PortPage({
   readme: string;
 }): ReactElement {
   return (
-    <Layout>
-      <div className="max-w-3xl prose text-text bg-mantle mx-auto p-4 rounded-md items-baseline">
-        <div className="flex justify-between">
+    <Layout title={` for ${name}`}>
+      <div className="min-w-4xl prose text-text bg-mantle mx-auto p-4 rounded-md items-baseline">
+        <div className="flex justify-between mt-4">
           <h1>Catppuccin for {name}</h1>
           <Link href={`https://github.com/catppuccin/${name}`}>
-            <a>
-              View on GitHub
-            </a>
+            <a>View on GitHub</a>
           </Link>
         </div>
         <div dangerouslySetInnerHTML={{ __html: readme }} />

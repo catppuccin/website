@@ -18,7 +18,7 @@ export default function Home(props: any) {
   });
 
   return (
-    <Layout>
+    <Layout title="Ports">
       <div className="flex flex-col justify-start items-center max-w-screen overflow-x-hidden min-w-screen min-h-screen font-inter p-4 bg-base gap-4 h-max max-h-max overflow-y-hidden">
         <div className="flex w-[100%] lg:w-2/3 md:w-[80%] justify-center items-center">
           <SearchBar ports={props.ports} setFilteredPorts={setFilteredPorts} />
