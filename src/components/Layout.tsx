@@ -1,10 +1,15 @@
-import type { ReactElement } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import PoweredByVercel from "./PoweredByVercel";
 import Link from "next/link";
 
-import { SiTwitter, SiDiscord, SiOpencollective, SiReddit, SiGithub} from "react-icons/si";
+import {
+  SiTwitter,
+  SiDiscord,
+  SiOpencollective,
+  SiReddit,
+  SiGithub,
+} from "react-icons/si";
 
 const navItems = [
   {
@@ -29,27 +34,27 @@ const socialItems = [
   {
     label: "GitHub",
     href: "https://github.com/catppuccin",
-    icon: <SiGithub/>,
+    icon: <SiGithub />,
   },
   {
     label: "Discord",
     href: "https://discord.catppuccin.com",
-    icon: <SiDiscord/>,
+    icon: <SiDiscord />,
   },
   {
     label: "Twitter",
     href: "https://twitter.com/catppuccintheme",
-    icon: <SiTwitter/>,
+    icon: <SiTwitter />,
   },
   {
     label: "Open Collective",
     href: "https://opencollective.com/catppuccin",
-    icon: <SiOpencollective/>,
+    icon: <SiOpencollective />,
   },
   {
     label: "Reddit",
     href: "https://reddit.com/r/catppuccin",
-    icon: <SiReddit/>,
+    icon: <SiReddit />,
   },
 ];
 
@@ -57,13 +62,13 @@ export default function Layout({
   children,
   title,
 }: {
-  children: ReactElement;
+  children: JSX.Element;
   title?: string;
-}): ReactElement {
+}): JSX.Element {
   return (
     <>
       <Head>
-        <title>{`Catppuccin Theme` + (title ? ` ${title}` : "")}</title>
+        <title>{`Catppuccin` + (title ? ` ${title}` : "")}</title>
       </Head>
       <div className="flex flex-col min-h-screen">
         <div className="flex flex-col grow">
@@ -92,15 +97,18 @@ export default function Layout({
               </Link>
             </div>
           </div>
-            {children}
+          {children}
         </div>
-        <footer className="flex flex-col justify-between items-center max-w-2xl mx-auto pb-2">
-          <ul className="flex flex-row gap-2 lg:gap-4 p-4">
+        <footer className="flex flex-col md:flex-row justify-between w-full items-center max-w-4xl mx-auto py-6 gap-4">
+          <span>
+            Copyright &copy; 2021-{new Date().getFullYear()} Catppuccin Org
+          </span>
+          <ul className="flex flex-row gap-2 lg:gap-4">
             {socialItems.map(({ label, href, icon }) => (
               <li key={label}>
-                <a href={href} rel="nofollow">
-                  {icon}
-                </a>
+                <Link href={href} rel="nofollow noreferrer" target="_blank">
+                  <a className="block w-5 h-5">{icon}</a>
+                </Link>
               </li>
             ))}
           </ul>
