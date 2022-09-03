@@ -1,0 +1,89 @@
+code,
+.hljs {
+  background: rgb(var(--ctp-base));
+}
+
+code .hljs-attr,
+code .hljs-string {
+  color: rgb(var(--ctp-green));
+}
+code .hljs-tag {
+  color: rgb(var(--ctp-red));
+}
+code .hljs-name {
+  color: rgb(var(--ctp-flamingo));
+}
+
+pre .hljs {
+  background: rgb(var(--ctp-base));
+}
+pre .hljs-params {
+  color: rgb(var(--ctp-red));
+}
+pre .hljs-built_in,
+pre .hljs-selector-tag,
+pre .hljs-section,
+pre .hljs-link {
+  color: rgb(var(--ctp-sapphire));
+}
+pre .hljs-keyword {
+  color: rgb(var(--ctp-mauve));
+}
+pre .hljs,
+pre .hljs-subst {
+  color: rgb(var(--ctp-subtext0));
+}
+pre .hljs-title {
+  color: rgb(var(--ctp-blue));
+}
+pre .hljs-attr,
+pre .hljs-meta-keyword {
+  color: rgb(var(--ctp-green));
+}
+pre .hljs-type {
+  color: rgb(var(--ctp-blue));
+}
+pre .hljs-string {
+  color: rgb(var(--ctp-green));
+}
+pre .hljs-tag {
+  color: rgb(var(--ctp-red));
+}
+pre .hljs-meta,
+pre .hljs-name,
+pre .hljs-symbol,
+pre .hljs-bullet,
+pre .hljs-addition,
+pre .hljs-variable,
+pre .hljs-template-tag,
+pre .hljs-template-variable {
+  color: rgb(var(--ctp-flamingo));
+}
+pre .hljs-addition {
+  color: rgb(var(--ctp-green));
+}
+pre .hljs-deletion {
+  color: rgb(var(--ctp-red));
+}
+pre .hljs-comment,
+pre .hljs-quote {
+  color: rgb(var(--ctp-surface2));
+}
+pre .hljs-literal,
+pre .hljs-number {
+  color: rgb(var(--ctp-peach));
+}
+pre .hljs-keyword,
+pre .hljs-selector-tag,
+pre .hljs-literal,
+pre .hljs-title,
+pre .hljs-section,
+pre .hljs-doctag,
+pre .hljs-type,
+pre .hljs-name,
+pre .hljs-strong {
+  font-weight: bold;
+}
+pre .hljs-emphasis {
+  font-style: italic;
+}

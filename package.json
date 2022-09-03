@@ -11,14 +11,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@catppuccin/palette": "^0.1.5",
     "@formkit/auto-animate": "1.0.0-beta.3",
     "@octokit/graphql": "^5.0.1",
     "@octokit/rest": "^19.0.4",
+    "@types/color-convert": "^2.0.0",
+    "axios": "^0.27.2",
+    "color-convert": "^2.0.1",
+    "highlight.js": "^11.6.0",
     "next": "12.2.5",
     "next-themes": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "rehype-autolink-headings": "^6.1.1",
     "rehype-external-links": "^2.0.1",
     "rehype-highlight": "^5.0.2",
     "rehype-sanitize": "^5.0.1",
@@ -42,6 +48,7 @@
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
     "postcss": "^8.4.16",
+    "postcss-import": "^15.0.0",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.8",
     "typescript": "4.8.2"
