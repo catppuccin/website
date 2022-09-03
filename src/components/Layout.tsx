@@ -22,7 +22,7 @@ const navItems = [
   },
   {
     label: "Palette",
-    href: "#",
+    href: "/palette",
   },
   {
     label: "Donate",
