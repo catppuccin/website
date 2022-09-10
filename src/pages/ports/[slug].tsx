@@ -4,6 +4,7 @@ import markdownToHtml from "../../lib/markdownToHtml";
 import { GetStaticPaths, GetStaticProps } from "next";
 import GetPorts from "../../lib/getPorts";
 import Link from "next/link";
+import { SiGithub } from "react-icons/si";
 import axios from "axios";
 
 export default function PortPage({
@@ -14,12 +15,15 @@ export default function PortPage({
   readme: string;
 }): ReactElement {
   return (
-    <Layout title={` for ${name}`}>
-      <div className="min-w-4xl prose text-text bg-mantle mx-auto p-4 rounded-md items-baseline">
-        <div className="flex justify-between mt-4">
+    <Layout>
+      <div className="max-w-3xl prose font-epilogue text-text mx-auto p-4 pt-8 rounded-md items-baseline">
+        <div className="flex justify-between">
           <h1>Catppuccin for {name}</h1>
           <Link href={`https://github.com/catppuccin/${name}`}>
-            <a>View on GitHub</a>
+            <a aria-label="Viw on GitHub">
+              <SiGithub size={"1.7rem"} />
+              <p className="sr-only">View on GitHub</p>
+            </a>
           </Link>
         </div>
         <div dangerouslySetInnerHTML={{ __html: readme }} />
