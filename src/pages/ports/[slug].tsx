@@ -5,6 +5,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import GetPorts from "../../lib/getPorts";
 import Link from "next/link";
 import { SiGithub } from "react-icons/si";
+import axios from "axios";
 
 export default function PortPage({
   name,
@@ -32,10 +33,10 @@ export default function PortPage({
 }
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
-  const res = await fetch(
+  const res = await axios.get(
     `https://raw.githubusercontent.com/catppuccin/${context.params.slug}/main/README.md`
   );
-  const readme = await markdownToHtml(await res.text());
+  const readme = await markdownToHtml(res.data);
 
   return {
     props: {
