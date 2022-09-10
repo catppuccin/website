@@ -72,7 +72,7 @@ export default function Layout({
       <Head>
         <title>{`Catppuccin` + (title ? ` ${title}` : "")}</title>
       </Head>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-crust">
         <div className="flex flex-col grow">
           <div className="h-48 anim-gradient flex flex-col">
             <div className="h-12 bg-mantle/30 backdrop-blur flex items-center w-screen fixed z-10">
