@@ -10,6 +10,7 @@ specifiers:
   '@tailwindcss/typography': ^0.5.4
   '@types/color-convert': ^2.0.0
   '@types/node': 18.7.14
+  '@types/nprogress': ^0.2.0
   '@types/react': 18.0.18
   '@types/react-dom': 18.0.6
   autoprefixer: ^10.4.8
@@ -20,12 +21,14 @@ specifiers:
   highlight.js: ^11.6.0
   next: 12.2.5
   next-themes: ^0.2.0
+  nprogress: ^0.2.0
   postcss: ^8.4.16
   postcss-import: ^15.0.0
   prettier: ^2.7.1
   react: 18.2.0
   react-dom: 18.2.0
   react-icons: ^4.4.0
+  react-lazy-load: ^4.0.1
   rehype-autolink-headings: ^6.1.1
   rehype-external-links: ^2.0.1
   rehype-highlight: ^5.0.2
@@ -52,9 +55,11 @@ dependencies:
   highlight.js: 11.6.0
   next: 12.2.5_biqbaboplfbrettd7655fr4n2y
   next-themes: 0.2.0_3xcjr4wz26biff45sz3jtokgje
+  nprogress: 0.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
+  react-lazy-load: 4.0.1_biqbaboplfbrettd7655fr4n2y
   rehype-autolink-headings: 6.1.1
   rehype-external-links: 2.0.1
   rehype-highlight: 5.0.2
@@ -69,10 +74,11 @@ dependencies:
   zod: 3.18.0
 
 devDependencies:
-  '@catppuccin/tailwindcss': 0.1.0_postcss@8.4.16
+  '@catppuccin/tailwindcss': 0.1.0
   '@svgr/webpack': 6.3.1
   '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.8
   '@types/node': 18.7.14
+  '@types/nprogress': 0.2.0
   '@types/react': 18.0.18
   '@types/react-dom': 18.0.6
   autoprefixer: 10.4.8_postcss@8.4.16
@@ -81,7 +87,7 @@ devDependencies:
   postcss: 8.4.16
   postcss-import: 15.0.0_postcss@8.4.16
   prettier: 2.7.1
-  tailwindcss: 3.1.8_postcss@8.4.16
+  tailwindcss: 3.1.8
   typescript: 4.8.2
 
 packages:
@@ -1362,13 +1368,12 @@ packages:
   /@catppuccin/palette/0.1.5:
     resolution: {integrity: sha512-IQLsZwXDMpLc5CFGjIMa/gFnnFL/QLB280F11B51JweZHerZ/FgPXdIR4eQqn1CgrqI3wGfgnj1LVPx12DV/Uw==}
 
-  /@catppuccin/tailwindcss/0.1.0_postcss@8.4.16:
+  /@catppuccin/tailwindcss/0.1.0:
     resolution: {integrity: sha512-lklhwJCSVzdiurLo+Blp2DXT0A+7u4BnP6GAp/m8zM7/hKlB82+qgvKIcObc5RqlFeiosMH4/OpQfLyccpqMog==}
     dependencies:
       '@catppuccin/palette': 0.1.5
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
     transitivePeerDependencies:
-      - postcss
       - ts-node
     dev: true
 
@@ -1883,7 +1888,7 @@ packages:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
-      tailwindcss: 3.1.8_postcss@8.4.16
+      tailwindcss: 3.1.8
     dev: true
 
   /@trysound/sax/0.2.0:
@@ -1933,6 +1938,10 @@ packages:
 
   /@types/node/18.7.14:
     resolution: {integrity: sha512-6bbDaETVi8oyIARulOE9qF1/Qdi/23z6emrUh0fNJRUmjznqrixD4MpGDdgOFk5Xb0m2H6Xu42JGdvAxaJR/wA==}
+    dev: true
+
+  /@types/nprogress/0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
     dev: true
 
   /@types/parse-json/4.0.0:
@@ -3981,6 +3990,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /nprogress/0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
+    dev: false
+
   /nth-check/2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
     dependencies:
@@ -4284,6 +4297,16 @@ packages:
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
+
+  /react-lazy-load/4.0.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-TnXRr79X9rlC9UcmO6iyS28rOPHrgkHIP4+b8yZPfs1tw6k/Rp2DmFY8R20BqWR45ZWkpT+4dqV1f+yci+1ozg==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -4685,12 +4708,10 @@ packages:
       stable: 0.1.8
     dev: true
 
-  /tailwindcss/3.1.8_postcss@8.4.16:
+  /tailwindcss/3.1.8:
     resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
     engines: {node: '>=12.13.0'}
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3

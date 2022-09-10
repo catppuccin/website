@@ -44,7 +44,7 @@ module.exports = {
     },
   },
   plugins: [
-    require("@catppuccin/tailwindcss")({defaultFlavour: ""}),
+    require("@catppuccin/tailwindcss")({defaultFlavour: "macchiato"}),
     require("@tailwindcss/typography")
   ],
 };

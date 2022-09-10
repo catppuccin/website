@@ -9,7 +9,7 @@ export default async function GetPorts() {
       type: "public",
     })
     .then((data) => {
-      return data
+      const portsData = data
         .filter(({ topics = [] }) => {
           return !topics.includes("catppuccin-meta");
         })
@@ -19,7 +19,27 @@ export default async function GetPorts() {
           } else {
             return 0;
           }
-        });
+        })
+        .map(
+          ({
+            name,
+            description,
+            html_url,
+            stargazers_count,
+            forks_count,
+            topics,
+          }) => {
+            return {
+              name,
+              description,
+              html_url,
+              stargazers_count,
+              forks_count,
+              topics,
+            };
+          }
+        );
+      return portsData;
     })
     .catch((err) => {
       return err;
