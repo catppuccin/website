@@ -1,6 +1,6 @@
 import { Octokit } from "@octokit/rest";
 
-const octokit = new Octokit();
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN || "" });
 
 export default async function GetPorts() {
   return octokit
@@ -42,6 +42,7 @@ export default async function GetPorts() {
       return portsData;
     })
     .catch((err) => {
+      console.log(err);
       return err;
     });
 }

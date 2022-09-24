@@ -1,4 +1,3 @@
-import Layout from "../../components/Layout";
 import { ReactElement } from "react";
 import markdownToHtml from "../../lib/markdownToHtml";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -6,6 +5,7 @@ import GetPorts from "../../lib/getPorts";
 import Link from "next/link";
 import { SiGithub } from "react-icons/si";
 import axios from "axios";
+import { Layout } from "../../components";
 
 export default function PortPage({
   name,

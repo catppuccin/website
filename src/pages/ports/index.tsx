@@ -1,14 +1,9 @@
 import GetPorts from "../../lib/getPorts";
-import { FiStar } from "react-icons/fi";
-import { VscRepoForked } from "react-icons/vsc";
-import getIcon from "../../lib/getIcon";
-import getIconColor from "../../lib/getIconColor";
 import { useState } from "react";
-import SearchBar from "../../components/SearchBar";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import Layout from "../../components/Layout";
-import LazyLoad from "react-lazy-load";
 import { useRouter } from "next/router";
+import { Card, Layout, SearchBar } from "../../components";
+import LazyLoad from "react-lazy-load";
 
 export default function Home(props: any) {
   const [filteredPorts, setFilteredPorts] = useState(
@@ -33,39 +28,11 @@ export default function Home(props: any) {
             .filter(
               (port: any) => port.name !== ".github" && port.name !== "template"
             )
-            .map((port: any) => {
-              return (
-                <LazyLoad key={port.name}>
-                  <div
-                    className="bg-crust flex cursor-pointer hover:-translate-y-1 flex-col py-6 rounded-lg drop-shadow-md hover:drop-shadow-2xl hover:scale-[1.01] duration-300 items-center justify-evenly gap-3 max-h-fit h-fit"
-                    onClick={() => {
-                      router.push(`/ports/${port.name}`);
-                    }}
-                  >
-                    <h3 className=" text-zinc-300">{port.name}</h3>
-                    <div
-                      className={`flex text-${getIconColor(
-                        port.name
-                      )} justify-center items-center bg-base rounded-full p-3 fill-${getIconColor(
-                        port.name
-                      )}`}
-                    >
-                      {getIcon(port.name)}
-                    </div>
-                    <div className="flex justify-center items-center gap-4 w-full">
-                      <p className="text-sm text-zinc-300 flex gap-1 justify-center">
-                        <FiStar />
-                        {port.stargazers_count}
-                      </p>
-                      <p className="text-sm text-zinc-300 flex gap-1 justify-center">
-                        <VscRepoForked />
-                        {port.forks_count}
-                      </p>
-                    </div>
-                  </div>
-                </LazyLoad>
-              );
-            })}
+            .map((port: any) => (
+              <LazyLoad key={port.name}>
+                <Card key={port.name} port={port} />
+              </LazyLoad>
+            ))}
         </div>
       </div>
     </Layout>
@@ -74,7 +41,7 @@ export default function Home(props: any) {
 
 export async function getStaticProps() {
   const ports = await GetPorts();
-  console.log(ports)
+  console.log(ports);
   return {
     props: {
       ports,

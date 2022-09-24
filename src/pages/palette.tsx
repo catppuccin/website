@@ -1,8 +1,7 @@
 import { variants } from "@catppuccin/palette";
-import Layout from "../components/Layout";
+import { CopyToClipboardBtn, Layout } from "../components";
 import { GetStaticProps } from "next";
 import { useState } from "react";
-import CopyToClipboardBtn from "../components/CopyToClipboardBtn";
 import Link from "next/link";
 import { capitalize, convertTo } from "../lib/utils";
 
@@ -74,10 +73,10 @@ export default function PalettePage({
         <table className="table-auto w-full">
           <thead>
             <tr>
-              <th className="text-left">‎ </th>
+              <th className="text-left">‎</th>
               <th className="text-left">Label</th>
               <th className="text-left">{selectedFormat}</th>
-              <th className="text-left">‎ </th>
+              <th className="text-left">‎</th>
             </tr>
           </thead>
           <tbody>
@@ -87,14 +86,18 @@ export default function PalettePage({
                 return (
                   <tr
                     key={colourName}
-                    className={colourIdx % 2 === 0 ? "rounded p-2" : "bg-mantle/50 rounded p-2"}
+                    className={
+                      colourIdx % 2 === 0
+                        ? "rounded p-2"
+                        : "bg-mantle/50 rounded p-2"
+                    }
                   >
                     <td className={`${selectedFlavour} py-2`}>
                       <div
                         className={`rounded-full w-4 h-4 bg-${colourName}`}
                       />
                     </td>
-                    <td >{capitalize(colourName)}</td>
+                    <td>{capitalize(colourName)}</td>
                     <td>
                       <code className="font-fira bg-transparent">{format}</code>
                     </td>

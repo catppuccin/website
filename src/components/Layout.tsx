@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Image from "next/image";
-import PoweredByVercel from "./PoweredByVercel";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -11,6 +10,7 @@ import {
   SiReddit,
   SiGithub,
 } from "react-icons/si";
+import { PoweredByVercel } from "./PoweredByVercel";
 
 const navItems = [
   {
@@ -59,13 +59,13 @@ const socialItems = [
   },
 ];
 
-export default function Layout({
+export const Layout = ({
   children,
   title,
 }: {
   children: JSX.Element;
   title?: string;
-}): JSX.Element {
+}): JSX.Element => {
   const currentPath = useRouter().pathname;
   return (
     <>
@@ -146,4 +146,4 @@ export default function Layout({
       </div>
     </>
   );
-}
+};
