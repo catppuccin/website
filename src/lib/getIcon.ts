@@ -1,36 +1,36 @@
 import {
-  SiGithub,
-  SiDuckduckgo,
-  SiNeovim,
-  SiVim,
-  SiDiscord,
   SiAlacritty,
-  SiIterm2,
-  SiLastdotfm,
-  SiAnilist,
-  SiSteam,
-  SiSpotify,
-  SiXcode,
-  SiVisualstudiocode,
-  SiJoplin,
-  SiWindows,
-  SiTailwindcss,
   SiAlfred,
-  SiThunderbird,
-  SiHyper,
+  SiAnilist,
   SiDarkreader,
-  SiYoutube,
-  SiReddit,
-  SiGooglechrome,
-  SiJetbrains,
-  SiKde,
-  SiTelegram,
+  SiDiscord,
+  SiDuckduckgo,
   SiFirefoxbrowser,
-  SiSublimetext,
-  SiWindowsterminal,
-  SiTmux,
+  SiGithub,
   SiGnuemacs,
+  SiGooglechrome,
+  SiHyper,
   SiInsomnia,
+  SiIterm2,
+  SiJetbrains,
+  SiJoplin,
+  SiKde,
+  SiLastdotfm,
+  SiNeovim,
+  SiReddit,
+  SiSpotify,
+  SiSteam,
+  SiSublimetext,
+  SiTailwindcss,
+  SiTelegram,
+  SiThunderbird,
+  SiTmux,
+  SiVim,
+  SiVisualstudiocode,
+  SiWindows,
+  SiWindowsterminal,
+  SiXcode,
+  SiYoutube,
 } from "react-icons/si";
 import { FiCode } from "react-icons/fi";
 import MonkeyType from "../icons/monkeytype.svg";
@@ -38,6 +38,8 @@ import GnomeTerminal from "../icons/gnometerminal.svg";
 import Obsidian from "../icons/obsidian.svg";
 import GTK from "../icons/gtk.svg";
 import Kitty from "../icons/kitty.svg";
+import dynamic from "next/dynamic";
+import { IconType } from "react-icons";
 
 type SlugToIcon = {
   [key: string]: JSX.Element;
@@ -156,6 +158,23 @@ const slugToIcon: SlugToIcon = {
   kitty: Kitty(),
 };
 
-export default function getIcon(slug: string) {
-  return slugToIcon[slug] || FiCode({ size: "2.5rem" });
-}
+export const getIcon = (slug: string) =>
+  slugToIcon[slug] || FiCode({ size: "2.5rem" });
+
+export const getIconByName = (name: string) => {
+  const cleanedUpName = name.charAt(0).toUpperCase() + name.slice(1);
+  return dynamic(
+    () =>
+      import(`react-icons/si`).then((icon) => {
+        const iconName = `Si${cleanedUpName}` as keyof typeof icon;
+        const iconToReturn = icon[iconName] as IconType;
+        if (iconToReturn === undefined) {
+          return FiCode;
+        }
+        return iconToReturn;
+      }),
+    {
+      ssr: false,
+    }
+  );
+};

@@ -1,9 +1,9 @@
 import getIconColor from "../lib/getIconColor";
-import getIcon from "../lib/getIcon";
 import { FiStar } from "react-icons/fi";
 import { VscRepoForked } from "react-icons/vsc";
 import { FC } from "react";
 import { useRouter } from "next/router";
+import { getIconByName } from "../lib/getIcon";
 
 interface CardProps {
   port: any;
@@ -11,6 +11,7 @@ interface CardProps {
 
 export const Card: FC<CardProps> = ({ port }) => {
   const router = useRouter();
+  const CardIcon = getIconByName(port.name);
   return (
     <div
       className="bg-crust flex cursor-pointer hover:-translate-y-1 flex-col py-6 rounded-lg drop-shadow-md hover:drop-shadow-2xl hover:scale-[1.01] duration-300 items-center justify-evenly gap-3 max-h-fit h-fit"
@@ -26,7 +27,7 @@ export const Card: FC<CardProps> = ({ port }) => {
           port.name
         )}`}
       >
-        {getIcon(port.name)}
+        {<CardIcon size={"2rem"} />}
       </div>
       <div className="flex justify-center items-center gap-4 w-full">
         <p className="text-sm text-zinc-300 flex gap-1 justify-center">
