@@ -1,7 +1,7 @@
 import { FaClipboard } from "react-icons/fa";
 import { useCopyToClipboard } from "../hooks";
 
-export default function CopyToClipboardBtn({ text }: { text: string }) {
+export const CopyToClipboardBtn = ({ text }: { text: string }) => {
   const [value, copy] = useCopyToClipboard(500);
   return (
     <button
@@ -12,4 +12,4 @@ export default function CopyToClipboardBtn({ text }: { text: string }) {
       <span className="sr-only">{value ? "Copied!" : "Copy"}</span>
     </button>
   );
-}
+};

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import fs from "fs";
-import Layout from "../components/Layout";
 import markdownToHtml from "../lib/markdownToHtml";
+import { Layout } from "../components";
 
 export default function Home({ content }: { content: string }): JSX.Element {
   return (

@@ -1,4 +1,4 @@
-export default function SearchBar(props: any) {
+export const SearchBar = (props: any) => {
   const handleChange = (e: any) => {
     e.preventDefault();
     const filteredPorts = props.ports.filter((port: any) =>
@@ -16,4 +16,4 @@ export default function SearchBar(props: any) {
       />
     </div>
   );
-}
+};

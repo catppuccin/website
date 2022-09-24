@@ -1,5 +1,5 @@
 import { useTheme } from "next-themes";
-import {useIsMounted} from "usehooks-ts";
+import { useIsMounted } from "usehooks-ts";
 
 const flavours = [
   {
@@ -20,9 +20,9 @@ const flavours = [
   },
 ];
 
-const ThemeChanger = (): JSX.Element => {
+export const ThemeChanger = (): JSX.Element => {
   const { theme, setTheme } = useTheme();
-  const mounted = useIsMounted()
+  const mounted = useIsMounted();
 
   if (!mounted) {
     return <></>;
@@ -45,5 +45,3 @@ const ThemeChanger = (): JSX.Element => {
     </div>
   );
 };
-
-export default ThemeChanger;
