@@ -81,11 +81,11 @@ export const Layout = ({
                   <li key={label}>
                     <Link href={href}>
                       {currentPath === href ? (
-                        <a className="text-macchiato bg-mantle/10 p-2 rounded">
+                        <a className="text-macchiato bg-mantle/10 p-2 rounded font-bold">
                           {label}
                         </a>
                       ) : (
-                        <a className="text-macchiato hover:bg-mantle/10 hover:rounded focus:rounded duration-300 focus:bg-mantle/10 hover:text-macchiato p-2">
+                        <a className="text-macchiato font-bold hover:bg-mantle/10 hover:rounded focus:rounded duration-300 focus:bg-mantle/10 hover:text-macchiato p-2">
                           {label}
                         </a>
                       )}
@@ -98,7 +98,7 @@ export const Layout = ({
               <Link href="/">
                 <a>
                   <Image
-                    src="/500x500_circle.png"
+                    src="/logo-round.png"
                     alt="Catppuccin Logo (round)"
                     width={120}
                     height={120}
@@ -110,8 +110,8 @@ export const Layout = ({
           {children}
         </div>
         <footer className="flex flex-col items-center max-w-3xl mx-auto py-6 gap-4 px-2">
-          <div className="flex justify-center gap-4">
-            <span>
+          <div className="flex flex-col justify-center gap-4">
+            <p>
               Copyright &copy; 2021-{new Date().getFullYear()}{" "}
               <span className="underline decoration-dotted underline-offset-2">
                 <a
@@ -122,8 +122,8 @@ export const Layout = ({
                   Catppuccin Org
                 </a>
               </span>
-            </span>
-            <ul className="flex flex-row gap-2 lg:gap-4">
+            </p>
+            <ul className="flex flex-row mx-auto gap-2 lg:gap-4">
               {socialItems.map(({ label, href, icon }) => (
                 <li
                   key={label}
