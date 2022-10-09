@@ -37,20 +37,19 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   let props = {};
   try {
     props = await getPortData({ context, branch: "main" });
-    console.log("Using main branch");
+    console.log(`Using main branch for ${context.params.slug}`);
   } catch (error) {
     try {
       props = await getPortData({ context, branch: "master" });
-      console.log("Using master branch");
+      console.log(`Using master branch for ${context.params.slug}`);
     } catch (error) {
       props = {
         name: context.params.slug,
         readme: "This port doesn't have a README.md file yet",
       };
-      console.log("Using fallback");
+      console.log(`Using fallback for ${context.params.slug}`);
     }
   }
-  console.log(props);
   return {
     props: props,
   };
