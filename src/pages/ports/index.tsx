@@ -1,10 +1,10 @@
 import GetPorts from "../../lib/getPorts";
 import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { useRouter } from "next/router";
 import { Card, Layout, SearchBar } from "../../components";
 import LazyLoad from "react-lazy-load";
-import { getIconsMap } from "../../lib/utils";
+import { getIconsMapFromFile } from "../../lib/utils";
+import { Port } from "../../lib/types";
 
 export default function Home(props: any) {
   const [filteredPorts, setFilteredPorts] = useState(
@@ -13,7 +13,6 @@ export default function Home(props: any) {
   const [parent] = useAutoAnimate<HTMLDivElement>({
     duration: 500,
   });
-  const router = useRouter();
 
   return (
     <Layout title="Ports">
@@ -43,10 +42,10 @@ export default function Home(props: any) {
 export async function getStaticProps() {
   const ports = await GetPorts();
 
-  const portsNamesNormalized = await getIconsMap();
+  const portsNamesNormalized = await getIconsMapFromFile();
 
   const portsWithIcons = await Promise.all(
-    ports.map(async (port: any) => {
+    ports.map(async (port: Port) => {
       const portName = portsNamesNormalized[port.name] || port.name;
       const icon = await fetch(`https://simpleicons.org/icons/${portName}.svg`)
         .then((res) => {
@@ -60,6 +59,7 @@ export async function getStaticProps() {
                 return res.text();
               } else {
                 return fetch(
+                  // TODO: Add the icon somewhere else than discord
                   `https://cdn.discordapp.com/attachments/1012716616728977438/1028486057836167299/emboss.svg`
                 ).then((res) => res.text());
               }
@@ -68,6 +68,7 @@ export async function getStaticProps() {
         })
         .catch((err) => {
           return fetch(
+            // TODO: Add the icon somewhere else than discord
             `https://cdn.discordapp.com/attachments/1012716616728977438/1028486057836167299/emboss.svg`
           ).then((res) => res.text());
         });

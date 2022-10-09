@@ -6,6 +6,7 @@ import Link from "next/link";
 import { SiGithub } from "react-icons/si";
 import axios from "axios";
 import { Layout } from "../../components";
+import { Port } from "../../lib/types";
 
 export default function PortPage({
   name,
@@ -49,7 +50,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const ports = await GetPorts();
 
-  const paths = ports.map((port: any) => {
+  const paths = ports.map((port: Port) => {
     return {
       params: { slug: port.name },
     };

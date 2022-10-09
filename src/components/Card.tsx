@@ -1,13 +1,13 @@
 import getIconColor from "../lib/getIconColor";
-import getIcon from "../lib/getIcon";
 import { FiStar } from "react-icons/fi";
 import { VscRepoForked } from "react-icons/vsc";
 import { FC } from "react";
 import { useRouter } from "next/router";
 import { SVGIcon } from "./SVGIcon";
+import { Port } from "../lib/types";
 
 interface CardProps {
-  port: any;
+  port: Port;
 }
 
 export const Card: FC<CardProps> = ({ port }) => {
