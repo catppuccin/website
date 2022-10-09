@@ -6,6 +6,8 @@ import LazyLoad from "react-lazy-load";
 import { Port } from "../../lib/types";
 import path from "path";
 import fsPromises from "fs/promises";
+import axios from "axios";
+import { getCurrentApiBaseUrl } from "../../lib/utils";
 
 export default function Home(props: any) {
   const [filteredPorts, setFilteredPorts] = useState(
@@ -40,8 +42,9 @@ export default function Home(props: any) {
   );
 }
 
-export async function getStaticProps() {
-  const ports = await GetPorts();
+export async function getServerSideProps() {
+  const response = await axios.get(`${getCurrentApiBaseUrl()}/ports`);
+  const ports = response.data;
 
   const filePath = path.join(process.cwd(), "icons.json");
   const jsonData = await fsPromises.readFile(filePath, "utf8");
@@ -82,6 +85,7 @@ export async function getStaticProps() {
       };
     })
   );
+
   return {
     props: {
       ports: portsWithIcons,
