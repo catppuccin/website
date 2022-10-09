@@ -33,5 +33,5 @@ export const getCurrentApiBaseUrl = () => {
     return "http://localhost:3000/api";
   }
 
-  return `${process.env.VERCEL_URL}/api`;
+  return `/api`;
 };

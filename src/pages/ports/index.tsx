@@ -43,8 +43,8 @@ export default function Home(props: any) {
 }
 
 export async function getServerSideProps() {
-  const response = await axios.get(`${getCurrentApiBaseUrl()}/ports`);
-  const ports = response.data;
+  const response = await fetch(`${getCurrentApiBaseUrl()}/ports`);
+  const ports = await response.json();
 
   const filePath = path.join(process.cwd(), "icons.json");
   const jsonData = await fsPromises.readFile(filePath, "utf8");
