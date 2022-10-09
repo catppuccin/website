@@ -41,10 +41,46 @@ export default function Home(props: any) {
 
 export async function getStaticProps() {
   const ports = await GetPorts();
-  console.log(ports);
+
+  const portsNamesNormalized: Record<string, string> = {
+    nvim: "neovim",
+  };
+
+  const portsWithIcons = await Promise.all(
+    ports.map(async (port: any) => {
+      const portName = portsNamesNormalized[port.name] || port.name;
+      const icon = await fetch(`https://simpleicons.org/icons/${portName}.svg`)
+        .then((res) => {
+          if (res.ok) {
+            return res.text();
+          } else {
+            return fetch(
+              `https://raw.githubusercontent.com/catppuccin/${portName}/main/.icon.svg`
+            ).then((res) => {
+              if (res.ok) {
+                return res.text();
+              } else {
+                return fetch(
+                  `https://cdn.discordapp.com/attachments/1012716616728977438/1028486057836167299/emboss.svg`
+                ).then((res) => res.text());
+              }
+            });
+          }
+        })
+        .catch((err) => {
+          return fetch(
+            `https://cdn.discordapp.com/attachments/1012716616728977438/1028486057836167299/emboss.svg`
+          ).then((res) => res.text());
+        });
+      return {
+        ...port,
+        icon,
+      };
+    })
+  );
   return {
     props: {
-      ports,
+      ports: portsWithIcons,
     },
   };
 }

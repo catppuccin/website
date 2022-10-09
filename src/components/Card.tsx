@@ -4,6 +4,7 @@ import { FiStar } from "react-icons/fi";
 import { VscRepoForked } from "react-icons/vsc";
 import { FC } from "react";
 import { useRouter } from "next/router";
+import { SVGIcon } from "./SVGIcon";
 
 interface CardProps {
   port: any;
@@ -26,7 +27,7 @@ export const Card: FC<CardProps> = ({ port }) => {
           port.name
         )}`}
       >
-        {getIcon(port.name)}
+        <SVGIcon svgContent={port.icon} />
       </div>
       <div className="flex justify-center items-center gap-4 w-full">
         <p className="text-sm text-zinc-300 flex gap-1 justify-center">
