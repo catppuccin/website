@@ -22,9 +22,3 @@ export const convertTo = (color: string, format: string): string => {
       return color;
   }
 };
-
-export const getIconsMapFromFile = async () => {
-  const filePath = path.join(process.cwd(), "icons.json");
-  const jsonData = await fsPromises.readFile(filePath, "utf8");
-  return JSON.parse(jsonData);
-};

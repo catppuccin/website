@@ -3,8 +3,9 @@ import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Card, Layout, SearchBar } from "../../components";
 import LazyLoad from "react-lazy-load";
-import { getIconsMapFromFile } from "../../lib/utils";
 import { Port } from "../../lib/types";
+import path from "path";
+import fsPromises from "fs/promises";
 
 export default function Home(props: any) {
   const [filteredPorts, setFilteredPorts] = useState(
@@ -42,7 +43,10 @@ export default function Home(props: any) {
 export async function getStaticProps() {
   const ports = await GetPorts();
 
-  const portsNamesNormalized = await getIconsMapFromFile();
+  const filePath = path.join(process.cwd(), "icons.json");
+  const jsonData = await fsPromises.readFile(filePath, "utf8");
+
+  const portsNamesNormalized = JSON.parse(jsonData);
 
   const portsWithIcons = await Promise.all(
     ports.map(async (port: Port) => {
