@@ -1,4 +1,6 @@
 import convert from "color-convert";
+import fsPromises from "fs/promises";
+import path from "path";
 
 export const capitalize = (str: string | undefined) => {
   if (!str) return "";
@@ -19,4 +21,10 @@ export const convertTo = (color: string, format: string): string => {
     default:
       return color;
   }
+};
+
+export const getIconsMap = async () => {
+  const filePath = path.join(process.cwd(), "icons.json");
+  const jsonData = await fsPromises.readFile(filePath, "utf8");
+  return JSON.parse(jsonData);
 };

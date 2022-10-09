@@ -4,6 +4,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useRouter } from "next/router";
 import { Card, Layout, SearchBar } from "../../components";
 import LazyLoad from "react-lazy-load";
+import { getIconsMap } from "../../lib/utils";
 
 export default function Home(props: any) {
   const [filteredPorts, setFilteredPorts] = useState(
@@ -42,9 +43,7 @@ export default function Home(props: any) {
 export async function getStaticProps() {
   const ports = await GetPorts();
 
-  const portsNamesNormalized: Record<string, string> = {
-    nvim: "neovim",
-  };
+  const portsNamesNormalized = await getIconsMap();
 
   const portsWithIcons = await Promise.all(
     ports.map(async (port: any) => {
