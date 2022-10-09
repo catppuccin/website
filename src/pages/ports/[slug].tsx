@@ -34,56 +34,34 @@ export default function PortPage({
 }
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
-  let props = {};
-  try {
-    props = await getPortData({ context, branch: "main" });
-    console.log(`Using main branch for ${context.params.slug}`);
-  } catch (error) {
-    try {
-      props = await getPortData({ context, branch: "master" });
-      console.log(`Using master branch for ${context.params.slug}`);
-    } catch (error) {
-      props = {
-        name: context.params.slug,
-        readme: "This port doesn't have a README.md file yet",
-      };
-      console.log(`Using fallback for ${context.params.slug}`);
-    }
-  }
+  const port = await GetPorts().then(
+    (ports) =>
+      ports.filter((port: Port) => port.name === context.params.slug)[0]
+  );
+  const url = `https://raw.githubusercontent.com/catppuccin/${context.params.slug}/${port.default_branch}/README.md`;
+  const res = await fetch(url);
+  const readme = await markdownToHtml(await res.text());
+
   return {
-    props: props,
+    props: {
+      name: context.params.slug,
+      readme,
+    },
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const ports = await GetPorts();
-
   const paths = ports.map((port: Port) => {
     return {
-      params: { slug: port.name },
+      params: {
+        slug: port.name,
+      },
     };
   });
 
   return {
     paths,
     fallback: false,
-  };
-};
-
-const getPortData = async ({
-  context,
-  branch,
-}: {
-  context: any;
-  branch: string;
-}) => {
-  const res = await axios.get(
-    `https://raw.githubusercontent.com/catppuccin/${context.params.slug}/${branch}/README.md`
-  );
-
-  const readme = await markdownToHtml(res.data);
-  return {
-    name: context.params.slug,
-    readme,
   };
 };

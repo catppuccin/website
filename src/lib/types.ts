@@ -6,4 +6,5 @@ export interface Port {
   forks_count: number;
   topics: string[];
   icon: string;
+  default_branch: string;
 }
