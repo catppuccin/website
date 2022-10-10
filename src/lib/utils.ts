@@ -1,6 +1,4 @@
 import convert from "color-convert";
-import fsPromises from "fs/promises";
-import path from "path";
 
 export const capitalize = (str: string | undefined) => {
   if (!str) return "";
