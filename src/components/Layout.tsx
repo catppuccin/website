@@ -11,8 +11,16 @@ import {
   SiGithub,
 } from "react-icons/si";
 import { PoweredByVercel } from "./PoweredByVercel";
+import React from "react";
+import { HiExternalLink } from "react-icons/hi";
 
-const navItems = [
+interface NavItem {
+  label: string;
+  href: string;
+  icon?: React.ReactNode;
+}
+
+const navItems: NavItem[] = [
   {
     label: "Home",
     href: "/",
@@ -28,10 +36,16 @@ const navItems = [
   {
     label: "Donate",
     href: "https://donate.catppuccin.com",
+    icon: (
+      <HiExternalLink
+        size={"20px"}
+        style={{ display: "inline-block", marginLeft: "5px" }}
+      />
+    ),
   },
 ];
 
-const socialItems = [
+const socialItems: NavItem[] = [
   {
     label: "GitHub",
     href: "https://github.com/catppuccin",
@@ -77,7 +91,7 @@ export const Layout = ({
           <div className="h-48 anim-gradient flex flex-col">
             <div className="h-12 bg-mantle/30 backdrop-blur flex items-center w-screen fixed z-10">
               <ul className="flex font-epilogue text-lg max-w-3xl mx-auto gap-6 lg:gap-12">
-                {navItems.map(({ label, href }) => (
+                {navItems.map(({ label, href, icon }) => (
                   <li key={label}>
                     <Link href={href}>
                       {currentPath === href ? (
@@ -86,7 +100,7 @@ export const Layout = ({
                         </a>
                       ) : (
                         <a className="text-macchiato font-bold hover:bg-mantle/10 hover:rounded focus:rounded duration-300 focus:bg-mantle/10 hover:text-macchiato p-2">
-                          {label}
+                          {label} {icon}
                         </a>
                       )}
                     </Link>
