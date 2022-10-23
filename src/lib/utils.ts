@@ -26,8 +26,6 @@ export const getCurrentEnv = () => {
 };
 
 export const getCurrentApiBaseUrl = () => {
-  console.log(getCurrentEnv());
-  console.log(process.env.VERCEL_URL);
   if (getCurrentEnv() === "development") {
     return "http://localhost:3000/api";
   }

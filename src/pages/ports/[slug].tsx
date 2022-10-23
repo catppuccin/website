@@ -36,7 +36,6 @@ export default function PortPage({
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const response = await fetch(`${getCurrentApiBaseUrl()}/ports`);
   const ports = await response.json();
-  console.log(ports);
   const port = ports.filter((port: Port) => {
     return port.name === context.params.slug;
   })[0];
