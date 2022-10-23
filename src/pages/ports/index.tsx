@@ -1,4 +1,3 @@
-import GetPorts from "../../lib/getPorts";
 import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Card, Layout, SearchBar } from "../../components";
@@ -6,7 +5,6 @@ import LazyLoad from "react-lazy-load";
 import { Port } from "../../lib/types";
 import path from "path";
 import fsPromises from "fs/promises";
-import axios from "axios";
 import { getCurrentApiBaseUrl } from "../../lib/utils";
 
 export default function Home(props: any) {
@@ -66,7 +64,7 @@ export async function getServerSideProps() {
                 return res.text();
               } else {
                 return fetch(
-                  // TODO: Add the icon somewhere else than discord
+                  // TODO: Change the url to the icon in public folder on the repo once it's merged to master
                   `https://cdn.discordapp.com/attachments/1012716616728977438/1028486057836167299/emboss.svg`
                 ).then((res) => res.text());
               }
@@ -75,7 +73,7 @@ export async function getServerSideProps() {
         })
         .catch((err) => {
           return fetch(
-            // TODO: Add the icon somewhere else than discord
+            // TODO: Change the url to the icon in public folder on the repo once it's merged to master
             `https://cdn.discordapp.com/attachments/1012716616728977438/1028486057836167299/emboss.svg`
           ).then((res) => res.text());
         });
