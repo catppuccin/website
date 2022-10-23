@@ -1,9 +1,11 @@
-import GetPorts from "../../lib/getPorts";
 import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { useRouter } from "next/router";
 import { Card, Layout, SearchBar } from "../../components";
 import LazyLoad from "react-lazy-load";
+import { Port } from "../../lib/types";
+import path from "path";
+import fsPromises from "fs/promises";
+import { getCurrentApiBaseUrl } from "../../lib/utils";
 
 export default function Home(props: any) {
   const [filteredPorts, setFilteredPorts] = useState(
@@ -12,7 +14,6 @@ export default function Home(props: any) {
   const [parent] = useAutoAnimate<HTMLDivElement>({
     duration: 500,
   });
-  const router = useRouter();
 
   return (
     <Layout title="Ports">
@@ -39,12 +40,53 @@ export default function Home(props: any) {
   );
 }
 
-export async function getStaticProps() {
-  const ports = await GetPorts();
-  console.log(ports);
+export async function getServerSideProps() {
+  const response = await fetch(`${getCurrentApiBaseUrl()}/ports`);
+  const ports = await response.json();
+
+  const filePath = path.join(process.cwd(), "icons.json");
+  const jsonData = await fsPromises.readFile(filePath, "utf8");
+
+  const portsNamesNormalized = JSON.parse(jsonData);
+
+  const portsWithIcons = await Promise.all(
+    ports.map(async (port: Port) => {
+      const portName = portsNamesNormalized[port.name] || port.name;
+      const icon = await fetch(`https://simpleicons.org/icons/${portName}.svg`)
+        .then((res) => {
+          if (res.ok) {
+            return res.text();
+          } else {
+            return fetch(
+              `https://raw.githubusercontent.com/catppuccin/${portName}/main/.icon.svg`
+            ).then((res) => {
+              if (res.ok) {
+                return res.text();
+              } else {
+                return fetch(
+                  // TODO: Change the url to the icon in public folder on the repo once it's merged to master
+                  `https://cdn.discordapp.com/attachments/1012716616728977438/1028486057836167299/emboss.svg`
+                ).then((res) => res.text());
+              }
+            });
+          }
+        })
+        .catch((err) => {
+          return fetch(
+            // TODO: Change the url to the icon in public folder on the repo once it's merged to master
+            `https://cdn.discordapp.com/attachments/1012716616728977438/1028486057836167299/emboss.svg`
+          ).then((res) => res.text());
+        });
+      return {
+        ...port,
+        icon,
+      };
+    })
+  );
+
   return {
     props: {
-      ports,
+      ports: portsWithIcons,
     },
   };
 }

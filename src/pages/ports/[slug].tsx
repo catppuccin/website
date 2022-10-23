@@ -1,11 +1,12 @@
 import { ReactElement } from "react";
 import markdownToHtml from "../../lib/markdownToHtml";
-import { GetStaticPaths, GetStaticProps } from "next";
-import GetPorts from "../../lib/getPorts";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { SiGithub } from "react-icons/si";
-import axios from "axios";
 import { Layout } from "../../components";
+import { Port } from "../../lib/types";
+import axios from "axios";
+import { getCurrentApiBaseUrl } from "../../lib/utils";
 
 export default function PortPage({
   name,
@@ -32,31 +33,22 @@ export default function PortPage({
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context: any) => {
-  const res = await axios.get(
-    `https://raw.githubusercontent.com/catppuccin/${context.params.slug}/main/README.md`
-  );
-  const readme = await markdownToHtml(res.data);
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+  const response = await fetch(`${getCurrentApiBaseUrl()}/ports`);
+  const ports = await response.json();
+  const port = ports.filter((port: Port) => {
+    return port.name === context.params.slug;
+  })[0];
+  const url = `https://raw.githubusercontent.com/catppuccin/${
+    context.params.slug
+  }/${port!.default_branch}/README.md`;
+  const res = await fetch(url);
+  const readme = await markdownToHtml(await res.text());
 
   return {
     props: {
       name: context.params.slug,
       readme,
     },
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const ports = await GetPorts();
-
-  const paths = ports.map((port: any) => {
-    return {
-      params: { slug: port.name },
-    };
-  });
-
-  return {
-    paths,
-    fallback: false,
   };
 };

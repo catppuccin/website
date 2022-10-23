@@ -28,6 +28,7 @@ export default async function GetPorts() {
             stargazers_count,
             forks_count,
             topics,
+            default_branch,
           }) => {
             return {
               name,
@@ -36,6 +37,7 @@ export default async function GetPorts() {
               stargazers_count,
               forks_count,
               topics,
+              default_branch,
             };
           }
         );

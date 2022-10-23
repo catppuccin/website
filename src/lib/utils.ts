@@ -20,3 +20,15 @@ export const convertTo = (color: string, format: string): string => {
       return color;
   }
 };
+
+export const getCurrentEnv = () => {
+  return process.env.NODE_ENV;
+};
+
+export const getCurrentApiBaseUrl = () => {
+  if (getCurrentEnv() === "development") {
+    return "http://localhost:3000/api";
+  }
+
+  return `https://${process.env.VERCEL_URL}/api`;
+};
