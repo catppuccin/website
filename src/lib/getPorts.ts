@@ -1,4 +1,4 @@
-import { Octokit } from "@octokit/rest";
+import {Octokit} from "@octokit/rest";
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN || "" });
 
@@ -9,11 +9,11 @@ export default async function GetPorts() {
       type: "public",
     })
     .then((data) => {
-      const portsData = data
-        .filter(({ topics = [] }) => {
+      return data
+        .filter(({topics = []}) => {
           return !topics.includes("catppuccin-meta");
         })
-        .sort(({ stargazers_count: a }, { stargazers_count: b }) => {
+        .sort(({stargazers_count: a}, {stargazers_count: b}) => {
           if (b !== undefined && a !== undefined) {
             return b - a;
           } else {
@@ -22,14 +22,14 @@ export default async function GetPorts() {
         })
         .map(
           ({
-            name,
-            description,
-            html_url,
-            stargazers_count,
-            forks_count,
-            topics,
-            default_branch,
-          }) => {
+             name,
+             description,
+             html_url,
+             stargazers_count,
+             forks_count,
+             topics,
+             default_branch,
+           }) => {
             return {
               name,
               description,
@@ -41,7 +41,6 @@ export default async function GetPorts() {
             };
           }
         );
-      return portsData;
     })
     .catch((err) => {
       console.log(err);

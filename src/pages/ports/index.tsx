@@ -3,9 +3,11 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Card, Layout, SearchBar } from "../../components";
 import LazyLoad from "react-lazy-load";
 import { Port } from "../../lib/types";
-import path from "path";
-import fsPromises from "fs/promises";
-import { getCurrentApiBaseUrl } from "../../lib/utils";
+import {getIconColor, getIconURL, RepoList} from "../../lib/getIconColor";
+import getLocalIcon from "../../lib/getLocalIcon";
+import { parse as parseYAML } from "yaml";
+import {getCurrentApiBaseUrl} from "../../lib/utils";
+import {PORTS_YAML} from "../../lib/constants";
 
 export default function Home(props: any) {
   const [filteredPorts, setFilteredPorts] = useState(
@@ -27,7 +29,9 @@ export default function Home(props: any) {
         >
           {filteredPorts
             .filter(
-              (port: any) => port.name !== ".github" && port.name !== "template"
+              (port: any) => {
+                return !(port.topics.includes("catppuccin-meta") || port.topics.includes("catppuccin-library"));
+              }
             )
             .map((port: any) => (
               <LazyLoad key={port.name}>
@@ -41,45 +45,39 @@ export default function Home(props: any) {
 }
 
 export async function getServerSideProps() {
-  const response = await fetch(`${getCurrentApiBaseUrl()}/ports`);
-  const ports = await response.json();
-
-  const filePath = path.join(process.cwd(), "icons.json");
-  const jsonData = await fsPromises.readFile(filePath, "utf8");
-
-  const portsNamesNormalized = JSON.parse(jsonData);
+  // the actual GitHub API response
+  const repoRes = await fetch(`${getCurrentApiBaseUrl()}/ports`);
+  const repos = await repoRes.json();
+  // a list of approved ports, managed in catppuccin/catppuccin
+  const mappings = await fetch(PORTS_YAML).then((res) => res.text());
+  const ports = parseYAML(mappings) as RepoList
 
   const portsWithIcons = await Promise.all(
-    ports.map(async (port: Port) => {
-      const portName = portsNamesNormalized[port.name] || port.name;
-      const icon = await fetch(`https://simpleicons.org/icons/${portName}.svg`)
-        .then((res) => {
-          if (res.ok) {
-            return res.text();
-          } else {
-            return fetch(
-              `https://raw.githubusercontent.com/catppuccin/${portName}/main/.icon.svg`
-            ).then((res) => {
-              if (res.ok) {
-                return res.text();
-              } else {
-                return fetch(
-                  // TODO: Change the url to the icon in public folder on the repo once it's merged to master
-                  `https://cdn.discordapp.com/attachments/1012716616728977438/1028486057836167299/emboss.svg`
-                ).then((res) => res.text());
-              }
-            });
-          }
-        })
-        .catch((err) => {
-          return fetch(
-            // TODO: Change the url to the icon in public folder on the repo once it's merged to master
-            `https://cdn.discordapp.com/attachments/1012716616728977438/1028486057836167299/emboss.svg`
-          ).then((res) => res.text());
-        });
+    repos.map(async (port: Port) => {
+      const URL = getIconURL(port.name, ports);
+      const color = getIconColor(port.name, ports);
+
+      let icon: string;
+      if(URL) {
+        icon = await fetch(URL)
+          .then((res) => {
+            if(res.ok) {
+              return res.text()
+            } else {
+              throw new Error(`Failed to fetch icon ${URL}`)
+            }
+          })
+          .catch(() => {
+            return getLocalIcon(port.name);
+          });
+      } else {
+        icon = getLocalIcon(port.name);
+      }
+
       return {
         ...port,
         icon,
+        color,
       };
     })
   );

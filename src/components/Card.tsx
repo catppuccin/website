@@ -1,4 +1,3 @@
-import getIconColor from "../lib/getIconColor";
 import { FiStar } from "react-icons/fi";
 import { VscRepoForked } from "react-icons/vsc";
 import { FC } from "react";
@@ -21,11 +20,7 @@ export const Card: FC<CardProps> = ({ port }) => {
     >
       <h3 className=" text-zinc-300">{port.name}</h3>
       <div
-        className={`flex text-${getIconColor(
-          port.name
-        )} justify-center items-center bg-base rounded-full p-3 fill-${getIconColor(
-          port.name
-        )}`}
+        className={`flex text-${port.color} justify-center items-center bg-base rounded-full p-3 fill-${port.color}`}
       >
         <SVGIcon svgContent={port.icon} />
       </div>
