@@ -67,7 +67,7 @@ export default function Home({ content }: { content: string }): JSX.Element {
 
 export const getStaticProps = async () => {
   const markdown = fs.readFileSync("src/content/main.md", "utf8");
-  const content = await markdownToHtml(markdown, { allowHtml: true });
+  const content = await markdownToHtml(markdown, "", { allowHtml: true });
   return {
     props: {
       content,

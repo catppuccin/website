@@ -3,11 +3,11 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Card, Layout, SearchBar } from "../../components";
 import LazyLoad from "react-lazy-load";
 import { Port } from "../../lib/types";
-import {getIconColor, getIconURL, RepoList} from "../../lib/getIconColor";
+import { getIconColor, getIconURL, RepoList } from "../../lib/getIconColor";
 import getLocalIcon from "../../lib/getLocalIcon";
 import { parse as parseYAML } from "yaml";
-import {getCurrentApiBaseUrl} from "../../lib/utils";
-import {PORTS_YAML} from "../../lib/constants";
+import { getCurrentApiBaseUrl } from "../../lib/utils";
+import { PORTS_YAML } from "../../lib/constants";
 
 export default function Home(props: any) {
   const [filteredPorts, setFilteredPorts] = useState(
@@ -28,11 +28,12 @@ export default function Home(props: any) {
           className="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-4 w-[100%] lg:w-2/3 md:w-[80%]"
         >
           {filteredPorts
-            .filter(
-              (port: any) => {
-                return !(port.topics.includes("catppuccin-meta") || port.topics.includes("catppuccin-library"));
-              }
-            )
+            .filter((port: any) => {
+              return !(
+                port.topics.includes("catppuccin-meta") ||
+                port.topics.includes("catppuccin-library")
+              );
+            })
             .map((port: any) => (
               <LazyLoad key={port.name}>
                 <Card key={port.name} port={port} />
@@ -44,13 +45,13 @@ export default function Home(props: any) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
   // the actual GitHub API response
   const repoRes = await fetch(`${getCurrentApiBaseUrl()}/ports`);
   const repos = await repoRes.json();
   // a list of approved ports, managed in catppuccin/catppuccin
   const mappings = await fetch(PORTS_YAML).then((res) => res.text());
-  const ports = parseYAML(mappings) as RepoList
+  const ports = parseYAML(mappings) as RepoList;
 
   const portsWithIcons = await Promise.all(
     repos.map(async (port: Port) => {
@@ -58,20 +59,20 @@ export async function getServerSideProps() {
       const color = getIconColor(port.name, ports);
 
       let icon: string;
-      if(URL) {
+      if (URL) {
         icon = await fetch(URL)
           .then((res) => {
-            if(res.ok) {
-              return res.text()
+            if (res.ok) {
+              return res.text();
             } else {
-              throw new Error(`Failed to fetch icon ${URL}`)
+              throw new Error(`Failed to fetch icon ${URL}`);
             }
           })
           .catch(() => {
-            return getLocalIcon(port.name);
+            return getLocalIcon(port.name, context.req.headers.host);
           });
       } else {
-        icon = getLocalIcon(port.name);
+        icon = getLocalIcon(port.name, context.req.headers.host);
       }
 
       return {
