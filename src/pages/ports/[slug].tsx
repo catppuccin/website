@@ -27,7 +27,10 @@ export default function PortPage({
             </a>
           </Link>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: readme }} />
+        <div
+          className="readme-wrapper"
+          dangerouslySetInnerHTML={{ __html: readme }}
+        />
       </div>
     </Layout>
   );
@@ -43,7 +46,15 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     context.params.slug
   }/${port!.default_branch}/README.md`;
   const res = await fetch(url);
-  const readme = await markdownToHtml(await res.text());
+  const readme = await markdownToHtml(
+    await res.text(),
+    `https://raw.githubusercontent.com/catppuccin/${context.params.slug}/${
+      port!.default_branch
+    }`,
+    {
+      allowHtml: true,
+    }
+  );
 
   return {
     props: {

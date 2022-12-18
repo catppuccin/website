@@ -40,4 +40,13 @@
       background-position: 0 50%;
     }
   }
+
+  /* Adds some custom styling to readmes */
+    .readme-wrapper > h3:first-child {
+       display: none;
+    }
+    .readme-wrapper > p:first-of-type {
+      display: flex;
+      justify-content: center;
+    }
 }
