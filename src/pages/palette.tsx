@@ -21,7 +21,7 @@ export default function PalettePage({
         <div className="prose py-4">
           <h2 className="m-0 mb-2">Palettes</h2>
           <p>
-            Catppuccin constist of 4 beautiful pastel color palettes. All the
+            Catppuccin consists of 4 beautiful pastel color palettes. All the
             details can be found below. To make the best use them please refer
             to the{" "}
             <Link href="https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md">
