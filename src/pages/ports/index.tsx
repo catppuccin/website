@@ -6,8 +6,9 @@ import { Port } from "../../lib/types";
 import { getIconColor, getIconURL, RepoList } from "../../lib/getIconColor";
 import getLocalIcon from "../../lib/getLocalIcon";
 import { parse as parseYAML } from "yaml";
-import { getCurrentApiBaseUrl } from "../../lib/utils";
 import { PORTS_YAML } from "../../lib/constants";
+import getPorts from "../../lib/getPorts";
+import {GetStaticProps} from "next";
 
 export default function Home(props: any) {
   const [filteredPorts, setFilteredPorts] = useState(
@@ -45,10 +46,9 @@ export default function Home(props: any) {
   );
 }
 
-export async function getServerSideProps(context: any) {
+export const getStaticProps: GetStaticProps = async (context: any) => {
   // the actual GitHub API response
-  const repoRes = await fetch(`${getCurrentApiBaseUrl()}/ports`);
-  const repos = await repoRes.json();
+  const repos = await getPorts();
   // a list of approved ports, managed in catppuccin/catppuccin
   const mappings = await fetch(PORTS_YAML).then((res) => res.text());
   const ports = parseYAML(mappings) as RepoList;
@@ -69,10 +69,11 @@ export async function getServerSideProps(context: any) {
             }
           })
           .catch(() => {
-            return getLocalIcon(port.name, context.req.headers.host);
+            return getLocalIcon(port.name);
           });
       } else {
-        icon = getLocalIcon(port.name, context.req.headers.host);
+        console.log(port.name, context)
+        icon = getLocalIcon(port.name);
       }
 
       return {
