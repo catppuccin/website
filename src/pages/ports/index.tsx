@@ -8,7 +8,7 @@ import getLocalIcon from "../../lib/getLocalIcon";
 import { parse as parseYAML } from "yaml";
 import { PORTS_YAML } from "../../lib/constants";
 import getPorts from "../../lib/getPorts";
-import {GetStaticProps} from "next";
+import { GetStaticProps } from "next";
 
 export default function Home(props: any) {
   const [filteredPorts, setFilteredPorts] = useState(

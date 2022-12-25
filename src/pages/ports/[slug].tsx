@@ -5,8 +5,6 @@ import Link from "next/link";
 import { SiGithub } from "react-icons/si";
 import { Layout } from "../../components";
 import { Port } from "../../lib/types";
-import axios from "axios";
-import { getCurrentApiBaseUrl } from "../../lib/utils";
 import getPorts from "../../lib/getPorts";
 import {PORTS_YAML} from "../../lib/constants";
 import {parse as parseYAML} from "yaml";
