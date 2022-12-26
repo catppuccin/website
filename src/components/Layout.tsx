@@ -12,7 +12,6 @@ import {
 } from "react-icons/si";
 import { PoweredByVercel } from "./PoweredByVercel";
 import React from "react";
-import { HiExternalLink } from "react-icons/hi";
 
 interface NavItem {
   label: string;
@@ -34,14 +33,8 @@ const navItems: NavItem[] = [
     href: "/palette",
   },
   {
-    label: "Donate",
-    href: "https://donate.catppuccin.com",
-    icon: (
-      <HiExternalLink
-        size={"20px"}
-        style={{ display: "inline-block", marginLeft: "5px" }}
-      />
-    ),
+    label: "Contributing",
+    href: "/contributing",
   },
 ];
 
