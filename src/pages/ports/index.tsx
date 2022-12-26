@@ -46,7 +46,7 @@ export default function Home(props: any) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context: any) => {
+export const getStaticProps: GetStaticProps = async () => {
   // the actual GitHub API response
   const repos = await getPorts();
   // a list of approved ports, managed in catppuccin/catppuccin
@@ -72,7 +72,6 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
             return getLocalIcon(port.name);
           });
       } else {
-        console.log(port.name, context)
         icon = getLocalIcon(port.name);
       }
 
@@ -89,4 +88,4 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
       ports: portsWithIcons,
     },
   };
-}
+};
