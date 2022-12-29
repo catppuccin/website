@@ -1,9 +1,12 @@
 import { variants } from "@catppuccin/palette";
-import { CopyToClipboardBtn, Layout } from "../components";
+import { Layout } from "../components";
 import { GetStaticProps } from "next";
 import { useState } from "react";
 import Link from "next/link";
 import { capitalize, convertTo } from "../lib/utils";
+import { calculateContrastColor } from "../lib/colormath";
+import toast from "react-hot-toast";
+import { useCopyToClipboard } from "usehooks-ts";
 
 const formats = ["Hex", "RGB", "HSL", "HSV", "Lab"];
 
@@ -14,6 +17,7 @@ export default function PalettePage({
 }): JSX.Element {
   const [selectedFlavour, setSelectedFlavour] = useState("mocha");
   const [selectedFormat, setSelectedFormat] = useState("Hex");
+  const [value, copy] = useCopyToClipboard();
 
   return (
     <Layout title="Palette">
@@ -70,46 +74,35 @@ export default function PalettePage({
             </select>
           </div>
         </div>
-        <table className="table-auto w-full">
-          <thead>
-            <tr>
-              <th className="text-left">‎</th>
-              <th className="text-left">Label</th>
-              <th className="text-left">{selectedFormat}</th>
-              <th className="text-left">‎</th>
-            </tr>
-          </thead>
-          <tbody>
+        <div className="w-full">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
             {Object.entries(palette[selectedFlavour]).map(
               ([colourName, hexCode], colourIdx) => {
                 const format = convertTo(hexCode as string, selectedFormat);
+                colourName = capitalize(colourName);
                 return (
-                  <tr
-                    key={colourName}
-                    className={
-                      colourIdx % 2 === 0
-                        ? "rounded p-2"
-                        : "bg-mantle/50 rounded p-2"
-                    }
+                  <button
+                    key={colourIdx}
+                    className="p-1 hover:outline hover:scale-105 transition-transform outline-white outline-1"
+                    onClick={() => {
+                      if (typeof hexCode === "string") {
+                        copy(hexCode);
+                      }
+                      toast(`${colourName} copied to clipboard!`);
+                    }}
+                    style={{
+                      background: hexCode as string,
+                      color: calculateContrastColor(hexCode as string),
+                    }}
                   >
-                    <td className={`${selectedFlavour} py-2`}>
-                      <div
-                        className={`rounded-full w-4 h-4 bg-${colourName}`}
-                      />
-                    </td>
-                    <td>{capitalize(colourName)}</td>
-                    <td>
-                      <code className="font-fira bg-transparent">{format}</code>
-                    </td>
-                    <td>
-                      <CopyToClipboardBtn text={format} />
-                    </td>
-                  </tr>
+                    <div>{colourName}</div>
+                    <div>{format}</div>
+                  </button>
                 );
               }
             )}
-          </tbody>
-        </table>
+          </div>
+        </div>
       </div>
     </Layout>
   );
