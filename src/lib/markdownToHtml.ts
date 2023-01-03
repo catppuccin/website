@@ -9,6 +9,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import vim from "highlight.js/lib/languages/vim";
 import { inspectUrls } from "@jsdevtools/rehype-url-inspector";
 import rehypeRaw from "rehype-raw";
+import getAllowedURLS from "./url-allowlist";
 
 export default async function markdownToHtml(
   markdown: string,
@@ -20,24 +21,42 @@ export default async function markdownToHtml(
     .use(remarkRehype, { allowDangerousHtml: options.allowHtml })
     .use(rehypeRaw)
     .use(inspectUrls, {
-      inspectEach: (domMatch) => {
-        console.log("URL:", domMatch.url);
+      // TODO: refactor this function
+      inspectEach: async (domMatch) => {
         // we need to modify the output of the markdown if the url is a relative path to a file
         // in the repo
         if (
-          !domMatch.url.startsWith("https://") &&
-          !domMatch.url.startsWith("http://") &&
-          !domMatch.url.startsWith("#")
+          domMatch.node.tagName === "img" &&
+          !(
+            domMatch.url.startsWith("https://") ||
+            domMatch.url.startsWith("http://") ||
+            domMatch.url.startsWith("#")
+          )
         ) {
-          console.log(`${domMatch.url} is a relative path`);
-          console.log("domMatch", domMatch);
+          // prepend the baseURL to relative URLs
           domMatch.node.properties = {
             ...domMatch.node.properties,
             src: `${baseUrl}/${domMatch.url}`,
           };
         }
+        if (domMatch.node.tagName === "a" && domMatch.url.startsWith("http")) {
+          const parsedURL = new URL(domMatch.url);
+          const allowlist = await getAllowedURLS();
+          const matched = allowlist.filter((url) =>
+            parsedURL.hostname.includes(url)
+          );
+          if (matched.length === 0) {
+            domMatch.node.properties = {
+              ...domMatch.node.properties,
+              href: null,
+            };
+            console.warn(
+              `WARN: ${parsedURL.hostname} not found in allowlist, removing href (${baseUrl})`
+            );
+          }
+        }
       },
-      selectors: ["img[src]"],
+      selectors: ["img[src]", "a[href]"],
     })
     .use(options.allowHtml ? () => {} : rehypeSanitize, {
       ...defaultSchema,

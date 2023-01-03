@@ -11,8 +11,8 @@ import {
   SiGithub,
 } from "react-icons/si";
 import { PoweredByVercel } from "./PoweredByVercel";
+import { Toast, Toaster } from "react-hot-toast";
 import React from "react";
-import { HiExternalLink } from "react-icons/hi";
 
 interface NavItem {
   label: string;
@@ -34,14 +34,8 @@ const navItems: NavItem[] = [
     href: "/palette",
   },
   {
-    label: "Donate",
-    href: "https://donate.catppuccin.com",
-    icon: (
-      <HiExternalLink
-        size={"20px"}
-        style={{ display: "inline-block", marginLeft: "5px" }}
-      />
-    ),
+    label: "Contributing",
+    href: "/contributing",
   },
 ];
 
@@ -72,6 +66,14 @@ const socialItems: NavItem[] = [
     icon: <SiReddit size={"100%"} />,
   },
 ];
+
+const CustomToast = (toast: Toast): JSX.Element => {
+  return (
+    <div className="w-fit bg-base text-text shadow-lg rounded-md pointer-events-auto flex ring-1 ring-crust p-2">
+      <p>{(typeof toast.message === "string" && toast.message) || ""}</p>
+    </div>
+  );
+};
 
 export const Layout = ({
   children,
@@ -155,6 +157,8 @@ export const Layout = ({
               ))}
             </ul>
           </div>
+          {/* eslint-disable-next-line react/no-children-prop */}
+          <Toaster position={"bottom-center"} children={CustomToast} />
           <PoweredByVercel />
         </footer>
       </div>

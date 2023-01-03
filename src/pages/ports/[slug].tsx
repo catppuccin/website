@@ -1,12 +1,14 @@
 import { ReactElement } from "react";
 import markdownToHtml from "../../lib/markdownToHtml";
-import { GetServerSideProps } from "next";
+import {GetStaticPaths, GetStaticProps} from "next";
 import Link from "next/link";
 import { SiGithub } from "react-icons/si";
 import { Layout } from "../../components";
 import { Port } from "../../lib/types";
-import axios from "axios";
-import { getCurrentApiBaseUrl } from "../../lib/utils";
+import getPorts from "../../lib/getPorts";
+import {PORTS_YAML} from "../../lib/constants";
+import {parse as parseYAML} from "yaml";
+import {RepoList} from "../../lib/getIconColor";
 
 export default function PortPage({
   name,
@@ -36,9 +38,24 @@ export default function PortPage({
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context: any) => {
-  const response = await fetch(`${getCurrentApiBaseUrl()}/ports`);
-  const ports = await response.json();
+export const getStaticPaths: GetStaticPaths = async () => {
+  const mappings = await fetch(PORTS_YAML).then((res) => res.text());
+  const repos = parseYAML(mappings) as RepoList;
+  const ports = Object.keys(repos)
+  return {
+    paths: ports.map(port => {
+      return {
+        params: {
+          slug: port
+        }
+      }
+    }),
+    fallback: false, // can also be true or 'blocking'
+  }
+}
+
+export const getStaticProps: GetStaticProps = async (context: any) => {
+  const ports = await getPorts();
   const port = ports.filter((port: Port) => {
     return port.name === context.params.slug;
   })[0];
