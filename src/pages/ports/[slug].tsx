@@ -78,5 +78,6 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
       name: context.params.slug,
       readme,
     },
+    revalidate: 30 * 60, // 30 minutes
   };
 };
