@@ -59,14 +59,15 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   const port = ports.filter((port: Port) => {
     return port.name === context.params.slug;
   })[0];
+  const default_branch = port.default_branch ?? "main";
   const url = `https://raw.githubusercontent.com/catppuccin/${
     context.params.slug
-  }/${port!.default_branch}/README.md`;
+  }/${default_branch}/README.md`;
   const res = await fetch(url);
   const readme = await markdownToHtml(
     await res.text(),
     `https://raw.githubusercontent.com/catppuccin/${context.params.slug}/${
-      port!.default_branch
+      default_branch
     }`,
     {
       allowHtml: true,
