@@ -1,14 +1,14 @@
 import { ReactElement } from "react";
 import markdownToHtml from "../../lib/markdownToHtml";
-import {GetStaticPaths, GetStaticProps} from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import { SiGithub } from "react-icons/si";
 import { Layout } from "../../components";
 import { Port } from "../../lib/types";
 import getPorts from "../../lib/getPorts";
-import {PORTS_YAML} from "../../lib/constants";
-import {parse as parseYAML} from "yaml";
-import {RepoList} from "../../lib/getIconColor";
+import { PORTS_YAML } from "../../lib/constants";
+import { parse as parseYAML } from "yaml";
+import { RepoList } from "../../lib/getIconColor";
 
 export default function PortPage({
   name,
@@ -41,32 +41,33 @@ export default function PortPage({
 export const getStaticPaths: GetStaticPaths = async () => {
   const mappings = await fetch(PORTS_YAML).then((res) => res.text());
   const repos = parseYAML(mappings) as RepoList;
-  const ports = Object.keys(repos)
+  const ports = Object.keys(repos);
   return {
-    paths: ports.map(port => {
+    paths: ports.map((port) => {
       return {
         params: {
-          slug: port
-        }
-      }
+          slug: port,
+        },
+      };
     }),
     fallback: false, // can also be true or 'blocking'
-  }
-}
+  };
+};
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
   const ports = await getPorts();
   const port = ports.filter((port: Port) => {
-    return port.name === context.params.slug;
+    return port.name.toLowerCase() === context.params.slug.toLowerCase();
   })[0];
+  const default_branch = port.default_branch ?? "main";
   const url = `https://raw.githubusercontent.com/catppuccin/${
     context.params.slug
-  }/${port!.default_branch}/README.md`;
+  }/${default_branch}/README.md`;
   const res = await fetch(url);
   const readme = await markdownToHtml(
     await res.text(),
     `https://raw.githubusercontent.com/catppuccin/${context.params.slug}/${
-      port!.default_branch
+      default_branch
     }`,
     {
       allowHtml: true,
@@ -78,5 +79,6 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
       name: context.params.slug,
       readme,
     },
+    revalidate: 30 * 60, // 30 minutes
   };
 };

@@ -87,5 +87,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       ports: portsWithIcons,
     },
+    revalidate: 60 * 30, // 30 minutes
   };
 };
