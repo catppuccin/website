@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -13,6 +12,7 @@ import {
 import { PoweredByVercel } from "./PoweredByVercel";
 import { Toast, Toaster } from "react-hot-toast";
 import React from "react";
+import CatppuccinLogo from "../icons/CatppuccinLogo";
 
 interface NavItem {
   label: string;
@@ -113,12 +113,7 @@ export const Layout = ({
             <div className="grid place-items-center flex-grow mt-12">
               <Link href="/">
                 <a>
-                  <Image
-                    src="/logo-round.png"
-                    alt="Catppuccin Logo (round)"
-                    width={120}
-                    height={120}
-                  />
+                  <CatppuccinLogo className="w-28 h-28" />
                 </a>
               </Link>
             </div>
