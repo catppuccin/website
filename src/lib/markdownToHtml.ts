@@ -10,6 +10,7 @@ import vim from "highlight.js/lib/languages/vim";
 import { inspectUrls } from "@jsdevtools/rehype-url-inspector";
 import rehypeRaw from "rehype-raw";
 import getAllowedURLS from "./url-allowlist";
+import remarkGfm from "remark-gfm";
 
 export default async function markdownToHtml(
   markdown: string,
@@ -18,6 +19,7 @@ export default async function markdownToHtml(
 ) {
   const result = await unified()
     .use(remarkParse)
+    .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: options.allowHtml })
     .use(rehypeRaw)
     .use(inspectUrls, {
@@ -77,7 +79,6 @@ export default async function markdownToHtml(
         markdown: "md",
       },
       ignoreMissing: true,
-      subset: false,
     })
     .use(rehypeAutolinkHeadings)
     .use(rehypeExternalLinks, { rel: ["nofollow"] })

@@ -29,7 +29,7 @@ export default function PalettePage({
             details can be found below. To make the best use them please refer
             to the{" "}
             <Link href="https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md">
-              <a>style guide.</a>
+              style guide.
             </Link>
           </p>
         </div>
