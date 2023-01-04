@@ -12,14 +12,14 @@ export default function NotFoundPage(): JSX.Element {
             rel="nofollow noreferrer"
             target="_blank"
           >
-            <a>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://cdn3.emoji.gg/emojis/3397-cat-roll.gif"
-                className="w-20 h-20"
-                alt="cat_roll"
-              />
-            </a>
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://cdn3.emoji.gg/emojis/3397-cat-roll.gif"
+              className="w-20 h-20"
+              alt="cat_roll"
+            />
+
           </Link>
           <h1 className="text-4xl font-bold">404: Not found</h1>
           <p>{"Apologies, there's nothing here."}</p>
