@@ -31,7 +31,7 @@ import { flavorEntries } from "@catppuccin/palette"
     flavorEntries.map(([flavorName, flavor]) => (
       <section class="flavor">
 
-        <h3 class="flavor-name">{flavorName}</h3>
+        <h3 id=`flavor-${flavorName}` class="flavor-name">{flavorName}</h3>
         <div class="color-list">
           {
             flavor.colorEntries.map(([colorName, { hex, rgb, accent }]) => (
