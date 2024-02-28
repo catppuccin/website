@@ -125,12 +125,15 @@ const { title, description } = Astro.props
     justify-content: space-between;
     gap: var(--spacing-l);
 
-    min-height: 100vh;
+    padding-block: var(--spacing-xl);
+    min-height: 100svh;
 
 
     @media (min-width: 800px) {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+
+      padding-block: var(--spacing-m);
     }
 
   }
