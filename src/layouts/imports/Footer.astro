@@ -17,9 +17,9 @@ import { footer as navLinkList } from '../../contents/Navigations'
         <ul>
         <h4>{categoryTitle}</h4>
         {
-          categoryLinks.map(({ title, target }) => (
+          categoryLinks.map(({ title, target, external }) => (
             <li>
-              <Link href={target}>{title}</Link>
+              <Link href={target} {external}>{title}</Link>
             </li>
           ))
         }
