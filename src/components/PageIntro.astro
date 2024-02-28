@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+
+
+<section class="page-intro">
+
+  <h2>{title}</h2>
+
+  <slot />
+
+</section>
+
+
+
+
+
+<style lang="scss">
+
+
+  .page-intro { margin-block: var(--spacing-l); }
+
+
+  .page-intro h2 {
+
+    --__accent-color: var(--accent-color);
+
+
+    color: var(--__accent-color);
+
+  }
+
+</style>

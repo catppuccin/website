@@ -1,0 +1,139 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+
+
+@media (prefers-reduced-motion) {
+  *, *::before, *::after { transition: none !important; }
+}
+
+
+
+html {
+
+  font-size: 62.5%;
+
+  scroll-behavior: smooth;
+
+
+  @media (prefers-reduced-motion) { scroll-behavior: auto; }
+
+}
+
+
+
+
+:root {
+
+  --website-max-width: 1200px;
+
+  --border-radius-normal: 6px;
+  --border-radius-large: 12px;
+
+  --base-size: 2;
+
+  --spacing-xs: calc(var(--base-size) / 6 * 1rem);
+  --spacing-s:  calc(var(--base-size) / 4 * 1rem);
+  --spacing-m:  calc(var(--base-size) / 2 * 1rem);
+  --spacing-l:  calc(var(--base-size) * 1 * 1rem);
+  --spacing-xl: calc(var(--base-size) * 2 * 1rem);
+
+  --padding-body: var(--spacing-m);
+
+
+  @media (min-width: 400px) {
+    --base-size: 3;
+    --padding-body: var(--spacing-l);
+  }
+
+
+  @media (min-width: 800px) {
+    --base-size: 4;
+    --padding-body: var(--spacing-xl);
+  }
+
+}
+
+
+
+body {
+
+  margin: 0; padding: 0;
+
+  min-height: 100vh;
+
+  background-color: var(--base);
+
+  font-size: 2rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.2;
+  color: var(--text);
+
+}
+
+
+
+::selection {
+
+  background-color: color-mix(
+    in srgb,
+    var(--selection-color),
+    transparent 70%
+  );
+
+}
+
+
+
+
+p, li { margin-block: 0 var(--spacing-s); }
+
+a { text-decoration: none; }
+
+
+code {
+
+  display: inline-block;
+
+  padding-inline: var(--spacing-xs);
+
+  border-radius: var(--border-radius-normal);
+  background-color: var(--crust);
+
+  font-size: 80%;
+
+}
+
+
+
+section + section { margin-block-start: var(--spacing-xl); }
+
+
+
+
+
+.content-wrapper {
+
+  margin-inline: auto; padding: var(--spacing-m) var(--padding-body);
+  max-width: calc(2 * var(--padding-body) + var(--website-max-width));
+
+}
+
+.no-padding { padding-block: 0; }
+
+
+
+.header-container {
+
+  padding-block: var(--spacing-m);
+
+}
+
+
+
+.footer-container {
+
+  margin-block-start: var(--spacing-xl); padding-block: var(--spacing-l);
+
+  background-color: var(--mantle);
+
+}

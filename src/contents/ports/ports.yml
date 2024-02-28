@@ -1,0 +1,1154 @@
+ports:
+    aerc:
+        name: aerc
+        category: productivity
+        platform: [linux, macos]
+    alacritty:
+        name: Alacritty
+        category: terminal
+        color: peach
+        platform: [linux, macos, windows]
+    alfred:
+        name: Alfred
+        category: productivity
+        color: mauve
+        platform: [macos]
+    aliucord:
+        name: Aliucord
+        category: messaging
+        platform: [android]
+    amfora:
+        name: Amfora
+        category: leisure
+        platform: [linux, macos, windows]
+    anki:
+        name: Anki
+        category: productivity
+        platform: agnostic
+        icon: anki.svg
+        color: blue
+    aseprite:
+        name: Aseprite
+        category: productivity
+        platform: [linux, macos, windows]
+    azuredatastudio:
+        name: Azure Data Studio
+        category: code_editor
+        platform: [linux, macos, windows]
+        alias: vscode
+    base16:
+        name: Base16
+        category: system
+        platform: agnostic
+    bat:
+        name: bat
+        category: cli
+        platform: [linux, macos, windows]
+        icon: bat.svg
+    bemenu:
+        name: bemenu
+        category: system
+        platform: [linux]
+    bento:
+        name: Bento
+        category: productivity
+        platform: agnostic
+    binary-ninja:
+        name: Binary Ninja
+        category: code_editor
+        platform: [linux, macos, windows]
+    bitburner:
+        name: BitBurner
+        category: game
+        platform: [linux, macos, windows]
+    blackbox:
+        name: Black Box
+        category: terminal
+        platform: [linux]
+    blink:
+        name: Blink
+        category: terminal
+        platform: [ios]
+    blockbench:
+        name: Blockbench
+        category: game
+        platform: [linux, macos, windows]
+    bottom:
+        name: bottom
+        category: cli
+        platform: [linux, macos, windows]
+    btop:
+        name: Btop++
+        category: cli
+        platform: [linux, macos]
+    cava:
+        name: C.A.V.A.
+        category: cli
+        platform: [linux, macos]
+    chrome:
+        name: Google Chrome
+        category: browser
+        platform: [linux, macos, windows]
+        icon: googlechrome
+        color: yellow
+    cider:
+        name: Cider
+        category: leisure
+        platform: [linux, macos, windows]
+        color: red
+    codemirror:
+        name: CodeMirror
+        category: development
+        platform: agnostic
+    conky:
+        name: Conky
+        category: system
+        platform: [linux]
+    contour:
+        name: Contour
+        category: terminal
+        platform: [linux, macos, windows]
+    crt:
+        name: 'CRT: cool-retro-term'
+        category: terminal
+        platform: [linux, macos]
+    cursors:
+        name: Cursors
+        category: system
+        platform: [linux]
+        icon: cursors.svg
+    cutter:
+        name: Cutter
+        category: code_editor
+        platform: [linux, macos, windows]
+    dark-reader:
+        name: Dark Reader
+        category: browser_extension
+        platform: agnostic
+        icon: darkreader
+        color: red
+    discord:
+        name: Discord
+        category: messaging
+        platform: [linux, macos, windows]
+        color: blue
+    diohub:
+        name: DioHub
+        category: productivity
+        platform: [android]
+        color: text
+    dmenu:
+        name: dmenu
+        category: system
+        platform: [linux]
+    dopamine:
+        name: Dopamine
+        category: leisure
+        platform: [linux, macos, windows]
+        color: blue
+    drracket:
+        name: DrRacket
+        category: code_editor
+        platform: [linux, macos, windows]
+        color: red
+        icon: racket
+    duckduckgo:
+        name: DuckDuckGo
+        category: search_engine
+        platform: agnostic
+        color: peach
+    dunst:
+        name: Dunst
+        category: system
+        platform: [linux]
+    dwarf-fortress:
+        name: Dwarf Fortress
+        category: game
+        platform: [linux, macos, windows]
+    egui:
+        name: egui
+        category: development
+        platform: [linux, macos, windows]
+    element:
+        name: Element
+        category: messaging
+        platform: [linux, macos, windows]
+    emacs:
+        name: Emacs
+        category: code_editor
+        platform: [linux, macos, windows]
+        icon: gnuemacs
+        color: mauve
+    enmity:
+        name: Enmity
+        category: messaging
+        platform: [ios]
+    fcitx5:
+        name: fcitx5
+        category: system
+        platform: [linux]
+    firefox:
+        name: Firefox
+        category: browser
+        platform: [linux, macos, windows]
+        color: red
+    fish:
+        name: Fish
+        category: cli
+        platform: [linux, macos]
+        icon: fish.svg
+        color: green
+    fitbit:
+        name: Fitbit
+        category: leisure
+        platform: agnostic
+    fleet:
+        name: JetBrains Fleet
+        category: code_editor
+        platform: [linux, macos, windows]
+    floris-board:
+        name: FlorisBoard
+        category: system
+        platform: [android]
+    flow-launcher:
+        name: Flow Launcher
+        category: system
+        platform: [windows]
+    fluentterminal:
+        name: Fluent Terminal
+        category: terminal
+        platform: [windows]
+    flutter:
+        name: Flutter
+        category: library
+        platform: agnostic
+    foliate:
+        name: Foliate
+        category: productivity
+        platform: [linux]
+    foot:
+        name: foot
+        category: terminal
+        platform: [linux]
+    freshrss:
+        name: FreshRSS
+        category: productivity
+        platform: [linux, macos, windows]
+    fzf:
+        name: fzf
+        category: cli
+        platform: [linux, macos]
+    geany:
+        name: Geany
+        category: code_editor
+        platform: [linux]
+    gedit:
+        name: Gedit
+        category: code_editor
+        platform: [linux]
+    ghostwriter:
+        name: ghostwriter
+        category: productivity
+        platform: [linux, macos, windows]
+    gitea:
+        name: Gitea
+        category: productivity
+        platform: agnostic
+        color: green
+        icon: gitea
+    github-readme-stats:
+        name: GitHub Readme Stats
+        category: social
+        platform: agnostic
+        color: text
+    github-readme-streak-stats:
+        name: GitHub Readme Streak Stats
+        category: social
+        platform: agnostic
+        color: text
+    github-readme-tech-stack:
+        name: GitHub Readme Tech Stack
+        category: social
+        platform: agnostic
+        color: text
+    gitui:
+        name: GitUI
+        category: cli
+        platform: [linux, macos]
+        icon: gitui.svg
+    glamour:
+        name: Glamour
+        category: cli
+        platform: [linux, macos]
+    glazewm:
+        name: GlazeWM
+        category: system
+        platform: [windows]
+    gnome-terminal:
+        name: GNOME Terminal
+        category: terminal
+        platform: [linux]
+        color: text
+        icon: gnometerminal
+    go:
+        name: Go
+        category: library
+        platform: agnostic
+    godot:
+        name: Godot
+        category: development
+        platform: [linux, macos, windows]
+        color: blue
+    grub:
+        name: GRUB
+        category: system
+        platform: [linux]
+        icon: gnu
+        color: text
+    gtk:
+        name: GTK
+        category: system
+        platform: [linux]
+        color: green
+    halloy:
+        name: Halloy
+        category: messaging
+        platform: [linux, macos, windows]
+    helix:
+        name: Helix
+        category: code_editor
+        platform: [linux, macos, windows]
+    heroic:
+        name: Heroic
+        category: leisure
+        platform: [linux, macos, windows]
+    hexchat:
+        name: HexChat
+        category: messaging
+        platform: [linux, windows]
+        icon: hexchat.svg
+        color: peach
+    highlightjs:
+        name: Highlight.js
+        category: development
+        platform: agnostic
+        links:
+            - name: NPM
+              icon: npm
+              color: red
+              url: https://www.npmjs.com/package/@catppuccin/highlightjs
+    home-assistant:
+        name: Home Assistant
+        category: leisure
+        platform: agnostic
+        icon: homeassistant
+    hyper:
+        name: Hyper
+        category: terminal
+        platform: [linux, macos, windows]
+        color: text
+        links:
+            - name: NPM
+              icon: npm
+              color: red
+              url: https://www.npmjs.com/package/hypurr
+    hyprland:
+        name: Hyprland
+        category: system
+        platform: [linux]
+    i3:
+        name: i3/sway
+        category: system
+        platform: [linux]
+        color: text
+        icon: i3wm.svg
+    ida-debugger:
+        name: IDA (Interactive Disassembler)
+        category: code_editor
+        platform: [linux, macos, windows]
+        color: sapphire
+    imhex:
+        name: ImHex
+        category: development
+        platform: [linux, macos, windows]
+    infinity:
+        name: Infinity for Reddit
+        category: social
+        platform: [android]
+        icon: reddit
+        color: peach
+    insomnia:
+        name: Insomnia
+        category: development
+        platform: [android]
+        color: blue
+    iterm:
+        name: iTerm2
+        category: terminal
+        platform: [macos]
+        icon: iterm2
+        color: green
+    java:
+        name: Java
+        category: library
+        platform: agnostic
+    jetbrains:
+        name: JetBrains
+        category: code_editor
+        platform: [linux, macos, windows]
+        color: text
+        links:
+            - name: JetBrains Marketplace
+              icon: jetbrains
+              color: text
+              url: https://plugins.jetbrains.com/plugin/18682-catppuccin-theme
+    jetbrains-icons:
+        name: JetBrains Icons
+        category: code_editor
+        platform: [linux, macos, windows]
+        color: text
+        links:
+            - name: JetBrains Marketplace
+              icon: jetbrains
+              color: text
+              url: https://plugins.jetbrains.com/plugin/23029-catppuccin-icons
+    joplin:
+        name: Joplin
+        category: note_taking
+        platform: [linux, macos, windows]
+        color: blue
+    jupyterlab:
+        name: JupyterLab
+        category: development
+        platform: agnostic
+    k9s:
+        name: k9s
+        category: cli
+        platform: [linux, macos]
+        icon: kubernetes
+        color: blue
+    Kvantum:
+        name: Kvantum
+        category: system
+        platform: [linux]
+    kakoune:
+        name: Kakoune
+        category: code_editor
+        platform: [linux, macos]
+    kde:
+        name: KDE
+        category: system
+        platform: [linux]
+        color: blue
+    kitty:
+        name: Kitty
+        category: terminal
+        platform: [linux, macos]
+        icon: kitty.svg
+        color: green
+    konsole:
+        name: Konsole
+        category: terminal
+        platform: [linux]
+        icon: kde
+        color: blue
+    ksyntaxhighlighting:
+        name: KSyntaxHighlighting (Kate, Kwrite, etc)
+        category: code_editor
+        platform: [linux, macos, windows]
+    lapce:
+        name: Lapce
+        category: code_editor
+        platform: [linux, macos, windows]
+    lazygit:
+        name: Lazygit
+        category: cli
+        platform: [linux, macos]
+        color: green
+    limine:
+        name: Limine
+        category: system
+        platform: [linux]
+    linear:
+        name: Linear
+        category: productivity
+        platform: agnostic
+    logseq:
+        name: Logseq
+        category: note_taking
+        platform: [linux, macos, windows]
+        color: green
+    lua:
+        name: Lua
+        category: library
+        platform: agnostic
+    lxqt:
+        name: LxQT
+        category: system
+        platform: [linux]
+        icon: lxqt.svg
+        color: sky
+    lxterminal:
+        name: LXTerminal
+        category: terminal
+        platform: [linux]
+        icon: lxqt.svg
+        color: sky
+    mailspring:
+        name: Mailspring
+        category: productivity
+        platform: [linux, macos, windows]
+    mako:
+        name: Mako
+        category: system
+        platform: [linux]
+    matplotlib:
+        name: Matplotlib
+        category: development
+        platform: agnostic
+    mattermost:
+        name: Mattermost
+        category: messaging
+        platform: agnostic
+    mc:
+        name: Midnight Commander
+        category: cli
+        platform: [linux, macos]
+    mdBook:
+        name: mdBook
+        category: development
+        platform: agnostic
+        icon: mdbook
+    micro:
+        name: Micro
+        category: code_editor
+        platform: [linux, macos, windows]
+        icon: micro.svg
+    minecraft:
+        name: Minecraft
+        category: game
+        platform: [linux, macos, windows]
+    mirc:
+        name: mIRC
+        category: messaging
+        platform: [windows]
+    misskey:
+        name: Misskey
+        category: social
+        platform: agnostic
+    monkeytype:
+        name: monkeytype
+        category: leisure
+        platform: agnostic
+        icon: monkeytype.svg
+        color: text
+    moon-animator-2:
+        name: Moon Animator 2
+        category: game
+        platform: [macos, windows]
+        color: peach
+    musicbee:
+        name: MusicBee
+        category: leisure
+        platform: [windows]
+    neomutt:
+        name: NeoMutt
+        category: cli
+        platform: [linux, macos]
+    newsboat:
+        name: Newsboat
+        category: cli
+        platform: [linux, macos]
+    nighttab:
+        name: Nighttab
+        category: browser_extension
+        platform: agnostic
+    nim:
+        name: Nim
+        category: library
+        platform: agnostic
+    nilesoft-shell:
+        name: Nilesoft Shell
+        category: system
+        platform: [windows]
+    noir:
+        name: Noir
+        category: browser_extension
+        platform: [ios]
+    notepad-plus-plus:
+        name: Notepad++
+        category: code_editor
+        platform: [windows]
+        icon: notepadplusplus
+        color: green
+    nova:
+        name: Nova
+        category: code_editor
+        platform: [macos]
+        links:
+            - name: Nova Extensions
+              url: https://extensions.panic.com/extensions/holler/holler.CatppuccinTheme/
+    nvim:
+        name: Neovim
+        category: code_editor
+        platform: [linux, macos, windows]
+        icon: neovim
+        color: green
+    obs:
+        name: OBS Studio
+        category: productivity
+        platform: [linux, macos, windows]
+        icon: obsstudio
+    obsidian:
+        name: Obsidian
+        category: note_taking
+        platform: [linux, macos, windows]
+        color: mauve
+    oldtwitter:
+        name: OldTwitter
+        category: browser_extension
+        platform: agnostic
+    openbox:
+        name: Openbox
+        category: system
+        platform: [linux]
+    opera-gx:
+        name: Opera GX
+        category: browser
+        platform: [windows]
+    pantone:
+        name: Pantone
+        category: library
+        platform: agnostic
+    papirus-folders:
+        name: Papirus Folders
+        category: system
+        platform: [linux]
+        icon: folders.svg
+    plank:
+        name: Plank
+        category: system
+        platform: [linux]
+    plymouth:
+        name: Plymouth
+        category: system
+        platform: [linux]
+    polybar:
+        name: Polybar
+        category: system
+        platform: [linux]
+    pomotroid:
+        name: Pomotroid
+        category: productivity
+        platform: [linux, macos, windows]
+        color: red
+    powerpoint-slides:
+        name: PowerPoint Slides
+        category: productivity
+        icon: microsoftpowerpoint
+        color: red
+        platform: [macos, windows]
+    powershell:
+        name: PowerShell
+        category: cli
+        icon: powershell
+        platform: agnostic
+        color: blue
+    prismlauncher:
+        name: Prism Launcher
+        category: game
+        platform: [linux, macos, windows]
+    pyradio:
+        name: PyRadio
+        category: leisure
+        platform: [linux, macos, windows]
+    python:
+        name: Python
+        category: library
+        platform: agnostic
+    qbittorrent:
+        name: qBittorrent
+        category: productivity
+        platform: [linux, macos, windows]
+    qt5ct:
+        name: qt5ct
+        category: system
+        platform: [linux]
+    qutebrowser:
+        name: qutebrowser
+        category: browser
+        platform: [linux, macos, windows]
+        icon: qutebrowser.svg
+    qtcreator:
+        name: Qt Creator
+        category: code_editor
+        platform: [linux, macos, windows]
+        color: green
+    qterminal:
+        name: QTerminal
+        category: terminal
+        platform: [linux]
+        icon: lxqt.svg
+        color: sky
+    raycast:
+        name: Raycast
+        category: productivity
+        platform: [macos]
+        color: red
+    rboard:
+        name: Rboard
+        category: system
+        platform: [android]
+        color: blue
+        icon: gboard.svg
+    refind:
+        name: rEFInd
+        category: system
+        platform: [linux]
+    regolith:
+        name: Regolith Desktop
+        category: system
+        platform: [linux]
+    remnote:
+        name: RemNote
+        category: note_taking
+        platform: agnostic
+    replit:
+        name: Replit
+        category: code_editor
+        platform: agnostic
+    revolt:
+        name: Revolt
+        category: messaging
+        platform: [linux, macos, windows]
+        icon: revoltdotchat
+    rio:
+        name: Rio
+        category: terminal
+        color: peach
+        platform: [linux, macos, windows]
+    rofi:
+        name: Rofi
+        category: system
+        platform: [linux]
+    rstudio:
+        name: RStudio
+        category: code_editor
+        platform: [linux, macos, windows]
+        color: blue
+    rust:
+        name: Rust
+        category: library
+        platform: agnostic
+    sc-im:
+        name: sc-im
+        category: cli
+        platform: [linux, macos]
+    sddm:
+        name: SDDM
+        category: system
+        platform: [linux]
+    sharex:
+        name: ShareX
+        category: productivity
+        platform: [windows]
+    shiki:
+        name: ShikiJS
+        category: development
+        platform: agnostic
+        url: https://github.com/catppuccin/vscode/tree/compiled
+    sidebery:
+        name: Sidebery
+        category: browser_extension
+        platform: agnostic
+    skim:
+        name: skim
+        category: cli
+        platform: [linux, macos]
+    slack:
+        name: Slack
+        category: messaging
+        platform: agnostic
+    sioyek:
+        name: Sioyek
+        category: productivity
+        platform: [linux, macos, windows]
+    solvespace:
+        name: SolveSpace
+        category: productivity
+        platform: [linux]
+    spicetify:
+        name: Spicetify
+        category: leisure
+        platform: [linux, macos, windows]
+        color: green
+        icon: spotify
+    spotify-player:
+        name: spotify-player
+        category: leisure
+        platform: [linux, macos, windows]
+        color: green
+        icon: spotify
+    spotify-tui:
+        name: spotify-tui
+        category: leisure
+        platform: [linux, macos, windows]
+        color: green
+        icon: spotify
+    spyder:
+        name: spyder
+        category: code_editor
+        platform: [linux, macos, windows]
+        icon: spyderide
+        color: red
+    st:
+        name: st
+        category: terminal
+        platform: [linux]
+    stable-diffusion-web-ui:
+        name: Stable Diffusion WebUI
+        category: leisure
+        platform: agnostic
+    starship:
+        name: Starship
+        category: cli
+        platform: [linux, macos, windows]
+    startpage:
+        name: Startpage
+        category: search_engine
+        platform: agnostic
+    steam:
+        name: Steam
+        category: leisure
+        platform: [linux, macos, windows]
+        color: blue
+    steam-deck:
+        name: Steam Deck
+        category: leisure
+        platform: [linux]
+        color: blue
+    sublime-text:
+        name: Sublime Text
+        category: code_editor
+        platform: [linux, macos, windows]
+        color: yellow
+        icon: sublimetext
+    sumatra-pdf:
+        name: SumatraPDF
+        category: productivity
+        platform: [windows]
+    swaync:
+        name: SwayNotificationCenter
+        category: system
+        platform: [linux]
+    tabby:
+        name: Tabby
+        category: terminal
+        platform: [linux, macos, windows]
+    tailwindcss:
+        name: Tailwind CSS
+        category: development
+        platform: agnostic
+        color: sky
+        links:
+            - name: NPM
+              icon: npm
+              color: red
+              url: https://www.npmjs.com/package/@catppuccin/tailwindcss
+    telegram:
+        name: Telegram
+        category: messaging
+        platform: agnostic
+        color: blue
+    terminator:
+        name: Terminator
+        category: terminal
+        platform: [linux]
+    Terminal.app:
+        name: Terminal.app
+        category: terminal
+        platform: [macos]
+    termux:
+        name: Termux
+        category: terminal
+        platform: [android]
+    thelounge:
+        name: The Lounge
+        category: messaging
+        platform: agnostic
+    theme.park:
+        name: theme.park
+        category: leisure
+        platform: agnostic
+        color: teal
+    thunderbird:
+        name: Thunderbird
+        category: productivity
+        platform: [linux, macos, windows]
+        color: blue
+    tilix:
+        name: Tilix
+        category: terminal
+        platform: [linux]
+    tmux:
+        name: tmux
+        category: cli
+        platform: [linux, macos]
+        color: green
+    tofi:
+        name: tofi
+        category: system
+        platform: [linux]
+    tty:
+        name: tty
+        category: system
+        platform: [linux]
+    tym:
+        name: tym
+        category: terminal
+        platform: [linux]
+    ueli:
+        name: Ueli
+        category: system
+        platform: [windows, macos]
+    ui:
+        name: UI
+        category: library
+        platform: agnostic
+        icon: react
+        color: sky
+        links:
+            - name: NPM
+              icon: npm
+              color: red
+              url: https://www.npmjs.com/package/@catppuccin/ui
+    ulauncher:
+        name: Ulauncher
+        category: system
+        platform: [linux]
+    ultrakill:
+        name: ULTRAKILL
+        category: game
+        platform: [linux, macos, windows]
+    unreal-engine:
+        name: Unreal Engine
+        category: development
+        platform: [linux, macos, windows]
+        icon: unrealengine
+        color: blue
+    urxvt:
+        name: Urxvt
+        category: terminal
+        platform: [linux]
+    v:
+        name: V
+        category: library
+        platform: agnostic
+    vendetta:
+        name: Vendetta
+        category: messaging
+        platform: [android, ios]
+    vim:
+        name: Vim
+        category: code_editor
+        platform: [linux, macos, windows]
+        color: green
+    vimium:
+        name: Vimium
+        category: browser_extension
+        platform: agnostic
+    visual-studio:
+        name: Visual Studio
+        category: code_editor
+        platform: [windows]
+        icon: visualstudio
+        links:
+            - name: Visual Studio Marketplace
+              icon: visualstudio
+              color: blue
+              url: https://marketplace.visualstudio.com/items?itemName=Catppuccin.CatppuccinVS
+    vivaldi:
+        name: Vivaldi
+        category: browser
+        platform: [linux, macos, windows]
+        color: peach
+    vscode:
+        name: Visual Studio Code
+        category: code_editor
+        platform: [linux, macos, windows]
+        color: blue
+        icon: visualstudiocode
+        links:
+            - name: Visual Studio Marketplace
+              icon: visualstudio
+              color: blue
+              url: https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc
+            - name: Open VSX Registry
+              icon: vscodium
+              color: blue
+              url: https://open-vsx.org/extension/Catppuccin/catppuccin-vsc
+    vscode-icons:
+        name: Visual Studio Code Icons
+        category: code_editor
+        platform: [linux, macos, windows]
+        color: blue
+        icon: visualstudiocode
+        links:
+          - name: Visual Studio Marketplace
+            icon: visualstudio
+            color: blue
+            url: https://marketplace.visualstudio.com/items?itemName=Catppuccin.catppuccin-vsc-icons
+    warp:
+        name: Warp
+        category: terminal
+        platform: [macos]
+    waybar:
+        name: waybar
+        category: system
+        platform: [linux]
+    wezterm:
+        name: WezTerm
+        category: terminal
+        platform: [linux, macos, windows]
+        icon: wezterm
+        upstreamed: true
+    whoogle:
+        name: Whoogle
+        category: search_engine
+        platform: agnostic
+    windows-files:
+        name: Windows Files
+        category: system
+        platform: [windows]
+        icon: windows-files.svg
+        color: yellow
+    windows-terminal:
+        name: Windows Terminal
+        category: terminal
+        platform: [windows]
+        icon: windowsterminal
+        color: text
+    xcode:
+        name: Xcode
+        category: code_editor
+        platform: [macos]
+        color: blue
+    xfce4-terminal:
+        name: Xfce4 Terminal
+        category: terminal
+        platform: [linux]
+        icon: xfce.svg
+    xed:
+        name: Xed
+        category: code_editor
+        platform: [linux]
+    xresources:
+        name: Xresources
+        category: system
+        platform: [linux]
+        icon: xdotorg
+    youtubemusic:
+        name: YouTube Music
+        category: leisure
+        platform: agnostic
+        color: red
+    zathura:
+        name: Zathura
+        category: productivity
+        platform: [linux]
+        icon: zathura.svg
+    zellij:
+        name: Zellij
+        category: cli
+        platform: [linux, macos]
+        icon: zellij.svg
+        upstreamed: true
+    zsh-fsh:
+        name: ZSH Fast Syntax Highlighting
+        category: cli
+        platform: [linux, macos]
+    zsh-syntax-highlighting:
+        name: zsh-syntax-highlighting
+        category: cli
+        platform: [linux, macos]
+    zutty:
+        name: Zutty
+        category: terminal
+        platform: [linux]
+
+categories:
+    - key: code_editor
+      name: Code Editors & IDEs
+      emoji: 👾
+    - key: development
+      name: Development tools
+      emoji: 💭
+    - key: library
+      name: Libraries
+      emoji: 📚
+    - key: cli
+      name: CLI tools
+      emoji: 🐚
+    - key: terminal
+      name: Terminals
+      emoji: 🌱
+    - key: system
+      name: System
+      emoji: 🔧
+    - key: browser
+      name: Browsers
+      emoji: 🏄
+    - key: browser_extension
+      name: Browser Extensions
+      emoji: 🧩
+    - key: search_engine
+      name: Search Engines
+      emoji: 🔎
+    - key: messaging
+      name: Messaging
+      emoji: 💬
+    - key: note_taking
+      name: Note taking
+      emoji: 📝
+    - key: productivity
+      name: Productivity
+      emoji: 🗂️
+    - key: social
+      name: Social
+      emoji: ✨
+    - key: leisure
+      name: Leisure
+      emoji: 🌈
+    - key: game
+      name: Games
+      emoji: 🎮
+
+showcases:
+    - title: flotes.app
+      description: A free note-taking app enhanced with flashcard features
+      link: https://flotes.app/
+    - title: AnuPpuccin
+      description: Highly customizable theme for [Obsidian](https://obsidian.md)
+      link: https://github.com/AnubisNekhet/AnuPpuccin
+    - title: faerber
+      description: Website for applying custom color schemes to any wallpaper
+      link: https://farbenfroh.io/faerber
+    - title: Simple MP
+      description: A simple music player based on Material You design
+      link: https://github.com/lighttigerXIV/SimpleMP-Compose
+    - title: Comfy
+      description: A theme for [Spicetify](https://github.com/spicetify/spicetify-cli) with a basic catppuccin color scheme!
+      link: https://github.com/Comfy-Themes/Spicetify
+    - title: Catppuccin Noctis
+      description: An alternative to the official VSCode theme, with [Noctis](https://marketplace.visualstudio.com/items?itemName=liviuschera.noctis) syntax highlighting
+      link: https://marketplace.visualstudio.com/items?itemName=AlexDauenhauer.catppuccin-noctis
+    - title: Meowix Linux
+      description: An Arch Linux-based distribution centered around the Catppuccin theme.
+      link: https://meowix-linux.github.io/
+    - title: Mind Elixir
+      description: A framework agnostic JavaScript mind map core.
+      link: https://github.com/ssshooter/mind-elixir-core
+    - title: Career Vault
+      description: A remote job board that shows hundreds of new opportunities every day.
+      link: https://careervault.io
+# yaml-language-server: $schema=https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.schema.json

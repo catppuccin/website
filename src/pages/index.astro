@@ -1,0 +1,73 @@
+---
+import Home from "../layouts/Home.astro"
+
+import Link from '../components/Link.astro'
+import TextCard from '../components/CardText.astro'
+import Illustration from '../components/LaptopIllustration.astro'
+---
+
+
+<Home
+  title="Catppuccin"
+  description="Soothing pastel colors for the high spirited."
+>
+
+
+  <div slot="hero-content" class="hero-content">
+    <h1>Soothing pastel colors for the <nobr>high-spirited!</nobr></h1>
+    <p>A community-driven color scheme meant for coding, designing, and much more!</p>
+    <a href="#below-hero">
+      <button class="btn btn-mauve">
+        Explore
+        <span class="btn-icon" style="transform: rotate(180deg)">&#x25C1;</span>
+      </button>
+    </a>
+  </div>
+
+  <Illustration slot="hero-image" />
+
+
+  <article class="project-info">
+
+    <div class="project-info-philosophy">
+      <TextCard title="Design Philosophy" color="blue" icon="brain">
+        <p>Colorful is better than colorless: the colorfulness of something contributes to the distinction amongst the parts of that something, making it marginally easier to understand how things are structured.</p>
+        <p>There should be balance: not too dull, not too bright. Suitability under various light conditions is a must.</p>
+        <p>Harmony is superior to dissonance: vivacious colors must complement each other.</p>
+      </TextCard>
+    </div>
+
+    <div class="project-info-palette">
+      <TextCard title="Palette" color="green" icon="palette">
+        <p>Catppuccin consists of 4 beautiful pastel color palettes, named flavors. All the details can be found below.</p>
+        <p>
+          If you want to use them for your own project, refer to our <Link href="https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md" external>style guide</Link> for general use cases and guidelines<br>
+          Additionally, you can find integrations with popular frameworks and tools in <Link href="https://github.com/catppuccin/palette" external>catppuccin/palette</Link>.
+        </p>
+      </TextCard>
+    </div>
+
+  </article>
+
+</Home>
+
+
+
+
+
+<style lang="scss">
+
+  :root { --accent-color: var(--rosewater); }
+
+  h2 { color: var(--accent-color); }
+
+
+  .project-info {
+
+    display: grid;
+    grid-template: auto / repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-m);
+
+  }
+
+</style>

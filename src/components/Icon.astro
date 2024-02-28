@@ -1,0 +1,29 @@
+---
+import { getIcon } from '../lib/getIcon'
+
+
+interface Props {
+  slug: string,
+  height?: number
+}
+
+const { slug, height = 2.4 } = Astro.props
+
+const { path, viewbox } = getIcon(slug)
+---
+
+
+<svg class="icon" height=`${height}rem` role="img" viewBox={viewbox} xmlns="http://www.w3.org/2000/svg">
+  <title>{slug}</title>
+  <path d={path} />
+</svg>
+
+
+
+
+
+<style lang="scss">
+
+  .icon { fill: currentColor; }
+
+</style>

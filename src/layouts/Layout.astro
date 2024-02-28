@@ -1,0 +1,61 @@
+---
+import '../styles/global.scss'
+
+import Header from './imports/Header.astro'
+import Footer from './imports/Footer.astro'
+
+
+interface Props {
+  title: string,
+  description: string
+}
+
+const { title, description } = Astro.props
+---
+
+
+<!doctype html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+
+    <meta property="og:url" content="https://catppuccin.com" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta content="#CBA6F7" data-react-helmet="true" name="theme-color" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+
+  </head>
+  <body>
+
+    <div id="toasts"></div>
+
+    <section class="header-container">
+      <div class="content-wrapper no-padding">
+        <Header />
+      </div>
+    </section>
+
+    <div class="content-wrapper">
+      <slot />
+    </div>
+
+    <section class="footer-container">
+      <div class="content-wrapper no-padding">
+        <Footer />
+      </div>
+    </section>
+
+  </body>
+
+</html>

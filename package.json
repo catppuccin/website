@@ -1,0 +1,23 @@
+{
+  "name": "website",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.4.1",
+    "@catppuccin/palette": "^1.1.0",
+    "astro": "^4.3.2",
+    "simple-icons": "^11.5.0",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@rollup/plugin-yaml": "^4.1.2",
+    "sass": "^1.70.0"
+  }
+}

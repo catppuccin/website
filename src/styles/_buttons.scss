@@ -1,0 +1,45 @@
+.btn {
+
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+
+  padding: var(--spacing-s) var(--spacing-m);
+
+  border-radius: 9999px;
+  border: none;
+  background-color: var(--crust);
+
+  font-size: 1.6rem; font-weight: 500;
+  color: var(--text);
+
+  cursor: pointer;
+
+
+  &-mauve {
+
+    background-color: var(--mauve);
+    background-image: linear-gradient(
+      120deg,
+      var(--pink),
+      var(--mauve)
+    );
+    background-size: 150% 100%;
+    background-position: top left;
+
+    font-weight: 600;
+    color: var(--inverted-text);
+
+
+    &:hover { background-position: top right; }
+
+  }
+
+
+}
+
+
+
+
+.btn,
+.btn * { transition: background-position 350ms ease-in-out; }

@@ -1,0 +1,35 @@
+---
+---
+
+
+<div class="annotation">
+  <slot />
+</div>
+
+
+
+
+<style lang="scss">
+
+  .annotation {
+
+    display: inline-block;
+
+    padding: var(--spacing-s) var(--spacing-m);
+
+    border-radius: var(--border-radius-normal);
+    border-bottom: var(--border-radius-normal) solid var(--surface2);
+    background-color: var(--surface0);
+    background-image: linear-gradient(
+        120deg,
+        var(--surface0),
+        color-mix(
+          in srgb,
+          var(--surface0),
+          var(--surface2) 15%
+        )
+      );
+
+  }
+
+</style>

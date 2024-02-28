@@ -1,0 +1,84 @@
+---
+import Logo from '../../components/Logo.astro'
+import Link from '../../components/Link.astro'
+
+
+import { footer as navLinkList } from '../../contents/Navigations'
+---
+
+
+
+<footer>
+
+  <nav>
+
+    {
+      navLinkList.map(({ categoryTitle, categoryLinks }) => (
+        <ul>
+        <h4>{categoryTitle}</h4>
+        {
+          categoryLinks.map(({ title, target }) => (
+            <li>
+              <Link href={target}>{title}</Link>
+            </li>
+          ))
+        }
+        </ul>
+      ))
+    }
+
+  </nav>
+
+  <div class="rights-notice">
+    <Logo type="text" height={1.6} />
+    <p>catppuccin.com is built and maintained by the community under the MIT license.</p>
+    <p>&copy; {new Date(Date.now()).getFullYear()} • <Link href="/licensing" muted>Licensing</Link></p>
+  </div>
+
+</footer>
+
+
+
+
+
+<style lang="scss">
+
+  footer {
+
+    display: flex; flex-direction: column;
+    gap: var(--spacing-m);
+    container-type: inline-size;
+
+    font-size: 1.6rem;
+    color: var(--subtext0);
+
+
+    * + * { margin-block: var(--spacing-xs) 0 !important; }
+
+
+    @media (min-width: 800px) {
+      display: flex; flex-direction: row;
+      justify-content: space-between;
+    }
+
+  }
+
+
+
+  nav {
+
+    display: grid; gap: var(--spacing-m);
+    grid-template: auto / repeat(auto-fit, minmax(calc(40% - var(--spacing-l)), 1fr));
+
+    min-width: 50cqw;
+
+    h4,
+    ul { margin: 0; padding: 0; }
+    ul { list-style: none; }
+
+  }
+
+
+  .rights-notice { max-width: 40ch; }
+
+</style>

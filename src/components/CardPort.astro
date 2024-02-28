@@ -1,0 +1,100 @@
+---
+import Link from './Link.astro'
+import Icon from './Icon.astro'
+
+
+interface Props {
+  title: string,
+  category: string,
+  repo: string,
+  color?: string
+}
+
+const { title, repo, color = 'overlay0' } = Astro.props
+---
+
+
+
+<div class="port-card" style=`--port-color: var(--${color})`>
+
+  <figure class="port-icon">
+    <Icon slug={title} height={3} />
+  </figure>
+
+  <h4 class="port-name">{title}</h4>
+
+  <Link href={repo} external muted>Repository</Link>
+
+</div>
+
+
+
+
+<style lang="scss">
+
+  .port-card {
+
+    --__accent-color: var(--port-color, var(--subtext0));
+
+
+    display: flex; flex-direction: column;
+    gap: var(--spacing-xs);
+
+    padding: var(--spacing-m) var(--spacing-s);
+
+    border-radius: var(--border-radius-normal);
+    border-bottom: var(--border-radius-normal) solid var(--__accent-color);
+    background-color: color-mix(
+      in srgb,
+      var(--surface0),
+      var(--__accent-color) 10%
+    );
+    background-image: linear-gradient(
+      120deg,
+      var(--surface0),
+      60%, color-mix(
+        in srgb,
+        var(--surface0),
+        var(--__accent-color) 30%
+      )
+    );
+    background-size: 200%;
+    background-position: top left;
+
+    text-transform: capitalize;
+    color: var(--subtext0);
+    font-size: 1.6rem;
+
+    transition: all 300ms ease-in-out;
+
+
+    &:hover {
+
+      transform: scale(105%);
+
+      background-position: top right;
+
+
+      @media (prefers-reduced-motion) { transform: none; }
+
+    }
+
+
+
+    figure, h4 { margin: 0; padding: 0; }
+
+
+
+    .port-name {
+
+      color: var(--text);
+      font-size: 2rem;
+
+    }
+
+
+    .port-icon { color: var(--__accent-color); }
+
+  }
+
+</style>

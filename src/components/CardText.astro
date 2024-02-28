@@ -1,0 +1,60 @@
+---
+import Icon from './Icon.astro'
+
+
+interface Props {
+  title?: string
+  color?: string
+  icon?: string
+}
+
+const { title, color = 'blue', icon } = Astro.props
+---
+
+
+
+<div class="text-card" style=`--accent-color: var(--${color});`>
+  { icon ? <div class="card-icon"><Icon slug={icon} height={2.4} /></div> : '' }
+  { title ? <h3 class="card-title">{title}</h3> : '' }
+  <slot />
+</div>
+
+
+
+
+
+<style lang="scss">
+
+  .text-card {
+
+    --__accent-color: var(--accent-color, var(--blue));
+
+
+    padding: var(--spacing-l);
+
+    border-radius: var(--border-radius-large);
+    background-color: var(--mantle);
+
+    color: var(--subtext0);
+
+
+    .card-title { color: var(--text); }
+
+
+    .card-icon {
+
+      display: grid;
+      place-items: center;
+
+      width: 4.8rem; aspect-ratio: 1 / 1;
+
+      border-radius: var(--border-radius-normal);
+      background-color: var(--__accent-color);
+
+      color: var(--inverted-text);
+
+    }
+
+  }
+
+</style>

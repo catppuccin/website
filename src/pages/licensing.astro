@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+import Link from "../components/Link.astro"
+---
+
+
+<Layout
+  title="Licensing"
+  description="General licensing information of the Catppuccin website."
+>
+
+  <section class="website">
+    <h2>The Website</h2>
+    <h3>MIT License</h3>
+    <p><b>Copyright (c) {new Date(Date.now()).getFullYear()} Catppuccin</b></p>
+    <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this website and associated documentation files (the "Website"), to deal in the Website without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Website, and to permit persons to whom the Website is furnished to do so, subject to the following conditions:</p>
+    <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Website.</p>
+    <p>The Website is provided »<b>as is</b>«, without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, araising from, out of or in connection with the Website or the use or other dealings in the Website.</p>
+  </section>
+
+  <section class="illustration">
+    <h2>The Illustration</h2>
+    <p>The homepage illustration is designed by <Link href="https://www.freepik.com/author/fullvector" external>fullvector</Link> on <Link href="https://www.freepik.com" external>freepik</Link> and has been modified for this website.</p>
+  </section>
+
+</Layout>
+
+
+
+
+
+<style lang="scss">
+
+  :root { --accent-color: var(--green); }
+
+</style>

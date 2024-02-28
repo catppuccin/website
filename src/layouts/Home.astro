@@ -1,0 +1,226 @@
+---
+import '../styles/global.scss'
+
+import Header from './imports/Header.astro'
+import Footer from './imports/Footer.astro'
+
+import Logo from '../components/Logo.astro'
+
+
+interface Props {
+  title: string,
+  description: string
+}
+
+const { title, description } = Astro.props
+---
+
+
+<!doctype html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+
+    <meta property="og:url" content="https://catppuccin.com" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta content="#CBA6F7" data-react-helmet="true" name="theme-color" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+
+  </head>
+  <body>
+
+    <div id="hero">
+
+      <div class="content-wrapper no-padding hero-grid">
+
+        <div class="hero-content-wrapper">
+          <Logo type="text" height={2} color="mauve" />
+          <slot name="hero-content" />
+        </div>
+
+        <div class="hero-image">
+          <slot name="hero-image" />
+        </div>
+
+      </div>
+
+    </div>
+
+    <section id="below-hero" class="header-container">
+      <div class="content-wrapper no-padding">
+        <Header />
+      </div>
+    </section>
+
+    <div class="content-wrapper">
+      <slot />
+    </div>
+
+    <section class="footer-container">
+      <div class="content-wrapper no-padding">
+        <Footer />
+      </div>
+    </section>
+
+  </body>
+
+</html>
+
+
+
+
+
+<style lang="scss" is:global>
+
+  #hero {
+
+    background-color: var(--base);
+    background-image: radial-gradient(
+      circle at top right,
+      color-mix(
+        in srgb,
+        var(--base),
+        var(--mauve) 20%
+      ),
+      transparent
+    );
+
+
+    @media (prefers-color-scheme: dark) {
+
+      background-image: radial-gradient(
+      circle at top right,
+      color-mix(
+        in srgb,
+        var(--base),
+        var(--mauve) 10%
+      ),
+      transparent
+    );
+
+    }
+
+  }
+
+
+
+  .hero-grid {
+
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    gap: var(--spacing-l);
+
+    min-height: 100vh;
+
+
+    @media (min-width: 800px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+  }
+
+
+
+  .hero-content-wrapper {
+
+    display: grid;
+    grid-template-rows: max-content auto;
+    gap: var(--spacing-xl);
+    container-type: inline-size;
+
+    padding-block: var(--padding-body);
+
+  }
+
+
+
+  .hero-content {
+
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    gap: var(--spacing-m);
+
+    line-height: 1.1;
+
+
+    h1 {
+
+      margin: 0; padding-block: 6px;
+
+      background-image: linear-gradient(
+        120deg,
+        var(--peach),
+        var(--mauve)
+      );
+      background-clip: text;
+
+      font-size: clamp(4rem, 4vw, 6rem);
+      font-weight: 900;
+      color: transparent;
+
+    }
+
+
+    p { line-height: 1.5; }
+
+  }
+
+
+
+  .hero-image {
+
+    display: grid;
+    place-items: center;
+    container-type: inline-size;
+
+    max-height: 40vh;
+
+
+    svg { padding: var(--spacing-m); }
+
+
+    @media (min-width: 800px) {
+
+      max-height: 100vh;
+
+      background-image: linear-gradient(
+      125deg,
+      color-mix(
+        in srgb,
+        var(--mauve),
+        transparent 96%
+      ),
+      transparent 40%
+    );
+
+
+      svg {
+
+        @container (min-width: 400px) {
+          padding: var(--spacing-l);
+        }
+
+        @container (min-width: 500px) {
+          padding: var(--spacing-xl);
+        }
+
+      }
+
+    }
+
+  }
+
+
+</style>
