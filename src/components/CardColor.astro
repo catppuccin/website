@@ -114,14 +114,18 @@ const { name, hex, rgb } = Astro.props
       padding: var(--spacing-xs);
 
       border-radius: var(--border-radius-normal);
-      background-color: var(--crust);
+      background-color: color-mix(
+        in srgb,
+        var(--crust),
+        var(--__current-color) 0%
+      );
 
       transition: background-color 350ms;
 
 
       &:hover { background-color: color-mix(
         in srgb,
-        var(--mantle),
+        var(--crust),
         var(--__current-color) 10%
       )}
 
