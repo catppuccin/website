@@ -64,20 +64,7 @@ const { name, hex, rgb } = Astro.props
 
     border-radius: var(--border-radius-normal);
     border-bottom: var(--border-radius-normal) solid var(--__current-color);
-    background-color: color-mix(
-      in srgb,
-      var(--surface0),
-      var(--__current-color) 10%
-    );
-    background-image: linear-gradient(
-      120deg,
-      var(--surface0),
-      60%, color-mix(
-        in srgb,
-        var(--surface0),
-        var(--__current-color) 15%
-      )
-    );
+    background-color: var(--mantle);
 
 
 
@@ -127,11 +114,7 @@ const { name, hex, rgb } = Astro.props
       padding: var(--spacing-xs);
 
       border-radius: var(--border-radius-normal);
-      background-color: color-mix(
-        in srgb,
-        var(--mantle),
-        var(--__current-color) 5%
-      );
+      background-color: var(--crust);
 
       transition: background-color 350ms;
 
