@@ -22,7 +22,7 @@ export const header = [
     accent: "mauve"
   },
   {
-    title: "Contribute",
+    title: "Contributing",
     target: "contribute",
     accent: "green"
   }
@@ -49,7 +49,7 @@ export const footer = [
         external: false
       },
       {
-        title: "Contribution",
+        title: "Contributing",
         target: "/contribute",
         external: false
       },
