@@ -85,6 +85,11 @@ export const footer = [
         external: true
       },
       {
+        title: "Twitch",
+        target: links.twitch,
+        external: true
+      },
+      {
         title: "Instagram",
         target: links.instagram,
         external: true
