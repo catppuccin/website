@@ -63,9 +63,6 @@ import { footer as navLinkList } from '../../contents/Navigations'
     color: var(--subtext0);
 
 
-    * + * { margin-block: var(--spacing-xs) 0 !important; }
-
-
     @media (min-width: 800px) {
       display: flex; flex-direction: row;
       justify-content: space-between;
@@ -83,7 +80,7 @@ import { footer as navLinkList } from '../../contents/Navigations'
     min-width: 50cqw;
 
     h4,
-    ul { margin: 0; padding: 0; }
+    ul { margin: 0 0 var(--spacing-xs) 0; padding: 0; }
     ul { list-style: none; }
 
   }
