@@ -49,7 +49,10 @@ const { title, description } = Astro.props
       <div class="content-wrapper no-padding hero-grid">
 
         <div class="hero-content-wrapper">
-          <Logo type="text" height={2} color="mauve" />
+          <div class="hero-logo">
+            <Logo type="icon" height={4} />
+            <Logo type="text" color="mauve" height={3} />
+          </div>
           <slot name="hero-content" />
         </div>
 
@@ -114,6 +117,19 @@ const { title, description } = Astro.props
     );
 
     }
+
+  }
+
+
+
+  .hero-logo {
+
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-m);
+
+
+    svg + svg { margin-block-start: 6px; }
 
   }
 
