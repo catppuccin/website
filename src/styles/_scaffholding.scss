@@ -132,8 +132,11 @@ section + section { margin-block-start: var(--spacing-xl); }
 
 .footer-container {
 
-  margin-block-start: var(--spacing-xl); padding-block: var(--spacing-l);
+  margin-block-start: var(--spacing-xl);
 
   background-color: var(--mantle);
+
+
+  .content-wrapper { padding-block: var(--spacing-l); }
 
 }

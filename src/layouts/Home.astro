@@ -5,6 +5,7 @@ import Header from './imports/Header.astro'
 import Footer from './imports/Footer.astro'
 
 import Logo from '../components/Logo.astro'
+import AccentBar from '../components/AccentBar.astro'
 
 
 interface Props {
@@ -75,6 +76,7 @@ const { title, description } = Astro.props
     </div>
 
     <section class="footer-container">
+      <AccentBar />
       <div class="content-wrapper no-padding">
         <Footer />
       </div>
