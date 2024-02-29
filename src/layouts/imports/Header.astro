@@ -17,9 +17,11 @@ import { header as navLinkList } from '../../contents/Navigations'
     <ul>
       {
         navLinkList.map(({ title, target, accent }) => (
-          <a href={target} style=`--accent-colour: var(--${accent});` class="nav-link">
-            <li>{title}</li>
-          </a>
+          <li>
+            <a href={target} style=`--accent-colour: var(--${accent});` class="nav-link">
+              {title}
+            </a>
+          </li>
         ))
       }
     </ul>
