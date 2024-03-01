@@ -94,29 +94,34 @@ const { title, description } = Astro.props
 
   #hero {
 
-    background-color: var(--base);
-    background-image: radial-gradient(
-      circle at top right,
+    background-color: color-mix(
+      in srgb,
+      var(--base),
+      var(--mauve) 10%
+    );
+    background-image: linear-gradient(
+      120deg,
       color-mix(
         in srgb,
         var(--base),
-        var(--mauve) 20%
+        var(--peach) 5%
       ),
-      transparent
+      color-mix(
+        in srgb,
+        var(--base),
+        var(--mauve) 10%
+      )
     );
 
 
     @media (prefers-color-scheme: dark) {
 
-      background-image: radial-gradient(
-        circle at top right,
-        color-mix(
-          in srgb,
-          var(--base),
-          var(--mauve) 10%
-        ),
-        transparent
+      background-color: color-mix(
+        in srgb,
+        var(--base),
+        var(--mantle) 30%
       );
+      background-image: none;
 
     }
 
@@ -219,16 +224,6 @@ const { title, description } = Astro.props
     @media (min-width: 800px) {
 
       max-height: 100vh;
-
-      background-image: linear-gradient(
-        125deg,
-        color-mix(
-          in srgb,
-          var(--mauve),
-          transparent 96%
-        ),
-        transparent 40%
-      );
 
 
       svg {
