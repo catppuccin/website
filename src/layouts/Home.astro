@@ -1,7 +1,6 @@
 ---
 import '../styles/global.scss'
 
-import Header from './imports/Header.astro'
 import Footer from './imports/Footer.astro'
 
 import Logo from '../components/Logo.astro'
@@ -46,7 +45,6 @@ const { title, description } = Astro.props
   <body>
 
     <div id="hero">
-
       <div class="content-wrapper no-padding hero-grid">
 
         <div class="hero-content-wrapper">
@@ -62,17 +60,6 @@ const { title, description } = Astro.props
         </div>
 
       </div>
-
-    </div>
-
-    <section id="below-hero" class="header-container">
-      <div class="content-wrapper no-padding">
-        <Header />
-      </div>
-    </section>
-
-    <div class="content-wrapper">
-      <slot />
     </div>
 
     <section class="footer-container">
@@ -124,6 +111,9 @@ const { title, description } = Astro.props
       background-image: none;
 
     }
+
+
+    + .footer-container { margin-block-start: 0; }
 
   }
 

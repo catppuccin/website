@@ -1,8 +1,6 @@
 ---
 import Home from "../layouts/Home.astro"
 
-import Link from '../components/Link.astro'
-import TextCard from '../components/CardText.astro'
 import Illustration from '../components/LaptopIllustration.astro'
 ---
 
@@ -16,38 +14,21 @@ import Illustration from '../components/LaptopIllustration.astro'
   <div slot="hero-content" class="hero-content">
     <h1>Soothing pastel theme for the <nobr>high-spirited!</nobr></h1>
     <p>A community-driven color scheme meant for coding, designing, and much more!</p>
-    <a href="#below-hero">
-      <button class="btn btn-mauve">
-        Explore
-        <span class="btn-icon" >&rarr;</span>
-      </button>
-    </a>
+    <div class="btn-group">
+      <a href="/ports">
+        <button class="btn btn-peach">
+          Explore Ports
+        </button>
+      </a>
+      <a href="/palette">
+        <button class="btn btn-mauve">
+          Discover Colors
+        </button>
+      </a>
+    </div>
   </div>
 
   <Illustration slot="hero-image" />
-
-
-  <article class="project-info">
-
-    <div class="project-info-philosophy">
-      <TextCard title="Design Philosophy" color="blue" icon="brain">
-        <p><b>Colorful is better than colorless</b>: the colorfulness of something contributes to the distinction amongst the parts of that something, making it marginally easier to understand how things are structured.</p>
-        <p><b>There should be balance</b>: not too dull, not too bright. Suitability under various light conditions is a must.</p>
-        <p><b>Harmony is superior to dissonance</b>: vivacious colors must complement each other.</p>
-      </TextCard>
-    </div>
-
-    <div class="project-info-palette">
-      <TextCard title="Palette" color="green" icon="palette">
-        <p>Catppuccin consists of 4 beautiful pastel color palettes, named flavors. All the details can be found below.</p>
-        <p>
-          If you want to use them for your own project, refer to our <Link href="https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md" external>style guide</Link> for general use cases and guidelines<br>
-          Additionally, you can find integrations with popular frameworks and tools in <Link href="https://github.com/catppuccin/palette" external>catppuccin/palette</Link>.
-        </p>
-      </TextCard>
-    </div>
-
-  </article>
 
 </Home>
 

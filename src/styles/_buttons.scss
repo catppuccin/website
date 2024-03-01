@@ -1,11 +1,20 @@
 @keyframes btnFadeOut {
   to {
 
-    background-color: var(--mantle);
+    background-color: var(--surface0);
 
     color: var(--text);
 
   }
+}
+
+
+
+.btn-group {
+
+  display: flex;
+  gap: var(--spacing-s);
+
 }
 
 
@@ -16,7 +25,7 @@
 
   border-radius: 9999px;
   border: none;
-  background-color: var(--mantle);
+  background-color: var(--surface0);
 
   font-size: 1.6rem; font-weight: 500;
   color: var(--text);
@@ -30,6 +39,26 @@
     padding: var(--spacing-xs);
 
     border-radius: var(--border-radius-normal);
+
+  }
+
+
+  &-peach {
+
+    background-color: var(--peach);
+    background-image: linear-gradient(
+      120deg,
+      var(--peach),
+      var(--red)
+    );
+    background-size: 150% 100%;
+    background-position: top left;
+
+    font-weight: 600;
+    color: var(--inverted-text);
+
+
+    &:hover { background-position: top right; }
 
   }
 
