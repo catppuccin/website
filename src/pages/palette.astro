@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro"
 
 import Link from "../components/Link.astro"
 import PageIntro from "../components/PageIntro.astro"
-import ColorCard from "../components/CardColor.astro"
+import ButtonCopy from "../components/ButtonCopy.astro"
 
 import { CatppuccinLinks as links } from '../contents/CatppuccinLinks'
 
@@ -32,25 +32,39 @@ import { flavorEntries } from "@catppuccin/palette"
       <section class="flavor">
 
         <h3 id=`flavor-${flavorName}` class="flavor-name">{flavorName}</h3>
-        <div class="color-list">
+        <table class="color-list">
+          <tr class="color-list-header">
+            <th>Color</th>
+            <th class="right-aligned">Hex</th>
+            <th class="right-aligned">RGB</th>
+            <th class="right-aligned">HSL</th>
+          </tr>
           {
-            flavor.colorEntries.map(([colorName, { hex, rgb, accent }]) => (
-              <ColorCard name={colorName} hex={hex} rgb={rgb} accent={accent} />
+            flavor.colorEntries.map(([colorName, { hex, rgb, hsl, accent }]) => (
+              <tr class="color-list-entry" style=`--current-color: ${hex}` >
+                <td class="color">
+                  <h5 class="color-name">{colorName}</h5>
+                </td>
+                <td class="color-hex right-aligned">
+                  <ButtonCopy value={hex} />
+                </td>
+                <td class="color-rgb right-aligned">
+                  <ButtonCopy value=`rgb(${rgb.r} ${rgb.g} ${rgb.b})` />
+                </td>
+                <td class="color-hsl right-aligned">
+                  <ButtonCopy value=`hsl(${Math.floor(hsl.h)} ${Math.floor(hsl.s * 100)} ${Math.floor(hsl.l * 100)})` />
+                </td>
+              </tr>
             ))
           }
-        </div>
+        </table>
 
       </section>
     ))
   }
 
-
 </Layout>
 
-
-
-
-<script src="/clipboard.js" type="text/javascript"></script>
 
 
 
@@ -60,23 +74,56 @@ import { flavorEntries } from "@catppuccin/palette"
   :root { --accent-color: var(--mauve); }
 
 
-
-  .flavor-name {
-
-    margin-block-end: var(--spacing-m);
-
-    text-transform: capitalize;
-
-  }
+  .flavor-name,
+  .color-name { text-transform: capitalize; }
 
 
   .color-list {
 
-    container-type: inline-size;
+    width: 100%; min-width: max-content;
+    overflow-y: scroll;
 
-    display: grid;
-    grid-template: auto / repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-m);
+    text-align: left;
+
+
+    tr > td { padding-block-start: 2px; }
+
+    .right-aligned { text-align: right; }
+
+  }
+
+
+  .color-list-entry { --__current-color: var(--current-color, var(--text)); }
+
+
+  .color-list-header th {
+
+    font-size: 80%; font-weight: 500;
+    color: var(--subtext0);
+
+  }
+
+
+  .color-name {
+
+    position: relative;
+
+    margin: 0; padding: 0; padding-inline-start: 3rem;
+
+
+    &::before {
+
+      content: '';
+
+      position: absolute;
+      left: 0;
+
+      height: 2rem; aspect-ratio: 1 / 1;
+
+      border-radius: 9999px;
+      background-color: var(--__current-color);
+
+    }
 
   }
 

@@ -1,19 +1,37 @@
-.btn {
+@keyframes btnFadeOut {
+  to {
 
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-s);
+    background-color: var(--mantle);
+
+    color: var(--text);
+
+  }
+}
+
+
+
+.btn {
 
   padding: var(--spacing-s) var(--spacing-m);
 
   border-radius: 9999px;
   border: none;
-  background-color: var(--crust);
+  background-color: var(--mantle);
 
   font-size: 1.6rem; font-weight: 500;
   color: var(--text);
 
+  transition: all 350ms ease-in-out;
   cursor: pointer;
+
+
+  &-simple {
+
+    padding: var(--spacing-xs);
+
+    border-radius: var(--border-radius-normal);
+
+  }
 
 
   &-mauve {
@@ -32,6 +50,18 @@
 
 
     &:hover { background-position: top right; }
+
+  }
+
+
+  &-success {
+
+    background-color: var(--green);
+
+    color: var(--inverted-text);
+
+    animation: btnFadeOut 350ms linear forwards;
+    animation-delay: 500ms;
 
   }
 
