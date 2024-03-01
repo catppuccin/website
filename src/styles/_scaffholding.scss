@@ -1,22 +1,18 @@
 *, *::before, *::after { box-sizing: border-box; }
 
-
-
-@media (prefers-reduced-motion) {
-  *, *::before, *::after { transition: none !important; }
-}
-
-
-
 html {
 
   font-size: 62.5%;
 
   scroll-behavior: smooth;
 
+}
 
-  @media (prefers-reduced-motion) { scroll-behavior: auto; }
 
+
+@media (prefers-reduced-motion) {
+  *, *::before, *::after { transition: none !important; }
+  html { scroll-behavior: auto; }
 }
 
 
@@ -29,7 +25,7 @@ html {
   --border-radius-normal: 6px;
   --border-radius-large: 12px;
 
-  --base-size: 2;
+  --base-size: 3;
 
   --spacing-xs: calc(var(--base-size) / 6 * 1rem);
   --spacing-s:  calc(var(--base-size) / 4 * 1rem);
@@ -37,18 +33,16 @@ html {
   --spacing-l:  calc(var(--base-size) * 1 * 1rem);
   --spacing-xl: calc(var(--base-size) * 2 * 1rem);
 
-  --padding-body: var(--spacing-m);
+  --padding-body: clamp(20px, 5vw, 500px);
 
 
-  @media (min-width: 400px) {
-    --base-size: 3;
-    --padding-body: var(--spacing-l);
-  }
+  // @media (min-width: 400px) {
+  //   --padding-body: var(--spacing-l);
+  // }
 
 
   @media (min-width: 800px) {
     --base-size: 4;
-    --padding-body: var(--spacing-xl);
   }
 
 }

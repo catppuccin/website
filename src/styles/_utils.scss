@@ -1,0 +1,36 @@
+@mixin containerSpacing ($size: normal) {
+
+  margin: 0;
+  padding: var(--spacing-m) var(--spacing-s);
+
+
+  // alternative sizings
+
+  @if $size == none {
+    margin: 0;
+    padding: 0;
+  }
+
+  @if $size == small {
+    margin: 0;
+    padding: var(--spacing-s);
+  }
+
+  @if $size == large {
+    margin: 0;
+    padding: var(--spacing-l) var(--spacing-m);
+  }
+
+}
+
+
+
+@function blendColors ($baseColor, $blendColor, $blendPercentage) {
+
+  @return color-mix(
+    in srgb,
+    $baseColor,
+    $blendColor $blendPercentage
+  );
+
+}

@@ -21,22 +21,23 @@ import { flavorEntries } from "@catppuccin/palette"
   <PageIntro title="Palette">
 
     <p>
-      Catppuccin consists of 4 beautiful pastel color palettes, named flavors.<br>
-      We offer three dark themes <b>Mocha</b> and <b>Macchiato</b>, both offering a cozy feeling with color-rich accents, <b>Frappé</b> which is offering a less vibrant alternative, and last but not least <b>Latte</b> which is out light theme capturing the essence of our dark themes and turning them into a bright and shining counterpart.
+      Catppuccin consists of 4 beautiful pastel color palettes, named flavors.
+      We offer three dark themes <b>🌿 Mocha</b> and <b>🌺 Macchiato</b>, both offering a cozy feeling with color-rich accents, <b>🪴 Frappé</b> which is offering a less vibrant alternative, and last but not least <b>🌻 Latte</b> which is out light theme capturing the essence of our dark themes and turning them into a bright and shining counterpart.
     </p>
     <p>If you'd like to use them for your own project you can refer to our <Link href=`${links.github}/catppuccin/blob/main/docs/style-guide.md`` external>style guide</Link> for general use cases and guidelines. Additionally, you can find integrations with popular frameworks and tools in <Link href=`${links.github}/palette`` external>catppuccin/palette</Link>.</p>
 
   </PageIntro>
 
 
+  <section class="flavor-grid">
   {
     flavorEntries.map(([flavorName, flavor]) => (
       <div class="flavor">
-        <details>
+        <details open>
           <summary id=`flavor-${flavorName}` class="flavor-name">
             {flavorName}
           </summary>
-          <table class="color-list">
+          <table class="color-list" cellspacing="0">
             <tr class="color-list-header">
               <th>Color</th>
               <th class="right-aligned">Hex</th>
@@ -49,14 +50,23 @@ import { flavorEntries } from "@catppuccin/palette"
                   <td class="color">
                     <h5 class="color-name">{colorName}</h5>
                   </td>
-                  <td class="color-hex right-aligned">
-                    <ButtonCopy value={hex} />
+                  <td class="color-hex right-aligned js-copy" data-value={hex.replace('#', '')} >
+                    <button class="btn btn-simple btn-transparent">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="168 168 216 168 216 40 88 40 88 88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="40" y="88" width="128" height="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                      {hex.replace('#', '').toUpperCase()}</button>
                   </td>
-                  <td class="color-rgb right-aligned">
-                    <ButtonCopy value=`rgb(${rgb.r} ${rgb.g} ${rgb.b})` />
+                  <td class="color-rgb right-aligned js-copy" data-value=`${rgb.r} ${rgb.g} ${rgb.b}` >
+                    <button class="btn btn-simple btn-transparent">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="168 168 216 168 216 40 88 40 88 88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="40" y="88" width="128" height="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                      {`${rgb.r}`.padStart(3)}, {`${rgb.g}`.padStart(3)}, {`${rgb.b}`.padStart(3)}</button>
                   </td>
-                  <td class="color-hsl right-aligned">
-                    <ButtonCopy value=`hsl(${Math.floor(hsl.h)} ${Math.floor(hsl.s * 100)} ${Math.floor(hsl.l * 100)})` />
+                  <td class="color-hsl right-aligned js-copy" data-value=`${hsl.h} ${hsl.s} ${hsl.l}` >
+                    <button class="btn btn-simple btn-transparent">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="168 168 216 168 216 40 88 40 88 88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="40" y="88" width="128" height="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+                      {`${Math.floor(hsl.h)}`.padStart(3)}, {`${Math.floor(hsl.s * 100)}`.padStart(3)}, {`${Math.floor(hsl.l * 100)}`.padStart(3)}</button>
                   </td>
                 </tr>
               ))
@@ -67,8 +77,34 @@ import { flavorEntries } from "@catppuccin/palette"
       </div>
     ))
   }
+  </section>
 
 </Layout>
+
+
+
+
+<script is:inline>
+
+  const elements = document.querySelectorAll('.js-copy')
+  elements.forEach(element => element.addEventListener(
+    'click',
+    () => {
+
+
+      const value = element.dataset.value
+      navigator.clipboard.writeText(value)
+
+      element.classList.add('copy-success')
+      return setTimeout(
+        () => element.classList.remove('copy-success'),
+        1500
+      )
+
+    }
+  ))
+
+</script>
 
 
 
@@ -76,15 +112,44 @@ import { flavorEntries } from "@catppuccin/palette"
 
 <style lang="scss">
 
+  @use '../styles/utils';
+
   :root { --accent-color: var(--mauve); }
+
+
+  #flavor-latte::before { content: '🌻'; }
+  #flavor-frappe::before { content: '🪴'; }
+  #flavor-macchiato::before { content: '🌺'; }
+  #flavor-mocha::before { content: '🌿'; }
+
+
+  // .flavor-grid {
+
+  //   display: grid;
+  //   grid-template: auto / repeat(auto-fit, minmax(500px, 1fr));
+  //   align-items: start;
+  //   gap: var(--spacing-m);
+
+  // }
+
+
+  @keyframes copyFadeOut {
+    to {
+      color: inherit;
+    }
+  }
 
 
   .flavor {
 
-    margin-block-start: var(--spacing-m); padding: var(--spacing-s) var(--spacing-m);
+    @include utils.containerSpacing();
+    margin-block-start: var(--spacing-m);
 
+    border: 2px solid var(--surface0);
     border-radius: var(--border-radius-normal);
     background: var(--mantle);
+
+    overflow-x: scroll;
 
   }
 
@@ -103,7 +168,14 @@ import { flavorEntries } from "@catppuccin/palette"
     text-align: left;
 
 
-    tr > td { padding-block-start: 2px; }
+    tr > td,
+    tr > th { padding: var(--spacing-xs) var(--spacing-l); }
+
+    tr:nth-child(even) { background-color: color-mix(
+      in srgb,
+      var(--base),
+      var(--mantle) 50%
+    ); }
 
     .right-aligned { text-align: right; }
 
@@ -125,7 +197,7 @@ import { flavorEntries } from "@catppuccin/palette"
 
     position: relative;
 
-    margin: 0; padding: 0; padding-inline-start: 3rem;
+    @include utils.containerSpacing(none); padding-inline-start: 3rem;
 
 
     &::before {
@@ -148,5 +220,29 @@ import { flavorEntries } from "@catppuccin/palette"
     }
 
   }
+
+
+  .color-hex,
+  .color-rgb,
+  .color-hsl {
+
+  .btn { font-size: 80%; font-family: monospace; white-space: pre;
+
+    svg { height: 1.4rem; }
+
+  }
+
+}
+
+
+
+.copy-success .btn {
+
+  color: var(--green);
+
+  animation: copyFadeOut 500ms forwards;
+  animation-delay: 750ms;
+
+}
 
 </style>

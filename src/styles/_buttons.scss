@@ -36,11 +36,14 @@
 
   &-simple {
 
-    padding: var(--spacing-xs);
+    padding: 0;
 
     border-radius: var(--border-radius-normal);
 
   }
+
+
+  &-transparent { background-color: transparent; }
 
 
   &-peach {

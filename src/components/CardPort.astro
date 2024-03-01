@@ -32,6 +32,10 @@ const { title, repo, color = 'subtext0' } = Astro.props
 
 <style lang="scss">
 
+  @use '../styles/utils';
+
+
+
   .port-card {
 
     --__accent-color: var(--port-color, var(--subtext0));
@@ -40,7 +44,7 @@ const { title, repo, color = 'subtext0' } = Astro.props
     display: flex; flex-direction: column;
     gap: var(--spacing-xs);
 
-    padding: var(--spacing-m) var(--spacing-s);
+    @include utils.containerSpacing();
 
     border-radius: var(--border-radius-normal);
     border-bottom: var(--border-radius-normal) solid var(--__accent-color);
