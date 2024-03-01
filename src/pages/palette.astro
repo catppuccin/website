@@ -20,46 +20,51 @@ import { flavorEntries } from "@catppuccin/palette"
 
   <PageIntro title="Palette">
 
-    <p>Catppuccin consists of 4 beautiful pastel color palettes, named flavors. All the details can be found below.</p>
-    <p>If you want to use them for your own project, refer to our <Link href=`${links.github}/catppuccin/blob/main/docs/style-guide.md`` external>style guide</Link> for general use cases and guidelines
-    <p>Additionally, you can find integrations with popular frameworks and tools in <Link href=`${links.github}/palette`` external>catppuccin/palette</Link>.</p>
+    <p>
+      Catppuccin consists of 4 beautiful pastel color palettes, named flavors.<br>
+      We offer three dark themes <b>Mocha</b> and <b>Macchiato</b>, both offering a cozy feeling with color-rich accents, <b>Frappé</b> which is offering a less vibrant alternative, and last but not least <b>Latte</b> which is out light theme capturing the essence of our dark themes and turning them into a bright and shining counterpart.
+    </p>
+    <p>If you'd like to use them for your own project you can refer to our <Link href=`${links.github}/catppuccin/blob/main/docs/style-guide.md`` external>style guide</Link> for general use cases and guidelines. Additionally, you can find integrations with popular frameworks and tools in <Link href=`${links.github}/palette`` external>catppuccin/palette</Link>.</p>
 
   </PageIntro>
 
 
   {
     flavorEntries.map(([flavorName, flavor]) => (
-      <section class="flavor">
+      <div class="flavor">
+        <details>
+          <summary id=`flavor-${flavorName}` class="flavor-name">
+            {flavorName}
+          </summary>
+          <table class="color-list">
+            <tr class="color-list-header">
+              <th>Color</th>
+              <th class="right-aligned">Hex</th>
+              <th class="right-aligned">RGB</th>
+              <th class="right-aligned">HSL</th>
+            </tr>
+            {
+              flavor.colorEntries.map(([colorName, { hex, rgb, hsl, accent }]) => (
+                <tr class="color-list-entry" style=`--current-color: ${hex}` >
+                  <td class="color">
+                    <h5 class="color-name">{colorName}</h5>
+                  </td>
+                  <td class="color-hex right-aligned">
+                    <ButtonCopy value={hex} />
+                  </td>
+                  <td class="color-rgb right-aligned">
+                    <ButtonCopy value=`rgb(${rgb.r} ${rgb.g} ${rgb.b})` />
+                  </td>
+                  <td class="color-hsl right-aligned">
+                    <ButtonCopy value=`hsl(${Math.floor(hsl.h)} ${Math.floor(hsl.s * 100)} ${Math.floor(hsl.l * 100)})` />
+                  </td>
+                </tr>
+              ))
+            }
+          </table>
+        </details>
 
-        <h3 id=`flavor-${flavorName}` class="flavor-name">{flavorName}</h3>
-        <table class="color-list">
-          <tr class="color-list-header">
-            <th>Color</th>
-            <th class="right-aligned">Hex</th>
-            <th class="right-aligned">RGB</th>
-            <th class="right-aligned">HSL</th>
-          </tr>
-          {
-            flavor.colorEntries.map(([colorName, { hex, rgb, hsl, accent }]) => (
-              <tr class="color-list-entry" style=`--current-color: ${hex}` >
-                <td class="color">
-                  <h5 class="color-name">{colorName}</h5>
-                </td>
-                <td class="color-hex right-aligned">
-                  <ButtonCopy value={hex} />
-                </td>
-                <td class="color-rgb right-aligned">
-                  <ButtonCopy value=`rgb(${rgb.r} ${rgb.g} ${rgb.b})` />
-                </td>
-                <td class="color-hsl right-aligned">
-                  <ButtonCopy value=`hsl(${Math.floor(hsl.h)} ${Math.floor(hsl.s * 100)} ${Math.floor(hsl.l * 100)})` />
-                </td>
-              </tr>
-            ))
-          }
-        </table>
-
-      </section>
+      </div>
     ))
   }
 
@@ -74,6 +79,16 @@ import { flavorEntries } from "@catppuccin/palette"
   :root { --accent-color: var(--mauve); }
 
 
+  .flavor {
+
+    margin-block-start: var(--spacing-m); padding: var(--spacing-s) var(--spacing-m);
+
+    border-radius: var(--border-radius-normal);
+    background: var(--mantle);
+
+  }
+
+
   .flavor-name,
   .color-name { text-transform: capitalize; }
 
@@ -82,6 +97,8 @@ import { flavorEntries } from "@catppuccin/palette"
 
     width: 100%; min-width: max-content;
     overflow-y: scroll;
+
+    margin-block-start: var(--spacing-m);
 
     text-align: left;
 
@@ -121,6 +138,11 @@ import { flavorEntries } from "@catppuccin/palette"
       height: 2rem; aspect-ratio: 1 / 1;
 
       border-radius: 9999px;
+      border: 1px solid color-mix(
+        in srgb,
+        var(--mantle),
+        var(--surface0) 50%
+      );
       background-color: var(--__current-color);
 
     }
