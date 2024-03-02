@@ -10,12 +10,12 @@ interface Props {
   color?: string
 }
 
-const { title, repo, color = 'subtext0' } = Astro.props
+const { title, repo, color } = Astro.props
 ---
 
 
 
-<div class="port-card" style=`--port-color: var(--${color})`>
+<div class="port-card" style=`--foreground: var(--${color}, var(--subtext0)); --background: var(--${color ? color : 'mantle' })`>
 
   <figure class="port-icon">
     <Icon slug={title} height={3} />
@@ -38,17 +38,19 @@ const { title, repo, color = 'subtext0' } = Astro.props
 
   .port-card {
 
-    --__accent-color: var(--port-color, var(--subtext0));
-
 
     display: flex; flex-direction: column;
-    gap: var(--spacing-xs);
+    gap: var(--space-xxs);
 
-    @include utils.containerSpacing();
+    @include utils.containerPadding();
 
     border-radius: var(--border-radius-normal);
-    border-bottom: var(--border-radius-normal) solid var(--__accent-color);
-    background-color: var(--mantle);
+    border-bottom: var(--border-radius-normal) solid var(--foreground);
+    background-color: color-mix(
+      in srgb,
+      var(--mantle),
+      var(--background) 5%
+    );
     background-size: 200%;
     background-position: top left;
 
@@ -84,7 +86,7 @@ const { title, repo, color = 'subtext0' } = Astro.props
     }
 
 
-    .port-icon { color: var(--__accent-color); }
+    .port-icon { color: var(--foreground); }
 
   }
 

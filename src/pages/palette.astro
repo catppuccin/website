@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro"
 
 import Link from "../components/Link.astro"
 import PageIntro from "../components/PageIntro.astro"
+import PhosphorIcon from '../components/PhosphorIcon.astro'
 
 import { CatppuccinLinks as links } from '../contents/CatppuccinLinks'
 
@@ -21,7 +22,7 @@ import { flavorEntries } from "@catppuccin/palette"
 
     <p>
       Catppuccin consists of 4 beautiful pastel color palettes, named flavors.
-      We offer three dark themes <b>🌿 Mocha</b> and <b>🌺 Macchiato</b>, both offering a cozy feeling with color-rich accents, <b>🪴 Frappé</b> which is offering a less vibrant alternative, and last but not least <b>🌻 Latte</b> which is out light theme capturing the essence of our dark themes and turning them into a bright and shining counterpart.
+      We offer three dark themes <b>🌿&nbsp;Mocha</b> and <b>🌺&nbsp;Macchiato</b>, both offering a cozy feeling with color-rich accents, <b>🪴&nbsp;Frappé</b> as a less vibrant alternative, and last but not least <b>🌻&nbsp;Latte</b> which is our light theme capturing the essence of our dark themes and turning them into a bright and shining counterpart.
     </p>
     <p>If you'd like to use them for your own project you can refer to our <Link href=`${links.github}/catppuccin/blob/main/docs/style-guide.md`` external>style guide</Link> for general use cases and guidelines. Additionally, you can find integrations with popular frameworks and tools in <Link href=`${links.github}/palette`` external>catppuccin/palette</Link>.</p>
 
@@ -33,39 +34,30 @@ import { flavorEntries } from "@catppuccin/palette"
     flavorEntries.map(([flavorName, flavor]) => (
       <div class="flavor">
         <details open>
-          <summary id=`flavor-${flavorName}` class="flavor-name">
-            {flavorName}
+          <summary>
+            <h2 id=`flavor-${flavorName}` class="flavor-name">{flavorName == 'frappe' ? 'Frappé' : flavorName}</h2>
           </summary>
           <table class="color-list" cellspacing="0">
             <tr class="color-list-header">
               <th>Color</th>
-              <th class="right-aligned">Hex</th>
-              <th class="right-aligned">RGB</th>
-              <th class="right-aligned">HSL</th>
+              <th>Hex</th>
+              <th>RGB</th>
+              <th>HSL</th>
             </tr>
             {
-              flavor.colorEntries.map(([colorName, { hex, rgb, hsl, accent }]) => (
+              flavor.colorEntries.map(([colorName, { hex, rgb, hsl }]) => (
                 <tr class="color-list-entry" style=`--current-color: ${hex}` >
                   <td class="color">
                     <h5 class="color-name">{colorName}</h5>
                   </td>
-                  <td class="color-hex right-aligned js-copy" data-value={hex.replace('#', '')} >
-                    <button class="btn btn-simple btn-transparent">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="168 168 216 168 216 40 88 40 88 88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="40" y="88" width="128" height="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
-                      {hex.replace('#', '').toUpperCase()}</button>
+                  <td class="color-hex">
+                    <button class="btn btn-small btn-transparent js-copy" data-value={hex.replace('#', '')} ><PhosphorIcon icon="copy" size={12} /> {hex.replace('#', '').toUpperCase()}</button>
                   </td>
-                  <td class="color-rgb right-aligned js-copy" data-value=`${rgb.r} ${rgb.g} ${rgb.b}` >
-                    <button class="btn btn-simple btn-transparent">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="168 168 216 168 216 40 88 40 88 88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="40" y="88" width="128" height="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
-                      {`${rgb.r}`.padStart(3)}, {`${rgb.g}`.padStart(3)}, {`${rgb.b}`.padStart(3)}</button>
+                  <td class="color-rgb">
+                    <button class="btn btn-small btn-transparent js-copy" data-value=`${rgb.r} ${rgb.g} ${rgb.b}` ><PhosphorIcon icon="copy" size={12} /> {`${rgb.r}`.padStart(3)}, {`${rgb.g}`.padStart(3)}, {`${rgb.b}`.padStart(3)}</button>
                   </td>
-                  <td class="color-hsl right-aligned js-copy" data-value=`${hsl.h} ${hsl.s} ${hsl.l}` >
-                    <button class="btn btn-simple btn-transparent">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="168 168 216 168 216 40 88 40 88 88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="40" y="88" width="128" height="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><polyline points="40 144 96 200 224 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
-                      {`${Math.floor(hsl.h)}`.padStart(3)}, {`${Math.floor(hsl.s * 100)}`.padStart(3)}, {`${Math.floor(hsl.l * 100)}`.padStart(3)}</button>
+                  <td class="color-hsl">
+                    <button class="btn btn-small btn-transparent js-copy" data-value=`${Math.floor(hsl.h)}, ${Math.floor(hsl.s * 100)}, ${Math.floor(hsl.l * 100)}` ><PhosphorIcon icon="copy" size={12} /> {`${Math.floor(hsl.h)}`.padStart(3)}, {`${Math.floor(hsl.s * 100)}`.padStart(3)}, {`${Math.floor(hsl.l * 100)}`.padStart(3)}</button>
                   </td>
                 </tr>
               ))
@@ -90,9 +82,7 @@ import { flavorEntries } from "@catppuccin/palette"
     'click',
     () => {
 
-
-      const value = element.dataset.value
-      navigator.clipboard.writeText(value)
+      navigator.clipboard.writeText(element.dataset.value)
 
       element.classList.add('copy-success')
       return setTimeout(
@@ -116,20 +106,10 @@ import { flavorEntries } from "@catppuccin/palette"
   :root { --accent-color: var(--mauve); }
 
 
-  #flavor-latte::before { content: '🌻'; }
-  #flavor-frappe::before { content: '🪴'; }
-  #flavor-macchiato::before { content: '🌺'; }
-  #flavor-mocha::before { content: '🌿'; }
-
-
-  // .flavor-grid {
-
-  //   display: grid;
-  //   grid-template: auto / repeat(auto-fit, minmax(500px, 1fr));
-  //   align-items: start;
-  //   gap: var(--spacing-m);
-
-  // }
+  #flavor-latte::before     { content: '🌻\00A0'; }
+  #flavor-frappe::before    { content: '🪴\00A0'; }
+  #flavor-macchiato::before { content: '🌺\00A0'; }
+  #flavor-mocha::before     { content: '🌿\00A0'; }
 
 
   @keyframes copyFadeOut {
@@ -141,10 +121,9 @@ import { flavorEntries } from "@catppuccin/palette"
 
   .flavor {
 
-    @include utils.containerSpacing();
-    margin-block-start: var(--spacing-m);
+    @include utils.containerPadding();
+    margin-block-start: var(--space-md);
 
-    border: 2px solid var(--surface0);
     border-radius: var(--border-radius-normal);
     background: var(--mantle);
 
@@ -156,47 +135,21 @@ import { flavorEntries } from "@catppuccin/palette"
   .flavor-name,
   .color-name { text-transform: capitalize; }
 
-
-  .color-list {
-
-    width: 100%; min-width: max-content;
-    overflow-y: scroll;
-
-    margin-block-start: var(--spacing-m);
-
-    text-align: left;
+  .flavor-name { font-size: inherit; }
 
 
-    tr > td,
-    tr > th { padding: var(--spacing-xs) var(--spacing-l); }
-
-    tr:nth-child(even) { background-color: color-mix(
-      in srgb,
-      var(--base),
-      var(--mantle) 50%
-    ); }
-
-    .right-aligned { text-align: right; }
-
-  }
+  .color-list { margin-block-start: var(--space-md); margin-inline: auto; }
 
 
   .color-list-entry { --__current-color: var(--current-color, var(--text)); }
-
-
-  .color-list-header th {
-
-    font-size: 80%; font-weight: 500;
-    color: var(--subtext0);
-
-  }
 
 
   .color-name {
 
     position: relative;
 
-    @include utils.containerSpacing(none); padding-inline-start: 3rem;
+    margin: 0; padding: 0; padding-inline-start: 3rem;
+
 
 
     &::before {
@@ -224,24 +177,23 @@ import { flavorEntries } from "@catppuccin/palette"
   .color-hex,
   .color-rgb,
   .color-hsl {
+    .btn {
 
-  .btn { font-size: 80%; font-family: monospace; white-space: pre;
+      font-size: 80%; font-family: monospace;
+      white-space: pre;
 
-    svg { height: 1.4rem; }
-
+    }
   }
 
-}
 
 
+  .copy-success {
 
-.copy-success .btn {
+    color: var(--green);
 
-  color: var(--green);
+    animation: copyFadeOut 500ms forwards;
+    animation-delay: 750ms;
 
-  animation: copyFadeOut 500ms forwards;
-  animation-delay: 750ms;
-
-}
+  }
 
 </style>

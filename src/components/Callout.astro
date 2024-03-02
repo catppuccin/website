@@ -1,0 +1,137 @@
+---
+import PhosphorIcon from './PhosphorIcon.astro'
+
+
+interface Props {
+  type?: string
+  title?: string
+}
+
+const { type = 'note', title } = Astro.props
+
+
+const calloutVariants: {
+  [key: string]: {
+    icon: string,
+    color: string,
+    title: string
+  }
+} = {
+  note: {
+    title: 'Note',
+    color: 'blue',
+    icon: 'pen'
+  },
+  summary: {
+    title: 'Summary',
+    color: 'rosewater',
+    icon: 'clipboard'
+  },
+  info: {
+    title: 'Info',
+    color: 'teal',
+    icon: 'info'
+  },
+  tip: {
+    title: 'Tip',
+    color: 'yellow',
+    icon: 'flame'
+  },
+  success: {
+    title: 'Success',
+    color: 'green',
+    icon: 'checkmark'
+  },
+  question: {
+    title: 'Question',
+    color: 'sapphire',
+    icon:  'questionmark'
+  },
+  warning: {
+    title: 'Warning',
+    color: 'peach',
+    icon: 'danger'
+  },
+  failure: {
+    title: 'Failure',
+    color: 'red',
+    icon: 'fail'
+  },
+  danger: {
+    title: 'Danger',
+    color: 'red',
+    icon: 'lightning'
+  },
+  bug: {
+    title: 'Bug',
+    color: 'red',
+    icon: 'beetle'
+  },
+  example: {
+    title: 'Example',
+    color: 'mauve',
+    icon: 'list'
+  },
+  quote: {
+    title: 'Quote',
+    color: 'text',
+    icon: 'quote'
+  }
+}
+---
+
+
+
+<div class="annotation" style=`--callout-color: var(--${calloutVariants[type].color})` >
+  <div class="annotation-title">
+    <PhosphorIcon icon={calloutVariants[type].icon} />
+    {title ? title : calloutVariants[type].title}
+  </div>
+  <div class="annotation-content">
+    <slot />
+  </div>
+</div>
+
+
+
+
+<style lang="scss">
+
+  @use '../styles/utils';
+
+
+  .annotation {
+
+    display: inline-block;
+
+    overflow: clip;
+
+    border-radius: var(--border-radius-normal);
+    background-color: var(--mantle);
+
+
+    &-title {
+
+      display: flex;
+      align-items: center;
+      gap: var(--space-xxs);
+
+      @include utils.containerPadding(xs);
+
+      background-color: color-mix(
+        in srgb,
+        var(--base),
+        var(--callout-color) 15%
+      );
+
+      font-size: 80%; font-weight: 600;
+      color: var(--callout-color);
+
+    }
+
+
+    &-content { @include utils.containerPadding(xs); }
+
+  }
+
+</style>

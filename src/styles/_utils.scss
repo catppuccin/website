@@ -1,36 +1,10 @@
-@mixin containerSpacing ($size: normal) {
+@mixin containerPadding ($size: md) {
 
-  margin: 0;
-  padding: var(--spacing-m) var(--spacing-s);
-
-
-  // alternative sizings
-
-  @if $size == none {
-    margin: 0;
-    padding: 0;
-  }
-
-  @if $size == small {
-    margin: 0;
-    padding: var(--spacing-s);
-  }
-
-  @if $size == large {
-    margin: 0;
-    padding: var(--spacing-l) var(--spacing-m);
-  }
-
-}
-
-
-
-@function blendColors ($baseColor, $blendColor, $blendPercentage) {
-
-  @return color-mix(
-    in srgb,
-    $baseColor,
-    $blendColor $blendPercentage
-  );
+  @if $size == xxs  { padding: var(--space-xxs); }
+  @if $size == xs   { padding: var(--space-xs); }
+  @if $size == xs-y { padding: var(--space-xs) var(--space-md); }
+  @if $size == md   { padding: var(--space-md); }
+  @if $size == lg   { padding: var(--space-lg) }
+  @if $size == xl   { padding: var(--space-xl) var(--space-xxl) }
 
 }

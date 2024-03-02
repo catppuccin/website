@@ -10,7 +10,7 @@ const { title } = Astro.props
 
 <section class="page-intro">
 
-  <h2>{title}</h2>
+  <h1>{title}</h1>
 
   <slot />
 
@@ -22,17 +22,8 @@ const { title } = Astro.props
 
 <style lang="scss">
 
+  .page-intro { margin-block-end: var(--space-lg); }
 
-  .page-intro { margin-block: var(--spacing-l); }
-
-
-  .page-intro h2 {
-
-    --__accent-color: var(--accent-color);
-
-
-    color: var(--__accent-color);
-
-  }
+  .page-intro h1 { color: var(--accent-color); }
 
 </style>

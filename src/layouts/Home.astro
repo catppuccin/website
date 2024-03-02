@@ -123,7 +123,7 @@ const { title, description } = Astro.props
 
     display: flex;
     align-items: center;
-    gap: var(--spacing-m);
+    gap: var(--space-sm);
 
 
     svg + svg { margin-block-start: 6px; }
@@ -136,9 +136,8 @@ const { title, description } = Astro.props
 
     display: flex; flex-direction: column;
     justify-content: space-between;
-    gap: var(--spacing-l);
+    gap: var(--space-lg);
 
-    padding-block: var(--spacing-xl);
     min-height: 100svh;
 
 
@@ -157,7 +156,7 @@ const { title, description } = Astro.props
 
     display: grid;
     grid-template-rows: max-content auto;
-    gap: var(--spacing-xl);
+    gap: var(--space-xl);
     container-type: inline-size;
 
     padding-block: var(--padding-body);
@@ -170,7 +169,7 @@ const { title, description } = Astro.props
 
     display: flex; flex-direction: column;
     justify-content: center; align-items: flex-start;
-    gap: var(--spacing-m);
+    gap: var(--space-md);
 
     line-height: 1.1;
 
@@ -187,7 +186,6 @@ const { title, description } = Astro.props
       background-clip: text;
 
       font-size: clamp(4rem, 4vw, 6rem);
-      font-weight: 900;
       color: transparent;
 
     }
@@ -208,7 +206,7 @@ const { title, description } = Astro.props
     max-height: 40vh;
 
 
-    svg { padding: var(--spacing-m); }
+    svg { padding: var(--space-md); }
 
 
     @media (min-width: 800px) {
@@ -219,11 +217,11 @@ const { title, description } = Astro.props
       svg {
 
         @container (min-width: 400px) {
-          padding-inline-start: var(--spacing-l);
+          padding-inline-start: var(--space-lg);
         }
 
         @container (min-width: 500px) {
-          padding-inline-start: var(--spacing-xl);
+          padding-inline-start: var(--space-xl);
         }
 
       }

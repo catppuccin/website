@@ -1,3 +1,7 @@
+@use '../styles/utils';
+
+
+
 @keyframes btnFadeOut {
   to {
 
@@ -13,7 +17,7 @@
 .btn-group {
 
   display: flex;
-  gap: var(--spacing-s);
+  gap: var(--space-xs);
 
 }
 
@@ -21,7 +25,7 @@
 
 .btn {
 
-  padding: var(--spacing-s) var(--spacing-m);
+  @include utils.containerPadding(xs-y);
 
   border-radius: 9999px;
   border: none;
@@ -34,9 +38,9 @@
   cursor: pointer;
 
 
-  &-simple {
+  &-small {
 
-    padding: 0;
+    @include utils.containerPadding(xxs);
 
     border-radius: var(--border-radius-normal);
 
@@ -44,6 +48,24 @@
 
 
   &-transparent { background-color: transparent; }
+
+  &-transparent:hover,
+  &-transparent:focus {
+    background-color: color-mix(
+      in srgb,
+      transparent,
+      var(--text) 10%
+    );
+  }
+
+
+  &-has-icon {
+
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+
+  }
 
 
   &-peach {

@@ -25,25 +25,18 @@ html {
   --border-radius-normal: 6px;
   --border-radius-large: 12px;
 
-  --base-size: 3;
 
-  --spacing-xs: calc(var(--base-size) / 6 * 1rem);
-  --spacing-s:  calc(var(--base-size) / 4 * 1rem);
-  --spacing-m:  calc(var(--base-size) / 2 * 1rem);
-  --spacing-l:  calc(var(--base-size) * 1 * 1rem);
-  --spacing-xl: calc(var(--base-size) * 2 * 1rem);
+  --base-unit: 1em;
+
+  --space-xxs:  calc(0.25 * var(--base-unit));
+  --space-xs:   calc(0.5  * var(--base-unit));
+  --space-sm:   calc(0.75 * var(--base-unit));
+  --space-md:   calc(1.25 * var(--base-unit));
+  --space-lg:   calc(2    * var(--base-unit));
+  --space-xl:   calc(3.25 * var(--base-unit));
+  --space-xxl:  calc(5.25 * var(--base-unit));
 
   --padding-body: clamp(20px, 5vw, 500px);
-
-
-  // @media (min-width: 400px) {
-  //   --padding-body: var(--spacing-l);
-  // }
-
-
-  @media (min-width: 800px) {
-    --base-size: 4;
-  }
 
 }
 
@@ -57,49 +50,11 @@ body {
 
   background-color: var(--base);
 
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 2rem;
-  line-height: 1.2;
-  color: var(--text);
-
 }
 
 
 
-::selection {
-
-  background-color: color-mix(
-    in srgb,
-    var(--selection-color),
-    transparent 70%
-  );
-
-}
-
-
-
-
-p, li { margin-block: 0 var(--spacing-s); }
-
-a { text-decoration: none; }
-
-
-code {
-
-  display: inline-block;
-
-  padding-inline: var(--spacing-xs);
-
-  border-radius: var(--border-radius-normal);
-  background-color: var(--crust);
-
-  font-size: 80%;
-
-}
-
-
-
-section + section { margin-block-start: var(--spacing-xl); }
+section + section { margin-block-start: var(--space-xl); }
 
 
 
@@ -107,7 +62,7 @@ section + section { margin-block-start: var(--spacing-xl); }
 
 .content-wrapper {
 
-  margin-inline: auto; padding: var(--spacing-m) var(--padding-body);
+  margin-inline: auto; padding: var(--space-md) var(--padding-body);
   max-width: calc(2 * var(--padding-body) + var(--website-max-width));
 
 }
@@ -118,7 +73,7 @@ section + section { margin-block-start: var(--spacing-xl); }
 
 .header-container {
 
-  padding-block: var(--spacing-m);
+  padding-block: var(--space-md);
 
 }
 
@@ -126,11 +81,11 @@ section + section { margin-block-start: var(--spacing-xl); }
 
 .footer-container {
 
-  margin-block-start: var(--spacing-xl);
+  margin-block-start: var(--space-xl);
 
   background-color: var(--mantle);
 
 
-  .content-wrapper { padding-block: var(--spacing-l); }
+  .content-wrapper { padding-block: var(--space-lg); }
 
 }

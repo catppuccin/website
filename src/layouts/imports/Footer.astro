@@ -56,7 +56,7 @@ import { footer as navLinkList } from '../../contents/Navigations'
   footer {
 
     display: flex; flex-direction: column;
-    gap: var(--spacing-m);
+    gap: var(--space-md);
     container-type: inline-size;
 
     font-size: 1.6rem;
@@ -74,13 +74,13 @@ import { footer as navLinkList } from '../../contents/Navigations'
 
   nav {
 
-    display: grid; gap: var(--spacing-m);
-    grid-template: auto / repeat(auto-fit, minmax(calc(40% - var(--spacing-l)), 1fr));
+    display: grid; gap: var(--space-md);
+    grid-template: auto / repeat(auto-fit, minmax(calc(40% - var(--space-lg)), 1fr));
 
     min-width: 50cqw;
 
     h4,
-    ul { margin: 0 0 var(--spacing-xs) 0; padding: 0; }
+    ul { margin: 0 0 var(--space-xs) 0; padding: 0; }
     ul { list-style: none; }
 
   }
@@ -91,7 +91,7 @@ import { footer as navLinkList } from '../../contents/Navigations'
 
   #vercel {
 
-    margin-block-start: var(--spacing-s);
+    margin-block-start: var(--space-xs);
     height: 3.2rem
 
   }

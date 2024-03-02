@@ -1,0 +1,120 @@
+@use './utils';
+
+
+@font-face {
+
+  font-family: "Inter";
+  src: url("/inter.woff2") format("woff2-variations");
+
+  font-weight: 125 950; font-stretch: 75% 125%; font-style: normal;
+
+}
+
+
+
+body {
+
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 2rem; font-weight: 400;
+  line-height: 1.2;
+  color: var(--text);
+
+}
+
+
+
+::selection {
+
+  background-color: color-mix(
+    in srgb,
+    var(--selection-color),
+    transparent 70%
+  );
+
+}
+
+
+
+b { font-weight: 600; }
+
+h1 { font-weight: 900; }
+h2, h3, h4 { font-weight: 600; }
+
+
+h1, h2, h3, h4, h5, h6 { margin: 0; }
+
+h1 { font-size: 300%; }
+h2 { font-size: 200%; }
+
+
+h3 {
+
+  padding-block: var(--space-sm) var(--space-xs);
+
+  font-size: 125%;
+
+}
+
+
+h4, h5 {
+
+  padding-block: var(--space-xs);
+
+  font-size: 100%;
+
+}
+
+
+
+
+summary {
+  h1, h2, h3, h4, h5, h6 {
+
+    display: inline-block;
+
+    margin: 0; padding: 0;
+
+  }
+}
+
+
+
+
+p, li { margin-block: 0 var(--space-xs); }
+
+a { text-decoration: none; }
+
+
+
+
+
+pre:has(code) {
+
+  margin: 0; @include utils.containerPadding(xs);
+  max-width: 100%;
+  overflow-x: scroll;
+
+  border-radius: var(--border-radius-normal);
+  background-color: var(--crust);
+
+
+  code { margin: 0; padding: 0; }
+
+}
+
+
+
+code {
+
+  padding-inline: var(--space-xxs);
+  max-width: 100%;
+
+  border-radius: var(--border-radius-normal);
+  background-color: var(--crust);
+
+  font-family: monospace;
+  font-size: 80%;
+
+  overflow-x: scroll;
+
+}

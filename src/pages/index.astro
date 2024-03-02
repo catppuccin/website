@@ -2,6 +2,7 @@
 import Home from "../layouts/Home.astro"
 
 import Illustration from '../components/LaptopIllustration.astro'
+import PhosphorIcon from '../components/PhosphorIcon.astro'
 ---
 
 
@@ -16,12 +17,14 @@ import Illustration from '../components/LaptopIllustration.astro'
     <p>A community-driven color scheme meant for coding, designing, and much more!</p>
     <div class="btn-group">
       <a href="/ports">
-        <button class="btn btn-peach">
+        <button class="btn btn-has-icon btn-peach">
+          <PhosphorIcon icon="box" />
           Discover Ports
         </button>
       </a>
       <a href="/palette">
-        <button class="btn btn-mauve">
+        <button class="btn btn-has-icon btn-mauve">
+          <PhosphorIcon icon="palette" />
           Explore Colors
         </button>
       </a>
@@ -41,14 +44,5 @@ import Illustration from '../components/LaptopIllustration.astro'
   :root { --accent-color: var(--rosewater); }
 
   h2 { color: var(--accent-color); }
-
-
-  .project-info {
-
-    display: grid;
-    grid-template: auto / repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-m);
-
-  }
 
 </style>

@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro"
 
 import Link from "../components/Link.astro"
 import PageIntro from "../components/PageIntro.astro"
-import Annotation from "../components/Annotation.astro"
+import Callout from "../components/Callout.astro"
 
 import { CatppuccinLinks as links } from '../contents/CatppuccinLinks'
 ---
@@ -51,17 +51,17 @@ import { CatppuccinLinks as links } from '../contents/CatppuccinLinks'
     <p>
       <b>What's a userstyle?</b><br>
       A userstyle is, in the context of Catppuccin, a port for a website which is themed via <Link href="https://github.com/openstyles/stylus" external>Stylus</Link>, you can view all of Catppuccin's userstyles at <Link href="https://github.com/catppuccin/userstyles" external>catppuccin/userstyles</Link>.<br>
-      <Annotation>
+      <Callout type="info">
         All userstyles are ports, but not all ports are userstyles.
-      </Annotation>
+      </Callout>
     </p>
 
 
     <h2 id="port-submission">Submission</h2>
 
-    <Annotation>
+    <Callout>
       All ports should conform to our <Link href="https://github.com/catppuccin/.github/blob/main/CODE_OF_CONDUCT.md" external>Code of Conduct</Link> and we, the staff team, reserve the right to choose what ports will be included under the organization.
-    </Annotation>
+    </Callout>
 
 
     <h3 id="port-faq">FAQ</h3>
@@ -91,18 +91,18 @@ import { CatppuccinLinks as links } from '../contents/CatppuccinLinks'
 
   <h3 id="port-creation">Creation</h3>
 
-  <Annotation>
+  <Callout type="tip">
     You can create ports using <Link href="https://github.com/catppuccin/template" external>this public template</Link> as a blueprint.
-  </Annotation>
+  </Callout>
 
   <ol>
     <li>
       Clone template repository<br>
-     <code>git clone https://github.com/catppuccin/template.git &lt;name_of_your_port&gt;</code>
+     <pre><code>git clone https://github.com/catppuccin/template.git &lt;name_of_your_port&gt;</code></pre>
     </li>
     <li>
       Navigate into the cloned repository<br>
-      <code>cd &lt;name_of_your_port&gt;</code>
+      <pre><code>cd &lt;name_of_your_port&gt;</code></pre>
     </li>
     <li>
       Delete the <code>.git</code> folder at the root of the repository and run <code>git init</code>. This removes the template authors from appearing as contributors to your new port.
