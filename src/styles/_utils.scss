@@ -2,6 +2,9 @@
   @if $size == xxs {
     padding: var(--space-xxs);
   }
+  @if $size == xxs-y {
+    padding: var(--space-xxs) var(--space-xs);
+  }
   @if $size == xs {
     padding: var(--space-xs);
   }

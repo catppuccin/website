@@ -5,7 +5,6 @@ const rawPorts = await fetch(
 ).then((r) => r.text());
 const ports = parse(rawPorts).ports as Record<string, Port>;
 
-
 export function getIcon(slug: string) {
   const portEntry = Object.entries(ports).find(([, v]) => v.name == slug);
   if (!portEntry) {

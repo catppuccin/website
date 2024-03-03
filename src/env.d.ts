@@ -17,7 +17,6 @@ type accent =
   | "blue"
   | "lavender";
 
-
 interface Category {
   key: string;
   name: string;

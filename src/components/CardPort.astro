@@ -1,7 +1,6 @@
 ---
 import Icon from "./IconPort.astro";
-import PillList from "./ListPill.astro";
-import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
+import PillList from "./ListPills.astro";
 
 interface Props {
   title: string;
@@ -14,20 +13,18 @@ const { title, link, categories, color } = Astro.props;
 ---
 
 <a href={link}>
-  <div
-    class="port-card"
-    style={ color ? `--port-color: var(--${color})` : '' }
-  >
+  <div class="port-card" style={color ? `--port-color: var(--${color})` : ""}>
+    <figure class="port-icon">
+      <Icon port={title} />
+    </figure>
 
-  <figure class="port-icon">
-    <Icon port={title} />
-  </figure>
+    <h4 class="port-name">{title}</h4>
 
-  <h4 class="port-name">{ title }</h4>
-
-
-  <PillList contents={categories} />
-
+    <PillList
+      list={categories.map(
+        (category: Category) => `${category.emoji} ${category.name}`,
+      )}
+    />
   </div>
 </a>
 
@@ -35,7 +32,6 @@ const { title, link, categories, color } = Astro.props;
   @use "../styles/utils";
 
   .port-card {
-
     display: flex;
     flex-direction: column;
     gap: var(--space-xxs);
