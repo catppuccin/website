@@ -1,22 +1,21 @@
 ---
-import Link from './Link.astro'
-import Icon from './Icon.astro'
-
+import Link from "./Link.astro";
+import Icon from "./Icon.astro";
 
 interface Props {
-  title: string,
-  category: string,
-  repo: string,
-  color?: string
+  title: string;
+  category: string;
+  repo: string;
+  color?: string;
 }
 
-const { title, repo, color } = Astro.props
+const { title, repo, color } = Astro.props;
 ---
 
-
-
-<div class="port-card" style=`--foreground: var(--${color}, var(--subtext0)); --background: var(--${color ? color : 'mantle' })`>
-
+<div
+  class="port-card"
+  style={`--foreground: var(--${color}, var(--subtext0)); --background: var(--${color ? color : "mantle"})`}
+>
   <figure class="port-icon">
     <Icon slug={title} height={3} />
   </figure>
@@ -24,33 +23,21 @@ const { title, repo, color } = Astro.props
   <h4 class="port-name">{title}</h4>
 
   <Link href={repo} external muted>Repository</Link>
-
 </div>
 
-
-
-
 <style lang="scss">
-
-  @use '../styles/utils';
-
-
+  @use "../styles/utils";
 
   .port-card {
-
-
-    display: flex; flex-direction: column;
+    display: flex;
+    flex-direction: column;
     gap: var(--space-xxs);
 
     @include utils.containerPadding();
 
     border-radius: var(--border-radius-normal);
     border-bottom: var(--border-radius-normal) solid var(--foreground);
-    background-color: color-mix(
-      in srgb,
-      var(--mantle),
-      var(--background) 5%
-    );
+    background-color: color-mix(in srgb, var(--mantle), var(--background) 5%);
     background-size: 200%;
     background-position: top left;
 
@@ -60,34 +47,29 @@ const { title, repo, color } = Astro.props
 
     transition: all 300ms ease-in-out;
 
-
     &:hover {
-
       transform: scale(105%);
 
       background-position: top right;
 
-
-      @media (prefers-reduced-motion) { transform: none; }
-
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
     }
 
-
-
-    figure, h4 { margin: 0; padding: 0; }
-
-
+    figure,
+    h4 {
+      margin: 0;
+      padding: 0;
+    }
 
     .port-name {
-
       color: var(--text);
       font-size: 2rem;
-
     }
 
-
-    .port-icon { color: var(--foreground); }
-
+    .port-icon {
+      color: var(--foreground);
+    }
   }
-
 </style>

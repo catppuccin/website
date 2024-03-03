@@ -1,88 +1,87 @@
 ---
-import PhosphorIcon from './PhosphorIcon.astro'
-
+import PhosphorIcon from "./PhosphorIcon.astro";
 
 interface Props {
-  type?: string
-  title?: string
+  type?: string;
+  title?: string;
 }
 
-const { type = 'note', title } = Astro.props
-
+const { type = "note", title } = Astro.props;
 
 const calloutVariants: {
   [key: string]: {
-    icon: string,
-    color: string,
-    title: string
-  }
+    icon: string;
+    color: string;
+    title: string;
+  };
 } = {
   note: {
-    title: 'Note',
-    color: 'blue',
-    icon: 'pen'
+    title: "Note",
+    color: "blue",
+    icon: "pen",
   },
   summary: {
-    title: 'Summary',
-    color: 'rosewater',
-    icon: 'clipboard'
+    title: "Summary",
+    color: "rosewater",
+    icon: "clipboard",
   },
   info: {
-    title: 'Info',
-    color: 'teal',
-    icon: 'info'
+    title: "Info",
+    color: "teal",
+    icon: "info",
   },
   tip: {
-    title: 'Tip',
-    color: 'yellow',
-    icon: 'flame'
+    title: "Tip",
+    color: "yellow",
+    icon: "flame",
   },
   success: {
-    title: 'Success',
-    color: 'green',
-    icon: 'checkmark'
+    title: "Success",
+    color: "green",
+    icon: "checkmark",
   },
   question: {
-    title: 'Question',
-    color: 'sapphire',
-    icon:  'questionmark'
+    title: "Question",
+    color: "sapphire",
+    icon: "questionmark",
   },
   warning: {
-    title: 'Warning',
-    color: 'peach',
-    icon: 'danger'
+    title: "Warning",
+    color: "peach",
+    icon: "danger",
   },
   failure: {
-    title: 'Failure',
-    color: 'red',
-    icon: 'fail'
+    title: "Failure",
+    color: "red",
+    icon: "fail",
   },
   danger: {
-    title: 'Danger',
-    color: 'red',
-    icon: 'lightning'
+    title: "Danger",
+    color: "red",
+    icon: "lightning",
   },
   bug: {
-    title: 'Bug',
-    color: 'red',
-    icon: 'beetle'
+    title: "Bug",
+    color: "red",
+    icon: "beetle",
   },
   example: {
-    title: 'Example',
-    color: 'mauve',
-    icon: 'list'
+    title: "Example",
+    color: "mauve",
+    icon: "list",
   },
   quote: {
-    title: 'Quote',
-    color: 'text',
-    icon: 'quote'
-  }
-}
+    title: "Quote",
+    color: "text",
+    icon: "quote",
+  },
+};
 ---
 
-
-
-<div class="annotation" style=`--callout-color: var(--${calloutVariants[type].color})` >
+<div
+  class="annotation"
+  style={`--callout-color: var(--${calloutVariants[type].color})`}
+>
   <div class="annotation-title">
     <PhosphorIcon icon={calloutVariants[type].icon} />
     {title ? title : calloutVariants[type].title}
@@ -92,16 +91,10 @@ const calloutVariants: {
   </div>
 </div>
 
-
-
-
 <style lang="scss">
-
-  @use '../styles/utils';
-
+  @use "../styles/utils";
 
   .annotation {
-
     display: inline-block;
 
     overflow: clip;
@@ -109,9 +102,7 @@ const calloutVariants: {
     border-radius: var(--border-radius-normal);
     background-color: var(--mantle);
 
-
     &-title {
-
       display: flex;
       align-items: center;
       gap: var(--space-xxs);
@@ -124,14 +115,13 @@ const calloutVariants: {
         var(--callout-color) 15%
       );
 
-      font-size: 80%; font-weight: 600;
+      font-size: 80%;
+      font-weight: 600;
       color: var(--callout-color);
-
     }
 
-
-    &-content { @include utils.containerPadding(xs); }
-
+    &-content {
+      @include utils.containerPadding(xs);
+    }
   }
-
 </style>

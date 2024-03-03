@@ -1,75 +1,60 @@
 ---
 // @ts-nocheck
 
-import Layout from "../layouts/Layout.astro"
+import Layout from "../layouts/Layout.astro";
 
-import PageIntro from "../components/PageIntro.astro"
-import PortCard from "../components/CardPort.astro"
+import PageIntro from "../components/PageIntro.astro";
+import PortCard from "../components/CardPort.astro";
 
-import { CatppuccinLinks as links } from '../contents/CatppuccinLinks'
+import { CatppuccinLinks as links } from "../contents/CatppuccinLinks";
 
-import * as portsRaw from "../contents/ports/ports.yml"
+import * as portsRaw from "../contents/ports/ports.yml";
 
-const portsData = [[...Object.values(portsRaw.default)][0]]
-const ports = []
+const portsData = [[...Object.values(portsRaw.default)][0]];
+const ports = [];
 
 for (const [_, portList] of Object.entries(portsData)) {
   for (const [key, value] of Object.entries(portList)) {
-    ports.push([key, value])
+    ports.push([key, value]);
   }
 }
 ---
 
-
-
 <Layout
   title="Ports • Catppuccin"
-  description=`All ${ports.length} Catppuccin-ports.`
+  description={`All ${ports.length} Catppuccin-ports.`}
 >
-
   <PageIntro title="Ports">
-
-    <p>Catppuccin offers over <b>{ports.length}</b> ports for all sorts of different applications, tools, websites and just about anything that comes to your mind!</p>
-
+    <p>
+      Catppuccin offers over <b>{ports.length}</b> ports for all sorts of different
+      applications, tools, websites and just about anything that comes to your mind!
+    </p>
   </PageIntro>
 
-
-
   <section class="port-list">
-
     <div class="port-grid">
       {
-        ports.map(port => (
+        ports.map((port) => (
           <PortCard
             title={port[1].name}
             category={port[1].category}
-            repo=`${links.github}/${port[1].alias || port[0]}`
+            repo={`${links.github}/${port[1].alias || port[0]}`}
             color={port[1].color}
           />
         ))
       }
     </div>
-
   </section>
-
 </Layout>
 
-
-
-
-
 <style lang="scss">
-
-  :root { --accent-color: var(--blue); }
-
-
+  :root {
+    --accent-color: var(--blue);
+  }
 
   .port-grid {
-
     display: grid;
     grid-template: auto / repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--space-md);
-
   }
-
 </style>
