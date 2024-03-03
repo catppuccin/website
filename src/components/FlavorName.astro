@@ -1,0 +1,31 @@
+---
+import type { FlavorName } from '@catppuccin/palette'
+import { flavors } from '@catppuccin/palette'
+
+interface Props {
+  flavor: FlavorName
+  bold?: boolean
+}
+
+const { flavor, bold } = Astro.props as Props
+---
+
+{bold === false ?  <span data-flavor={flavor}>{flavors[flavor].name}</span> : <strong data-flavor={flavor}>{flavors[flavor].name}</strong>}
+
+
+<style lang="scss">
+
+  [data-flavor="latte"]::before {
+    content: '🌻\00A0';
+  }
+  [data-flavor="frappe"]::before {
+    content: '🪴\00A0';
+  }
+  [data-flavor="macchiato"]::before {
+    content: '🌺\00A0';
+  }
+  [data-flavor="mocha"]::before {
+    content: '🌿\00A0';
+  }
+
+</style>

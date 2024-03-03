@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Link from "../components/Link.astro";
 import PageIntro from "../components/PageIntro.astro";
 import PhosphorIcon from "../components/PhosphorIcon.astro";
+import FlavorName from "../components/FlavorName.astro";
 
 import { CatppuccinLinks as links } from "../contents/CatppuccinLinks";
 
@@ -17,13 +18,7 @@ import { flavorEntries } from "@catppuccin/palette";
   <PageIntro title="Palette">
     <p>
       Catppuccin consists of 4 beautiful pastel color palettes, named flavors.
-      We offer three dark themes <b>🌿&nbsp;Mocha</b> and <b
-        >🌺&nbsp;Macchiato</b
-      >, both offering a cozy feeling with color-rich accents, <b
-        >🪴&nbsp;Frappé</b
-      > as a less vibrant alternative, and last but not least <b
-        >🌻&nbsp;Latte</b
-      > which is our light theme capturing the essence of our dark themes and turning
+      We offer three dark themes <FlavorName flavor="mocha" /> and <FlavorName flavor="macchiato" />, both offering a cozy feeling with color-rich accents, <FlavorName flavor="frappe" /> as a less vibrant alternative, and last but not least <FlavorName flavor="latte" /> which is our light theme capturing the essence of our dark themes and turning
       them into a bright and shining counterpart.
     </p>
     <p>
@@ -47,7 +42,7 @@ import { flavorEntries } from "@catppuccin/palette";
           <details open>
             <summary>
               <h2 id={`flavor-${flavorName}`} class="flavor-name">
-                {flavorName == "frappe" ? "Frappé" : flavorName}
+                <FlavorName flavor={flavorName} bold={false}/>
               </h2>
             </summary>
             <table class="color-list" cellspacing="0">
@@ -57,10 +52,10 @@ import { flavorEntries } from "@catppuccin/palette";
                 <th>RGB</th>
                 <th>HSL</th>
               </tr>
-              {flavor.colorEntries.map(([colorName, { hex, rgb, hsl }]) => (
+              {Object.values(flavor.colors).map(({ hex, rgb, hsl, name }) => (
                 <tr class="color-list-entry" style={`--current-color: ${hex}`}>
                   <td class="color">
-                    <h5 class="color-name">{colorName}</h5>
+                    <h5 class="color-name">{name}</h5>
                   </td>
                   <td class="color-hex">
                     <button
@@ -119,19 +114,6 @@ import { flavorEntries } from "@catppuccin/palette";
 
   :root {
     --accent-color: var(--mauve);
-  }
-
-  #flavor-latte::before {
-    content: "🌻\00A0";
-  }
-  #flavor-frappe::before {
-    content: "🪴\00A0";
-  }
-  #flavor-macchiato::before {
-    content: "🌺\00A0";
-  }
-  #flavor-mocha::before {
-    content: "🌿\00A0";
   }
 
   @keyframes copyFadeOut {
