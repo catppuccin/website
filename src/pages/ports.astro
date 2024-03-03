@@ -8,16 +8,15 @@ import PortCard from "../components/CardPort.astro"
 
 import { CatppuccinLinks as links } from '../contents/CatppuccinLinks'
 
-import * as portsRaw from "../contents/ports/ports.yml"
+import { parse } from "yaml";
+const rawPorts = await fetch("https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml").then(r => r.text());
+const portsRaw = parse(rawPorts).ports as Record<string, Port>
 
-const portsData = [[...Object.values(portsRaw.default)][0]]
 const ports = []
-
-for (const [_, portList] of Object.entries(portsData)) {
-  for (const [key, value] of Object.entries(portList)) {
-    ports.push([key, value])
-  }
+for (const [key, value] of Object.entries(portsRaw)) {
+  ports.push([key, value])
 }
+
 ---
 
 
