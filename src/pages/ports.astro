@@ -14,7 +14,7 @@ const portsYAML = await fetch(
 ).then((r) => r.text());
 
 const ports = parse(portsYAML).ports as Record<string, Port>;
-const categories = parse(portsYAML).categories as Record<string, Category>;
+const categories = parse(portsYAML).categories as Array<Category>;
 ---
 
 <Layout title="Ports • Catppuccin" description={`All Catppuccin ports.`}>
@@ -28,17 +28,15 @@ const categories = parse(portsYAML).categories as Record<string, Category>;
   <section class="port-list">
     <div class="port-grid">
       {
-        Object.entries(ports).map(([slug, fields]) => (
+        Object.entries(ports).map(([slug, port]) => (
           <PortCard
-            title={fields.name}
-            link={`https://github.com/catppuccin/${fields.alias || slug}`}
-            categories={fields.categories.map(
-              (portCategory) =>
-                Object.entries(categories).filter(
-                  ([_, fields]) => fields.key == portCategory,
-                )[0][1],
+            title={port.name}
+            link={port.url || `https://github.com/catppuccin/${port.alias || slug}`}
+            categories={port.categories.map(
+              (category) =>
+                categories.find(({ key }) => category === key) as Category
             )}
-            color={fields.color}
+            color={port.color}
           />
         ))
       }
