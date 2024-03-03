@@ -1,15 +1,11 @@
 ---
-import Logo from '../../components/Logo.astro'
+import Logo from "../../components/Logo.astro";
 
-
-import { header as navLinkList } from '../../contents/Navigations'
+import { header as navLinkList } from "../../contents/Navigations";
 ---
 
-
 <header>
-
   <nav id="main-navigation">
-
     <a href="/" class="nav-logo">
       <Logo type="icon" color="mauve" height={4} />
     </a>
@@ -18,96 +14,83 @@ import { header as navLinkList } from '../../contents/Navigations'
       {
         navLinkList.map(({ title, target, accent }) => (
           <li>
-            <a href={target} style=`--accent-colour: var(--${accent});` class="nav-link">
+            <a
+              href={target}
+              style={`--accent-colour: var(--${accent});`}
+              class="nav-link"
+            >
               {title}
             </a>
           </li>
         ))
       }
     </ul>
-
   </nav>
-
 </header>
 
-
-
-
-
 <style>
-
-  header { --spacing-nav: var(--space-sm); }
-
-
+  header {
+    --spacing-nav: var(--space-sm);
+  }
 
   #main-navigation {
-
     display: flex;
     align-items: center;
     gap: var(--spacing-nav);
-
   }
 
-
-
-  .nav-logo { width: 4rem; height: 4rem; }
-
-
+  .nav-logo {
+    width: 4rem;
+    height: 4rem;
+  }
 
   ul {
-
     display: flex;
     gap: var(--spacing-nav);
 
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
 
     list-style: none;
 
-
-    li { margin: 0; padding: 0; }
-
+    li {
+      margin: 0;
+      padding: 0;
+    }
   }
 
-
-
   .nav-link {
-
     --__accent-colour: var(--accent-colour, var(--mauve));
-
 
     position: relative;
 
-    font-size: 1.6rem; font-weight: 600;
+    font-size: 1.6rem;
+    font-weight: 600;
     color: var(--text);
 
-
     &::after {
+      content: "";
 
-      content: '';
-
-      transition: transform 200ms ease-in-out; transition-delay: 200ms;
+      transition: transform 200ms ease-in-out;
+      transition-delay: 200ms;
 
       position: absolute;
-      bottom: -6px; left: 0;
+      bottom: -6px;
+      left: 0;
       transform: scaleX(0);
       transform-origin: top right;
 
-      width: 20px; height: 3px;
+      width: 20px;
+      height: 3px;
 
       background: var(--__accent-colour);
-
     }
 
-
     &:hover&::after {
-
       transition-delay: 10ms;
 
       transform: scaleX(1);
       transform-origin: top left;
-
     }
-
   }
-
 </style>

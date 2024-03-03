@@ -1,64 +1,53 @@
-import { CatppuccinLinks as links } from './CatppuccinLinks'
-
-
-
-
+import { CatppuccinLinks as links } from "./CatppuccinLinks";
 
 export const header = [
-
   {
     title: "Home",
     target: "/#below-hero",
-    accent: "rosewater"
+    accent: "rosewater",
   },
   {
     title: "Ports",
     target: "ports",
-    accent: "blue"
+    accent: "blue",
   },
   {
     title: "Palette",
     target: "palette",
-    accent: "mauve"
+    accent: "mauve",
   },
   {
     title: "Contributing",
     target: "contribute",
-    accent: "green"
-  }
-
-]
-
-
-
-
+    accent: "green",
+  },
+];
 
 export const footer = [
-
   {
     categoryTitle: "Project",
     categoryLinks: [
       {
         title: "Ports",
         target: "/ports",
-        external: false
+        external: false,
       },
       {
         title: "Palette",
         target: "/palette",
-        external: false
+        external: false,
       },
       {
         title: "Contributing",
         target: "/contribute",
-        external: false
+        external: false,
       },
       {
         title: "Open Collective",
         target: links.opencollective,
-        external: true
-      }
-    ]
+        external: true,
+      },
+    ],
   },
 
   {
@@ -67,34 +56,33 @@ export const footer = [
       {
         title: "GitHub",
         target: links.github,
-        external: true
+        external: true,
       },
       {
         title: "Discord",
         target: links.discord,
-        external: true
+        external: true,
       },
       {
         title: "Mastodon",
         target: links.mastodon,
-        external: true
+        external: true,
       },
       {
         title: "Twitter",
         target: links.twitter,
-        external: true
+        external: true,
       },
       {
         title: "Twitch",
         target: links.twitch,
-        external: true
+        external: true,
       },
       {
         title: "Instagram",
         target: links.instagram,
-        external: true
-      }
-    ]
-  }
-
-]
+        external: true,
+      },
+    ],
+  },
+];

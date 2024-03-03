@@ -1,26 +1,22 @@
 ---
-import '../styles/global.scss'
+import "../styles/global.scss";
 
-import Footer from './imports/Footer.astro'
+import Footer from "./imports/Footer.astro";
 
-import Logo from '../components/Logo.astro'
-import AccentBar from '../components/AccentBar.astro'
-
+import Logo from "../components/Logo.astro";
+import AccentBar from "../components/AccentBar.astro";
 
 interface Props {
-  title: string,
-  description: string
+  title: string;
+  description: string;
 }
 
-const { title, description } = Astro.props
+const { title, description } = Astro.props;
 ---
-
 
 <!doctype html>
 <html lang="en">
-
   <head>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
@@ -40,13 +36,10 @@ const { title, description } = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
 
     <title>{title}</title>
-
   </head>
   <body>
-
     <div id="hero">
       <div class="content-wrapper no-padding hero-grid">
-
         <div class="hero-content-wrapper">
           <div class="hero-logo">
             <Logo type="icon" height={4} />
@@ -58,7 +51,6 @@ const { title, description } = Astro.props
         <div class="hero-image">
           <slot name="hero-image" />
         </div>
-
       </div>
     </div>
 
@@ -68,78 +60,45 @@ const { title, description } = Astro.props
       </div>
       <AccentBar />
     </section>
-
   </body>
-
 </html>
 
-
-
-
-
 <style lang="scss" is:global>
-
   #hero {
-
-    background-color: color-mix(
-      in srgb,
-      var(--base),
-      var(--mauve) 10%
-    );
+    background-color: color-mix(in srgb, var(--base), var(--mauve) 10%);
     background-image: linear-gradient(
       120deg,
-      color-mix(
-        in srgb,
-        var(--base),
-        var(--peach) 5%
-      ),
-      color-mix(
-        in srgb,
-        var(--base),
-        var(--mauve) 10%
-      )
+      color-mix(in srgb, var(--base), var(--peach) 5%),
+      color-mix(in srgb, var(--base), var(--mauve) 10%)
     );
 
-
     @media (prefers-color-scheme: dark) {
-
-      background-color: color-mix(
-        in srgb,
-        var(--base),
-        var(--mantle) 30%
-      );
+      background-color: color-mix(in srgb, var(--base), var(--mantle) 30%);
       background-image: none;
-
     }
 
-
-    + .footer-container { margin-block-start: 0; }
-
+    + .footer-container {
+      margin-block-start: 0;
+    }
   }
 
-
-
   .hero-logo {
-
     display: flex;
     align-items: center;
     gap: var(--space-sm);
 
-
-    svg + svg { margin-block-start: 6px; }
-
+    svg + svg {
+      margin-block-start: 6px;
+    }
   }
 
-
-
   .hero-grid {
-
-    display: flex; flex-direction: column;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     gap: var(--space-lg);
 
     min-height: 100svh;
-
 
     @media (min-width: 800px) {
       display: grid;
@@ -147,75 +106,57 @@ const { title, description } = Astro.props
 
       padding-block: 0;
     }
-
   }
 
-
-
   .hero-content-wrapper {
-
     display: grid;
     grid-template-rows: max-content auto;
     gap: var(--space-xl);
     container-type: inline-size;
 
     padding-block: var(--padding-body);
-
   }
 
-
-
   .hero-content {
-
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     gap: var(--space-md);
 
     line-height: 1.1;
 
-
     h1 {
+      margin: 0;
+      padding-block: 6px;
 
-      margin: 0; padding-block: 6px;
-
-      background-image: linear-gradient(
-        120deg,
-        var(--peach),
-        var(--mauve)
-      );
+      background-image: linear-gradient(120deg, var(--peach), var(--mauve));
       background-clip: text;
 
       font-size: clamp(4rem, 4vw, 6rem);
       color: transparent;
-
     }
 
-
-    p { line-height: 1.5; }
-
+    p {
+      line-height: 1.5;
+    }
   }
 
-
-
   .hero-image {
-
     display: grid;
     place-items: center;
     container-type: inline-size;
 
     max-height: 40vh;
 
-
-    svg { padding: var(--space-md); }
-
+    svg {
+      padding: var(--space-md);
+    }
 
     @media (min-width: 800px) {
-
       max-height: 100vh;
 
-
       svg {
-
         @container (min-width: 400px) {
           padding-inline-start: var(--space-lg);
         }
@@ -223,12 +164,7 @@ const { title, description } = Astro.props
         @container (min-width: 500px) {
           padding-inline-start: var(--space-xl);
         }
-
       }
-
     }
-
   }
-
-
 </style>

@@ -1,26 +1,22 @@
 ---
-import '../styles/global.scss'
+import "../styles/global.scss";
 
-import Header from './imports/Header.astro'
-import Footer from './imports/Footer.astro'
+import Header from "./imports/Header.astro";
+import Footer from "./imports/Footer.astro";
 
-import AccentBar from '../components/AccentBar.astro'
-
+import AccentBar from "../components/AccentBar.astro";
 
 interface Props {
-  title: string,
-  description: string
+  title: string;
+  description: string;
 }
 
-const { title, description } = Astro.props
+const { title, description } = Astro.props;
 ---
-
 
 <!doctype html>
 <html lang="en">
-
   <head>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
 
@@ -40,10 +36,8 @@ const { title, description } = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
 
     <title>{title}</title>
-
   </head>
   <body>
-
     <div id="toasts"></div>
 
     <section class="header-container">
@@ -62,7 +56,5 @@ const { title, description } = Astro.props
       </div>
       <AccentBar />
     </section>
-
   </body>
-
 </html>

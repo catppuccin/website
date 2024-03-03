@@ -1,10 +1,20 @@
-@mixin containerPadding ($size: md) {
-
-  @if $size == xxs  { padding: var(--space-xxs); }
-  @if $size == xs   { padding: var(--space-xs); }
-  @if $size == xs-y { padding: var(--space-xs) var(--space-md); }
-  @if $size == md   { padding: var(--space-md); }
-  @if $size == lg   { padding: var(--space-lg) }
-  @if $size == xl   { padding: var(--space-xl) var(--space-xxl) }
-
+@mixin containerPadding($size: md) {
+  @if $size == xxs {
+    padding: var(--space-xxs);
+  }
+  @if $size == xs {
+    padding: var(--space-xs);
+  }
+  @if $size == xs-y {
+    padding: var(--space-xs) var(--space-md);
+  }
+  @if $size == md {
+    padding: var(--space-md);
+  }
+  @if $size == lg {
+    padding: var(--space-lg);
+  }
+  @if $size == xl {
+    padding: var(--space-xl) var(--space-xxl);
+  }
 }

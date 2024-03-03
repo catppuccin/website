@@ -1,59 +1,36 @@
 ---
 interface Props {
-  href: string,
-  external?: boolean,
-  muted?: boolean
+  href: string;
+  external?: boolean;
+  muted?: boolean;
 }
 
-const { href, external = false, muted = false } = Astro.props
+const { href, external = false, muted = false } = Astro.props;
 ---
 
-
-<a href={href} class:list={[
-  `${external ? 'external' : ''}`,
-  `${muted ? 'muted' : ''}`
-]}>
-  <slot />
+<a href={href} class:list={[`${muted ? "muted" : ""}`]}>
+  <slot />{external ? <span class="external">&#x2197;</span> : ""}
 </a>
 
-
-
-
-
 <style lang="scss">
-
   a {
-
     transition: color 250ms ease-in-out;
 
     color: var(--blue);
 
-
-    &.muted { color: var(--subtext0); }
-
+    &.muted {
+      color: var(--subtext0);
+    }
 
     &:hover,
     &:focus {
-
-      color: color-mix(
-        in srgb,
-        var(--blue),
-        var(--text) 60%
-      )
-
+      color: color-mix(in srgb, var(--blue), var(--text) 60%);
     }
 
+    .external {
+      font-size: 60%;
+      font-weight: 900;
+      vertical-align: super;
+    }
   }
-
-
-
-  .external::after {
-
-    content: '\2197';
-
-    font-size: 60%; font-weight: 900;
-    vertical-align: super;
-
-  }
-
 </style>

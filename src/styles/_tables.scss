@@ -1,44 +1,40 @@
-@use './utils';
-
-
+@use "./utils";
 
 table {
-
-  width: 100%; min-width: max-content;
+  width: 100%;
+  min-width: max-content;
   overflow-y: scroll;
 
   text-align: left;
 
-
   tr:nth-child(odd):not(:first-child) {
-    background-color: color-mix(
-      in srgb,
-      var(--mantle),
-      var(--crust) 50%
-    );
+    background-color: color-mix(in srgb, var(--mantle), var(--crust) 50%);
   }
 
+  tr:not(.color-list-header):hover {
+    background-color: var(--base);
+  }
 
-  tr:not(.color-list-header):hover { background-color: var(--base); }
-
-
-  th, td { @include utils.containerPadding(xs-y); }
+  th,
+  td {
+    @include utils.containerPadding(xs-y);
+  }
 
   th + th,
-  td + td { padding-inline-start: var(--space-lg); }
-
-
-  th {
-
-    border-bottom: 1px solid var(--surface0);
-
-    font-size: 80%; font-weight: 500;
-    color: var(--subtext0);
-
+  td + td {
+    padding-inline-start: var(--space-lg);
   }
 
+  th {
+    border-bottom: 1px solid var(--surface0);
+
+    font-size: 80%;
+    font-weight: 500;
+    color: var(--subtext0);
+  }
 
   tr th:not(:first-child),
-  tr td:not(:first-child) { text-align: right; }
-
+  tr td:not(:first-child) {
+    text-align: right;
+  }
 }
