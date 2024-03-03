@@ -6,17 +6,28 @@ import PortCard from "../components/CardPort.astro";
 
 import { CatppuccinLinks as links } from "../contents/CatppuccinLinks";
 
-// @ts-ignore – joe mama
 import { parse } from "yaml";
 const rawPorts = await fetch(
   "https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml",
 ).then((r) => r.text());
-// @ts-ignore – joe mama again
 const portsRaw = parse(rawPorts).ports as Record<string, Port>;
 
+// const ports: Port[] = [];
 const ports = [];
 for (const [key, value] of Object.entries(portsRaw)) {
-  ports.push([key, value]);
+  // const port: Port = {
+  //   categories: string[];
+  //   name: string;
+  //   platform: Platform[];
+
+  //   color?: string;
+  //   icon?: string;
+  //   alias?: string;
+  //   url?: string;
+  //   links?: Link[];
+  //   upstreamed?: boolean;
+  // }
+  ports.push([key, value] as const);
 }
 ---
 
@@ -35,12 +46,16 @@ for (const [key, value] of Object.entries(portsRaw)) {
     <div class="port-grid">
       {
         ports.map((port) => (
-          <PortCard
-            title={port[1].name}
-            category={port[1].category}
-            repo={`${links.github}/${port[1].alias || port[0]}`}
-            color={port[1].color}
-          />
+
+        JSON.stringify(port, undefined, 50)
+
+          // <PortCard
+          //   title={port[1].name}
+          //   link={`https://github.com/catppuccin/${port[1].alias || port[0]}`}
+          //   color={port[1].color}
+          //   categories={port[1].categories}
+          // />
+
         ))
       }
     </div>

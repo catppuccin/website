@@ -2,13 +2,13 @@
 import { getIcon } from "../lib/getIcon";
 
 interface Props {
-  slug: string;
+  port: string;
   height?: number;
 }
 
-const { slug, height = 2.4 } = Astro.props;
+const { port, height = 2.4 } = Astro.props;
 
-const { path, viewbox } = getIcon(slug);
+const { path, viewbox } = getIcon(port);
 ---
 
 <svg
@@ -18,7 +18,7 @@ const { path, viewbox } = getIcon(slug);
   viewBox={viewbox}
   xmlns="http://www.w3.org/2000/svg"
 >
-  <title>{slug}</title>
+  <title>{port}</title>
   <path d={path}></path>
 </svg>
 

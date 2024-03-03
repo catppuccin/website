@@ -1,0 +1,57 @@
+---
+interface Props {
+  contents: Category;
+}
+
+const { contents } = Astro.props;
+---
+
+
+<ul class="pill-list">
+  {
+    contents.map(content => (
+      <li class="pill-list-entry">
+        {content.name}
+      </li>
+    ))
+  }
+</ul>
+
+
+<style lang="scss">
+
+  @use '../styles/utils';
+
+
+  .pill-list {
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xxs);
+
+    margin: 0; padding: 0;
+
+    list-style: none;
+
+  }
+
+
+  .pill-list-entry {
+
+    display: inline-block;
+
+    @include utils.containerPadding(xxs);
+
+    border-radius: 9999px;
+    background-color: color-mix(
+      in srgb,
+      var(--base),
+      var(--blue) 20%
+    );
+
+    font-size: 80%;
+    line-height: 1;
+
+  }
+
+</style>

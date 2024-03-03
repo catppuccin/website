@@ -1,34 +1,41 @@
 ---
-import Link from "./Link.astro";
-import Icon from "./Icon.astro";
+import Icon from "./IconPort.astro";
+import PillList from "./ListPill.astro";
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 
 interface Props {
   title: string;
-  category: string;
-  repo: string;
+  link: string;
+  categories: Category[];
   color?: string;
 }
 
-const { title, repo, color } = Astro.props;
+const { title, link, categories, color } = Astro.props;
 ---
 
-<div
-  class="port-card"
-  style={`--foreground: var(--${color}, var(--subtext0)); --background: var(--${color ? color : "mantle"})`}
->
+<a href={link}>
+  <div
+    class="port-card"
+    style={ color ? `--port-color: var(--${color})` : '' }
+  >
+
   <figure class="port-icon">
-    <Icon slug={title} height={3} />
+    <Icon port={title} />
   </figure>
 
-  <h4 class="port-name">{title}</h4>
+  <h4 class="port-name">{ title }</h4>
 
-  <Link href={repo} external muted>Repository</Link>
-</div>
+
+  <PillList contents={categories} />
+
+  </div>
+</a>
 
 <style lang="scss">
   @use "../styles/utils";
 
   .port-card {
+
     display: flex;
     flex-direction: column;
     gap: var(--space-xxs);
@@ -36,8 +43,7 @@ const { title, repo, color } = Astro.props;
     @include utils.containerPadding();
 
     border-radius: var(--border-radius-normal);
-    border-bottom: var(--border-radius-normal) solid var(--foreground);
-    background-color: color-mix(in srgb, var(--mantle), var(--background) 5%);
+    background-color: var(--mantle);
     background-size: 200%;
     background-position: top left;
 
@@ -69,7 +75,7 @@ const { title, repo, color } = Astro.props;
     }
 
     .port-icon {
-      color: var(--foreground);
+      color: var(--port-color);
     }
   }
 </style>

@@ -3,7 +3,7 @@ import { CatppuccinLinks as links } from "./CatppuccinLinks";
 export const header = [
   {
     title: "Home",
-    target: "/#below-hero",
+    target: "/",
     accent: "rosewater",
   },
   {

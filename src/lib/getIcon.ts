@@ -5,34 +5,6 @@ const rawPorts = await fetch(
 ).then((r) => r.text());
 const ports = parse(rawPorts).ports as Record<string, Port>;
 
-interface Category {
-  key: string;
-  name: string;
-  description: string;
-  emoji: string;
-}
-
-type Platform = "android" | "windows" | "ios" | "linux" | "macos";
-
-interface Link {
-  name: string;
-  color: string;
-  icon: string;
-  url: string;
-}
-
-interface Port {
-  categories: Category[];
-  name: string;
-  platform: Platform[];
-
-  color?: string;
-  icon?: string;
-  alias?: string;
-  url?: string;
-  links?: Link[];
-  upstreamed?: boolean;
-}
 
 export function getIcon(slug: string) {
   const portEntry = Object.entries(ports).find(([, v]) => v.name == slug);
