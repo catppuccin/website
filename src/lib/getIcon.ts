@@ -1,5 +1,8 @@
 import * as Icons from "simple-icons";
-import * as portsYaml from "../contents/ports/ports.yml";
+import { parse } from "yaml";
+
+const rawPorts = await fetch("https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml").then(r => r.text());
+const ports = parse(rawPorts).ports as Record<string, Port>
 
 interface Category {
   key: string;
@@ -33,7 +36,6 @@ interface Port {
 const overrides: Record<string, unknown> = {}
 
 export function getIcon(slug: string) {
-  const ports = portsYaml.ports as Record<string, Port>
   const portEntry = Object.entries(ports).find(([, v]) => v.name == slug);
   if (!portEntry) {
     throw new TypeError(`port '${slug}' not found`)
