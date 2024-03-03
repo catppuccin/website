@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "fmt": "prettier . --write",
+    "fmt": "prettier --plugin=prettier-plugin-astro . --write",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
