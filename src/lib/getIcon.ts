@@ -44,7 +44,7 @@ export function getIcon(slug: string) {
 
   if (port.icon && !port.icon.endsWith(".svg")) {
     const siKey = `si${port.icon[0].toUpperCase()}${port.icon.substring(1)}`
-    const si = Icons[siKey]
+    const si = Icons[siKey as keyof typeof Icons]
 
     if (!si) {
       throw new TypeError(`Icon did not exist for port: ${JSON.stringify(port, undefined, 2)}`)
@@ -55,4 +55,4 @@ export function getIcon(slug: string) {
       viewbox: "0 0 24 24",
     };
   }
-
+}
