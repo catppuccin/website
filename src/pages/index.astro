@@ -3,8 +3,6 @@ import Home from "../layouts/Home.astro";
 
 import Illustration from "../components/LaptopIllustration.astro";
 import PhosphorIcon from "../components/PhosphorIcon.astro";
-
-const isVercelProd = import.meta.env.VERCEL_PROD;
 ---
 
 <Home
@@ -35,16 +33,6 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
 
   <Illustration slot="hero-image" />
 </Home>
-
-{
-  isVercelProd && (
-    <script
-      defer
-      data-domain="catppuccin.com"
-      src="https://p.catppuccin.com/js/script.js"
-    />
-  )
-}
 
 <style lang="scss">
   :root {

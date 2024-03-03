@@ -12,6 +12,8 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+
+const isVercelProd = import.meta.env.VERCEL_PROD;
 ---
 
 <!doctype html>
@@ -58,3 +60,13 @@ const { title, description } = Astro.props;
     </section>
   </body>
 </html>
+
+{
+  isVercelProd && (
+    <script
+      defer
+      data-domain="catppuccin.com"
+      src="https://p.catppuccin.com/js/script.js"
+    />
+  )
+}
