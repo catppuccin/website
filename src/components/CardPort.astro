@@ -12,22 +12,19 @@ interface Props {
 const { title, link, categories, color } = Astro.props;
 ---
 
-<a href={link} class="port-card" style={color ? `--port-color: var(--${color})` : ""}>
+<a
+  href={link}
+  class="port-card"
+  style={color ? `--port-color: var(--${color})` : ""}
+>
+  <figure class="port-icon">
+    <Icon port={title} />
+  </figure>
 
-    <figure class="port-icon">
-      <Icon port={title} />
-    </figure>
+  <h4 class="port-name">{title}</h4>
 
-    <h4 class="port-name">{title}</h4>
-
-    <PillList
-      list={categories.map(
-        (category: Category) => `${category.name}`,
-      )}
-    />
-
+  <PillList list={categories.map((category: Category) => `${category.name}`)} />
 </a>
-
 
 <style lang="scss">
   @use "../styles/utils";
@@ -61,11 +58,16 @@ const { title, link, categories, color } = Astro.props;
       }
     }
 
-    figure, h4 { margin: 0; padding: 0; }
+    figure,
+    h4 {
+      margin: 0;
+      padding: 0;
+    }
 
     .port-name {
       color: var(--text);
-      font-size: 2rem; font-weight: 600;
+      font-size: 2rem;
+      font-weight: 600;
     }
 
     .port-icon {
