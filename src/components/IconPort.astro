@@ -3,10 +3,11 @@ import { getIcon } from "../lib/getIcon";
 
 interface Props {
   port: string;
+  color: string | undefined;
   height?: number;
 }
 
-const { port, height = 2.4 } = Astro.props;
+const { port, color, height = 2.4 } = Astro.props;
 
 const { path, viewbox } = getIcon(port);
 ---
@@ -17,13 +18,8 @@ const { path, viewbox } = getIcon(port);
   role="img"
   viewBox={viewbox}
   xmlns="http://www.w3.org/2000/svg"
+  style={color ? `fill: var(--${color})` : 'fill: currentColor'}
 >
   <title>{port}</title>
   <path d={path}></path>
 </svg>
-
-<style lang="scss">
-  .icon {
-    fill: currentColor;
-  }
-</style>
