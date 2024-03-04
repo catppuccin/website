@@ -11,10 +11,6 @@ table {
     background-color: color-mix(in srgb, var(--mantle), var(--crust) 50%);
   }
 
-  tr:not(.color-list-header):hover {
-    background-color: var(--base);
-  }
-
   th,
   td {
     @include utils.containerPadding(xs-y);

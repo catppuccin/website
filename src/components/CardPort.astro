@@ -12,8 +12,8 @@ interface Props {
 const { title, link, categories, color } = Astro.props;
 ---
 
-<a href={link}>
-  <div class="port-card" style={color ? `--port-color: var(--${color})` : ""}>
+<a href={link} class="port-card" style={color ? `--port-color: var(--${color})` : ""}>
+
     <figure class="port-icon">
       <Icon port={title} />
     </figure>
@@ -22,19 +22,22 @@ const { title, link, categories, color } = Astro.props;
 
     <PillList
       list={categories.map(
-        (category: Category) => `${category.emoji} ${category.name}`,
+        (category: Category) => `${category.name}`,
       )}
     />
-  </div>
+
 </a>
+
 
 <style lang="scss">
   @use "../styles/utils";
 
   .port-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xxs);
+    grid-row: span 3;
+    display: grid;
+    grid-template-rows: subgrid;
+    gap: var(--space-xs);
+    align-items: start;
 
     @include utils.containerPadding();
 
@@ -43,7 +46,6 @@ const { title, link, categories, color } = Astro.props;
     background-size: 200%;
     background-position: top left;
 
-    text-transform: capitalize;
     color: var(--subtext0);
     font-size: 1.6rem;
 
@@ -59,15 +61,11 @@ const { title, link, categories, color } = Astro.props;
       }
     }
 
-    figure,
-    h4 {
-      margin: 0;
-      padding: 0;
-    }
+    figure, h4 { margin: 0; padding: 0; }
 
     .port-name {
       color: var(--text);
-      font-size: 2rem;
+      font-size: 2rem; font-weight: 600;
     }
 
     .port-icon {
