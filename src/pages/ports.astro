@@ -31,7 +31,7 @@ const categories = parse(portsYAML).categories as Array<Category>;
         Object.entries(ports).map(([slug, fields]) => (
           <PortCard
             title={fields.name}
-            link={`https://github.com/catppuccin/${fields.alias || slug}`}
+            link={fields.url || `https://github.com/catppuccin/${fields.alias || slug}`}
             categories={fields.categories.map(
               (portCategory) =>
                 categories.find(({ key }) => key == portCategory) as Category,
