@@ -15,26 +15,27 @@ const { title, link, categories, color } = Astro.props;
 <a
   href={link}
   class="port-card"
-  style={color ? `--port-color: var(--${color})` : ""}
 >
-  <figure class="port-icon">
-    <Icon port={title} />
-  </figure>
+  <div class="port-header">
+    <h4 class="port-name">{title}</h4>
+    <div class="port-icon"><Icon port={title} color={color} /></div>
+  </div>
 
-  <h4 class="port-name">{title}</h4>
-
-  <PillList list={categories.map((category: Category) => `${category.name}`)} />
+  <PillList
+    list={categories.map(
+      (category: Category) => `${category.name}`,
+    )}
+  />
 </a>
 
 <style lang="scss">
   @use "../styles/utils";
 
   .port-card {
-    grid-row: span 3;
-    display: grid;
-    grid-template-rows: subgrid;
-    gap: var(--space-xs);
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-sm);
 
     @include utils.containerPadding();
 
@@ -64,14 +65,16 @@ const { title, link, categories, color } = Astro.props;
       padding: 0;
     }
 
+    .port-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
     .port-name {
       color: var(--text);
       font-size: 2rem;
       font-weight: 600;
-    }
-
-    .port-icon {
-      color: var(--port-color);
     }
   }
 </style>
