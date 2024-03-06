@@ -1,4 +1,6 @@
 ---
+import Link from "../components/Link.astro";
+
 type GitHubProfile = {
   name: string;
   displayName: string;
@@ -15,11 +17,11 @@ const { people } = Astro.props;
   {
     people.map((entry) => (
       <li>
-        <a href={`https://github.com/${entry.name}`}>
+        <Link href={`https://github.com/${entry.name}`} external>
           <img src={`https://github.com/${entry.name}.png?size=128`} />
           <br />
           {entry.displayName}
-        </a>
+        </Link>
       </li>
     ))
   }
