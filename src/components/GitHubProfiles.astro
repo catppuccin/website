@@ -1,0 +1,50 @@
+---
+type GitHubProfile = {
+  name: string;
+  displayName: string;
+};
+
+interface Props {
+  people: GitHubProfile[];
+}
+
+const { people } = Astro.props;
+---
+
+<ul class="people-list">
+  {
+    people.map((entry) => (
+      <li>
+        <a href={`https://github.com/${entry.name}`}>
+          <img src={`https://github.com/${entry.name}.png?size=128`} />
+          <br />
+          {entry.displayName}
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style lang="scss">
+  @use "../styles/utils";
+
+  .people-list {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+
+    margin: 0;
+    padding: 0;
+
+    line-height: 1;
+    list-style: none;
+
+    li {
+      text-align: center;
+    }
+
+    img {
+      border-radius: 20%;
+    }
+  }
+</style>

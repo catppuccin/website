@@ -17,8 +17,8 @@ export const header = [
     accent: "mauve",
   },
   {
-    title: "Contributing",
-    target: "contribute",
+    title: "Community",
+    target: "community",
     accent: "green",
   },
 ];
@@ -38,8 +38,8 @@ export const footer = [
         external: false,
       },
       {
-        title: "Contributing",
-        target: "/contribute",
+        title: "Community",
+        target: "/community",
         external: false,
       },
       {
