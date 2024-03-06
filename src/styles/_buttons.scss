@@ -76,6 +76,20 @@
     }
   }
 
+  &-green {
+    background-color: var(--green);
+    background-image: linear-gradient(120deg, var(--teal), var(--green));
+    background-size: 150% 100%;
+    background-position: top left;
+
+    font-weight: 600;
+    color: var(--inverted-text);
+
+    &:hover {
+      background-position: top right;
+    }
+  }
+
   &-success {
     background-color: var(--green);
 
