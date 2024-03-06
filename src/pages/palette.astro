@@ -17,8 +17,15 @@ import { flavorEntries } from "@catppuccin/palette";
 >
   <PageIntro title="Palette">
     <p>
-      Catppuccin consists of 4 beautiful pastel color palettes ("flavors").
-      We offer three dark themes; <FlavorName flavor="mocha" /> and <FlavorName flavor="macchiato" />, both offering a cozy feeling with color-rich accents, and <FlavorName flavor="frappe" /> as a less vibrant alternative. We also have a light theme, <FlavorName flavor="latte" />, which is a bright and shining counterpart to the essence of our dark themes.
+      Catppuccin consists of 4 beautiful pastel color palettes ("flavors"). We
+      offer three dark themes; <FlavorName flavor="mocha" /> and <FlavorName
+        flavor="macchiato"
+      />, both offering a cozy feeling with color-rich accents, and <FlavorName
+        flavor="frappe"
+      /> as a less vibrant alternative. We also have a light theme, <FlavorName
+        flavor="latte"
+      />, which is a bright and shining counterpart to the essence of our dark
+      themes.
     </p>
     <p>
       If you'd like to use them for your own project you can refer to our <Link
@@ -41,7 +48,7 @@ import { flavorEntries } from "@catppuccin/palette";
           <details open>
             <summary>
               <h2 id={`flavor-${flavorName}`} class="flavor-name">
-                <FlavorName flavor={flavorName} bold={false}/>
+                <FlavorName flavor={flavorName} bold={false} />
               </h2>
             </summary>
             <table class="color-list" cellspacing="0">
@@ -57,34 +64,16 @@ import { flavorEntries } from "@catppuccin/palette";
                     <h5 class="color-name">{name}</h5>
                   </td>
                   <td class="color-hex">
-                    <button
-                      class="btn btn-small btn-transparent js-copy"
-                      data-value={hex.replace("#", "")}
-                    >
-                      <PhosphorIcon icon="copy" size={12} />{" "}
-                      {hex.replace("#", "").toUpperCase()}
-                    </button>
+                    {/* prettier-ignore */}
+                    <button class="btn btn-small btn-transparent js-copy" data-value={hex.replace("#", "")}><PhosphorIcon icon="copy" size={12} /> {hex.replace("#", "").toUpperCase()}</button>
                   </td>
                   <td class="color-rgb">
-                    <button
-                      class="btn btn-small btn-transparent js-copy"
-                      data-value={`${rgb.r} ${rgb.g} ${rgb.b}`}
-                    >
-                      <PhosphorIcon icon="copy" size={12} />{" "}
-                      {`${rgb.r}`.padStart(3)}, {`${rgb.g}`.padStart(3)},{" "}
-                      {`${rgb.b}`.padStart(3)}
-                    </button>
+                    {/* prettier-ignore */}
+                    <button class="btn btn-small btn-transparent js-copy" data-value={`${rgb.r} ${rgb.g} ${rgb.b}`}><PhosphorIcon icon="copy" size={12} /> {`${rgb.r}`.padStart(3)}, {`${rgb.g}`.padStart(3)}, {`${rgb.b}`.padStart(3)}</button>
                   </td>
                   <td class="color-hsl">
-                    <button
-                      class="btn btn-small btn-transparent js-copy"
-                      data-value={`${Math.floor(hsl.h)}, ${Math.floor(hsl.s * 100)}, ${Math.floor(hsl.l * 100)}`}
-                    >
-                      <PhosphorIcon icon="copy" size={12} />{" "}
-                      {`${Math.floor(hsl.h)}`.padStart(3)},{" "}
-                      {`${Math.floor(hsl.s * 100)}`.padStart(3)},{" "}
-                      {`${Math.floor(hsl.l * 100)}`.padStart(3)}
-                    </button>
+                    {/* prettier-ignore */}
+                    <button class="btn btn-small btn-transparent js-copy" data-value={`${Math.floor(hsl.h)}, ${Math.floor(hsl.s * 100)}, ${Math.floor(hsl.l * 100)}`}><PhosphorIcon icon="copy" size={12} /> {`${Math.floor(hsl.h)}`.padStart(3)}, {`${Math.floor(hsl.s * 100)}`.padStart(3)}, {`${Math.floor(hsl.l * 100)}`.padStart(3)} </button>
                   </td>
                 </tr>
               ))}
