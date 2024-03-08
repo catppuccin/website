@@ -9,7 +9,7 @@ export const header = [
   {
     title: "Ports",
     target: "ports",
-    accent: "blue",
+    accent: "peach",
   },
   {
     title: "Palette",
