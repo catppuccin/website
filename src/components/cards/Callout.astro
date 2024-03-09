@@ -1,5 +1,5 @@
 ---
-import PhosphorIcon from "./PhosphorIcon.astro";
+import PhosphorIcon from "../icons/Phosphor.astro";
 
 interface Props {
   type?: string;
@@ -8,7 +8,7 @@ interface Props {
 
 const { type = "note", title } = Astro.props;
 
-export type Callout = {
+type Callout = {
   [key: string]: {
     icon: string;
     color: string;
@@ -91,7 +91,7 @@ const calloutVariants: Callout = {
 </div>
 
 <style lang="scss">
-  @use "../styles/utils";
+  @use "../../styles/utils";
 
   .annotation {
     display: inline-block;

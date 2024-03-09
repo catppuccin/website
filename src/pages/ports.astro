@@ -4,9 +4,9 @@ import type { ColorName } from "@catppuccin/palette";
 import Layout from "../layouts/Layout.astro";
 
 import PageIntro from "../components/PageIntro.astro";
-import PortCard from "../components/CardPort.astro";
+import PortCard from "../components/cards/Port.astro";
 
-interface Category {
+export type Category = {
   key: string;
   name: string;
   description: string;
@@ -15,14 +15,14 @@ interface Category {
 
 type Platform = "android" | "windows" | "ios" | "linux" | "macos";
 
-interface Link {
+type Link = {
   name: string;
   color: string;
   icon: string;
   url: string;
 }
 
-interface Port {
+export type Port = {
   categories: string[];
   name: string;
   platform: Platform[];

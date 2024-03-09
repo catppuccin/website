@@ -1,3 +1,5 @@
+import type { Port } from "../pages/ports.astro";
+
 import * as Icons from "simple-icons";
 import { parse } from "yaml";
 const rawPorts = await fetch("https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml").then(

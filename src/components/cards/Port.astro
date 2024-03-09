@@ -1,7 +1,9 @@
 ---
 import type { ColorName } from "@catppuccin/palette";
-import Icon from "./IconPort.astro";
-import PillList from "./ListPills.astro";
+import type { Category } from "../../pages/ports.astro";
+
+import Icon from "../icons/Ports.astro";
+import PillList from "../lists/Pills.astro";
 
 interface Props {
   title: string;
@@ -23,7 +25,7 @@ const { title, link, categories, color } = Astro.props;
 </a>
 
 <style lang="scss">
-  @use "../styles/utils";
+  @use "../../styles/utils";
 
   .port-card {
     display: flex;
