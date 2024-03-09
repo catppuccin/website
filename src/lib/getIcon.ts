@@ -1,11 +1,5 @@
-import type { Port } from "../pages/ports.astro";
-
 import * as Icons from "simple-icons";
-import { parse } from "yaml";
-const rawPorts = await fetch("https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml").then(
-  (r) => r.text(),
-);
-const ports = parse(rawPorts).ports as Record<string, Port>;
+import { ports } from "./getPorts";
 
 export function getIcon(slug: string) {
   const portEntry = Object.entries(ports).find(([, v]) => v.name == slug);

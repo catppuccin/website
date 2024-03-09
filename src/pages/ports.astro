@@ -1,47 +1,10 @@
 ---
-import type { ColorName } from "@catppuccin/palette";
-
 import Layout from "../layouts/Layout.astro";
 
 import PageIntro from "../components/PageIntro.astro";
 import PortCard from "../components/cards/Port.astro";
-
-export type Category = {
-  key: string;
-  name: string;
-  description: string;
-  emoji: string;
-}
-
-type Platform = "android" | "windows" | "ios" | "linux" | "macos";
-
-type Link = {
-  name: string;
-  color: string;
-  icon: string;
-  url: string;
-}
-
-export type Port = {
-  categories: string[];
-  name: string;
-  platform: Platform[];
-
-  color?: ColorName;
-  icon?: string;
-  alias?: string;
-  url?: string;
-  links?: Link[];
-  upstreamed?: boolean;
-}
-
-import { parse } from "yaml";
-const portsYAML = await fetch("https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml").then(
-  (r) => r.text(),
-);
-
-const ports = parse(portsYAML).ports as Record<string, Port>;
-const categories = parse(portsYAML).categories as Array<Category>;
+import { ports, categories, type Category } from "../lib/getPorts";
+import Callout from "../components/cards/Callout.astro";
 ---
 
 <Layout title="Ports • Catppuccin" description={`All Catppuccin ports.`}>
@@ -50,6 +13,7 @@ const categories = parse(portsYAML).categories as Array<Category>;
       Catppuccin offers ports for all sorts of different applications, tools, websites and just about anything that
       comes to your mind!
     </p>
+    <Callout type="info"> Search & Filters Coming Soon™</Callout>
   </PageIntro>
 
   <section class="port-list">
