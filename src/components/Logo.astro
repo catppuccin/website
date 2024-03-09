@@ -104,8 +104,7 @@ const logoVariants = {
   },
 };
 
-let viewbox =
-  type == "icon" ? logoVariants.icon.viewbox : logoVariants.text.viewbox;
+let viewbox = type == "icon" ? logoVariants.icon.viewbox : logoVariants.text.viewbox;
 let paths = type == "icon" ? logoVariants.icon.paths : logoVariants.text.paths;
 ---
 
@@ -115,11 +114,6 @@ let paths = type == "icon" ? logoVariants.icon.paths : logoVariants.text.paths;
   version="1.1"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
-  xml:space="preserve"
->
-  {
-    paths.map((element) => (
-      <path d={element.path} style={`fill: ${element.fill}`} />
-    ))
-  }
+  xml:space="preserve">
+  {paths.map((element) => <path d={element.path} style={`fill: ${element.fill}`} />)}
 </svg>

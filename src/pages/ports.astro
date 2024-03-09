@@ -9,9 +9,9 @@ import { CatppuccinLinks as links } from "../contents/CatppuccinLinks";
 import { parse } from "yaml";
 import { isObjectLiteralExpression } from "typescript";
 // const portsYAML = await fetch("https://unseen.ninja/ctp/ports.yml").then((r) => r.text());
-const portsYAML = await fetch(
-  "https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml",
-).then((r) => r.text());
+const portsYAML = await fetch("https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml").then(
+  (r) => r.text(),
+);
 
 const ports = parse(portsYAML).ports as Record<string, Port>;
 const categories = parse(portsYAML).categories as Array<Category>;
@@ -20,8 +20,8 @@ const categories = parse(portsYAML).categories as Array<Category>;
 <Layout title="Ports • Catppuccin" description={`All Catppuccin ports.`}>
   <PageIntro title="Ports">
     <p>
-      Catppuccin offers ports for all sorts of different applications, tools,
-      websites and just about anything that comes to your mind!
+      Catppuccin offers ports for all sorts of different applications, tools, websites and just about anything that
+      comes to your mind!
     </p>
   </PageIntro>
 
@@ -31,13 +31,9 @@ const categories = parse(portsYAML).categories as Array<Category>;
         Object.entries(ports).map(([slug, fields]) => (
           <PortCard
             title={fields.name}
-            link={
-              fields.url ||
-              `https://github.com/catppuccin/${fields.alias || slug}`
-            }
+            link={fields.url || `https://github.com/catppuccin/${fields.alias || slug}`}
             categories={fields.categories.map(
-              (portCategory) =>
-                categories.find(({ key }) => key == portCategory) as Category,
+              (portCategory) => categories.find(({ key }) => key == portCategory) as Category,
             )}
             color={fields.color}
           />

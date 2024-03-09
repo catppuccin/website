@@ -61,12 +61,4 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
   </body>
 </html>
 
-{
-  isVercelProd && (
-    <script
-      defer
-      data-domain="catppuccin.com"
-      src="https://p.catppuccin.com/js/script.js"
-    />
-  )
-}
+{isVercelProd && <script defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}

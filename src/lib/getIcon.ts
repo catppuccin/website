@@ -1,8 +1,8 @@
 import * as Icons from "simple-icons";
 import { parse } from "yaml";
-const rawPorts = await fetch(
-  "https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml",
-).then((r) => r.text());
+const rawPorts = await fetch("https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml").then(
+  (r) => r.text(),
+);
 const ports = parse(rawPorts).ports as Record<string, Port>;
 
 export function getIcon(slug: string) {
@@ -18,9 +18,7 @@ export function getIcon(slug: string) {
     const si = Icons[siKey as keyof typeof Icons];
 
     if (!si) {
-      throw new TypeError(
-        `Icon did not exist for port: ${JSON.stringify(port, undefined, 2)}`,
-      );
+      throw new TypeError(`Icon did not exist for port: ${JSON.stringify(port, undefined, 2)}`);
     }
 
     return {

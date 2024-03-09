@@ -78,10 +78,7 @@ const calloutVariants: {
 };
 ---
 
-<div
-  class="annotation"
-  style={`--callout-color: var(--${calloutVariants[type].color})`}
->
+<div class="annotation" style={`--callout-color: var(--${calloutVariants[type].color})`}>
   <div class="annotation-title">
     <PhosphorIcon icon={calloutVariants[type].icon} />
     {title ? title : calloutVariants[type].title}
@@ -109,11 +106,7 @@ const calloutVariants: {
 
       @include utils.containerPadding(xs);
 
-      background-color: color-mix(
-        in srgb,
-        var(--base),
-        var(--callout-color) 15%
-      );
+      background-color: color-mix(in srgb, var(--base), var(--callout-color) 15%);
 
       font-size: 80%;
       font-weight: 600;
