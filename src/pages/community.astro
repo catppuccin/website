@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 
 import PageIntro from "../components/PageIntro.astro";
 import Callout from "../components/Callout.astro";
-import GitHubProfiles from "../components/GitHubProfiles.astro";
+import GitHubUsers from "../components/lists/GitHubUsers.astro";
 import Link from "../components/Link.astro";
 ---
 
@@ -13,62 +13,66 @@ import Link from "../components/Link.astro";
       Catppuccin is not led by one person, 4 main teams are responsible for various different aspects of the project.
     </p>
     <p>
-      And of course... you! Whether you have raised a bug report, contributed via a pull request or even maintain your
-      own port, the community is at the heart and soul of Catppuccin.
+      <strong>And of course you!</strong> Whether you have raised a bug report, contributed via a pull request or even maintain
+      your own port, the community is at the heart and soul of Catppuccin.
     </p>
   </PageIntro>
 
   <section>
-    <h2>Core</h2>
+    <h2>Teams</h2>
+
+    <h3>Core</h3>
     <p>
       Owners of the GitHub organisation. <strong>Responsible for org-wide matters.</strong>
     </p>
-    <GitHubProfiles
-      people={[
-        { name: "pocco81", displayName: "Pocco" },
-        { name: "andreasgrafen", displayName: "Lemon" },
-        { name: "sgoudham", displayName: "Hammy" },
+    <GitHubUsers
+      users={[
+        { userName: "pocco81", displayName: "Pocco" },
+        { userName: "andreasgrafen", displayName: "Lemon" },
+        { userName: "sgoudham", displayName: "Hammy" },
       ]}
     />
-    <h2>Staff</h2>
+
+    <h3>Staff</h3>
     <p>
-      Maintainers of all GitHub repositories. <strong
-        >Responsible for assisting core maintainers in their activities.</strong
-      >
+      Maintainers of all GitHub repositories. <strong>Responsible for assisting core maintainers in their activities.</strong>
     </p>
-    <GitHubProfiles
-      people={[
-        { name: "DakshG07", displayName: "Dukk" },
-        { name: "ghostx31", displayName: "Spooky" },
-        { name: "taka0o", displayName: "Taka" },
-        { name: "isabelincorp", displayName: "Isabel" },
-        { name: "backwardspy", displayName: "backwardspy" },
+    <GitHubUsers
+      users={[
+        { userName: "DakshG07", displayName: "Dukk" },
+        { userName: "ghostx31", displayName: "Spooky" },
+        { userName: "taka0o", displayName: "Taka" },
+        { userName: "isabelincorp", displayName: "Isabel" },
+        { userName: "backwardspy", displayName: "backwardspy" },
       ]}
     />
-    <h2>Userstyles Staff</h2>
+
+    <h3>Userstyles Staff</h3>
     <p>
       Overseers of all userstyles in <Link href="https://github.com/catppuccin/userstyles" external
         >catppuccin/userstyles</Link
       >.
       <strong>Responsible for all matters regarding userstyles.</strong>
     </p>
-    <GitHubProfiles people={[{ name: "isabelroses", displayName: "Bell" }]} />
-    <h2>Moderator</h2>
+    <GitHubUsers users={[{ userName: "isabelroses", displayName: "Bell" }]} />
+
+    <h3>Moderator</h3>
     <p>
       Moderators of the Discord server.
       <strong>Responsible for moderating the community.</strong>
     </p>
-    <GitHubProfiles
-      people={[
-        { name: "nullishamy", displayName: "Amy" },
-        { name: "nyxkrage", displayName: "Nyx" },
+    <GitHubUsers
+      users={[
+        { userName: "nullishamy", displayName: "Amy" },
+        { userName: "nyxkrage", displayName: "Nyx" },
       ]}
     />
-    <section>
-      <h2>Maintainers</h2>
-      <p>GitHub maintainers of ports.</p>
-      <Callout type="info"> Display Coming Soon™ </Callout>
-    </section>
+  </section>
+
+  <section>
+    <h2>Maintainers</h2>
+    <p>GitHub maintainers of ports.</p>
+    <Callout type="info"> Display Coming Soon™ </Callout>
   </section>
 </Layout>
 
