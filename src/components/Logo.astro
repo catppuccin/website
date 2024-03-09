@@ -1,10 +1,11 @@
 ---
+import type { ColorName } from "@catppuccin/palette";
 type logoVariant = "text" | "icon";
 
 interface Props {
   type: logoVariant;
   height?: number;
-  color?: accent;
+  color?: ColorName;
 }
 
 const { type, height = 2, color } = Astro.props;

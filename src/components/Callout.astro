@@ -8,13 +8,15 @@ interface Props {
 
 const { type = "note", title } = Astro.props;
 
-const calloutVariants: {
+export type Callout = {
   [key: string]: {
     icon: string;
     color: string;
     title: string;
   };
-} = {
+};
+
+const calloutVariants: Callout = {
   note: {
     title: "Note",
     color: "blue",

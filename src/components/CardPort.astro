@@ -1,4 +1,5 @@
 ---
+import type { ColorName } from "@catppuccin/palette";
 import Icon from "./IconPort.astro";
 import PillList from "./ListPills.astro";
 
@@ -6,7 +7,7 @@ interface Props {
   title: string;
   link: string;
   categories: Category[];
-  color?: string;
+  color?: ColorName;
 }
 
 const { title, link, categories, color } = Astro.props;

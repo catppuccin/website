@@ -1,14 +1,41 @@
 ---
+import type { ColorName } from "@catppuccin/palette";
+
 import Layout from "../layouts/Layout.astro";
 
 import PageIntro from "../components/PageIntro.astro";
 import PortCard from "../components/CardPort.astro";
 
-import { CatppuccinLinks as links } from "../contents/CatppuccinLinks";
+interface Category {
+  key: string;
+  name: string;
+  description: string;
+  emoji: string;
+}
+
+type Platform = "android" | "windows" | "ios" | "linux" | "macos";
+
+interface Link {
+  name: string;
+  color: string;
+  icon: string;
+  url: string;
+}
+
+interface Port {
+  categories: string[];
+  name: string;
+  platform: Platform[];
+
+  color?: ColorName;
+  icon?: string;
+  alias?: string;
+  url?: string;
+  links?: Link[];
+  upstreamed?: boolean;
+}
 
 import { parse } from "yaml";
-import { isObjectLiteralExpression } from "typescript";
-// const portsYAML = await fetch("https://unseen.ninja/ctp/ports.yml").then((r) => r.text());
 const portsYAML = await fetch("https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml").then(
   (r) => r.text(),
 );

@@ -1,7 +1,9 @@
 ---
+import type { ColorName } from "@catppuccin/palette";
+
 interface Props {
   list: string[];
-  color?: string;
+  color?: ColorName;
 }
 
 const { list } = Astro.props;

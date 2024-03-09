@@ -1,9 +1,10 @@
 ---
+import type { ColorName } from "@catppuccin/palette";
 import { getIcon } from "../lib/getIcon";
 
 interface Props {
   port: string;
-  color: string | undefined;
+  color: ColorName | undefined;
   height?: number;
 }
 
