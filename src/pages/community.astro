@@ -1,0 +1,84 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import PageIntro from "../components/PageIntro.astro";
+import Callout from "../components/Callout.astro";
+import GitHubProfiles from "../components/GitHubProfiles.astro";
+import Link from "../components/Link.astro";
+---
+
+<Layout title="Community • Catppuccin" description="">
+  <PageIntro title="Community">
+    <p>
+      Catppuccin is not led by one person, 4 main teams are responsible for
+      various different aspects of the project.
+    </p>
+    <p>
+      And of course... you! Whether you have raised a bug report, contributed
+      via a pull request or even maintain your own port, the community is at the
+      heart and soul of Catppuccin.
+    </p>
+  </PageIntro>
+
+  <section>
+    <h2>Core</h2>
+    <p>
+      Owners of the GitHub organisation. <strong
+        >Responsible for org-wide matters.</strong
+      >
+    </p>
+    <GitHubProfiles
+      people={[
+        { name: "pocco81", displayName: "Pocco" },
+        { name: "andreasgrafen", displayName: "Lemon" },
+        { name: "sgoudham", displayName: "Hammy" },
+      ]}
+    />
+    <h2>Staff</h2>
+    <p>
+      Maintainers of all GitHub repositories. <strong
+        >Responsible for assisting core maintainers in their activities.</strong
+      >
+    </p>
+    <GitHubProfiles
+      people={[
+        { name: "DakshG07", displayName: "Dukk" },
+        { name: "ghostx31", displayName: "Spooky" },
+        { name: "taka0o", displayName: "Taka" },
+        { name: "isabelincorp", displayName: "Isabel" },
+        { name: "backwardspy", displayName: "backwardspy" },
+      ]}
+    />
+    <h2>Userstyles Staff</h2>
+    <p>
+      Overseers of all userstyles in <Link
+        href="https://github.com/catppuccin/userstyles"
+        external>catppuccin/userstyles</Link
+      >.
+      <strong>Responsible for all matters regarding userstyles.</strong>
+    </p>
+    <GitHubProfiles people={[{ name: "isabelroses", displayName: "Bell" }]} />
+    <h2>Moderator</h2>
+    <p>
+      Moderators of the Discord server.
+      <strong>Responsible for moderating the community.</strong>
+    </p>
+    <GitHubProfiles
+      people={[
+        { name: "nullishamy", displayName: "Amy" },
+        { name: "nyxkrage", displayName: "Nyx" },
+      ]}
+    />
+    <section>
+      <h2>Maintainers</h2>
+      <p>GitHub maintainers of ports.</p>
+      <Callout type="info"> Display Coming Soon™ </Callout>
+    </section>
+  </section>
+</Layout>
+
+<style lang="scss">
+  :root {
+    --accent-color: var(--green);
+  }
+</style>
