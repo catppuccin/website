@@ -11,6 +11,9 @@
     "astro": "astro",
     "prepare": "husky"
   },
+  "lint-staged": {
+    "src/*": "bun prettier --plugin=prettier-plugin-astro . --write"
+  },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
     "@catppuccin/palette": "^1.1.0",
@@ -22,6 +25,7 @@
   "devDependencies": {
     "@rollup/plugin-yaml": "^4.1.2",
     "husky": "latest",
+    "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
     "sass": "^1.70.0"
