@@ -17,7 +17,7 @@ const { title, link, categories, color } = Astro.props;
 
 <a href={link} class="port-card">
   <div class="port-header">
-    <h4 class="port-name">{title}</h4>
+    <p class="port-name">{title}</p>
     <div class="port-icon"><Icon port={title} color={color} /></div>
   </div>
 
@@ -28,10 +28,8 @@ const { title, link, categories, color } = Astro.props;
   @use "../../styles/utils";
 
   .port-card {
-    display: flex;
-    flex-direction: column;
+    @include utils.flex($direction: column, $gap: var(--space-sm));
     justify-content: space-between;
-    gap: var(--space-sm);
 
     @include utils.containerPadding();
 
@@ -56,14 +54,13 @@ const { title, link, categories, color } = Astro.props;
     }
 
     figure,
-    h4 {
+    p {
       margin: 0;
       padding: 0;
     }
 
     .port-header {
-      display: flex;
-      flex-direction: row;
+      @include utils.flex($gap: var(--space-sm));
       justify-content: space-between;
     }
 

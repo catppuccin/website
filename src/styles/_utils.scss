@@ -22,9 +22,9 @@
   }
 }
 
-@mixin flexRow($gap: var(--space-md)) {
+@mixin flex($direction: row, $gap: var(--space-md)) {
   display: flex;
-  flex-direction: row;
+  flex-direction: $direction;
   flex-wrap: wrap;
   gap: $gap;
 }

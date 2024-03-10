@@ -31,7 +31,7 @@ const { users } = Astro.props;
   @use "../../styles/utils";
 
   .user-list {
-    @include utils.flexRow(var(--space-md));
+    @include utils.flex($gap: var(--space-md));
 
     margin: 0;
     padding: 0;

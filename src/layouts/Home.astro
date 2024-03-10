@@ -68,6 +68,9 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
 {isVercelProd && <script defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
 
 <style lang="scss" is:global>
+
+  @use "../styles/utils";
+
   #hero {
     background-color: color-mix(in srgb, var(--base), var(--mauve) 10%);
     background-image: linear-gradient(
@@ -87,9 +90,8 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
   }
 
   .hero-logo {
-    display: flex;
+    @include utils.flex($gap: var(--space-sm));
     align-items: center;
-    gap: var(--space-sm);
 
     svg + svg {
       margin-block-start: 6px;
@@ -97,10 +99,9 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
   }
 
   .hero-grid {
-    display: flex;
-    flex-direction: column;
+    @include utils.flex($direction: column, $gap: var(--space-lg));
     justify-content: space-between;
-    gap: var(--space-lg);
+    flex-wrap: nowrap;
 
     min-height: 100svh;
 
@@ -122,11 +123,9 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
   }
 
   .hero-content {
-    display: flex;
-    flex-direction: column;
+    @include utils.flex($direction: column, $gap: var(--space-md));
     justify-content: center;
     align-items: flex-start;
-    gap: var(--space-md);
 
     line-height: 1.1;
 

@@ -6,22 +6,24 @@ import { footer as navLinkList } from "../../contents/Navigations";
 ---
 
 <footer>
-    {
-      navLinkList.map(({ categoryTitle, categoryLinks }) => (
-        <nav>
-          <p class="footer-nav-title"><strong>{categoryTitle}</strong></p>
-          <ul>
-            {categoryLinks.map(({ title, target, external }) => (
-              <li>
-                <Link href={target} {external}>
-                  {title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      ))
-    }
+  {
+    navLinkList.map(({ categoryTitle, categoryLinks }) => (
+      <nav>
+        <p class="footer-nav-title">
+          <strong>{categoryTitle}</strong>
+        </p>
+        <ul>
+          {categoryLinks.map(({ title, target, external }) => (
+            <li>
+              <Link href={target} {external}>
+                {title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    ))
+  }
 
   <div class="rights-notice">
     <Logo type="text" height={1.6} />
@@ -46,16 +48,14 @@ import { footer as navLinkList } from "../../contents/Navigations";
 </footer>
 
 <style lang="scss">
+  @use "../../styles/utils";
+
   footer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    @include utils.flex($gap: var(--space-md));
     justify-content: space-between;
-    gap: var(--space-md);
 
     font-size: 1.6rem;
     color: var(--subtext0);
-
   }
 
   nav ul {

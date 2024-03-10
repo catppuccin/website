@@ -17,9 +17,7 @@ const { list } = Astro.props;
   @use "../../styles/utils";
 
   .pill-list {
-    display: flex;
-    gap: var(--space-xs);
-    flex-wrap: wrap;
+    @include utils.flex($gap: var(--space-xs));
 
     margin: 0;
     padding: 0;
