@@ -1,9 +1,10 @@
 ---
+import { ports, categories, type Category } from "../lib/getPorts";
+
 import Layout from "../layouts/Layout.astro";
 
 import PageIntro from "../components/PageIntro.astro";
 import PortCard from "../components/cards/Port.astro";
-import { ports, categories, type Category } from "../lib/getPorts";
 import Callout from "../components/cards/Callout.astro";
 ---
 
@@ -35,13 +36,13 @@ import Callout from "../components/cards/Callout.astro";
 </Layout>
 
 <style lang="scss" is:global>
+  @use "../styles/utils";
+
   :root {
     --accent-color: var(--peach);
   }
 
   .port-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--space-md);
+    @include utils.grid(250px, var(--space-md));
   }
 </style>

@@ -28,10 +28,10 @@ const { users } = Astro.props;
 </ul>
 
 <style lang="scss">
+  @use "../../styles/utils";
+
   .user-list {
-    display: flex;
-    gap: var(--space-md);
-    flex-wrap: wrap;
+    @include utils.flexRow(var(--space-md));
 
     margin: 0;
     padding: 0;

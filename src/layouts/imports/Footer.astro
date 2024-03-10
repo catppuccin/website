@@ -1,27 +1,27 @@
 ---
-import Logo from "../../components/Logo.astro";
+import Logo from "../../components/icons/Logo.astro";
 import Link from "../../components/Link.astro";
 
 import { footer as navLinkList } from "../../contents/Navigations";
 ---
 
 <footer>
-  <nav>
     {
       navLinkList.map(({ categoryTitle, categoryLinks }) => (
-        <ul>
-          <h4>{categoryTitle}</h4>
-          {categoryLinks.map(({ title, target, external }) => (
-            <li>
-              <Link href={target} {external}>
-                {title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <nav>
+          <p class="footer-nav-title"><strong>{categoryTitle}</strong></p>
+          <ul>
+            {categoryLinks.map(({ title, target, external }) => (
+              <li>
+                <Link href={target} {external}>
+                  {title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       ))
     }
-  </nav>
 
   <div class="rights-notice">
     <Logo type="text" height={1.6} />
@@ -48,35 +48,20 @@ import { footer as navLinkList } from "../../contents/Navigations";
 <style lang="scss">
   footer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: var(--space-md);
-    container-type: inline-size;
 
     font-size: 1.6rem;
     color: var(--subtext0);
 
-    @media (min-width: 800px) {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
   }
 
-  nav {
-    display: grid;
-    gap: var(--space-md);
-    grid-template: auto / repeat(auto-fit, minmax(calc(40% - var(--space-lg)), 1fr));
-
-    min-width: 50cqw;
-
-    h4,
-    ul {
-      margin: 0 0 var(--space-xs) 0;
-      padding: 0;
-    }
-    ul {
-      list-style: none;
-    }
+  nav ul {
+    margin: 0 0 var(--space-xs) 0;
+    padding: 0;
+    list-style: none;
   }
 
   .rights-notice {

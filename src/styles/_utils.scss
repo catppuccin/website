@@ -21,3 +21,17 @@
     padding: var(--space-xl) var(--space-xxl);
   }
 }
+
+@mixin flexRow($gap: var(--space-md)) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: $gap;
+}
+
+@mixin grid($column: 250px, $gap: var(--space-md)) {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(auto-fit, minmax($column, 1fr));
+  gap: $gap;
+}
