@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import PageIntro from "../components/PageIntro.astro";
 import Callout from "../components/cards/Callout.astro";
 import GitHubUsers from "../components/lists/GitHubUsers.astro";
+import TeamName from "../components/TeamName.astro";
 import Link from "../components/Link.astro";
 ---
 
@@ -21,7 +22,7 @@ import Link from "../components/Link.astro";
   <section>
     <h2>Teams</h2>
 
-    <h3>Core</h3>
+    <h3><TeamName team="core">Core</TeamName></h3>
     <p>
       Owners of the GitHub organisation. <strong>Responsible for org-wide matters.</strong>
     </p>
@@ -33,7 +34,7 @@ import Link from "../components/Link.astro";
       ]}
     />
 
-    <h3>Staff</h3>
+    <h3><TeamName team="staff">Staff</TeamName></h3>
     <p>
       Maintainers of all GitHub repositories.
       <strong>Responsible for assisting core maintainers in their activities.</strong>
@@ -48,7 +49,7 @@ import Link from "../components/Link.astro";
       ]}
     />
 
-    <h3>Userstyles Staff</h3>
+    <h3><TeamName team="userstyles">userstyles Staff</TeamName></h3>
     <p>
       Overseers of all userstyles in
       <Link href="https://github.com/catppuccin/userstyles" external>catppuccin/userstyles</Link>.
@@ -56,7 +57,7 @@ import Link from "../components/Link.astro";
     </p>
     <GitHubUsers users={[{ userName: "isabelroses", displayName: "Bell" }]} />
 
-    <h3>Moderator</h3>
+    <h3><TeamName team="mod">Moderator</TeamName></h3>
     <p>
       Moderators of the Discord server.
       <strong>Responsible for moderating the community.</strong>
@@ -80,4 +81,5 @@ import Link from "../components/Link.astro";
   :root {
     --accent-color: var(--green);
   }
+  h3 { margin-top: var(--space-sm); }
 </style>

@@ -14,18 +14,19 @@ import { flavorEntries } from "@catppuccin/palette";
 <Layout title="Palette • Catppuccin" description="All the ins and outs of our lovely palette">
   <PageIntro title="Palette">
     <p>
-      Catppuccin consists of 4 beautiful pastel color palettes, named <strong>flavors</strong>. We offer three dark
-      themes and one light theme, all offering a cozy feeling with color-rich accents:
+      Catppuccin consists of 4 beautiful pastel color palettes, named <strong>flavors</strong>. The theme comes in one light and three dark variants:
       <ul>
         <li>
-          <FlavorName flavor="mocha" />: Pleasant vibrant colors with striking contrast on a dark background.
-          <strong>(Darkest)</strong>
+          <FlavorName flavor="mocha" />: The Original — Our <strong>darkest</strong> variant offering a cozy feeling with color-rich accents.
         </li>
-        <li><FlavorName flavor="macchiato" />: Pleasant bright colors with medium contrast on a lighter background.</li>
-        <li><FlavorName flavor="frappe" />: Subdued colors with good contrast on an understated background.</li>
         <li>
-          <FlavorName flavor="latte" />: A bright and shining counterpart to the essence of our dark themes.
-          <strong>(Lightest)</strong>
+          <FlavorName flavor="macchiato" />: Slightly earthier tones with medium contrast.
+        </li>
+        <li>
+          <FlavorName flavor="frappe" />: A less vibrant alternative using subdued colors for a muted aesthetic.
+        </li>
+        <li>
+          <FlavorName flavor="latte" />: Our <strong>lightest</strong> theme harmoniously inverting the essence of Catppuccin's dark themes.
         </li>
       </ul>
       <p>
@@ -38,7 +39,7 @@ import { flavorEntries } from "@catppuccin/palette";
 
     <section class="flavor-grid">
       {
-        flavorEntries.map(([flavorName, flavor]) => (
+        flavorEntries.reverse().map(([flavorName, flavor]) => (
           <div class="flavor">
             <details open>
               <summary>
@@ -86,8 +87,17 @@ import { flavorEntries } from "@catppuccin/palette";
       element.addEventListener("click", () => {
         navigator.clipboard.writeText(element.dataset.value);
 
+        const icon = element.querySelector('svg > path')
+        const iconCopy = "M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32Zm-8,128H176V88a8,8,0,0,0-8-8H96V48H208Z"
+        const iconTick = "M243.33,90.91,114.92,219.31a16,16,0,0,1-22.63,0l-71.62-72a16,16,0,0,1,0-22.61l24-24a16,16,0,0,1,22.57-.06l36.64,35.27.11.11h0l92.73-91.37a16,16,0,0,1,22.58,0l24,23.56A16,16,0,0,1,243.33,90.91Z"
+
         element.classList.add("copy-success");
-        return setTimeout(() => element.classList.remove("copy-success"), 1500);
+        icon.setAttribute('d', iconTick)
+
+        return setTimeout(() => {
+          element.classList.remove("copy-success")
+          icon.setAttribute('d', iconCopy)
+        }, 1500);
       }),
     );
   </script>
@@ -97,12 +107,6 @@ import { flavorEntries } from "@catppuccin/palette";
 
     :root {
       --accent-color: var(--mauve);
-    }
-
-    @keyframes copyFadeOut {
-      to {
-        color: inherit;
-      }
     }
 
     .flavor {
@@ -167,9 +171,6 @@ import { flavorEntries } from "@catppuccin/palette";
 
     .copy-success {
       color: var(--green);
-
-      animation: copyFadeOut 500ms forwards;
-      animation-delay: 750ms;
     }
   </style>
 </Layout>
