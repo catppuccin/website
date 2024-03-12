@@ -22,6 +22,14 @@ body {
   background-color: color-mix(in srgb, var(--selection-color), transparent 70%);
 }
 
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+}
+
 b {
   font-weight: 600;
 }
