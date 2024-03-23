@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-yaml": "^4.1.2",
+    "astro-font": "^0.0.78",
     "husky": "latest",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",

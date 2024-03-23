@@ -20,7 +20,6 @@ const { title, link, categories, color } = Astro.props;
     <p class="port-name">{title}</p>
     <div class="port-icon"><Icon port={title} color={color} /></div>
   </div>
-
   <PillList list={categories.map((category: Category) => `${category.name}`)} />
 </a>
 
@@ -67,7 +66,7 @@ const { title, link, categories, color } = Astro.props;
     .port-name {
       color: var(--text);
       font-size: 2rem;
-      font-weight: 600;
+      font-weight: 700;
     }
   }
 </style>

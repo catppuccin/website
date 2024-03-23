@@ -1,5 +1,6 @@
 ---
 import "../styles/global.scss";
+import { AstroFont } from "astro-font";
 
 import Header from "./imports/Header.astro";
 import Footer from "./imports/Footer.astro";
@@ -38,6 +39,40 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
 
     <title>{title}</title>
+
+    <AstroFont
+      config={[
+        {
+          name: "Inter",
+          src: [
+            {
+              style: 'normal',
+              weight: '400',
+              path: './public/inter.woff2'
+            },
+            {
+              style: 'medium',
+              weight: '500',
+              path: './public/inter.woff2'
+            },
+            {
+              style: 'bold',
+              weight: '700',
+              path: './public/inter.woff2'
+            },
+            {
+              style: 'black',
+              weight: '900',
+              path: './public/inter.woff2'
+            },
+          ],
+          preload: false,
+          display: "swap",
+          selector: "body",
+          fallback: "sans-serif",
+        },
+      ]}
+    />
   </head>
   <body>
     <div id="toasts"></div>
