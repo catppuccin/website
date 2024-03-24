@@ -5,5 +5,5 @@ export function toRgb(rgb: ColorFormat["rgb"]) {
 }
 
 export function toHsl(hsl: ColorFormat["hsl"]) {
-  return `hsl(${Math.floor(hsl.h)}, ${Math.floor(hsl.s * 100)}, ${Math.floor(hsl.l * 100)})`;
+  return `hsl(${Math.round(hsl.h)}deg, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%)`;
 }
