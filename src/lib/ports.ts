@@ -21,8 +21,7 @@ export type Port = {
   categories: string[];
   name: string;
   platform: Platform[];
-
-  color?: ColorName;
+  color: ColorName;
   icon?: string;
   alias?: string;
   url?: string;
@@ -30,11 +29,30 @@ export type Port = {
   upstreamed?: boolean;
 };
 
-export const yml = (await fetch("https://github.com/catppuccin/catppuccin/raw/main/resources/ports.yml")
+export type Userstyle = {
+  name: string;
+  categories: string[];
+  color: ColorName;
+  icon?: string;
+  readme: Record<string, unknown>;
+};
+
+export const portsYml = (await fetch("https://github.com/catppuccin/catppuccin/raw/main/resources/ports.yml")
   .then((r) => r.text())
   .then((t) => parse(t))) as {
   ports: Record<string, Port>;
   categories: Array<Category>;
 };
 
-export const { ports, categories } = yml;
+export const userstylesYml = (await fetch(
+  "https://github.com/catppuccin/userstyles/raw/main/scripts/userstyles.yml?q=100",
+)
+  .then((r) => r.text())
+  .then((t) => parse(t))) as {
+  collaborators: Array<{ url: string; name?: string }>;
+  userstyles: Record<string, Port>;
+};
+
+export const ports = { ...portsYml.ports, ...userstylesYml.userstyles } as Record<string, Port | Userstyle>;
+
+export const { categories } = portsYml;

@@ -61,6 +61,7 @@ const { title, link, categories, color } = Astro.props;
 
     .port-header {
       @include utils.flex($gap: var(--space-sm));
+      flex-wrap: nowrap;
       justify-content: space-between;
     }
 
