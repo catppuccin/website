@@ -30,9 +30,11 @@ export type Port = {
   upstreamed?: boolean;
 };
 
-const portsYAML = await fetch("https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.yml").then(
-  (r) => r.text(),
-);
+export const yml = (await fetch("https://github.com/catppuccin/catppuccin/raw/main/resources/ports.yml")
+  .then((r) => r.text())
+  .then((t) => parse(t))) as {
+  ports: Record<string, Port>;
+  categories: Array<Category>;
+};
 
-export const ports = parse(portsYAML).ports as Record<string, Port>;
-export const categories = parse(portsYAML).categories as Array<Category>;
+export const { ports, categories } = yml;

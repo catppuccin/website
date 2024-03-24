@@ -1,17 +1,15 @@
-import * as Icons from "simple-icons";
-import { ports } from "./getPorts";
+import * as icons from "simple-icons";
+import { ports } from "./ports";
 
 export function getIcon(slug: string) {
-  const portEntry = Object.entries(ports).find(([, v]) => v.name == slug);
-  if (!portEntry) {
+  const port = Object.values(ports).find(({ name }) => name === slug);
+  if (!port) {
     throw new TypeError(`port '${slug}' not found`);
   }
 
-  const [, port] = portEntry;
-
   if (port.icon && !port.icon.endsWith(".svg")) {
     const siKey = `si${port.icon[0].toUpperCase()}${port.icon.substring(1)}`;
-    const si = Icons[siKey as keyof typeof Icons];
+    const si = icons[siKey as keyof typeof icons];
 
     if (!si) {
       throw new TypeError(`Icon did not exist for port: ${JSON.stringify(port, undefined, 2)}`);

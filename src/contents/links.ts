@@ -1,4 +1,4 @@
-export const CatppuccinLinks = {
+export const links = {
   github: "https://github.com/catppuccin",
   opencollective: "https://opencollective.com/catppuccin",
   discord: "https://discord.com/servers/catppuccin-907385605422448742",
