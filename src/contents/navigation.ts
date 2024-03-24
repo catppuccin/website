@@ -1,4 +1,4 @@
-import { CatppuccinLinks as links } from "./CatppuccinLinks";
+import { links } from "./links";
 
 export const header = [
   {
