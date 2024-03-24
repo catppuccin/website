@@ -31,6 +31,10 @@ table {
 
   tr th:not(:first-child),
   tr td:not(:first-child) {
-    text-align: center;
+    text-align: right;
+  }
+
+  tbody td {
+    padding-right: 0;
   }
 }
