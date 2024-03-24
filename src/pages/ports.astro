@@ -20,16 +20,24 @@ import Callout from "../components/cards/Callout.astro";
   <section class="port-list">
     <div class="port-grid">
       {
-        Object.entries(ports).map(([slug, fields]) => (
-          <PortCard
-            title={fields.name}
-            link={fields.url || `https://github.com/catppuccin/${fields.alias || slug}`}
-            categories={fields.categories.map(
-              (portCategory) => categories.find(({ key }) => key == portCategory) as Category,
-            )}
-            color={fields.color}
-          />
-        ))
+        Object.entries(ports)
+          .sort(([a], [b]) => (a.toLowerCase() < b.toLowerCase() ? -1 : a.toLowerCase() > b.toLowerCase() ? 1 : 0))
+          .map(([slug, fields]) => (
+            <PortCard
+              title={fields.name}
+              link={
+                "url" in fields
+                  ? (fields.url as string)
+                  : "readme" in fields
+                    ? `https://github.com/catppuccin/userstyles/blob/main/styles/${slug}`
+                    : `https://github.com/catppuccin/${fields.alias || slug}`
+              }
+              categories={fields.categories.map(
+                (portCategory) => categories.find(({ key }) => key == portCategory) as Category,
+              )}
+              color={fields.color}
+            />
+          ))
       }
     </div>
   </section>
