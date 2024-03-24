@@ -8,7 +8,10 @@ import PortCard from "../components/cards/Port.astro";
 import Callout from "../components/cards/Callout.astro";
 ---
 
-<Layout title="Ports • Catppuccin" description={`All Catppuccin ports.`}>
+<Layout
+  title="Ports • Catppuccin"
+  description="Explore Catppuccin's extensive range of ports. From applications
+  and tools to websites, we have a port for just about anything!">
   <PageIntro title="Ports">
     <p>
       Catppuccin offers ports for all sorts of different applications, tools, websites and just about anything that
@@ -33,7 +36,7 @@ import Callout from "../components/cards/Callout.astro";
                     : `https://github.com/catppuccin/${fields.alias || slug}`
               }
               categories={fields.categories.map(
-                (portCategory) => categories.find(({ key }) => key == portCategory) as Category,
+                (portCategory) => categories.find(({ key }) => key == portCategory) as Category
               )}
               color={fields.color}
             />

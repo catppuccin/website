@@ -8,7 +8,11 @@ import TeamName from "../components/TeamName.astro";
 import Link from "../components/Link.astro";
 ---
 
-<Layout title="Community • Catppuccin" description="">
+<Layout
+  title="Community • Catppuccin"
+  description="Join the Catppuccin community! Learn about our teams, their
+  roles, and how every contributor, including you, is at the heart of our
+  project.">
   <PageIntro title="Community">
     <p>
       Catppuccin is not led by one person, 4 main teams are responsible for various different aspects of the project.
@@ -81,5 +85,7 @@ import Link from "../components/Link.astro";
   :root {
     --accent-color: var(--green);
   }
-  h3 { margin-top: var(--space-sm); }
+  h3 {
+    margin-top: var(--space-sm);
+  }
 </style>
