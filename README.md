@@ -20,7 +20,7 @@
 1. Open your browser of choice
 2. Put cursor in address bar
 3. Type [catppuccin.com](https://catppuccin.com)
-4. Press enter 😁
+4. Press enter :D
 
 ## Development
 
@@ -39,5 +39,5 @@ bun dev
 	<a href="https://github.com/catppuccin/website/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a>
 </p>
 <p align="center">
-	<a href="https://vercel.com?utm_source=catppuccin&utm_campaign=oss"><img src="https://raw.githubusercontent.com/catppuccin/website/main/powered-by-vercel.svg?sanitize=true"/></a>
+	<a href="https://vercel.com?utm_source=catppuccin&utm_campaign=oss"><img src=".repo/vercel.svg"/></a>
 </p>
