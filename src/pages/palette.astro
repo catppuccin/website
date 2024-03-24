@@ -43,7 +43,7 @@ import { toRgb, toHsl } from "../lib/colorFormat";
 
     <section class="flavor-grid">
       {
-        flavorEntries.reverse().map(([flavorName, flavor]) => (
+        flavorEntries.map(([flavorName, flavor]) => (
           <div class="flavor">
             <details open>
               <summary>
