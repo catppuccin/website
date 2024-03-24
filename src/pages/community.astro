@@ -64,17 +64,17 @@ import Link from "../components/Link.astro";
       Moderators of the Discord server.
       <strong>Responsible for moderating the community.</strong>
     </p>
-    <GitHubUsers
-      users={[
-        { userName: "nyxkrage", displayName: "Nyx" },
-      ]}
-    />
+    <GitHubUsers users={[{ userName: "nyxkrage", displayName: "Nyx" }]} />
   </section>
 
   <section>
     <h2>Maintainers</h2>
     <p>GitHub maintainers of ports.</p>
-    <Callout type="info"> Display Coming Soon™ </Callout>
+    <Callout type="info">
+      Coming Soon™, waiting for
+      <Link href="https://github.com/catppuccin/catppuccin/pull/2315" external>catppuccin/catppuccin#2315</Link>
+      to be merged.
+    </Callout>
   </section>
 </Layout>
 
