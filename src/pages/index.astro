@@ -1,0 +1,47 @@
+---
+import Home from "../layouts/Home.astro";
+
+import Illustration from "../components/LaptopIllustration.astro";
+import PhosphorIcon from "../components/icons/Phosphor.astro";
+---
+
+<Home
+  title="Catppuccin"
+  description="A soothing pastel theme for the high-spirited! We are a community-driven color scheme, perfect for coding, designing, and more. Explore our color palettes, discover our wide range of ports, and view our vibrant community.">
+  <div slot="hero-content" class="hero-content">
+    <h1>Soothing pastel theme for the <nobr>high-spirited!</nobr></h1>
+    <p>A community-driven color scheme meant for coding, designing, and much more!</p>
+    <div class="btn-group">
+      <a href="/ports">
+        <button class="btn btn-has-icon btn-peach">
+          <PhosphorIcon icon="box" />
+          Discover Ports
+        </button>
+      </a>
+      <a href="/palette">
+        <button class="btn btn-has-icon btn-mauve">
+          <PhosphorIcon icon="palette" />
+          Explore Colors
+        </button>
+      </a>
+      <a href="/community">
+        <button class="btn btn-has-icon btn-green">
+          <PhosphorIcon icon="people" />
+          View Community
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <Illustration slot="hero-image" />
+</Home>
+
+<style lang="scss">
+  :root {
+    --accent-color: var(--rosewater);
+  }
+
+  h2 {
+    color: var(--accent-color);
+  }
+</style>

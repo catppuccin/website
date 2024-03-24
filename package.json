@@ -1,62 +1,34 @@
 {
-  "name": "catppuccin-website",
-  "description": "Soothing pastel website",
-  "license": "MIT",
-  "version": "0.1.0",
-  "private": true,
+  "name": "website",
+  "type": "module",
+  "version": "0.0.1",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "fmt": "prettier --plugin=prettier-plugin-astro . --write",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "check": "astro check",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "src/*": "bun prettier --plugin=prettier-plugin-astro . --write"
   },
   "dependencies": {
-    "@formkit/auto-animate": "1.0.0-beta.3",
-    "@octokit/graphql": "^5.0.1",
-    "@octokit/rest": "^19.0.4",
-    "next": "12.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-icons": "^4.4.0",
-    "rehype-external-links": "^2.0.1",
-    "rehype-highlight": "^5.0.2",
-    "rehype-sanitize": "^5.0.1",
-    "rehype-stringify": "^9.0.3",
-    "remark": "^14.0.2",
-    "remark-html": "^15.0.1",
-    "remark-parse": "^10.0.1",
-    "remark-rehype": "^10.1.0",
-    "unified": "^10.1.2",
-    "zod": "^3.18.0"
+    "@astrojs/check": "^0.4.1",
+    "@catppuccin/palette": "^1.1.0",
+    "astro": "^4.3.2",
+    "simple-icons": "^11.10.0",
+    "typescript": "^5.3.3",
+    "yaml": "^2.4.0"
   },
   "devDependencies": {
-    "@catppuccin/tailwindcss": "^0.1.0",
-    "@svgr/webpack": "^6.3.1",
-    "@tailwindcss/typography": "^0.5.4",
-    "@types/node": "18.7.14",
-    "@types/react": "18.0.18",
-    "@types/react-dom": "18.0.6",
-    "autoprefixer": "^10.4.8",
-    "eslint": "8.22.0",
-    "eslint-config-next": "12.2.5",
-    "postcss": "^8.4.16",
-    "prettier": "^2.7.1",
-    "tailwindcss": "^3.1.8",
-    "typescript": "4.8.2"
-  },
-  "ct3aMetadata": {
-    "initVersion": "5.6.0",
-    "next": "12.1.5",
-    "react": "18.0.0",
-    "react-dom": "18.0.0",
-    "react-icons": "^4.3.1",
-    "react-lazyload": "^3.2.0",
-    "react-markdown": "^8.0.3",
-    "react-syntax-highlighter": "^15.5.0",
-    "rehype-highlight": "^5.0.2",
-    "rehype-prism": "^2.1.3",
-    "rehype-raw": "^6.1.1",
-    "rehype-sanitize": "^5.0.1",
-    "remark-gfm": "^3.0.1"
+    "@rollup/plugin-yaml": "^4.1.2",
+    "husky": "latest",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
+    "sass": "^1.70.0"
   }
 }

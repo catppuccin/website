@@ -1,0 +1,37 @@
+@mixin containerPadding($size: md) {
+  @if $size == xxs {
+    padding: var(--space-xxs);
+  }
+  @if $size == xxs-y {
+    padding: var(--space-xxs) var(--space-xs);
+  }
+  @if $size == xs {
+    padding: var(--space-xs);
+  }
+  @if $size == xs-y {
+    padding: var(--space-xs) var(--space-md);
+  }
+  @if $size == md {
+    padding: var(--space-md);
+  }
+  @if $size == lg {
+    padding: var(--space-lg);
+  }
+  @if $size == xl {
+    padding: var(--space-xl) var(--space-xxl);
+  }
+}
+
+@mixin flex($direction: row, $gap: var(--space-md)) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: wrap;
+  gap: $gap;
+}
+
+@mixin grid($column: 250px, $gap: var(--space-md)) {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(auto-fit, minmax($column, 1fr));
+  gap: $gap;
+}

@@ -1,0 +1,107 @@
+@use "../styles/utils";
+
+@keyframes btnFadeOut {
+  to {
+    background-color: var(--surface0);
+
+    color: var(--text);
+  }
+}
+
+.btn-group {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.btn {
+  @include utils.containerPadding(xs-y);
+
+  border-radius: 9999px;
+  border: none;
+  background-color: var(--surface0);
+
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--text);
+
+  transition: all 350ms ease-in-out;
+  cursor: pointer;
+
+  &-small {
+    @include utils.containerPadding(xxs);
+
+    border-radius: var(--border-radius-normal);
+  }
+
+  &-transparent {
+    background-color: transparent;
+  }
+
+  &-transparent:hover,
+  &-transparent:focus {
+    background-color: color-mix(in srgb, transparent, var(--text) 10%);
+  }
+
+  &-has-icon {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  &-peach {
+    background-color: var(--peach);
+    background-image: linear-gradient(120deg, var(--peach), var(--red));
+    background-size: 150% 100%;
+    background-position: top left;
+
+    font-weight: 600;
+    color: var(--inverted-text);
+
+    &:hover {
+      background-position: top right;
+    }
+  }
+
+  &-mauve {
+    background-color: var(--mauve);
+    background-image: linear-gradient(120deg, var(--pink), var(--mauve));
+    background-size: 150% 100%;
+    background-position: top left;
+
+    font-weight: 600;
+    color: var(--inverted-text);
+
+    &:hover {
+      background-position: top right;
+    }
+  }
+
+  &-green {
+    background-color: var(--green);
+    background-image: linear-gradient(120deg, var(--teal), var(--green));
+    background-size: 150% 100%;
+    background-position: top left;
+
+    font-weight: 600;
+    color: var(--inverted-text);
+
+    &:hover {
+      background-position: top right;
+    }
+  }
+
+  &-success {
+    background-color: var(--green);
+
+    color: var(--inverted-text);
+
+    animation: btnFadeOut 350ms linear forwards;
+    animation-delay: 500ms;
+  }
+}
+
+.btn,
+.btn * {
+  transition: background-position 350ms ease-in-out;
+}

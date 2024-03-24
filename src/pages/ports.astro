@@ -1,0 +1,58 @@
+---
+import { ports, categories, type Category } from "../lib/ports";
+
+import Layout from "../layouts/Layout.astro";
+
+import PageIntro from "../components/PageIntro.astro";
+import PortCard from "../components/cards/Port.astro";
+import Callout from "../components/cards/Callout.astro";
+---
+
+<Layout
+  title="Ports • Catppuccin"
+  description="Explore Catppuccin's extensive range of ports. From applications and tools to websites, we have a port for just about anything!">
+  <PageIntro title="Ports">
+    <p>
+      Catppuccin offers ports for all sorts of different applications, tools, websites and just about anything that
+      comes to your mind!
+    </p>
+    <Callout type="info"> Search & Filters Coming Soon™</Callout>
+  </PageIntro>
+
+  <section class="port-list">
+    <div class="port-grid">
+      {
+        Object.entries(ports)
+          .sort(([a], [b]) => (a.toLowerCase() < b.toLowerCase() ? -1 : a.toLowerCase() > b.toLowerCase() ? 1 : 0))
+          .map(([slug, fields]) => (
+            <PortCard
+              title={fields.name}
+              link={
+                "url" in fields
+                  ? (fields.url as string)
+                  : "readme" in fields
+                    ? `https://github.com/catppuccin/userstyles/blob/main/styles/${slug}`
+                    : `https://github.com/catppuccin/${fields.alias || slug}`
+              }
+              categories={fields.categories.map(
+                (portCategory) => categories.find(({ key }) => key == portCategory) as Category
+              )}
+              color={fields.color}
+            />
+          ))
+      }
+    </div>
+  </section>
+</Layout>
+
+<style lang="scss" is:global>
+  @use "../styles/utils";
+
+  :root {
+    --accent-color: var(--peach);
+  }
+
+  .port-grid {
+    @include utils.grid($column: 250px, $gap: var(--space-md));
+  }
+</style>

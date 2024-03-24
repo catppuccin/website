@@ -1,0 +1,52 @@
+---
+import type { ColorName } from "@catppuccin/palette";
+
+import Link from "../Link.astro";
+
+interface Props {
+  userName: string;
+  displayName: string;
+  showAvatar?: boolean;
+  color?: ColorName;
+}
+
+const { userName, displayName, showAvatar, color } = Astro.props;
+---
+
+<div class="card-user" style={`--user-color: var(--${color})`}>
+  <Link href={`https://github.com/${userName}`} external>
+    {
+      showAvatar === true ? (
+        <>
+          <img
+            class="user-avatar"
+            src={`https://github.com/${userName}.png?size=128`}
+            alt={`${displayName}'s Avatar`}
+          />
+          <br />
+          <span class="user-name">{displayName}</span>
+        </>
+      ) : (
+        <span class="user-name">{displayName}</span>
+      )
+    }
+  </Link>
+</div>
+
+<style lang="scss">
+  @use "../../styles/utils";
+
+  .card-user {
+    --__user-color: var(--user-color, var(--mantle));
+
+    @include utils.containerPadding(md);
+    border-radius: var(--border-radius-large);
+    background-color: var(--mantle);
+    text-align: center;
+
+    img {
+      border-radius: 50%;
+      border: var(--space-xxs) solid var(--__user-color);
+    }
+  }
+</style>

@@ -1,0 +1,173 @@
+---
+import "../styles/global.scss";
+
+import Footer from "./imports/Footer.astro";
+
+import Logo from "../components/icons/Logo.astro";
+import AccentBar from "../components/AccentBar.astro";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const isVercelProd = import.meta.env.VERCEL_PROD;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+
+    <meta property="og:url" content="https://catppuccin.com" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta content="#CBA6F7" data-react-helmet="true" name="theme-color" />
+    <meta property="og:image" content="/embed.png" />
+
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <div id="hero">
+      <div class="content-wrapper no-padding hero-grid">
+        <div class="hero-content-wrapper">
+          <div class="hero-logo">
+            <Logo type="icon" height={4} />
+            <Logo type="text" color="mauve" height={3} />
+          </div>
+          <slot name="hero-content" />
+        </div>
+
+        <div class="hero-image">
+          <slot name="hero-image" />
+        </div>
+      </div>
+    </div>
+
+    <section class="footer-container">
+      <div class="content-wrapper no-padding">
+        <Footer />
+      </div>
+      <AccentBar />
+    </section>
+  </body>
+</html>
+
+{isVercelProd && <script defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
+
+<style lang="scss" is:global>
+
+  @use "../styles/utils";
+
+  #hero {
+    background-color: color-mix(in srgb, var(--base), var(--mauve) 10%);
+    background-image: linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--base), var(--peach) 5%),
+      color-mix(in srgb, var(--base), var(--mauve) 10%)
+    );
+
+    @media (prefers-color-scheme: dark) {
+      background-color: color-mix(in srgb, var(--base), var(--mantle) 30%);
+      background-image: none;
+    }
+
+    + .footer-container {
+      margin-block-start: 0;
+    }
+  }
+
+  .hero-logo {
+    @include utils.flex($gap: var(--space-sm));
+    align-items: center;
+
+    svg + svg {
+      margin-block-start: 6px;
+    }
+  }
+
+  .hero-grid {
+    @include utils.flex($direction: column, $gap: var(--space-lg));
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    min-height: 100svh;
+
+    @media (min-width: 800px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      padding-block: 0;
+    }
+  }
+
+  .hero-content-wrapper {
+    display: grid;
+    grid-template-rows: max-content auto;
+    gap: var(--space-xl);
+    container-type: inline-size;
+
+    padding-block: var(--padding-body);
+  }
+
+  .hero-content {
+    @include utils.flex($direction: column, $gap: var(--space-md));
+    justify-content: center;
+    align-items: flex-start;
+
+    line-height: 1.1;
+
+    h1 {
+      margin: 0;
+      padding-block: 6px;
+
+      background-image: linear-gradient(120deg, var(--peach), var(--mauve));
+      background-clip: text;
+
+      font-size: clamp(4rem, 4vw, 6rem);
+      color: transparent;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+  }
+
+  .hero-image {
+    display: grid;
+    place-items: center;
+    container-type: inline-size;
+
+    max-height: 40vh;
+
+    svg {
+      padding: var(--space-md);
+    }
+
+    @media (min-width: 800px) {
+      max-height: 100vh;
+
+      svg {
+        @container (min-width: 400px) {
+          padding-inline-start: var(--space-lg);
+        }
+
+        @container (min-width: 500px) {
+          padding-inline-start: var(--space-xl);
+        }
+      }
+    }
+  }
+</style>

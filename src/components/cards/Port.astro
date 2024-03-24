@@ -1,0 +1,74 @@
+---
+import type { ColorName } from "@catppuccin/palette";
+import type { Category } from "../../lib/ports";
+
+import Icon from "../icons/Ports.astro";
+import PillList from "../lists/Pills.astro";
+
+interface Props {
+  title: string;
+  link: string;
+  categories: Category[];
+  color?: ColorName;
+}
+
+const { title, link, categories, color } = Astro.props;
+---
+
+<a href={link} class="port-card">
+  <div class="port-header">
+    <p class="port-name">{title}</p>
+    <div class="port-icon"><Icon port={title} color={color} /></div>
+  </div>
+
+  <PillList list={categories.map((category: Category) => `${category.name}`)} />
+</a>
+
+<style lang="scss">
+  @use "../../styles/utils";
+
+  .port-card {
+    @include utils.flex($direction: column, $gap: var(--space-sm));
+    justify-content: space-between;
+
+    @include utils.containerPadding();
+
+    border-radius: var(--border-radius-normal);
+    background-color: var(--mantle);
+    background-size: 200%;
+    background-position: top left;
+
+    color: var(--subtext0);
+    font-size: 1.6rem;
+
+    transition: all 300ms ease-in-out;
+
+    &:hover {
+      transform: scale(105%);
+
+      background-position: top right;
+
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
+    }
+
+    figure,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .port-header {
+      @include utils.flex($gap: var(--space-sm));
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+
+    .port-name {
+      color: var(--text);
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+</style>

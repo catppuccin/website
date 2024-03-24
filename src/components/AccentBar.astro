@@ -1,0 +1,76 @@
+<div class="accent-bar"></div>
+
+<style lang="scss">
+
+@keyframes gradient {
+  100% { background-position: right; }
+}
+
+  .accent-bar {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+
+    width: 100%;
+    height: 8px;
+
+    background-color: var(--mauve);
+    background-image: linear-gradient(
+      90deg,
+      var(--rosewater),
+      var(--flamingo),
+      var(--pink),
+      var(--mauve),
+      var(--red),
+      var(--maroon),
+      var(--peach),
+      var(--yellow),
+      var(--green),
+      var(--teal),
+      var(--sky),
+      var(--sapphire),
+      var(--blue),
+      var(--lavender),
+      var(--rosewater),
+      var(--flamingo),
+      var(--pink),
+      var(--mauve),
+      var(--red),
+      var(--maroon),
+      var(--peach),
+      var(--yellow),
+      var(--green),
+      var(--teal),
+      var(--sky),
+      var(--sapphire),
+      var(--blue),
+      var(--lavender),
+      var(--rosewater)
+    );
+    background-size: 400% 100%;
+    background-position: left;
+
+    animation: gradient 20s linear infinite forwards;
+
+    @media (prefers-reduced-motion: true) {
+      background-image: linear-gradient(
+        90deg,
+        var(--rosewater),
+        var(--flamingo),
+        var(--pink),
+        var(--mauve),
+        var(--red),
+        var(--maroon),
+        var(--peach),
+        var(--yellow),
+        var(--green),
+        var(--teal),
+        var(--sky),
+        var(--sapphire),
+        var(--blue),
+        var(--lavender)
+      );
+      background-size: 100%;
+      animation: none;
+    }
+  }
+</style>

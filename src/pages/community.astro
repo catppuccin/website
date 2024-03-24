@@ -1,0 +1,88 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import PageIntro from "../components/PageIntro.astro";
+import Callout from "../components/cards/Callout.astro";
+import GitHubUsers from "../components/lists/GitHubUsers.astro";
+import TeamName from "../components/TeamName.astro";
+import Link from "../components/Link.astro";
+---
+
+<Layout
+  title="Community • Catppuccin"
+  description="View the Catppuccin community! Learn about our teams, their roles, and how every contributor, including you, is at the heart of our project.">
+  <PageIntro title="Community">
+    <p>
+      Catppuccin is not led by one person, 4 main teams are responsible for various different aspects of the project.
+    </p>
+    <p>
+      <strong>And of course you!</strong> Whether you maintain your own port; have contributed via a pull request; or raised
+      an issue. The community is at the heart and soul of Catppuccin.
+    </p>
+  </PageIntro>
+
+  <section>
+    <h2>Teams</h2>
+
+    <h3><TeamName team="core">Core</TeamName></h3>
+    <p>
+      Owners of the GitHub organisation. <strong>Responsible for org-wide matters.</strong>
+    </p>
+    <GitHubUsers
+      users={[
+        { userName: "pocco81", displayName: "Pocco" },
+        { userName: "andreasgrafen", displayName: "Lemon" },
+        { userName: "sgoudham", displayName: "Hammy" },
+      ]}
+    />
+
+    <h3><TeamName team="staff">Staff</TeamName></h3>
+    <p>
+      Maintainers of all GitHub repositories.
+      <strong>Responsible for assisting core maintainers in their activities.</strong>
+    </p>
+    <GitHubUsers
+      users={[
+        { userName: "ghostx31", displayName: "Spooky" },
+        { userName: "taka0o", displayName: "Taka" },
+        { userName: "isabelincorp", displayName: "Isabel" },
+        { userName: "backwardspy", displayName: "pigeon" },
+        { userName: "nullishamy", displayName: "Amy" },
+      ]}
+    />
+
+    <h3><TeamName team="userstyles">userstyles Staff</TeamName></h3>
+    <p>
+      Overseers of all userstyles in
+      <Link href="https://github.com/catppuccin/userstyles" external>catppuccin/userstyles</Link>.
+      <strong>Responsible for all matters regarding userstyles.</strong>
+    </p>
+    <GitHubUsers users={[{ userName: "isabelroses", displayName: "Bell" }]} />
+
+    <h3><TeamName team="mod">Moderator</TeamName></h3>
+    <p>
+      Moderators of the Discord server.
+      <strong>Responsible for moderating the community.</strong>
+    </p>
+    <GitHubUsers users={[{ userName: "nyxkrage", displayName: "Nyx" }]} />
+  </section>
+
+  <section>
+    <h2>Maintainers</h2>
+    <p>GitHub maintainers of ports.</p>
+    <Callout type="info">
+      Coming Soon™, waiting for
+      <Link href="https://github.com/catppuccin/catppuccin/pull/2315" external>catppuccin/catppuccin#2315</Link>
+      to be merged.
+    </Callout>
+  </section>
+</Layout>
+
+<style lang="scss">
+  :root {
+    --accent-color: var(--green);
+  }
+  h3 {
+    margin-top: var(--space-sm);
+  }
+</style>

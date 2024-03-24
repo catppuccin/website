@@ -1,0 +1,27 @@
+@import "@catppuccin/palette/scss/catppuccin";
+
+:root {
+  @each $flavor, $colors in $palette {
+    @if str-index($flavor, "latte") {
+      @each $color, $value in $colors {
+        --#{$color}: #{$value};
+      }
+    }
+  }
+
+  --inverted-text: var(--base);
+  --selection-color: var(--blue);
+
+  @media (prefers-color-scheme: dark) {
+    @each $flavor, $colors in $palette {
+      @if str-index($flavor, "mocha") {
+        @each $color, $value in $colors {
+          --#{$color}: #{$value};
+        }
+      }
+    }
+
+    --inverted-text: var(--crust);
+    --selection-color: var(--mauve);
+  }
+}

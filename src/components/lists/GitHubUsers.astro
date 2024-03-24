@@ -1,0 +1,40 @@
+---
+import type { ColorName } from "@catppuccin/palette";
+
+import UserCard from "../cards/User.astro";
+
+export type Person = {
+  userName: string;
+  displayName: string;
+  avatar?: string;
+  color?: ColorName;
+};
+
+interface Props {
+  users: Person[];
+}
+
+const { users } = Astro.props;
+---
+
+<ul class="user-list">
+  {
+    users.map((user: Person) => (
+      <li>
+        <UserCard userName={user.userName} displayName={user.displayName} showAvatar={true} />
+      </li>
+    ))
+  }
+</ul>
+
+<style lang="scss">
+  @use "../../styles/utils";
+
+  .user-list {
+    @include utils.flex($gap: var(--space-md));
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>
