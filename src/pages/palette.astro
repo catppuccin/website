@@ -9,15 +9,18 @@ import FlavorName from "../components/FlavorName.astro";
 import { links } from "../contents/links";
 
 import { flavorEntries } from "@catppuccin/palette";
+import { toRgb, toHsl } from "../lib/colorFormat";
 ---
 
 <Layout title="Palette • Catppuccin" description="All the ins and outs of our lovely palette">
   <PageIntro title="Palette">
     <p>
-      Catppuccin consists of 4 beautiful pastel color palettes, named <strong>flavors</strong>. The theme comes in one light and three dark variants:
+      Catppuccin consists of 4 beautiful pastel color palettes, named <strong>flavors</strong>. The theme comes in one
+      light and three dark variants:
       <ul>
         <li>
-          <FlavorName flavor="mocha" />: The Original — Our <strong>darkest</strong> variant offering a cozy feeling with color-rich accents.
+          <FlavorName flavor="mocha" />: The Original — Our <strong>darkest</strong> variant offering a cozy feeling with
+          color-rich accents.
         </li>
         <li>
           <FlavorName flavor="macchiato" />: Medium contrast with gentle colors creating a soothing atmosphere.
@@ -26,7 +29,8 @@ import { flavorEntries } from "@catppuccin/palette";
           <FlavorName flavor="frappe" />: A less vibrant alternative using subdued colors for a muted aesthetic.
         </li>
         <li>
-          <FlavorName flavor="latte" />: Our <strong>lightest</strong> theme harmoniously inverting the essence of Catppuccin's dark themes.
+          <FlavorName flavor="latte" />: Our <strong>lightest</strong> theme harmoniously inverting the essence of Catppuccin's
+          dark themes.
         </li>
       </ul>
       <p>
@@ -48,31 +52,41 @@ import { flavorEntries } from "@catppuccin/palette";
                 </h2>
               </summary>
               <table class="color-list" cellspacing="0">
-                <tr class="color-list-header">
-                  <th>Color</th>
-                  <th>Hex</th>
-                  <th>RGB</th>
-                  <th>HSL</th>
-                </tr>
-                {Object.values(flavor.colors).map(({ hex, rgb, hsl, name }) => (
-                  <tr class="color-list-entry" style={`--current-color: ${hex}`}>
-                    <td class="color">
-                      <h5 class="color-name">{name}</h5>
-                    </td>
-                    <td class="color-hex">
-                      {/* prettier-ignore */}
-                      <button class="btn btn-small btn-transparent js-copy" data-value={hex.replace("#", "")}><PhosphorIcon icon="copy" size={12} /> {hex.replace("#", "").toUpperCase()}</button>
-                    </td>
-                    <td class="color-rgb">
-                      {/* prettier-ignore */}
-                      <button class="btn btn-small btn-transparent js-copy" data-value={`${rgb.r} ${rgb.g} ${rgb.b}`}><PhosphorIcon icon="copy" size={12} /> {`${rgb.r}`.padStart(3)}, {`${rgb.g}`.padStart(3)}, {`${rgb.b}`.padStart(3)}</button>
-                    </td>
-                    <td class="color-hsl">
-                      {/* prettier-ignore */}
-                      <button class="btn btn-small btn-transparent js-copy" data-value={`${Math.floor(hsl.h)}, ${Math.floor(hsl.s * 100)}, ${Math.floor(hsl.l * 100)}`}><PhosphorIcon icon="copy" size={12} /> {`${Math.floor(hsl.h)}`.padStart(3)}, {`${Math.floor(hsl.s * 100)}`.padStart(3)}, {`${Math.floor(hsl.l * 100)}`.padStart(3)} </button>
-                    </td>
+                <thead>
+                  <tr class="color-list-header">
+                    <th>Color</th>
+                    <th>Hex</th>
+                    <th>RGB</th>
+                    <th>HSL</th>
                   </tr>
-                ))}
+                </thead>
+                <tbody>
+                  {Object.values(flavor.colors).map(({ hex, rgb, hsl, name }) => (
+                    <tr class="color-list-entry" style={`--current-color: ${hex}`}>
+                      <td class="color">
+                        <h5 class="color-name">{name}</h5>
+                      </td>
+                      <td class="color-hex">
+                        <button class="btn btn-small btn-transparent">
+                          <PhosphorIcon icon="copy" size={12} />
+                          <span class="color-value">{hex}</span>
+                        </button>
+                      </td>
+                      <td class="color-rgb">
+                        <button class="btn btn-small btn-transparent">
+                          <PhosphorIcon icon="copy" size={12} />
+                          <span class="color-value">{toRgb(rgb)}</span>
+                        </button>
+                      </td>
+                      <td class="color-hsl">
+                        <button class="btn btn-small btn-transparent">
+                          <PhosphorIcon icon="copy" size={12} />
+                          <span class="color-value">{toHsl(hsl)}</span>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </details>
           </div>
@@ -82,21 +96,23 @@ import { flavorEntries } from "@catppuccin/palette";
   </PageIntro>
 
   <script is:inline>
-    const elements = document.querySelectorAll(".js-copy");
+    const elements = document.querySelectorAll(".color-list-entry button");
     elements.forEach((element) =>
       element.addEventListener("click", () => {
-        navigator.clipboard.writeText(element.dataset.value);
+        navigator.clipboard.writeText(element.querySelector(".color-value").textContent);
 
-        const icon = element.querySelector('svg > path')
-        const iconCopy = "M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32Zm-8,128H176V88a8,8,0,0,0-8-8H96V48H208Z"
-        const iconTick = "M243.33,90.91,114.92,219.31a16,16,0,0,1-22.63,0l-71.62-72a16,16,0,0,1,0-22.61l24-24a16,16,0,0,1,22.57-.06l36.64,35.27.11.11h0l92.73-91.37a16,16,0,0,1,22.58,0l24,23.56A16,16,0,0,1,243.33,90.91Z"
+        const icon = element.querySelector("svg > path");
+        const iconCopy =
+          "M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32Zm-8,128H176V88a8,8,0,0,0-8-8H96V48H208Z";
+        const iconTick =
+          "M243.33,90.91,114.92,219.31a16,16,0,0,1-22.63,0l-71.62-72a16,16,0,0,1,0-22.61l24-24a16,16,0,0,1,22.57-.06l36.64,35.27.11.11h0l92.73-91.37a16,16,0,0,1,22.58,0l24,23.56A16,16,0,0,1,243.33,90.91Z";
 
         element.classList.add("copy-success");
-        icon.setAttribute('d', iconTick)
+        icon.setAttribute("d", iconTick);
 
         return setTimeout(() => {
-          element.classList.remove("copy-success")
-          icon.setAttribute('d', iconCopy)
+          element.classList.remove("copy-success");
+          icon.setAttribute("d", iconCopy);
         }, 1500);
       }),
     );
@@ -107,6 +123,10 @@ import { flavorEntries } from "@catppuccin/palette";
 
     :root {
       --accent-color: var(--mauve);
+    }
+
+    summary {
+      cursor: pointer;
     }
 
     .flavor {

@@ -33,4 +33,8 @@ table {
   tr td:not(:first-child) {
     text-align: right;
   }
+
+  tbody td {
+    padding-right: 0;
+  }
 }
