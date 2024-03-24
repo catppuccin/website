@@ -44,9 +44,7 @@ export const portsYml = (await fetch("https://github.com/catppuccin/catppuccin/r
   categories: Array<Category>;
 };
 
-export const userstylesYml = (await fetch(
-  "https://github.com/catppuccin/userstyles/raw/main/scripts/userstyles.yml?q=100",
-)
+export const userstylesYml = (await fetch("https://github.com/catppuccin/userstyles/raw/main/scripts/userstyles.yml")
   .then((r) => r.text())
   .then((t) => parse(t))) as {
   collaborators: Array<{ url: string; name?: string }>;
