@@ -1,5 +1,5 @@
 {
-  description = "Catppucin.com - A website that's not a redirect";
+  description = "Catppuccin.com - A website that's not a redirect";
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs";
 
