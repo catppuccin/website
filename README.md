@@ -19,7 +19,7 @@
 
 1. Open your browser of choice
 2. Put cursor in address bar
-3. Type https://catppuccin.com
+3. Type [catppuccin.com](https://catppuccin.com)
 4. Press enter 😁
 
 ## Development
@@ -36,7 +36,7 @@ bun dev
 </p>
 <p align="center">Copyright &copy; 2021-present <a href="https://github.com/catppuccin" target="_blank">Catppuccin Org</a>
 <p align="center">
-	<a href="https://github.com/catppuccin/catppuccin/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a>
+	<a href="https://github.com/catppuccin/website/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a>
 </p>
 <p align="center">
 	<a href="https://vercel.com?utm_source=catppuccin&utm_campaign=oss"><img src="https://raw.githubusercontent.com/catppuccin/website/main/powered-by-vercel.svg?sanitize=true"/></a>
