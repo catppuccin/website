@@ -52,37 +52,41 @@ import { toRgb, toHsl } from "../lib/colorFormat";
                 </h2>
               </summary>
               <table class="color-list" cellspacing="0">
-                <tr class="color-list-header">
-                  <th>Color</th>
-                  <th>Hex</th>
-                  <th>RGB</th>
-                  <th>HSL</th>
-                </tr>
-                {Object.values(flavor.colors).map(({ hex, rgb, hsl, name }) => (
-                  <tr class="color-list-entry" style={`--current-color: ${hex}`}>
-                    <td class="color">
-                      <h5 class="color-name">{name}</h5>
-                    </td>
-                    <td class="color-hex">
-                      <button class="btn btn-small btn-transparent">
-                        <PhosphorIcon icon="copy" size={12} />
-                        <span class="color-value">{hex}</span>
-                      </button>
-                    </td>
-                    <td class="color-rgb">
-                      <button class="btn btn-small btn-transparent">
-                        <PhosphorIcon icon="copy" size={12} />
-                        <span class="color-value">{toRgb(rgb)}</span>
-                      </button>
-                    </td>
-                    <td class="color-hsl">
-                      <button class="btn btn-small btn-transparent">
-                        <PhosphorIcon icon="copy" size={12} />
-                        <span class="color-value">{toHsl(hsl)}</span>
-                      </button>
-                    </td>
+                <thead>
+                  <tr class="color-list-header">
+                    <th>Color</th>
+                    <th>Hex</th>
+                    <th>RGB</th>
+                    <th>HSL</th>
                   </tr>
-                ))}
+                </thead>
+                <tbody>
+                  {Object.values(flavor.colors).map(({ hex, rgb, hsl, name }) => (
+                    <tr class="color-list-entry" style={`--current-color: ${hex}`}>
+                      <td class="color">
+                        <h5 class="color-name">{name}</h5>
+                      </td>
+                      <td class="color-hex">
+                        <button class="btn btn-small btn-transparent">
+                          <PhosphorIcon icon="copy" size={12} />
+                          <span class="color-value">{hex}</span>
+                        </button>
+                      </td>
+                      <td class="color-rgb">
+                        <button class="btn btn-small btn-transparent">
+                          <PhosphorIcon icon="copy" size={12} />
+                          <span class="color-value">{toRgb(rgb)}</span>
+                        </button>
+                      </td>
+                      <td class="color-hsl">
+                        <button class="btn btn-small btn-transparent">
+                          <PhosphorIcon icon="copy" size={12} />
+                          <span class="color-value">{toHsl(hsl)}</span>
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </details>
           </div>
@@ -119,6 +123,10 @@ import { toRgb, toHsl } from "../lib/colorFormat";
 
     :root {
       --accent-color: var(--mauve);
+    }
+
+    summary {
+      cursor: pointer;
     }
 
     .flavor {
