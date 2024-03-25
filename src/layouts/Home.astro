@@ -35,6 +35,8 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
     <meta property="twitter:description" content={description} />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <meta name="darkreader-lock" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
 
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -70,7 +72,6 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
 {isVercelProd && <script defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
 
 <style lang="scss" is:global>
-
   @use "../styles/utils";
 
   #hero {
