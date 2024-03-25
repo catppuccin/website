@@ -1,7 +1,7 @@
 import * as icons from "simple-icons";
 import { ports } from "./ports";
 
-export function getIcon(slug: string) {
+export function getIcon(slug: string[] | string) {
   const port = Object.values(ports).find(({ name }) => name === slug);
   if (!port) {
     throw new TypeError(`port '${slug}' not found`);

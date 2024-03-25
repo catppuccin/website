@@ -6,7 +6,7 @@ import Icon from "../icons/Ports.astro";
 import PillList from "../lists/Pills.astro";
 
 interface Props {
-  title: string;
+  title: string | string[];
   link: string;
   categories: Category[];
   color?: ColorName;
@@ -17,7 +17,7 @@ const { title, link, categories, color } = Astro.props;
 
 <a href={link} class="port-card">
   <div class="port-header">
-    <p class="port-name">{title}</p>
+    <p class="port-name">{Array.isArray(title) ? title.join(", ") : title}</p>
     <div class="port-icon"><Icon port={title} color={color} /></div>
   </div>
 
