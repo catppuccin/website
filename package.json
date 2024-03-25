@@ -13,7 +13,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "src/*": "bun prettier --plugin=prettier-plugin-astro . --write"
+    "src/**/*": "bun prettier --plugin=prettier-plugin-astro . --write"
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
