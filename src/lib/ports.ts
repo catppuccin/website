@@ -30,7 +30,7 @@ export type Port = {
 };
 
 export type Userstyle = {
-  name: string[];
+  name: string[] | string;
   categories: string[];
   color: ColorName;
   icon?: string;
