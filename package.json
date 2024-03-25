@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.4.1",
+    "@astrojs/sitemap": "^3.1.1",
     "@catppuccin/palette": "^1.1.0",
     "astro": "^4.3.2",
     "simple-icons": "^11.10.0",
