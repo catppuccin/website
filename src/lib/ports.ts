@@ -30,7 +30,7 @@ export type Port = {
 };
 
 export type Userstyle = {
-  name: string;
+  name: string[] | string;
   categories: string[];
   color: ColorName;
   icon?: string;
@@ -48,7 +48,7 @@ export const userstylesYml = (await fetch("https://github.com/catppuccin/usersty
   .then((r) => r.text())
   .then((t) => parse(t))) as {
   collaborators: Array<{ url: string; name?: string }>;
-  userstyles: Record<string, Port>;
+  userstyles: Record<string, Userstyle>;
 };
 
 export const ports = { ...portsYml.ports, ...userstylesYml.userstyles } as Record<string, Port | Userstyle>;

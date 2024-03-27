@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://catppuccin.com",
   vite: {
-    plugins: [yaml()]
+    plugins: [yaml()],
   },
-  integrations: [sitemap()]
+  integrations: [sitemap()],
 });
