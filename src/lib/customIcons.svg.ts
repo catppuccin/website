@@ -33,6 +33,10 @@ const customIcons: customIcon = {
 };
 
 export function getCustomIcon(slug: string) {
+  if (!customIcons[slug]) {
+    throw new TypeError(`Icon did not exist for: ${slug}`);
+  }
+
   return {
     path: customIcons[slug],
     viewbox: customIcons.viewbox,
