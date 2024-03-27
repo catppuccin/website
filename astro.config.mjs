@@ -8,7 +8,7 @@ import icon from "astro-icon";
 export default defineConfig({
   site: "https://catppuccin.com",
   vite: {
-    plugins: [yaml()]
+    plugins: [yaml()],
   },
-  integrations: [sitemap(), icon()]
+  integrations: [sitemap(), icon()],
 });
