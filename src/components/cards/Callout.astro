@@ -1,5 +1,5 @@
 ---
-import PhosphorIcon from "../icons/Phosphor.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   type?: string;
@@ -20,7 +20,7 @@ const calloutVariants: Callout = {
   note: {
     title: "Note",
     color: "blue",
-    icon: "pen",
+    icon: "pencil-simple",
   },
   summary: {
     title: "Summary",
@@ -33,24 +33,24 @@ const calloutVariants: Callout = {
     icon: "info",
   },
   tip: {
-    title: "Tip",
     color: "yellow",
+    title: "Tip",
     icon: "flame",
   },
   success: {
     title: "Success",
     color: "green",
-    icon: "checkmark",
+    icon: "check-fat",
   },
   question: {
     title: "Question",
     color: "sapphire",
-    icon: "questionmark",
+    icon: "question",
   },
   warning: {
     title: "Warning",
     color: "peach",
-    icon: "danger",
+    icon: "warning-circle",
   },
   failure: {
     title: "Failure",
@@ -65,7 +65,7 @@ const calloutVariants: Callout = {
   bug: {
     title: "Bug",
     color: "red",
-    icon: "beetle",
+    icon: "bug-beetle",
   },
   example: {
     title: "Example",
@@ -75,14 +75,14 @@ const calloutVariants: Callout = {
   quote: {
     title: "Quote",
     color: "text",
-    icon: "quote",
+    icon: "quotes",
   },
 };
 ---
 
 <div class="annotation" style={`--callout-color: var(--${calloutVariants[type].color})`}>
   <div class="annotation-title">
-    <PhosphorIcon icon={calloutVariants[type].icon} />
+    <Icon name=`ph:${calloutVariants[type].icon}-fill` />
     {title ? title : calloutVariants[type].title}
   </div>
   <div class="annotation-content">

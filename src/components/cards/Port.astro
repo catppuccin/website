@@ -1,24 +1,35 @@
 ---
 import type { ColorName } from "@catppuccin/palette";
-import type { Category } from "../../lib/ports";
+import { type Category } from "../../lib/ports";
 
-import Icon from "../icons/Ports.astro";
+import { Icon } from "astro-icon/components";
 import PillList from "../lists/Pills.astro";
 
 interface Props {
   title: string[] | string;
   link: string;
+  icon: string | undefined;
   categories: Category[];
   color?: ColorName;
 }
 
-const { title, link, categories, color } = Astro.props;
+const { title, link, icon, categories, color } = Astro.props;
 ---
 
 <a href={link} class="port-card">
   <div class="port-header">
     <p class="port-name">{Array.isArray(title) ? title.join(", ") : title}</p>
-    <div class="port-icon"><Icon port={title} color={color} /></div>
+    <div class="port-icon" style=`color: var(--${color});`>
+      {
+        !icon ? (
+          <Icon name="ph:cube-fill" size={24} />
+        ) : icon.endsWith(".svg") ? (
+          <Icon name={`ports/${icon.split(".")[0]}`} size={24} />
+        ) : (
+          <Icon name={`simple-icons:${icon}`} size={24} />
+        )
+      }
+    </div>
   </div>
 
   <PillList list={categories.map((category: Category) => `${category.name}`)} />

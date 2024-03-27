@@ -19,7 +19,10 @@
     "@astrojs/check": "^0.4.1",
     "@astrojs/sitemap": "^3.1.1",
     "@catppuccin/palette": "^1.1.0",
+    "@iconify-json/ph": "^1.1.11",
+    "@iconify-json/simple-icons": "^1.1.97",
     "astro": "^4.3.2",
+    "astro-icon": "^1.1.0",
     "simple-icons": "^11.10.0",
     "typescript": "^5.3.3",
     "yaml": "^2.4.0"

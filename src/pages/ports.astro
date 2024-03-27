@@ -34,6 +34,7 @@ import Callout from "../components/cards/Callout.astro";
                     ? `https://github.com/catppuccin/userstyles/blob/main/styles/${slug}`
                     : `https://github.com/catppuccin/${fields.alias || slug}`
               }
+              icon={fields.icon}
               categories={fields.categories.map(
                 (portCategory) => categories.find(({ key }) => key == portCategory) as Category,
               )}
