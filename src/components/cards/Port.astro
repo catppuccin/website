@@ -14,21 +14,19 @@ interface Props {
 }
 
 const { title, link, icon, categories, color } = Astro.props;
+
+function getIcon(icon: string | undefined) {
+  if (!icon) return "ph:cube-fill";
+  if (icon.endsWith(".svg")) return `ports/${icon.split(".")[0]}`;
+  return `simple-icons:${icon}`;
+}
 ---
 
 <a href={link} class="port-card">
   <div class="port-header">
     <p class="port-name">{Array.isArray(title) ? title.join(", ") : title}</p>
     <div class="port-icon" style=`color: var(--${color});`>
-      {
-        !icon ? (
-          <Icon name="ph:cube-fill" size={24} />
-        ) : icon.endsWith(".svg") ? (
-          <Icon name={`ports/${icon.split(".")[0]}`} size={24} />
-        ) : (
-          <Icon name={`simple-icons:${icon}`} size={24} />
-        )
-      }
+      <Icon name={getIcon(icon)} size={24} />
     </div>
   </div>
 
