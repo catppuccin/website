@@ -1,10 +1,16 @@
 import * as icons from "simple-icons";
+import { getCustomIcon } from "./customIcons.svg";
 import { ports } from "./ports";
 
 export function getIcon(slug: string) {
   const port = Object.values(ports).find(({ name }) => name === slug);
   if (!port) {
     throw new TypeError(`port '${slug}' not found`);
+  }
+
+  // ToDo: Remove when updated in ports.yml
+  if (port.icon === "minecraft") {
+    return getCustomIcon("minecraft");
   }
 
   if (port.icon && !port.icon.endsWith(".svg")) {
@@ -19,6 +25,11 @@ export function getIcon(slug: string) {
       path: si.path,
       viewbox: "0 0 24 24",
     };
+  }
+
+  if (port.icon && port.icon.endsWith(".svg")) {
+    const iconSlug = port.icon.split(".")[0];
+    return getCustomIcon(iconSlug);
   }
 
   return {
