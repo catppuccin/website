@@ -15,7 +15,7 @@ import Layout from "../layouts/Layout.astro";
   </div>
 </Layout>
 
-<style lang="scss" is:global>
+<style lang="scss">
   @use "../styles/utils";
 
   :root {
@@ -25,7 +25,7 @@ import Layout from "../layouts/Layout.astro";
   .wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 80vh;
   }
 
   .page-content {
@@ -34,9 +34,5 @@ import Layout from "../layouts/Layout.astro";
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-
-  footer {
-    margin-top: auto;
   }
 </style>
