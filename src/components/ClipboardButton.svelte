@@ -34,6 +34,10 @@
 
 <style lang="scss">
   button {
+    font-size: 80%;
+    font-family: monospace;
+    white-space: pre;
+
     svg path {
       fill: currentColor;
     }
