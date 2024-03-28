@@ -1,7 +1,8 @@
 import { defineConfig } from "astro/config";
 import yaml from "@rollup/plugin-yaml";
-
 import sitemap from "@astrojs/sitemap";
+
+import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,5 +10,5 @@ export default defineConfig({
   vite: {
     plugins: [yaml()],
   },
-  integrations: [sitemap()],
+  integrations: [sitemap(), svelte()],
 });
