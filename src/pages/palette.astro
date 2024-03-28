@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 
 import Link from "../components/Link.astro";
 import PageIntro from "../components/PageIntro.astro";
-import PhosphorIcon from "../components/icons/Phosphor.astro";
+import { Icon } from "astro-icon/components";
 import FlavorName from "../components/FlavorName.astro";
 
 import { links } from "../contents/links";
@@ -70,19 +70,19 @@ import { toRgb, toHsl } from "../lib/colorFormat";
                       </td>
                       <td class="color-hex">
                         <button class="btn btn-small btn-transparent">
-                          <PhosphorIcon icon="copy" size={12} />
+                          <Icon name="ph:copy-fill" size={12} />
                           <span class="color-value">{hex}</span>
                         </button>
                       </td>
                       <td class="color-rgb">
                         <button class="btn btn-small btn-transparent">
-                          <PhosphorIcon icon="copy" size={12} />
+                          <Icon name="ph:copy-fill" size={12} />
                           <span class="color-value">{toRgb(rgb)}</span>
                         </button>
                       </td>
                       <td class="color-hsl">
                         <button class="btn btn-small btn-transparent">
-                          <PhosphorIcon icon="copy" size={12} />
+                          <Icon name="ph:copy-fill" size={12} />
                           <span class="color-value">{toHsl(hsl)}</span>
                         </button>
                       </td>
@@ -103,18 +103,10 @@ import { toRgb, toHsl } from "../lib/colorFormat";
       element.addEventListener("click", () => {
         navigator.clipboard.writeText(element.querySelector(".color-value").textContent);
 
-        const icon = element.querySelector("svg > path");
-        const iconCopy =
-          "M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32Zm-8,128H176V88a8,8,0,0,0-8-8H96V48H208Z";
-        const iconTick =
-          "M243.33,90.91,114.92,219.31a16,16,0,0,1-22.63,0l-71.62-72a16,16,0,0,1,0-22.61l24-24a16,16,0,0,1,22.57-.06l36.64,35.27.11.11h0l92.73-91.37a16,16,0,0,1,22.58,0l24,23.56A16,16,0,0,1,243.33,90.91Z";
-
         element.classList.add("copy-success");
-        icon.setAttribute("d", iconTick);
 
         return setTimeout(() => {
           element.classList.remove("copy-success");
-          icon.setAttribute("d", iconCopy);
         }, 1500);
       }),
     );
