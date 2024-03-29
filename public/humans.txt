@@ -51,6 +51,7 @@ From: USA
 /* MODERATOR */
 Nyx
 GitHub: https://github.com/nyxkrage
+E-Mail: carsten@kragelund.me
 From: Denmark
 
 Etzelia
