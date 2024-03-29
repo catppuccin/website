@@ -2,7 +2,7 @@
 import Home from "../layouts/Home.astro";
 
 import Illustration from "../components/LaptopIllustration.astro";
-import PhosphorIcon from "../components/icons/Phosphor.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Home
@@ -14,19 +14,19 @@ import PhosphorIcon from "../components/icons/Phosphor.astro";
     <div class="btn-group">
       <a href="/ports">
         <button class="btn btn-has-icon btn-peach">
-          <PhosphorIcon icon="box" />
+          <Icon name="ph:cube-fill" />
           Discover Ports
         </button>
       </a>
       <a href="/palette">
         <button class="btn btn-has-icon btn-mauve">
-          <PhosphorIcon icon="palette" />
+          <Icon name="ph:palette-fill" />
           Explore Colors
         </button>
       </a>
       <a href="/community">
         <button class="btn btn-has-icon btn-green">
-          <PhosphorIcon icon="people" />
+          <Icon name="ph:users-three-fill" />
           View Community
         </button>
       </a>
