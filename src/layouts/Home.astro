@@ -3,7 +3,7 @@ import "../styles/global.scss";
 
 import Footer from "./imports/Footer.astro";
 
-import Logo from "../components/icons/Logo.astro";
+import Logo from "../components/Logo.astro";
 import AccentBar from "../components/AccentBar.astro";
 
 interface Props {
@@ -69,7 +69,7 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
   </body>
 </html>
 
-{isVercelProd && <script defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
+{isVercelProd && <script is:inline defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
 
 <style lang="scss" is:global>
   @use "../styles/utils";

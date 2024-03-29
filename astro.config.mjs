@@ -3,6 +3,7 @@ import yaml from "@rollup/plugin-yaml";
 import sitemap from "@astrojs/sitemap";
 
 import svelte from "@astrojs/svelte";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,5 +11,5 @@ export default defineConfig({
   vite: {
     plugins: [yaml()],
   },
-  integrations: [sitemap(), svelte()],
+  integrations: [sitemap(), icon(), svelte()],
 });
