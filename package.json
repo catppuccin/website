@@ -16,7 +16,7 @@
     "src/**/*": "bun prettier --plugin=prettier-plugin-astro . --write"
   },
   "dependencies": {
-    "@astrojs/check": "^0.4.1",
+    "@astrojs/check": "^0.5.0",
     "@astrojs/sitemap": "^3.1.1",
     "@astrojs/svelte": "^5.2.0",
     "@catppuccin/palette": "^1.1.0",

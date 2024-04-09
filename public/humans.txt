@@ -1,0 +1,64 @@
+Catppuccin is not led by one person, 4 main teams are responsible for various different aspects of the project.
+And of course you! Whether you maintain your own port; have contributed via a pull request; or raised an issue.
+The community is at the heart and soul of Catppuccin.
+
+
+/* CORE */
+Pocco
+GitHub: https://github.com/pocco81
+From: USA
+
+Hammy
+GitHub: https://github.com/sgoudham
+Website: https://goudham.com
+From: Scotland
+
+Lemon
+GitHub: https://github.com/andreasgrafen
+Website: https://unseen.ninja
+Discord: unseen.ninja
+From: Germany
+
+/* STAFF */
+Spooky
+GitHub: https://github.com/ghostx31
+From: India
+
+Taka
+GitHub: https://github.com/taka0o
+From: Canada
+
+Isabel
+GitHub: https://github.com/isabelincorp
+From: USA
+
+pigeon
+GitHub: https://github.com/backwardspy
+Website: https://pigeon.life
+From: UK
+
+Amy
+GitHub: https://github.com/nullishamy
+From: UK
+
+/* USERSTYLES STAFF */
+Bell
+GitHub: https://github.com/isabelroses
+Website: https://isabelroses.com
+From: UK
+
+uncenter
+GitHub: https://github.com/uncenter
+Website: https://uncenter.dev
+From: USA
+
+/* MODERATOR */
+Nyx
+GitHub: https://github.com/nyxkrage
+E-Mail: carsten@kragelund.me
+From: Denmark
+
+Etzelia
+GitHub: https://github.com/jolheiser
+Website: https://jolheiser.com
+From: USA
