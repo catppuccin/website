@@ -2,32 +2,32 @@
 import type { ColorName } from "@catppuccin/palette";
 
 import Link from "../Link.astro";
+import { Image } from "astro:assets";
+
+const isProd = import.meta.env.PROD;
 
 interface Props {
-  userName: string;
-  displayName: string;
+  url: string;
+  name: string;
   showAvatar?: boolean;
   color?: ColorName;
 }
 
-const { userName, displayName, showAvatar, color } = Astro.props;
+const { name, showAvatar, color } = Astro.props;
+const url = isProd ? Astro.props.url : "https://github.com/sgoudham";
 ---
 
 <div class="card-user" style={`--user-color: var(--${color})`}>
-  <Link href={`https://github.com/${userName}`} external>
+  <Link href={url} external>
     {
       showAvatar === true ? (
         <>
-          <img
-            class="user-avatar"
-            src={`https://github.com/${userName}.png?size=128`}
-            alt={`${displayName}'s Avatar`}
-          />
+          <Image class="user-avatar" src={`${url}.png?size=128`} width="128" height="128" alt={`${name}'s Avatar`} />
           <br />
-          <span class="user-name">{displayName}</span>
+          <span class="user-name">{name}</span>
         </>
       ) : (
-        <span class="user-name">{displayName}</span>
+        <span class="user-name">{name}</span>
       )
     }
   </Link>
