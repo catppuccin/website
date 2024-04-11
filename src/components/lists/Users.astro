@@ -1,0 +1,20 @@
+---
+import type { ColorName } from "@catppuccin/palette";
+
+import UserCard from "../cards/User.astro";
+
+export type Person = {
+  url: string;
+  name: string;
+  avatar?: string;
+  color?: ColorName;
+};
+
+interface Props {
+  users: Person[];
+}
+
+const { users } = Astro.props;
+---
+
+{users.map((user: Person) => <UserCard url={user.url} name={user.name} showAvatar={true} />)}

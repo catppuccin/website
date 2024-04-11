@@ -2,10 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 
 import PageIntro from "../components/PageIntro.astro";
-import Callout from "../components/cards/Callout.astro";
-import GitHubUsers from "../components/lists/GitHubUsers.astro";
+import Users, { type Person } from "../components/lists/Users.astro";
 import TeamName from "../components/TeamName.astro";
 import Link from "../components/Link.astro";
+
+import { currentMaintainers } from "../lib/ports";
 ---
 
 <Layout
@@ -28,28 +29,32 @@ import Link from "../components/Link.astro";
     <p>
       Owners of the GitHub organisation. <strong>Responsible for org-wide matters.</strong>
     </p>
-    <GitHubUsers
-      users={[
-        { userName: "pocco81", displayName: "Pocco" },
-        { userName: "andreasgrafen", displayName: "Lemon" },
-        { userName: "sgoudham", displayName: "Hammy" },
-      ]}
-    />
+    <div class="user-grid">
+      <Users
+        users={[
+          { url: "https://github.com/pocco81", name: "Pocco" },
+          { url: "https://github.com/andreasgrafen", name: "Lemon" },
+          { url: "https://github.com/sgoudham", name: "Hammy" },
+        ]}
+      />
+    </div>
 
     <h3><TeamName team="staff" color="mauve">Staff</TeamName></h3>
     <p>
       Maintainers of all GitHub repositories.
       <strong>Responsible for assisting core maintainers in their activities.</strong>
     </p>
-    <GitHubUsers
-      users={[
-        { userName: "ghostx31", displayName: "Spooky" },
-        { userName: "taka0o", displayName: "Taka" },
-        { userName: "isabelincorp", displayName: "Isabel" },
-        { userName: "backwardspy", displayName: "pigeon" },
-        { userName: "nullishamy", displayName: "Amy" },
-      ]}
-    />
+    <div class="user-grid">
+      <Users
+        users={[
+          { url: "https://github.com/ghostx31", name: "Spooky" },
+          { url: "https://github.com/taka0o", name: "Taka" },
+          { url: "https://github.com/isabelincorp", name: "Isabel" },
+          { url: "https://github.com/backwardspy", name: "pigeon" },
+          { url: "https://github.com/nullishamy", name: "Amy" },
+        ]}
+      />
+    </div>
 
     <h3><TeamName team="userstyles" color="green">userstyles Staff</TeamName></h3>
     <p>
@@ -57,42 +62,61 @@ import Link from "../components/Link.astro";
       <Link href="https://github.com/catppuccin/userstyles" external>catppuccin/userstyles</Link>.
       <strong>Responsible for all matters regarding userstyles.</strong>
     </p>
-    <GitHubUsers
-      users={[
-        { userName: "isabelroses", displayName: "Bell" },
-        { userName: "uncenter", displayName: "uncenter" },
-      ]}
-    />
+    <div class="user-grid">
+      <Users
+        users={[
+          { url: "https://github.com/isabelroses", name: "Bell" },
+          { url: "https://github.com/uncenter", name: "uncenter" },
+        ]}
+      />
+    </div>
 
     <h3><TeamName team="moderator" color="peach">Moderator</TeamName></h3>
     <p>
       Moderators of the Discord server.
       <strong>Responsible for moderating the community.</strong>
     </p>
-    <GitHubUsers
-      users={[
-        { userName: "nyxkrage", displayName: "Nyx" },
-        { userName: "jolheiser", displayName: "Etzelia" },
-      ]}
-    />
+    <div class="user-grid">
+      <Users
+        users={[
+          { url: "https://github.com/nyxkrage", name: "Nyx" },
+          { url: "https://github.com/jolheiser", name: "Etzelia" },
+        ]}
+      />
+    </div>
   </section>
 
   <section>
     <h2>Maintainers</h2>
-    <p>GitHub maintainers of ports.</p>
-    <Callout type="info">
-      Coming Soon™, waiting for
-      <Link href="https://github.com/catppuccin/catppuccin/pull/2315" external>catppuccin/catppuccin#2315</Link>
-      to be merged.
-    </Callout>
+    <p>
+      Maintainers of ports and userstyles, {currentMaintainers.length} in total.
+      <strong>Responsible for the upkeep of their respective repositories.</strong>
+    </p>
+    <div class="user-grid">
+      <Users
+        users={currentMaintainers.map(
+          (maintainer) =>
+            ({
+              url: maintainer.url,
+              name: maintainer.name ?? maintainer.url.split("/").pop(),
+            }) as Person,
+        )}
+      />
+    </div>
   </section>
 </Layout>
 
 <style lang="scss">
+  @use "../styles/utils";
+
   :root {
     --accent-color: var(--green);
   }
   h3 {
     margin-top: var(--space-sm);
+  }
+
+  .user-grid {
+    @include utils.grid($column: 250px, $gap: var(--space-md));
   }
 </style>

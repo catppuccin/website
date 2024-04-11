@@ -1,5 +1,6 @@
 import type { ColorName } from "@catppuccin/palette";
 import { parse } from "yaml";
+import { PropertyBasedSet } from "./propertyBasedSet";
 
 export type Category = {
   key: string;
@@ -17,6 +18,15 @@ type Link = {
   url: string;
 };
 
+type CurrentMaintainer = {
+  name?: string;
+  url: string;
+};
+
+type UserstyleReadme = {
+  "current-maintainers": CurrentMaintainer[];
+};
+
 export type Port = {
   categories: string[];
   name: string;
@@ -27,6 +37,7 @@ export type Port = {
   url?: string;
   links?: Link[];
   upstreamed?: boolean;
+  "current-maintainers": CurrentMaintainer[];
 };
 
 export type Userstyle = {
@@ -34,7 +45,7 @@ export type Userstyle = {
   categories: string[];
   color: ColorName;
   icon?: string;
-  readme: Record<string, unknown>;
+  readme: UserstyleReadme;
 };
 
 export const portsYml = (await fetch("https://github.com/catppuccin/catppuccin/raw/main/resources/ports.yml")
@@ -52,5 +63,20 @@ export const userstylesYml = (await fetch("https://github.com/catppuccin/usersty
 };
 
 export const ports = { ...portsYml.ports, ...userstylesYml.userstyles } as Record<string, Port | Userstyle>;
+
+const uniqueMaintainers = new PropertyBasedSet<CurrentMaintainer>(
+  (m) => m.url,
+  Object.values(ports).flatMap((port: Port | Userstyle) => {
+    // Need to be defensive with the checks, should be less verbose once userstyles.yml is updated to match ports.yml
+    // (Also we can remove this code with schema validation, but that's for a later PR)
+    const portMaintainers = "current-maintainers" in port ? port["current-maintainers"] : [];
+    if ("readme" in port) {
+      portMaintainers.push(...port.readme["current-maintainers"]);
+    }
+    return portMaintainers;
+  }),
+);
+
+export const currentMaintainers: CurrentMaintainer[] = uniqueMaintainers.sorted();
 
 export const { categories } = portsYml;
