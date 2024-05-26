@@ -1,11 +1,26 @@
 ---
-import { ports, categories, type Category } from "../lib/ports";
+import { ports, categories, type Category, type Port, type Userstyle } from "../lib/ports";
 
 import Layout from "../layouts/Layout.astro";
 
 import PageIntro from "../components/PageIntro.astro";
 import PortCard from "../components/cards/Port.astro";
 import Callout from "../components/cards/Callout.astro";
+
+const getCategories = (fields: Port | Userstyle) => {
+  const mappedCategories = fields.categories.map(
+    (portCategory) => categories.find(({ key }) => key == portCategory) as Category,
+  );
+  if ("readme" in fields) {
+    mappedCategories.push({
+      key: "userstyle",
+      name: "Userstyles",
+      description: "Modified CSS files that can be applied to a website.",
+      emoji: "🖌",
+    });
+  }
+  return mappedCategories;
+};
 ---
 
 <Layout
@@ -35,9 +50,7 @@ import Callout from "../components/cards/Callout.astro";
                     : `https://github.com/catppuccin/${fields.alias || slug}`
               }
               icon={fields.icon}
-              categories={fields.categories.map(
-                (portCategory) => categories.find(({ key }) => key == portCategory) as Category,
-              )}
+              categories={getCategories(fields)}
               color={fields.color}
             />
           ))
