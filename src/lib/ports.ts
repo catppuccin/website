@@ -34,6 +34,7 @@ export type Port = {
   links?: Link[];
   upstreamed?: boolean;
   "current-maintainers": CurrentMaintainer[];
+  is_userstyle: false;
 };
 
 export type Userstyle = {
@@ -42,6 +43,7 @@ export type Userstyle = {
   color: ColorName;
   icon?: string;
   "current-maintainers": CurrentMaintainer[];
+  is_userstyle: true;
 };
 
 export const portsYml = (await fetch("https://github.com/catppuccin/catppuccin/raw/main/resources/ports.yml")
@@ -58,7 +60,18 @@ export const userstylesYml = (await fetch("https://github.com/catppuccin/usersty
   userstyles: Record<string, Userstyle>;
 };
 
-export const ports = { ...portsYml.ports, ...userstylesYml.userstyles } as Record<string, Port | Userstyle>;
+const wrapIsUserstyles = (yml: Record<string, Port | Userstyle>, isUserstyle: boolean) => {
+  return Object.fromEntries(
+    Object.entries(yml).map(([key, value]) => {
+      value.is_userstyle = isUserstyle;
+      return [key, value];
+    }),
+  );
+};
+const portsWrapped = wrapIsUserstyles(portsYml.ports, false);
+const userstylesWrapped = wrapIsUserstyles(userstylesYml.userstyles, true);
+
+export const ports = { ...portsWrapped, ...userstylesWrapped } as Record<string, Port | Userstyle>;
 
 const uniqueMaintainers = new PropertyBasedSet<CurrentMaintainer>(
   (m) => m.url,

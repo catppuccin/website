@@ -11,7 +11,7 @@ const getCategories = (fields: Port | Userstyle) => {
   const mappedCategories = fields.categories.map(
     (portCategory) => categories.find(({ key }) => key == portCategory) as Category,
   );
-  if ("readme" in fields) {
+  if (fields.is_userstyle) {
     mappedCategories.push({
       key: "userstyle",
       name: "Userstyles",
@@ -20,6 +20,13 @@ const getCategories = (fields: Port | Userstyle) => {
     });
   }
   return mappedCategories;
+};
+
+const getLink = (slug: string, fields: Port | Userstyle) => {
+  if (fields.is_userstyle) {
+    return `https://github.com/catppuccin/userstyles/blob/main/styles/${slug}`;
+  }
+  return `https://github.com/catppuccin/${fields.alias ?? slug}`;
 };
 ---
 
@@ -42,13 +49,7 @@ const getCategories = (fields: Port | Userstyle) => {
           .map(([slug, fields]) => (
             <PortCard
               title={fields.name}
-              link={
-                "url" in fields
-                  ? (fields.url as string)
-                  : "alias" in fields
-                    ? `https://github.com/catppuccin/${fields.alias || slug}`
-                    : `https://github.com/catppuccin/userstyles/blob/main/styles/${slug}`
-              }
+              link={getLink(slug, fields)}
               icon={fields.icon}
               categories={getCategories(fields)}
               color={fields.color}
