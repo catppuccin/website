@@ -45,9 +45,9 @@ const getCategories = (fields: Port | Userstyle) => {
               link={
                 "url" in fields
                   ? (fields.url as string)
-                  : "readme" in fields
-                    ? `https://github.com/catppuccin/userstyles/blob/main/styles/${slug}`
-                    : `https://github.com/catppuccin/${fields.alias || slug}`
+                  : "alias" in fields
+                    ? `https://github.com/catppuccin/${fields.alias || slug}`
+                    : `https://github.com/catppuccin/userstyles/blob/main/styles/${slug}`
               }
               icon={fields.icon}
               categories={getCategories(fields)}
