@@ -56,16 +56,16 @@
       <slot name="no-results"></slot>
     {:else if portGrid && portGrid.length > 0}
       {#each portGrid as fields (fields.key)}
-        <div style={`display: ${portGrid.includes(fields) ? "grid" : "none"}`}>
-          <PortCard
-            title={fields.name}
-            link={fields["is-userstyle"]
-              ? `https://github.com/catppuccin/userstyles/tree/main/styles/${fields.key}`
-              : fields.repository.url}
-            icon={fields.icon}
-            categories={fields.categories}
-            color={fields.color} />
-        </div>
+        <!-- <div style={`display: ${portGrid.includes(fields) ? "grid" : "none"}`}> -->
+        <PortCard
+          title={fields.name}
+          link={fields["is-userstyle"]
+            ? `https://github.com/catppuccin/userstyles/tree/main/styles/${fields.key}`
+            : fields.repository.url}
+          icon={fields.icon}
+          categories={fields.categories}
+          color={fields.color} />
+        <!-- </div> -->
       {/each}
     {/if}
   {/key}
