@@ -54,9 +54,10 @@ section + section {
 }
 
 .content-wrapper {
-  margin-inline: auto;
-  padding: var(--space-md) var(--padding-body);
+  width: 100%;
   max-width: calc(2 * var(--padding-body) + var(--website-max-width));
+  padding: var(--space-md) var(--padding-body);
+  margin-inline: auto;
 }
 
 .no-padding {

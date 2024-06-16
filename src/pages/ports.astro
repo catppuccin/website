@@ -16,23 +16,47 @@ import Link from "../components/Link.astro";
       Catppuccin offers ports for all sorts of different applications, tools, websites and just about anything that
       comes to your mind!
     </p>
+    <p>Ports: <strong>{repositories.length}</strong></p>
   </PageIntro>
 
   <Search client:only="svelte" ports={repositories}>
-    <p slot="no-results">
-      Sorry! This port doesn't exist at the minute. To request a port to be themed, create a
-      <Link href="https://github.com/catppuccin/catppuccin/discussions/new?category=port-requests" external slot="link"
-        >Port Request in catppuccin/catppuccin</Link
-      >
-      .
-    </p>
+    <svelte:fragment slot="no-results">
+      <p>Sorry, we couldn't find any ports matching your search :(</p>
+      <p>
+        You can request a port to be themed by raising a
+        <Link
+          href="https://github.com/catppuccin/catppuccin/discussions/new?category=port-requests"
+          external
+          slot="link">port request in catppuccin/catppuccin</Link
+        >
+        .
+      </p>
+    </svelte:fragment>
   </Search>
 </Layout>
 
-<style lang="scss">
+<style lang="scss" is:global>
   @use "../styles/utils";
 
   :root {
     --accent-color: var(--peach);
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    column-gap: var(--space-xl);
+  }
+
+  .content-wrapper {
+    margin-block-end: var(--space-xl);
+  }
+
+  .footer-container {
+    margin-block-start: unset;
+    margin-top: auto;
+    .content-wrapper {
+      margin-block-end: unset;
+    }
   }
 </style>
