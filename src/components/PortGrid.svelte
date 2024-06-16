@@ -106,8 +106,4 @@
   input::placeholder {
     color: var(--overlay2);
   }
-
-  .port-grid {
-    @include utils.grid($column: 250px, $gap: var(--space-md));
-  }
 </style>

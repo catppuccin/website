@@ -5,6 +5,7 @@ import Layout from "../layouts/Layout.astro";
 
 import PageIntro from "../components/PageIntro.astro";
 import Search from "../components/PortGrid.svelte";
+import PortCard from "../components/cards/PortCard.svelte";
 import Link from "../components/Link.astro";
 ---
 
@@ -18,6 +19,26 @@ import Link from "../components/Link.astro";
     </p>
     <p>Ports: <strong>{repositories.length}</strong></p>
   </PageIntro>
+
+  <noscript>
+    <div class="port-grid">
+      {
+        repositories.map((p) => (
+          <PortCard
+            title={p.name}
+            link={
+              p["is-userstyle"]
+                ? `https://github.com/catppuccin/userstyles/tree/main/styles/${p.key}`
+                : p.repository.url
+            }
+            icon={p.icon}
+            categories={p.categories}
+            color={p.color}
+          />
+        ))
+      }
+    </div>
+  </noscript>
 
   <Search client:only="svelte" ports={repositories}>
     <svelte:fragment slot="no-results">
@@ -58,5 +79,9 @@ import Link from "../components/Link.astro";
     .content-wrapper {
       margin-block-end: unset;
     }
+  }
+
+  .port-grid {
+    @include utils.grid($column: 250px, $gap: var(--space-md));
   }
 </style>
