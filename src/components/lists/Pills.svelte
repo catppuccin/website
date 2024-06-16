@@ -1,16 +1,11 @@
----
-import type { ColorName } from "@catppuccin/palette";
-
-interface Props {
-  list: string[];
-  color?: ColorName;
-}
-
-const { list } = Astro.props;
----
+<script lang="ts">
+  export let list: string[] = [];
+</script>
 
 <ul class="pill-list">
-  {list.map((entry) => <li class="pill">{entry}</li>)}
+  {#each list as entry}
+    <li class="pill">{entry}</li>
+  {/each}
 </ul>
 
 <style lang="scss">

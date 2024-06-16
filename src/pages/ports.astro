@@ -1,33 +1,11 @@
 ---
-import { ports, categories, type Category, type Port, type Userstyle } from "../lib/ports";
+import { repositories } from "../lib/ports";
 
 import Layout from "../layouts/Layout.astro";
 
 import PageIntro from "../components/PageIntro.astro";
-import PortCard from "../components/cards/Port.astro";
-import Callout from "../components/cards/Callout.astro";
-
-const getCategories = (fields: Port | Userstyle) => {
-  const mappedCategories = fields.categories.map(
-    (portCategory) => categories.find(({ key }) => key == portCategory) as Category,
-  );
-  if (fields.is_userstyle) {
-    mappedCategories.push({
-      key: "userstyle",
-      name: "Userstyles",
-      description: "Modified CSS files that can be applied to a website.",
-      emoji: "🖌",
-    });
-  }
-  return mappedCategories;
-};
-
-const getLink = (slug: string, fields: Port | Userstyle) => {
-  if (fields.is_userstyle) {
-    return `https://github.com/catppuccin/userstyles/blob/main/styles/${slug}`;
-  }
-  return `https://github.com/catppuccin/${fields.alias ?? slug}`;
-};
+import Search from "../components/PortGrid.svelte";
+import Link from "../components/Link.astro";
 ---
 
 <Layout
@@ -38,36 +16,23 @@ const getLink = (slug: string, fields: Port | Userstyle) => {
       Catppuccin offers ports for all sorts of different applications, tools, websites and just about anything that
       comes to your mind!
     </p>
-    <Callout type="info"> Search & Filters Coming Soon™</Callout>
   </PageIntro>
 
-  <section class="port-list">
-    <div class="port-grid">
-      {
-        Object.entries(ports)
-          .sort(([a], [b]) => (a.toLowerCase() < b.toLowerCase() ? -1 : a.toLowerCase() > b.toLowerCase() ? 1 : 0))
-          .map(([slug, fields]) => (
-            <PortCard
-              title={fields.name}
-              link={getLink(slug, fields)}
-              icon={fields.icon}
-              categories={getCategories(fields)}
-              color={fields.color}
-            />
-          ))
-      }
-    </div>
-  </section>
+  <Search client:only="svelte" ports={repositories}>
+    <p slot="no-results">
+      Sorry! This port doesn't exist at the minute. To request a port to be themed, create a
+      <Link href="https://github.com/catppuccin/catppuccin/discussions/new?category=port-requests" external slot="link"
+        >Port Request in catppuccin/catppuccin</Link
+      >
+      .
+    </p>
+  </Search>
 </Layout>
 
-<style lang="scss" is:global>
+<style lang="scss">
   @use "../styles/utils";
 
   :root {
     --accent-color: var(--peach);
-  }
-
-  .port-grid {
-    @include utils.grid($column: 250px, $gap: var(--space-md));
   }
 </style>
