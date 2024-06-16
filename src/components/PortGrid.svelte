@@ -8,9 +8,9 @@
 
   const fuse = new Fuse(ports, {
     keys: [
-      { name: "name", weight: 1 },
+      { name: "key", weight: 1 },
       { name: "categories.name", weight: 0.8 },
-      { name: "key", weight: 0.6 },
+      { name: "name", weight: 0.4 },
     ],
     includeScore: false,
     threshold: 0.4,
@@ -25,7 +25,7 @@
     clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(() => {
       searchTerm ? (portGrid = fuse.search(searchTerm).map((key) => key.item)) : (portGrid = ports);
-    }, 200);
+    }, 50);
   }
 </script>
 
@@ -50,6 +50,7 @@
       <slot name="no-results"></slot>
     {:else if portGrid.length > 0}
       {#each portGrid as fields (fields.key)}
+        <!-- <div style={`display: ${portGrid.includes(fields) ? "grid" : "none"}`}> -->
         <PortCard
           title={fields.name}
           link={fields["is-userstyle"]
@@ -58,6 +59,7 @@
           icon={fields.icon}
           categories={fields.categories}
           color={fields.color} />
+        <!-- </div> -->
       {/each}
     {/if}
   {/key}
