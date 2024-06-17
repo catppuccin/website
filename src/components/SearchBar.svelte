@@ -12,6 +12,7 @@
   <input
     type="text"
     id="search-field"
+    aria-label="Search"
     placeholder="Search port name or category..."
     autocomplete="off"
     bind:value={searchTerm}
