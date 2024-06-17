@@ -1,11 +1,11 @@
 ---
-import { repositories } from "../lib/ports";
+import { ports } from "../lib/ports";
 
 import Layout from "../layouts/Layout.astro";
 
 import PageIntro from "../components/PageIntro.astro";
-import Search from "../components/PortGrid.svelte";
-import PortCard from "../components/cards/PortCard.svelte";
+import PortExplorer from "../components/PortExplorer.svelte";
+import PortCard from "../components/cards/Port.svelte";
 import Link from "../components/Link.astro";
 ---
 
@@ -17,30 +17,17 @@ import Link from "../components/Link.astro";
       Catppuccin offers ports for all sorts of different applications, tools, websites and just about anything that
       comes to your mind!
     </p>
-    <p>Ports: <strong>{repositories.length}</strong></p>
+    <p>Ports: <strong>{ports.length}</strong></p>
   </PageIntro>
 
+  <!-- Fallback for browsers without JavaScript enabled -->
   <noscript>
     <div class="port-grid">
-      {
-        repositories.map((p) => (
-          <PortCard
-            title={p.name}
-            link={
-              p["is-userstyle"]
-                ? `https://github.com/catppuccin/userstyles/tree/main/styles/${p.key}`
-                : p.repository.url
-            }
-            icon={p.icon}
-            categories={p.categories}
-            color={p.color}
-          />
-        ))
-      }
+      {ports.map((port) => <PortCard {port} />)}
     </div>
   </noscript>
 
-  <Search client:only="svelte" ports={repositories}>
+  <PortExplorer {ports} client:only="svelte">
     <svelte:fragment slot="no-results">
       <p>Sorry, we couldn't find any ports matching your search :(</p>
       <p>
@@ -53,7 +40,7 @@ import Link from "../components/Link.astro";
         .
       </p>
     </svelte:fragment>
-  </Search>
+  </PortExplorer>
 </Layout>
 
 <style lang="scss" is:global>

@@ -1,32 +1,27 @@
 <script lang="ts">
-  import type { ColorName } from "@catppuccin/palette";
-  import type { Category } from "../../lib/ports";
+  import type { Port, Userstyle } from "../../lib/ports";
   import PillList from "../lists/Pills.svelte";
   import Icon from "@iconify/svelte";
-  export let title: string[] | string;
-  export let link: string;
-  export let icon: string | undefined;
-  export let categories: Category[];
-  export let color: ColorName;
+  export let port: Port | Userstyle;
 </script>
 
-<a href={link} class="port-card">
+<a href={port.link} class="port-card">
   <div class="port-header">
-    <p class="port-name">{Array.isArray(title) ? title.join(", ") : title}</p>
+    <p class="port-name">{Array.isArray(port.name) ? port.name.join(", ") : port.name}</p>
     <div class="port-icon">
       <Icon
-        color="var(--{color})"
+        color="var(--{port.color})"
         width={24}
         height={24}
         icon={{
-          body: icon ?? "",
+          body: port.icon ?? "",
           width: 24,
           height: 24,
         }} />
     </div>
   </div>
 
-  <PillList list={categories.map((category) => `${category.name}`)} />
+  <PillList list={port.categories.map((category) => `${category.name}`)} />
 </a>
 
 <style lang="scss">

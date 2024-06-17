@@ -69,6 +69,7 @@ export interface Port {
   upstreamed?: boolean;
   links?: Link[];
   "is-userstyle": false;
+  link: string;
 }
 
 export interface Link {
@@ -94,6 +95,7 @@ export interface Userstyle {
   key: string;
   "past-maintainers"?: Collaborator[];
   "is-userstyle": true;
+  link: string;
 }
 
 export interface Readme {
@@ -134,15 +136,19 @@ const getIcon = (icon: string | undefined) => {
   return cubeFillIcon;
 };
 
-// Sort and get the icon strings for each port
-export const repositories = [...repositoriesYml.ports, ...repositoriesYml.userstyles]
+// Sort items; get the icon strings for each port; and account for userstyles for link
+export const ports = [...repositoriesYml.ports, ...repositoriesYml.userstyles]
   .sort((a, b) => a.key.localeCompare(b.key))
   .map((port) => {
     return {
       ...port,
       icon: getIcon(port.icon),
+      link: port["is-userstyle"]
+        ? `https://github.com/catppuccin/userstyles/tree/main/styles/${port.key}`
+        : port.repository.url,
     };
   });
+// We need the current maintainers for both userstyles and ports
 export const currentMaintainers: Collaborator[] = new PropertyBasedSet<Collaborator>(
   (m) => m.url,
   [...repositoriesYml.userstyles, ...repositoriesYml.ports.map((p) => p.repository)].flatMap(
