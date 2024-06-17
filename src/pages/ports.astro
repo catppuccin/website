@@ -17,7 +17,7 @@ import Link from "../components/Link.astro";
       Catppuccin offers ports for all sorts of different applications, tools, websites and just about anything that
       comes to your mind!
     </p>
-    <p>Ports: <strong>{ports.length}</strong></p>
+    <p>Total Ports: <strong>{ports.length}</strong></p>
   </PageIntro>
 
   <!-- Display ports without search bar for browsers without JavaScript enabled -->
@@ -50,16 +50,19 @@ import Link from "../components/Link.astro";
     --accent-color: var(--peach);
   }
 
+  // Allows us to clamp the footer to the bottom of the page
   body {
     display: flex;
     flex-direction: column;
-    column-gap: var(--space-xl);
   }
 
+  // Need to put it here because `margin-top: auto` can't be used with `margin-block-start`
   .content-wrapper {
     margin-block-end: var(--space-xl);
   }
 
+  // Need to account for the fact that I've put `margin-block-end` on the `content-wrapper`
+  .header-container,
   .footer-container {
     margin-block-start: unset;
     margin-top: auto;
