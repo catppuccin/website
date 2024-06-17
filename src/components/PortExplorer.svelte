@@ -15,7 +15,7 @@
       { name: "name", weight: 0.4 },
     ],
     includeScore: false,
-    threshold: 0.4,
+    threshold: 0.3,
   });
 
   const url = new URL(window.location.href);
