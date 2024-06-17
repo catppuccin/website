@@ -30,7 +30,7 @@
     clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(() => {
       searchTerm ? (portGrid = fuse.search(searchTerm).map((key) => key.item)) : (portGrid = ports);
-    }, 75);
+    }, 25);
   }
 </script>
 
