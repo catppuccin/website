@@ -1,85 +1,136 @@
-import type { ColorName } from "@catppuccin/palette";
 import { parse } from "yaml";
 import { PropertyBasedSet } from "./propertyBasedSet";
+import { getIcon } from "./getIcon";
+import type { ColorName } from "@catppuccin/palette";
 
-export type Category = {
+// Mostly auto-generated but have made manual edits to the types
+// to stop TypeScript from complaining about the types. Future
+// Hammy can deal with the consequences of this decision.
+
+export interface Everything {
+  ports: Port[];
+  collaborators: Collaborator[];
+  categories: Category[];
+  showcases: Showcase[];
+  "archived-ports": ArchivedPort[];
+  "userstyles-collaborators": Collaborator[];
+  userstyles: Userstyle[];
+}
+
+export interface ArchivedPort {
+  name: string;
+  reason: string;
+  categories: Category[];
+  platform: PlatformElement[] | "agnostic";
+  color: ColorName;
+  icon?: string;
+  key: string;
+  repository: Repository;
+}
+
+export interface Category {
   key: string;
   name: string;
   description: string;
   emoji: string;
-};
+}
 
-type Platform = "android" | "windows" | "ios" | "linux" | "macos";
+export enum PlatformElement {
+  Android = "android",
+  Ios = "ios",
+  Linux = "linux",
+  Macos = "macos",
+  Windows = "windows",
+}
 
-type Link = {
+export interface Repository {
   name: string;
-  color: string;
-  icon: string;
   url: string;
-};
+  "current-maintainers": Collaborator[];
+  "past-maintainers": Collaborator[];
+}
 
-type CurrentMaintainer = {
+export interface Collaborator {
+  username?: string;
+  url: string;
   name?: string;
-  url: string;
-};
+}
 
-export type Port = {
-  categories: string[];
+export interface Port {
   name: string;
-  platform: Platform[];
+  categories: Category[];
+  platform: PlatformElement[] | "agnostic";
   color: ColorName;
+  key: string;
+  repository: Repository;
   icon?: string;
   alias?: string;
-  url?: string;
-  links?: Link[];
   upstreamed?: boolean;
-  "current-maintainers": CurrentMaintainer[];
-  is_userstyle: false;
-};
+  links?: Link[];
+  "is-userstyle": false;
+  link: string;
+}
 
-export type Userstyle = {
-  name: string[] | string;
-  categories: string[];
-  color: ColorName;
+export interface Link {
+  name: string;
   icon?: string;
-  "current-maintainers": CurrentMaintainer[];
-  is_userstyle: true;
-};
+  color?: ColorName;
+  url: string;
+}
 
-export const portsYml = (await fetch("https://github.com/catppuccin/catppuccin/raw/main/resources/ports.yml")
+export interface Showcase {
+  title: string;
+  description: string;
+  link: string;
+}
+
+export interface Userstyle {
+  name: string[] | string;
+  categories: Category[];
+  icon?: string;
+  color: ColorName;
+  readme: Readme;
+  "current-maintainers": Collaborator[];
+  key: string;
+  "past-maintainers"?: Collaborator[];
+  "is-userstyle": true;
+  link: string;
+}
+
+export interface Readme {
+  "app-link": string[] | string;
+  usage?: string;
+  faq?: FAQ[];
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export const repositoriesYml = (await fetch(
+  "https://raw.githubusercontent.com/catppuccin/catppuccin/portscelain/pigeon/ports.porcelain.yml",
+)
   .then((r) => r.text())
-  .then((t) => parse(t))) as {
-  ports: Record<string, Port>;
-  categories: Array<Category>;
-};
+  .then((t) => parse(t))) as Everything;
 
-export const userstylesYml = (await fetch("https://github.com/catppuccin/userstyles/raw/main/scripts/userstyles.yml")
-  .then((r) => r.text())
-  .then((t) => parse(t))) as {
-  collaborators: Array<{ url: string; name?: string }>;
-  userstyles: Record<string, Userstyle>;
-};
+// Sort items; get the icon strings for each port; and account for userstyles for link
+export const ports = [...repositoriesYml.ports, ...repositoriesYml.userstyles]
+  .sort((a, b) => a.key.localeCompare(b.key))
+  .map((port) => {
+    return {
+      ...port,
+      icon: getIcon(port.icon),
+      link: port["is-userstyle"]
+        ? `https://github.com/catppuccin/userstyles/tree/main/styles/${port.key}`
+        : port.repository.url,
+    };
+  });
 
-const wrapIsUserstyles = (yml: Record<string, Port | Userstyle>, isUserstyle: boolean) => {
-  return Object.fromEntries(
-    Object.entries(yml).map(([key, value]) => {
-      value.is_userstyle = isUserstyle;
-      return [key, value];
-    }),
-  );
-};
-const portsWrapped = wrapIsUserstyles(portsYml.ports, false);
-const userstylesWrapped = wrapIsUserstyles(userstylesYml.userstyles, true);
-
-export const ports = { ...portsWrapped, ...userstylesWrapped } as Record<string, Port | Userstyle>;
-
-const uniqueMaintainers = new PropertyBasedSet<CurrentMaintainer>(
+// We need the current maintainers for both userstyles and ports
+export const currentMaintainers: Collaborator[] = new PropertyBasedSet<Collaborator>(
   (m) => m.url,
-  Object.values(ports).flatMap((port: Port | Userstyle) => {
-    return port["current-maintainers"];
-  }),
-);
-
-export const currentMaintainers: CurrentMaintainer[] = uniqueMaintainers.sorted();
-
-export const { categories } = portsYml;
+  [...repositoriesYml.userstyles, ...repositoriesYml.ports.map((p) => p.repository)].flatMap(
+    (p) => p["current-maintainers"],
+  ),
+).sorted();

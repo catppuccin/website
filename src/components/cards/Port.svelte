@@ -1,36 +1,25 @@
----
-import type { ColorName } from "@catppuccin/palette";
-import { type Category } from "../../lib/ports";
+<script lang="ts">
+  import type { Port, Userstyle } from "../../lib/ports";
+  import PillList from "../lists/Pills.svelte";
+  import Icon from "@iconify/svelte";
+  export let port: Port | Userstyle;
+</script>
 
-import { Icon } from "astro-icon/components";
-import PillList from "../lists/Pills.astro";
-
-interface Props {
-  title: string[] | string;
-  link: string;
-  icon: string | undefined;
-  categories: Category[];
-  color?: ColorName;
-}
-
-const { title, link, icon, categories, color } = Astro.props;
-
-function getIcon(icon: string | undefined) {
-  if (!icon) return "ph:cube-fill";
-  if (icon.endsWith(".svg")) return `ports/${icon.split(".")[0]}`;
-  return `simple-icons:${icon}`;
-}
----
-
-<a href={link} class="port-card">
+<a href={port.link} class="port-card">
   <div class="port-header">
-    <p class="port-name">{Array.isArray(title) ? title.join(", ") : title}</p>
-    <div class="port-icon" style=`color: var(--${color});`>
-      <Icon name={getIcon(icon)} size={24} />
-    </div>
+    <p class="port-name">{Array.isArray(port.name) ? port.name.join(", ") : port.name}</p>
+    <Icon
+      color="var(--{port.color})"
+      width={24}
+      height={24}
+      icon={{
+        body: port.icon ?? "",
+        width: 24,
+        height: 24,
+      }} />
   </div>
 
-  <PillList list={categories.map((category: Category) => `${category.name}`)} />
+  <PillList list={port.categories.map((category) => `${category.name}`)} />
 </a>
 
 <style lang="scss">
@@ -62,7 +51,6 @@ function getIcon(icon: string | undefined) {
       }
     }
 
-    figure,
     p {
       margin: 0;
       padding: 0;

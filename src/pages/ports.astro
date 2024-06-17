@@ -1,33 +1,12 @@
 ---
-import { ports, categories, type Category, type Port, type Userstyle } from "../lib/ports";
+import { ports } from "../lib/ports";
 
 import Layout from "../layouts/Layout.astro";
 
 import PageIntro from "../components/PageIntro.astro";
-import PortCard from "../components/cards/Port.astro";
-import Callout from "../components/cards/Callout.astro";
-
-const getCategories = (fields: Port | Userstyle) => {
-  const mappedCategories = fields.categories.map(
-    (portCategory) => categories.find(({ key }) => key == portCategory) as Category,
-  );
-  if (fields.is_userstyle) {
-    mappedCategories.push({
-      key: "userstyle",
-      name: "Userstyles",
-      description: "Modified CSS files that can be applied to a website.",
-      emoji: "🖌",
-    });
-  }
-  return mappedCategories;
-};
-
-const getLink = (slug: string, fields: Port | Userstyle) => {
-  if (fields.is_userstyle) {
-    return `https://github.com/catppuccin/userstyles/blob/main/styles/${slug}`;
-  }
-  return `https://github.com/catppuccin/${fields.alias ?? slug}`;
-};
+import PortExplorer from "../components/PortExplorer.svelte";
+import PortCard from "../components/cards/Port.svelte";
+import Link from "../components/Link.astro";
 ---
 
 <Layout
@@ -38,26 +17,30 @@ const getLink = (slug: string, fields: Port | Userstyle) => {
       Catppuccin offers ports for all sorts of different applications, tools, websites and just about anything that
       comes to your mind!
     </p>
-    <Callout type="info"> Search & Filters Coming Soon™</Callout>
+    <p>Total Ports: <strong>{ports.length}</strong></p>
   </PageIntro>
 
-  <section class="port-list">
+  <!-- Display ports without search bar for browsers without JavaScript enabled -->
+  <noscript>
     <div class="port-grid">
-      {
-        Object.entries(ports)
-          .sort(([a], [b]) => (a.toLowerCase() < b.toLowerCase() ? -1 : a.toLowerCase() > b.toLowerCase() ? 1 : 0))
-          .map(([slug, fields]) => (
-            <PortCard
-              title={fields.name}
-              link={getLink(slug, fields)}
-              icon={fields.icon}
-              categories={getCategories(fields)}
-              color={fields.color}
-            />
-          ))
-      }
+      {ports.map((port) => <PortCard {port} />)}
     </div>
-  </section>
+  </noscript>
+
+  <PortExplorer {ports} client:only="svelte">
+    <svelte:fragment slot="no-results">
+      <p>Sorry, we couldn't find any ports matching your search :(</p>
+      <p>
+        You can request a port to be themed by raising a
+        <Link
+          href="https://github.com/catppuccin/catppuccin/discussions/new?category=port-requests"
+          external
+          slot="link">port request in catppuccin/catppuccin</Link
+        >
+        .
+      </p>
+    </svelte:fragment>
+  </PortExplorer>
 </Layout>
 
 <style lang="scss" is:global>
@@ -65,6 +48,23 @@ const getLink = (slug: string, fields: Port | Userstyle) => {
 
   :root {
     --accent-color: var(--peach);
+  }
+
+  // Allows us to clamp the footer to the bottom of the page
+  // I'm sorry lemon, I didn't know how to do this without using flexbox
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  // Need to put it here because `margin-top: auto` can't be used with `margin-block-start`
+  .main-container {
+    margin-block-end: var(--space-xl);
+    min-height: 100vh;
+  }
+
+  .footer-container {
+    margin-top: auto;
   }
 
   .port-grid {
