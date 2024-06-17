@@ -23,7 +23,7 @@
   handleInput();
 
   function handleInput() {
-    // Keep the URL in sync with the search term
+    // Keep the URL in sync with the search bar
     url.searchParams.set("q", searchTerm);
     window.history.pushState(null, "", url.toString());
 

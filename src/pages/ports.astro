@@ -20,7 +20,7 @@ import Link from "../components/Link.astro";
     <p>Ports: <strong>{ports.length}</strong></p>
   </PageIntro>
 
-  <!-- Fallback for browsers without JavaScript enabled -->
+  <!-- Display ports without search bar for browsers without JavaScript enabled -->
   <noscript>
     <div class="port-grid">
       {ports.map((port) => <PortCard {port} />)}

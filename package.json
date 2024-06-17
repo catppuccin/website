@@ -10,7 +10,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "prepare": "husky"
+    "prepare": "husky",
+    "convertCustomIconsToJson": "bun src/lib/iconify/convertCustomIconsToJson.ts"
   },
   "lint-staged": {
     "src/**/*": "bun prettier --plugin=prettier-plugin-astro . --write"
@@ -28,7 +29,7 @@
   "devDependencies": {
     "@catppuccin/palette": "^1.1.0",
     "astro-icon": "^1.1.0",
-    "@iconify-json/ph": "^1.1.12",
+    "@iconify-json/ph": "^1.1.13",
     "@iconify-json/simple-icons": "^1.1.102",
     "@iconify/svelte": "^4.0.2",
     "@iconify/tools": "^4.0.4",
