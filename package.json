@@ -30,7 +30,7 @@
     "@catppuccin/palette": "^1.1.0",
     "astro-icon": "^1.1.0",
     "@iconify-json/ph": "^1.1.13",
-    "@iconify-json/simple-icons": "^1.1.102",
+    "@iconify-json/simple-icons": "^1.1.106",
     "@iconify/svelte": "^4.0.2",
     "@iconify/tools": "^4.0.4",
     "@iconify/types": "^2.0.0",
