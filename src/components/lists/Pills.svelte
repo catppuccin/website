@@ -25,7 +25,7 @@
     @include utils.containerPadding(xxs-y);
 
     border-radius: 9999px;
-    background-color: color-mix(in srgb, var(--base), var(--subtext0) 20%);
+    background-color: color-mix(in srgb, var(--base), var(--subtext0) 10%);
 
     font-size: 80%;
   }
