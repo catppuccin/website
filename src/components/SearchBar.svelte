@@ -11,7 +11,7 @@
     type="text"
     id="search-field"
     aria-label="Search"
-    placeholder="Search port or category..."
+    placeholder="Search port..."
     autocomplete="off"
     bind:value={searchTerm}
     on:input={handleInput} />
@@ -38,7 +38,7 @@
       border: none;
       outline: none;
       width: 100%;
-      font-size: 2rem;
+      font-size: 2.2rem;
     }
   }
 

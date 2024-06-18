@@ -23,6 +23,7 @@
     "astro": "^4.5.16",
     "fuse.js": "^7.0.0",
     "svelte": "^4.2.12",
+    "svelte-select": "^5.8.3",
     "typescript": "^5.4.4",
     "yaml": "^2.4.0"
   },

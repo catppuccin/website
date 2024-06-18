@@ -3,6 +3,11 @@ import { PropertyBasedSet } from "./propertyBasedSet";
 import { getIcon } from "./getIcon";
 import type { ColorName } from "@catppuccin/palette";
 
+export type HandleCategory = {
+  value: string;
+  label: string;
+};
+
 // Mostly auto-generated but have made manual edits to the types
 // to stop TypeScript from complaining about the types. Future
 // Hammy can deal with the consequences of this decision.
@@ -21,7 +26,7 @@ export interface ArchivedPort {
   name: string;
   reason: string;
   categories: Category[];
-  platform: PlatformElement[] | "agnostic";
+  platform: Platform;
   color: ColorName;
   icon?: string;
   key: string;
@@ -43,6 +48,8 @@ export enum PlatformElement {
   Windows = "windows",
 }
 
+export type Platform = PlatformElement | "agnostic";
+
 export interface Repository {
   name: string;
   url: string;
@@ -59,7 +66,7 @@ export interface Collaborator {
 export interface Port {
   name: string;
   categories: Category[];
-  platform: PlatformElement[] | "agnostic";
+  platform: Platform;
   color: ColorName;
   key: string;
   repository: Repository;
@@ -108,6 +115,8 @@ export interface FAQ {
   answer: string;
 }
 
+export type CategoryWithPortCount = Category & { portCount: number; nameWithCount: string };
+
 export const repositoriesYml = (await fetch(
   "https://raw.githubusercontent.com/catppuccin/catppuccin/portscelain/pigeon/ports.porcelain.yml",
 )
@@ -134,3 +143,23 @@ export const currentMaintainers: Collaborator[] = new PropertyBasedSet<Collabora
     (p) => p["current-maintainers"],
   ),
 ).sorted();
+
+export const categories = repositoriesYml.categories.map((category) => {
+  const portCount = ports.filter((port) => port.categories.some((c) => c.key === category.key)).length;
+  return {
+    ...category,
+    portCount,
+    nameWithCount: `${category.name} (${portCount})`,
+  };
+});
+categories.push({
+  key: "everything",
+  name: "Ports",
+  description: "All ports and userstyles",
+  emoji: "🌐",
+  portCount: ports.length,
+  nameWithCount: `Ports (${ports.length})`,
+});
+categories.sort((a, b) => b.portCount - a.portCount);
+
+export const platforms: Platform[] = [...Object.values(PlatformElement), "agnostic"];

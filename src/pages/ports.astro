@@ -1,5 +1,5 @@
 ---
-import { ports } from "../lib/ports";
+import { platforms, categories, ports } from "../lib/ports";
 
 import Layout from "../layouts/Layout.astro";
 
@@ -17,7 +17,6 @@ import Link from "../components/Link.astro";
       Catppuccin offers ports for all sorts of different applications, tools, websites and just about anything that
       comes to your mind!
     </p>
-    <p>Total Ports: <strong>{ports.length}</strong></p>
   </PageIntro>
 
   <!-- Display ports without search bar for browsers without JavaScript enabled -->
@@ -27,7 +26,7 @@ import Link from "../components/Link.astro";
     </div>
   </noscript>
 
-  <PortExplorer {ports} client:only="svelte">
+  <PortExplorer {ports} {categories} {platforms} client:only="svelte">
     <svelte:fragment slot="no-results">
       <p>Sorry, we couldn't find any ports matching your search :(</p>
       <p>
