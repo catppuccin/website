@@ -8,15 +8,7 @@
 <a href={port.link} class="port-card">
   <div class="port-header">
     <p class="port-name">{Array.isArray(port.name) ? port.name.join(", ") : port.name}</p>
-    <Icon
-      color="var(--{port.color})"
-      width={24}
-      height={24}
-      icon={{
-        body: port.icon ?? "",
-        width: 24,
-        height: 24,
-      }} />
+    <Icon color="var(--{port.color})" width={24} height={24} icon={port.icon || ""} />
   </div>
 
   <PillList list={port.categories.map((category) => `${category.name}`)} />

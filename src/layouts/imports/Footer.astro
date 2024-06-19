@@ -1,7 +1,7 @@
 ---
 import Link from "../../components/Link.astro";
 import PoweredByVercel from "../../components/svgs/PoweredByVercel.astro";
-import Volume from "../../components/svgs/Volume.astro";
+import { Icon } from "astro-icon/components";
 
 import { footer as navLinkList } from "../../contents/navigation";
 ---
@@ -32,7 +32,7 @@ import { footer as navLinkList } from "../../contents/navigation";
       <p class="divider">•</p>
       <span>/ˌkætpʊˈtʃiːn/</span>
       <button class="play-pronounciation" onclick="document.querySelector('#pronounciation').play();">
-        <Volume />
+        <Icon name="ph:speaker-high" />
       </button>
       <audio id="pronounciation"><source src="/pronounciation.mp3" type="audio/mpeg" /></audio>
     </div>
@@ -82,6 +82,12 @@ import { footer as navLinkList } from "../../contents/navigation";
 
       &:hover {
         cursor: pointer;
+      }
+
+      [data-icon="ph:speaker-high"] {
+        fill: currentColor;
+        width: 2rem;
+        height: 2rem;
       }
     }
   </style>
