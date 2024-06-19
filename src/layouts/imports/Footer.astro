@@ -29,6 +29,8 @@ import { footer as navLinkList } from "../../contents/navigation";
   <div class="rights-notice">
     <div>
       <p><strong>Catppuccin</strong></p>
+      <p class="divider">•</p>
+      <span>/ˌkætpʊˈtʃiːn/</span>
       <button class="play-pronounciation" onclick="document.querySelector('#pronounciation').play();">
         <Volume />
       </button>
@@ -65,6 +67,11 @@ import { footer as navLinkList } from "../../contents/navigation";
       div {
         display: flex;
       }
+    }
+
+    .divider {
+      margin-right: 1ch;
+      margin-left: 1ch;
     }
 
     .play-pronounciation {
