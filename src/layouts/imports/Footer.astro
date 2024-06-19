@@ -1,6 +1,7 @@
 ---
 import Link from "../../components/Link.astro";
 import PoweredByVercel from "../../components/svgs/PoweredByVercel.astro";
+import Volume from "../../components/svgs/Volume.astro";
 
 import { footer as navLinkList } from "../../contents/navigation";
 ---
@@ -28,10 +29,10 @@ import { footer as navLinkList } from "../../contents/navigation";
   <div class="rights-notice">
     <div>
       <p><strong>Catppuccin</strong></p>
-      <p>•</p>
-      <Link href="http://ipa-reader.xyz/?text=%CB%8Ck%C3%A6tp%CA%8A%CB%88t%CA%83i%CB%90n" external>
-        /ˌkætpʊˈtʃiːn/
-      </Link>
+      <button class="play-pronounciation" onclick="document.querySelector('#pronounciation').play();">
+        <Volume />
+      </button>
+      <audio id="pronounciation"><source src="/pronounciation.mp3" type="audio/mpeg" /></audio>
     </div>
     <p>catppuccin.com is built and maintained by the community under the MIT license.</p>
     <p>
@@ -63,7 +64,17 @@ import { footer as navLinkList } from "../../contents/navigation";
       max-width: 40ch;
       div {
         display: flex;
-        gap: 1rem;
+      }
+    }
+
+    .play-pronounciation {
+      border: none;
+      background: none;
+      color: inherit;
+      align-self: baseline;
+
+      &:hover {
+        cursor: pointer;
       }
     }
   </style>
