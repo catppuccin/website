@@ -1,10 +1,12 @@
 ---
 import Link from "../components/Link.astro";
 import PageIntro from "../components/PageIntro.astro";
-import Layout from "../layouts/Layout.astro";
+import LayoutWithClampedFooter from "../layouts/LayoutWithClampedFooter.astro";
 ---
 
-<Layout title="404 Not Found • Catppuccin" description="Oops! The page you're looking for could not be found.">
+<LayoutWithClampedFooter
+  title="404 Not Found • Catppuccin"
+  description="Oops! The page you're looking for could not be found.">
   <div class="wrapper">
     <div class="page-content">
       <PageIntro title="404 Not Found">
@@ -13,7 +15,7 @@ import Layout from "../layouts/Layout.astro";
       </PageIntro>
     </div>
   </div>
-</Layout>
+</LayoutWithClampedFooter>
 
 <style lang="scss">
   @use "../styles/utils";
