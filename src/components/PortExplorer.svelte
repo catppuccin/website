@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { Port, Userstyle } from "../lib/ports";
+  import type { Port } from "../lib/ports";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
   import Fuse from "fuse.js";
 
-  export let ports: Array<Port | Userstyle>;
-  let portGrid: Array<Port | Userstyle> | undefined = undefined;
+  export let ports: Array<Port>;
+  let portGrid: Array<Port> | undefined = undefined;
   let debounceTimeout: NodeJS.Timeout;
 
   const fuse = new Fuse(ports, {
