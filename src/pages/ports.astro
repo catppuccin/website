@@ -14,10 +14,9 @@ import Link from "../components/Link.astro";
   description="Explore Catppuccin's extensive range of ports. From applications and tools to websites, we have a port for just about anything!">
   <PageIntro title="Ports">
     <p>
-      Catppuccin offers ports for all sorts of different applications, tools, websites and just about anything that
-      comes to your mind!
+      Catppuccin provides <strong>{ports.length}</strong> ports, covering a wide range of applications, tools, websites,
+      and just about anything you can imagine!
     </p>
-    <p>Total Ports: <strong>{ports.length}</strong></p>
   </PageIntro>
 
   <!-- Display ports without search bar for browsers without JavaScript enabled -->
@@ -68,6 +67,6 @@ import Link from "../components/Link.astro";
   }
 
   .port-grid {
-    @include utils.grid($column: 250px, $gap: var(--space-md));
+    @include utils.grid($column: 300px, $gap: var(--space-md));
   }
 </style>
