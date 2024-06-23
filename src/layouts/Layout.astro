@@ -1,7 +1,8 @@
 ---
 import "../styles/global.scss";
 
-import Header from "./imports/Header.astro";
+import Head from "./imports/Head.astro";
+import Navigation from "./imports/Navigation.astro";
 import Footer from "./imports/Footer.astro";
 
 import AccentBar from "../components/AccentBar.astro";
@@ -18,38 +19,13 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
-
-    <meta property="og:url" content="https://catppuccin.com" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta content="#CBA6F7" data-react-helmet="true" name="theme-color" />
-    <meta property="og:image" content="/embed.png" />
-
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <meta name="darkreader-lock" />
-
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-
-    <link type="text/plain" rel="author" href="/humans.txt" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-
-    <title>{title}</title>
-  </head>
+  <Head title={title} description={description} />
   <body>
     <div id="toasts"></div>
 
     <section class="header-container">
       <div class="content-wrapper no-padding">
-        <Header />
+        <Navigation />
       </div>
     </section>
 
