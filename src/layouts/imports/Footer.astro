@@ -31,10 +31,13 @@ import { footer as navLinkList } from "../../contents/navigation";
       <p><strong>Catppuccin</strong></p>
       <p class="divider">•</p>
       <span>/ˌkætpʊˈtʃiːn/</span>
-      <button class="play-pronounciation" onclick="document.querySelector('#pronounciation').play();">
+      <button
+        class="play-pronunciation"
+        aria-label="Play pronunciation"
+        onclick="document.querySelector('#pronunciation').play();">
         <Volume />
       </button>
-      <audio id="pronounciation"><source src="/pronounciation.mp3" type="audio/mpeg" /></audio>
+      <audio id="pronunciation"><source src="/pronunciation.mp3" type="audio/mpeg" /></audio>
     </div>
     <p>catppuccin.com is built and maintained by the community under the MIT license.</p>
     <p>
@@ -74,7 +77,7 @@ import { footer as navLinkList } from "../../contents/navigation";
       margin-left: 1ch;
     }
 
-    .play-pronounciation {
+    .play-pronunciation {
       border: none;
       background: none;
       color: inherit;
