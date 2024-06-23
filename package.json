@@ -15,7 +15,7 @@
     "avatars": "bun src/lib/getAvatars.ts"
   },
   "lint-staged": {
-    "src/**/*": "bun prettier --plugin=prettier-plugin-astro . --write"
+    "!(src/layouts/*.astro)src/**/*": "bun prettier --plugin=prettier-plugin-astro . --write"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.0",

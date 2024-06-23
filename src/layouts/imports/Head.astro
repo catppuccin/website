@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props as Props;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <meta name="generator" content={Astro.generator} />
+  <meta name="description" content={description} />
+
+  <meta property="og:url" content="https://catppuccin.com" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta content="#CBA6F7" data-react-helmet="true" name="theme-color" />
+  <meta property="og:image" content="/embed.png" />
+
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <meta name="darkreader-lock" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+
+  <link type="text/plain" rel="author" href="/humans.txt" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <title>{title}</title>
+</head>
