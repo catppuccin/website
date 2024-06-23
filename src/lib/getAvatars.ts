@@ -21,7 +21,7 @@ async function fetchAndProcessImage(maintainer: Collaborator) {
   await Promise.all(
     SIZES.map(
       (size) =>
-        $`magick ${PUBLIC_DIR}/${username}.png -resize ${size}x${size} -quality ${IMAGE_QUALITY} ${PUBLIC_DIR}/${size}x${size}/${username}.webp`,
+        $`convert ${PUBLIC_DIR}/${username}.png -resize ${size}x${size} -quality ${IMAGE_QUALITY} ${PUBLIC_DIR}/${size}x${size}/${username}.webp`,
     ),
   );
 }
