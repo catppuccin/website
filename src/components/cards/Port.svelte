@@ -1,11 +1,11 @@
 <script lang="ts">
-  import type { Port, Userstyle } from "../../lib/ports";
+  import type { Port } from "../../lib/ports";
   import PillList from "../lists/Pills.svelte";
   import Icon from "@iconify/svelte";
-  export let port: Port | Userstyle;
+  export let port: Port;
 </script>
 
-<a href={port.link} class="port-card">
+<a href={port.repository.url} class="port-card">
   <div class="port-header">
     <p class="port-name">{Array.isArray(port.name) ? port.name.join(", ") : port.name}</p>
     <Icon
