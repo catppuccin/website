@@ -13,15 +13,13 @@ export interface Everything {
   categories: Category[];
   showcases: Showcase[];
   "archived-ports": ArchivedPort[];
-  "userstyles-collaborators": Collaborator[];
-  userstyles: Userstyle[];
 }
 
 export interface ArchivedPort {
   name: string;
   reason: string;
   categories: Category[];
-  platform: PlatformElement[] | "agnostic";
+  platform: Platform[] | "agnostic";
   color: ColorName;
   icon?: string;
   key: string;
@@ -35,7 +33,7 @@ export interface Category {
   emoji: string;
 }
 
-export enum PlatformElement {
+export enum Platform {
   Android = "android",
   Ios = "ios",
   Linux = "linux",
@@ -51,7 +49,7 @@ export interface Repository {
 }
 
 export interface Collaborator {
-  username?: string;
+  username: string;
   url: string;
   name?: string;
 }
@@ -59,7 +57,7 @@ export interface Collaborator {
 export interface Port {
   name: string;
   categories: Category[];
-  platform: PlatformElement[] | "agnostic";
+  platform?: Platform[] | "agnostic";
   color: ColorName;
   key: string;
   repository: Repository;
@@ -67,8 +65,6 @@ export interface Port {
   alias?: string;
   upstreamed?: boolean;
   links?: Link[];
-  "is-userstyle": false;
-  link: string;
 }
 
 export interface Link {
@@ -84,53 +80,34 @@ export interface Showcase {
   link: string;
 }
 
-export interface Userstyle {
-  name: string[] | string;
-  categories: Category[];
-  icon?: string;
-  color: ColorName;
-  readme: Readme;
-  "current-maintainers": Collaborator[];
-  key: string;
-  "past-maintainers"?: Collaborator[];
-  "is-userstyle": true;
-  link: string;
-}
-
-export interface Readme {
-  "app-link": string[] | string;
-  usage?: string;
-  faq?: FAQ[];
-}
-
-export interface FAQ {
-  question: string;
-  answer: string;
-}
-
 export const repositoriesYml = (await fetch(
   "https://raw.githubusercontent.com/catppuccin/catppuccin/portscelain/pigeon/ports.porcelain.yml",
 )
   .then((r) => r.text())
   .then((t) => parse(t))) as Everything;
 
-// Sort items; get the icon strings for each port; and account for userstyles for link
-export const ports = [...repositoriesYml.ports, ...repositoriesYml.userstyles]
+// Sort items & get the icon strings for each port
+export const ports = [...repositoriesYml.ports]
   .sort((a, b) => a.key.localeCompare(b.key))
   .map((port) => {
     return {
       ...port,
       icon: getIcon(port.icon),
-      link: port["is-userstyle"]
-        ? `https://github.com/catppuccin/userstyles/tree/main/styles/${port.key}`
-        : port.repository.url,
-    };
+    } as Port & { icon: string };
   });
 
 // We need the current maintainers for both userstyles and ports
 export const currentMaintainers: Collaborator[] = new PropertyBasedSet<Collaborator>(
   (m) => m.url,
-  [...repositoriesYml.userstyles, ...repositoriesYml.ports.map((p) => p.repository)].flatMap(
-    (p) => p["current-maintainers"],
-  ),
+  [...repositoriesYml.ports.map((p) => p.repository)].flatMap((p) => p["current-maintainers"]),
+).sorted();
+
+// Only needed until collaborators are deduplicated from the ports.porcelain.json
+export const collaborators = new PropertyBasedSet<Collaborator>(
+  (m) => m.url,
+  [
+    ...repositoriesYml.ports.flatMap((p) =>
+      p.repository["current-maintainers"].concat(p.repository["past-maintainers"]),
+    ),
+  ],
 ).sorted();

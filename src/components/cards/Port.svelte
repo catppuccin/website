@@ -1,11 +1,12 @@
 <script lang="ts">
-  import type { Port, Userstyle } from "../../lib/ports";
-  import PillList from "../lists/Pills.svelte";
+  import type { Port } from "../../lib/ports";
+  import Pills from "../lists/Pills.svelte";
   import Icon from "@iconify/svelte";
-  export let port: Port | Userstyle;
+  import Avatars from "../lists/Avatars.svelte";
+  export let port: Port & { icon: string };
 </script>
 
-<a href={port.link} class="port-card">
+<a href={port.repository.url} class="port-card">
   <div class="port-header">
     <p class="port-name">{Array.isArray(port.name) ? port.name.join(", ") : port.name}</p>
     <Icon
@@ -13,13 +14,15 @@
       width={24}
       height={24}
       icon={{
-        body: port.icon ?? "",
+        body: port.icon,
         width: 24,
         height: 24,
       }} />
   </div>
 
-  <PillList list={port.categories.map((category) => `${category.name}`)} />
+  <Pills list={port.categories.map((category) => `${category.name}`)} />
+
+  <Avatars {port} />
 </a>
 
 <style lang="scss">

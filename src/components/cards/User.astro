@@ -2,7 +2,7 @@
 import type { ColorName } from "@catppuccin/palette";
 
 import Link from "../Link.astro";
-import { Image } from "astro:assets";
+import Avatar from "../lists/Avatar.svelte";
 
 const isProd = import.meta.env.PROD;
 
@@ -22,7 +22,7 @@ const url = isProd ? Astro.props.url : "https://github.com/sgoudham";
     {
       showAvatar === true ? (
         <>
-          <Image class="user-avatar" src={`${url}.png?size=128`} width="128" height="128" alt={`${name}'s Avatar`} />
+          <Avatar username={url.split("/").pop() as string} size={256} wxh={128} />
           <br />
           <span class="user-name">{name}</span>
         </>
