@@ -1,7 +1,7 @@
 ---
 import { ports } from "../lib/ports";
 
-import Layout from "../layouts/Layout.astro";
+import LayoutWithClampedFooter from "../layouts/LayoutWithClampedFooter.astro";
 
 import PageIntro from "../components/PageIntro.astro";
 import PortExplorer from "../components/PortExplorer.svelte";
@@ -9,7 +9,7 @@ import PortCard from "../components/cards/Port.svelte";
 import Link from "../components/Link.astro";
 ---
 
-<Layout
+<LayoutWithClampedFooter
   title="Ports • Catppuccin"
   description="Explore Catppuccin's extensive range of ports. From applications and tools to websites, we have a port for just about anything!">
   <PageIntro title="Ports">
@@ -40,30 +40,13 @@ import Link from "../components/Link.astro";
       </p>
     </svelte:fragment>
   </PortExplorer>
-</Layout>
+</LayoutWithClampedFooter>
 
 <style lang="scss" is:global>
   @use "../styles/utils";
 
   :root {
     --accent-color: var(--peach);
-  }
-
-  // Allows us to clamp the footer to the bottom of the page
-  // I'm sorry lemon, I didn't know how to do this without using flexbox
-  body {
-    display: flex;
-    flex-direction: column;
-  }
-
-  // Need to put it here because `margin-top: auto` can't be used with `margin-block-start`
-  .main-container {
-    margin-block-end: var(--space-xl);
-    min-height: 100vh;
-  }
-
-  .footer-container {
-    margin-top: auto;
   }
 
   .port-grid {
