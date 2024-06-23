@@ -2,6 +2,7 @@
 import "../styles/global.scss";
 
 import Footer from "./imports/Footer.astro";
+import Head from "./imports/Head.astro";
 
 import Logo from "../components/svgs/Logo.astro";
 import AccentBar from "../components/AccentBar.astro";
@@ -18,32 +19,7 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
-
-    <meta property="og:url" content="https://catppuccin.com" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta content="#CBA6F7" data-react-helmet="true" name="theme-color" />
-    <meta property="og:image" content="/embed.png" />
-
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <meta name="darkreader-lock" />
-
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-
-    <link type="text/plain" rel="author" href="/humans.txt" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-
-    <title>{title}</title>
-  </head>
+  <Head title={title} description={description} />
   <body>
     <div id="hero">
       <div class="content-wrapper no-padding hero-grid">
@@ -67,111 +43,111 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
       </div>
       <AccentBar />
     </section>
-  </body>
-</html>
-
-{isVercelProd && <script is:inline defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
-
-<style lang="scss" is:global>
-  @use "../styles/utils";
-
-  #hero {
-    background-color: color-mix(in srgb, var(--base), var(--mauve) 10%);
-    background-image: linear-gradient(
-      120deg,
-      color-mix(in srgb, var(--base), var(--peach) 5%),
-      color-mix(in srgb, var(--base), var(--mauve) 10%)
-    );
-
-    @media (prefers-color-scheme: dark) {
-      background-color: color-mix(in srgb, var(--base), var(--mantle) 30%);
-      background-image: none;
-    }
-
-    + .footer-container {
-      margin-block-start: 0;
-    }
+  </body>{
+    isVercelProd && <script is:inline defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />
   }
 
-  .hero-logo {
-    @include utils.flex($gap: var(--space-sm));
-    align-items: center;
+  <style lang="scss" is:global>
+    @use "../styles/utils";
 
-    svg + svg {
-      margin-block-start: 6px;
+    #hero {
+      background-color: color-mix(in srgb, var(--base), var(--mauve) 10%);
+      background-image: linear-gradient(
+        120deg,
+        color-mix(in srgb, var(--base), var(--peach) 5%),
+        color-mix(in srgb, var(--base), var(--mauve) 10%)
+      );
+
+      @media (prefers-color-scheme: dark) {
+        background-color: color-mix(in srgb, var(--base), var(--mantle) 30%);
+        background-image: none;
+      }
+
+      + .footer-container {
+        margin-block-start: 0;
+      }
     }
-  }
 
-  .hero-grid {
-    @include utils.flex($direction: column, $gap: var(--space-lg));
-    justify-content: space-between;
-    flex-wrap: nowrap;
+    .hero-logo {
+      @include utils.flex($gap: var(--space-sm));
+      align-items: center;
 
-    min-height: 100svh;
+      svg + svg {
+        margin-block-start: 6px;
+      }
+    }
 
-    @media (min-width: 800px) {
+    .hero-grid {
+      @include utils.flex($direction: column, $gap: var(--space-lg));
+      justify-content: space-between;
+      flex-wrap: nowrap;
+
+      min-height: 100svh;
+
+      @media (min-width: 800px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        padding-block: 0;
+      }
+    }
+
+    .hero-content-wrapper {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: max-content auto;
+      gap: var(--space-xl);
+      container-type: inline-size;
 
-      padding-block: 0;
-    }
-  }
-
-  .hero-content-wrapper {
-    display: grid;
-    grid-template-rows: max-content auto;
-    gap: var(--space-xl);
-    container-type: inline-size;
-
-    padding-block: var(--padding-body);
-  }
-
-  .hero-content {
-    @include utils.flex($direction: column, $gap: var(--space-md));
-    justify-content: center;
-    align-items: flex-start;
-
-    line-height: 1.1;
-
-    h1 {
-      margin: 0;
-      padding-block: 6px;
-
-      background-image: linear-gradient(120deg, var(--peach), var(--mauve));
-      background-clip: text;
-
-      font-size: clamp(4rem, 4vw, 6rem);
-      color: transparent;
+      padding-block: var(--padding-body);
     }
 
-    p {
-      line-height: 1.5;
+    .hero-content {
+      @include utils.flex($direction: column, $gap: var(--space-md));
+      justify-content: center;
+      align-items: flex-start;
+
+      line-height: 1.1;
+
+      h1 {
+        margin: 0;
+        padding-block: 6px;
+
+        background-image: linear-gradient(120deg, var(--peach), var(--mauve));
+        background-clip: text;
+
+        font-size: clamp(4rem, 4vw, 6rem);
+        color: transparent;
+      }
+
+      p {
+        line-height: 1.5;
+      }
     }
-  }
 
-  .hero-image {
-    display: grid;
-    place-items: center;
-    container-type: inline-size;
+    .hero-image {
+      display: grid;
+      place-items: center;
+      container-type: inline-size;
 
-    max-height: 40vh;
-
-    svg {
-      padding: var(--space-md);
-    }
-
-    @media (min-width: 800px) {
-      max-height: 100vh;
+      max-height: 40vh;
 
       svg {
-        @container (min-width: 400px) {
-          padding-inline-start: var(--space-lg);
-        }
+        padding: var(--space-md);
+      }
 
-        @container (min-width: 500px) {
-          padding-inline-start: var(--space-xl);
+      @media (min-width: 800px) {
+        max-height: 100vh;
+
+        svg {
+          @container (min-width: 400px) {
+            padding-inline-start: var(--space-lg);
+          }
+
+          @container (min-width: 500px) {
+            padding-inline-start: var(--space-xl);
+          }
         }
       }
     }
-  }
-</style>
+  </style>
+</html>
