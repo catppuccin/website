@@ -8,23 +8,17 @@
 
 <div class="avatar-list">
   {#if port.repository["current-maintainers"].length > 0}
-    <div
-      class="current-maintainers"
-      aria-label="All current maintainers of this port"
-      title="All current maintainers of this port">
+    <div class="current-maintainers" title="All current maintainers of this port">
       {#each port.repository["current-maintainers"] as maintainer}
         <Avatar username={maintainer.username} size={64} wxh={32} --margin-right="-12px" />
       {/each}
     </div>
   {:else}
-    <div aria-label="No maintainers for this port" title="No maintainers for this port">
+    <div title="No maintainers for this port">
       <NoMaintainerAvatar />
     </div>
   {/if}
-  <div
-    class="past-maintainers"
-    aria-label="All users who previously maintained this port"
-    title="All users who previously maintained this port">
+  <div class="past-maintainers" title="All users who previously maintained this port">
     {#each port.repository["past-maintainers"] as maintainer}
       <Avatar
         username={maintainer.username}
