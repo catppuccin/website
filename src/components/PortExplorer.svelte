@@ -26,7 +26,11 @@
 
   function handleInput() {
     // Keep the URL in sync with the search bar
-    url.searchParams.set("q", searchTerm);
+    if (searchTerm === "") {
+      url.searchParams.delete("q");
+    } else {
+      url.searchParams.set("q", searchTerm);
+    }
     window.history.pushState(null, "", url.toString());
 
     clearTimeout(debounceTimeout);
