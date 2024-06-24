@@ -7,11 +7,12 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "build": "astro check && astro build",
+    "build": "bun run avatars && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "prepare": "husky",
-    "convertCustomIconsToJson": "bun src/lib/iconify/convertCustomIconsToJson.ts"
+    "icons": "bun src/lib/iconify/convertCustomIconsToJson.ts",
+    "avatars": "bun src/lib/getAvatars.ts"
   },
   "lint-staged": {
     "!(src/layouts/*.astro)src/**/*": "bun prettier --plugin=prettier-plugin-astro . --write"
@@ -24,17 +25,18 @@
     "fuse.js": "^7.0.0",
     "svelte": "^4.2.12",
     "typescript": "^5.4.4",
-    "yaml": "^2.4.0"
+    "yaml": "^2.4.0",
+    "@types/bun": "^1.1.4"
   },
   "devDependencies": {
     "@catppuccin/palette": "^1.1.0",
-    "astro-icon": "^1.1.0",
     "@iconify-json/ph": "^1.1.13",
     "@iconify-json/simple-icons": "^1.1.106",
     "@iconify/svelte": "^4.0.2",
     "@iconify/tools": "^4.0.4",
     "@iconify/types": "^2.0.0",
     "@rollup/plugin-yaml": "^4.1.2",
+    "astro-icon": "^1.1.0",
     "husky": "latest",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",

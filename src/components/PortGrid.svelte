@@ -2,7 +2,7 @@
   import PortCard from "./cards/Port.svelte";
   import type { Port } from "../lib/ports";
 
-  export let portGrid: Array<Port> | undefined;
+  export let portGrid: Array<Port & { icon: string }> | undefined;
   export let searchTerm: string;
 </script>
 

@@ -4,15 +4,17 @@
   import PortGrid from "./PortGrid.svelte";
   import Fuse from "fuse.js";
 
-  export let ports: Array<Port>;
-  let portGrid: Array<Port> | undefined = undefined;
-  let debounceTimeout: NodeJS.Timeout;
+  export let ports: Array<Port & { icon: string }>;
+  let portGrid: Array<Port & { icon: string }> | undefined = undefined;
+  let debounceTimeout: ReturnType<typeof setTimeout> | undefined;
 
   const fuse = new Fuse(ports, {
     keys: [
       { name: "key", weight: 1 },
       { name: "categories.name", weight: 0.8 },
       { name: "name", weight: 0.4 },
+      { name: "repository.current-maintainers.username", weight: 0.1 },
+      { name: "repository.current-maintainers.name", weight: 0.1 },
     ],
     includeScore: false,
     threshold: 0.3,
