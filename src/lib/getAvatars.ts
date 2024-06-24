@@ -1,10 +1,10 @@
 const PUBLIC_DIR = "public/maintainers";
-const IMAGE_QUALITY = 90;
+const IMAGE_QUALITY = 80;
 const REQUEST_SIZE = 256;
 const SIZES = [64, 256];
 
 import { $ } from "bun";
-import { collaborators, type Collaborator } from "./ports";
+import { currentMaintainers, type Collaborator } from "./ports";
 
 async function fetchAndProcessImage(maintainer: Collaborator) {
   const username = maintainer.url.split("/").pop();
@@ -27,7 +27,7 @@ async function fetchAndProcessImage(maintainer: Collaborator) {
 }
 
 try {
-  await Promise.all(collaborators.map((maintainer) => fetchAndProcessImage(maintainer)));
+  await Promise.all(currentMaintainers.map((maintainer) => fetchAndProcessImage(maintainer)));
 } catch (e) {
   console.error("Processing failed: ", e);
 }

@@ -6,38 +6,14 @@
   export let port: Port & { icon: string };
 </script>
 
-<div class="avatar-list">
-  {#if port.repository["current-maintainers"].length > 0}
-    <div class="current-maintainers" title="All users who currently maintain this port">
-      {#each port.repository["current-maintainers"] as maintainer}
-        <Avatar username={maintainer.username} size={64} wxh={32} --margin-right="-12px" />
-      {/each}
-    </div>
-  {:else}
-    <div title="This port has no active maintainer(s)">
-      <NoMaintainerAvatar />
-    </div>
-  {/if}
-  <div class="past-maintainers" title="All users who previously maintained this port">
-    {#each port.repository["past-maintainers"] as maintainer}
-      <Avatar
-        username={maintainer.username}
-        size={64}
-        wxh={32}
-        --margin-left="-12px"
-        --background-color="var(--base)"
-        --grayscale="100%"
-        --opacity="80%" />
+{#if port.repository["current-maintainers"].length > 0}
+  <div class="current-maintainers" title="All users who currently maintain this port">
+    {#each port.repository["current-maintainers"] as maintainer}
+      <Avatar username={maintainer.username} size={64} wxh={32} />
     {/each}
   </div>
-</div>
-
-<style lang="scss">
-  @use "../../styles/utils";
-
-  .avatar-list {
-    display: flex;
-    gap: var(--space-xxs);
-    justify-content: space-between;
-  }
-</style>
+{:else}
+  <div title="This port has no active maintainer(s)">
+    <NoMaintainerAvatar />
+  </div>
+{/if}

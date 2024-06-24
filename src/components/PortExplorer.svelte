@@ -3,7 +3,6 @@
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
   import Fuse from "fuse.js";
-  import Legend from "./cards/Legend.svelte";
 
   export let ports: Array<Port & { icon: string }>;
   let portGrid: Array<Port & { icon: string }> | undefined = undefined;
@@ -38,23 +37,8 @@
 </script>
 
 <SearchBar bind:searchTerm {handleInput} />
-<div class="port-explorer">
-  <Legend />
-  <PortGrid bind:portGrid bind:searchTerm>
-    <svelte:fragment slot="no-results">
-      <slot name="no-results" />
-    </svelte:fragment>
-  </PortGrid>
-</div>
-
-<style lang="scss">
-  .port-explorer {
-    display: flex;
-    flex-direction: row;
-    gap: var(--space-md);
-
-    @media screen and (max-width: 768px) {
-      flex-direction: column;
-    }
-  }
-</style>
+<PortGrid bind:portGrid bind:searchTerm>
+  <svelte:fragment slot="no-results">
+    <slot name="no-results" />
+  </svelte:fragment>
+</PortGrid>
