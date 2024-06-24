@@ -11,8 +11,8 @@
     <p class="port-name">{Array.isArray(port.name) ? port.name.join(", ") : port.name}</p>
     <Icon
       color="var(--{port.color})"
-      width={24}
-      height={24}
+      width={32}
+      height={32}
       icon={{
         body: port.icon,
         width: 24,
@@ -29,7 +29,7 @@
   @use "../../styles/utils";
 
   .port-card {
-    @include utils.flex($direction: column, $gap: var(--space-sm));
+    @include utils.flex($direction: column, $gap: var(--space-md));
     justify-content: space-between;
 
     @include utils.containerPadding();
@@ -45,7 +45,7 @@
     transition: all 300ms ease-in-out;
 
     &:hover {
-      transform: scale(105%);
+      transform: scale(102%);
 
       background-position: top right;
 
