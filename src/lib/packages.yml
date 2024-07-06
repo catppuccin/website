@@ -1,0 +1,377 @@
+ports:
+- name: catppuccin-gtk
+  categories:
+  - key: nixos
+    name: NixOS Packages
+  platform: [linux]
+  color: sapphire
+  key: catppuccin-gtk-nixos
+  icon: nixos
+  repository:
+    name: nixpkgs
+    url: https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/ca/catppuccin-gtk/package.nix
+    current-maintainers:
+    - username: Stonks3141
+      name: Stonks3141
+      url: https://github.com/Stonks3141
+    - username: getchoo
+      url: https://github.com/getchoo
+    past-maintainers: []
+- name: catppuccin-sddm
+  categories:
+  - key: nixos
+    name: NixOS Packages
+  color: blue
+  icon: nixos
+  platform: [linux]
+  key: catppuccin-sddm-nixos
+  repository:
+    name: nixpkgs
+    url: https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/ca/catppuccin-sddm/package.nix
+    current-maintainers:
+    - username: Stonks3141
+      name: Stonks3141
+      url: https://github.com/Stonks3141
+    - username: getchoo
+      url: https://github.com/getchoo
+    past-maintainers: []
+- name: catppuccin-cursors
+  categories:
+  - key: nixos
+    name: NixOS Packages
+  platform: [linux]
+  color: sapphire
+  key: catppuccin-cursors-nixos
+  icon: nixos
+  repository:
+    name: nixpkgs
+    url: https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/ca/catppuccin-cursors/package.nix
+    current-maintainers:
+    - username: Stonks3141
+      name: Stonks3141
+      url: https://github.com/Stonks3141
+    - username: getchoo
+      url: https://github.com/getchoo
+    past-maintainers: []
+- name: catppuccin-grub
+  categories:
+  - key: nixos
+    name: NixOS Packages
+  color: sapphire
+  icon: nixos
+  platform: [linux]
+  key: catppuccin-grub-nixos
+  repository:
+    name: nixpkgs
+    url: https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/ca/catppuccin-grub/package.nix
+    current-maintainers:
+    - username: Stonks3141
+      name: Stonks3141
+      url: https://github.com/Stonks3141
+    - username: getchoo
+      url: https://github.com/getchoo
+    past-maintainers: []
+- name: catppuccin-kvantum
+  categories:
+  - key: nixos
+    name: NixOS Packages
+  color: sapphire
+  icon: nixos
+  platform: [linux]
+  key: catppuccin-kvantum-nixos
+  repository:
+    name: nixpkgs
+    url: https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/by-name/ca/catppuccin-kvantum/package.nix
+    current-maintainers:
+    - username: Stonks3141
+      name: Stonks3141
+      url: https://github.com/Stonks3141
+    - username: getchoo
+      url: https://github.com/getchoo
+    past-maintainers: []
+- name: catppuccin-cursors
+  categories:
+  - key: gentoo
+    name: Gentoo Packages
+  color: mauve
+  icon: gentoo
+  platform: [linux]
+  key: catppuccin-cursors-gentoo
+  repository:
+    name: guru
+    url: https://github.com/gentoo/guru/blob/master/x11-themes/catppuccin-cursors/catppuccin-cursors-0.3.1.ebuild
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-gtk
+  categories:
+  - key: gentoo
+    name: Gentoo Packages
+  color: mauve
+  icon: gentoo
+  platform: [linux]
+  key: catppuccin-gtk-gentoo
+  repository:
+    name: guru
+    url: https://github.com/gentoo/guru/blob/master/x11-themes/catppuccin-gtk/catppuccin-gtk-1.0.3.ebuild
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-neovim
+  categories:
+  - key: gentoo
+    name: Gentoo Packages
+  color: mauve
+  icon: gentoo
+  platform: [linux]
+  key: catppuccin-neovim-gentoo
+  repository:
+    name: guru
+    url: https://github.com/gentoo/guru/blob/master/x11-themes/catppuccin-neovim/catppuccin-neovim-1.7.0.ebuild
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-kvantum
+  categories:
+  - key: gentoo
+    name: Gentoo Packages
+  color: mauve
+  icon: gentoo
+  platform: [linux]
+  key: catppuccin-kvantum-gentoo
+  repository:
+    name: guru
+    url: https://github.com/gentoo/guru/blob/master/x11-themes/catppuccin-kvantum/catppuccin-kvantum-9999.ebuild
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-catwalk
+  categories:
+  - key: gentoo
+    name: Gentoo Packages
+  color: mauve
+  icon: gentoo
+  platform: [linux]
+  key: catppuccin-catwalk-gentoo
+  repository:
+    name: guru
+    url: https://github.com/gentoo/guru/blob/master/dev-util/catppuccin-catwalk/catppuccin-catwalk-1.3.2.ebuild
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-whiskers
+  categories:
+  - key: gentoo
+    name: Gentoo Packages
+  color: mauve
+  icon: gentoo
+  platform: [linux]
+  key: catppuccin-whiskers-gentoo
+  repository:
+    name: guru
+    url: https://github.com/gentoo/guru/blob/master/dev-util/catppuccin-whiskers/catppuccin-whiskers-2.4.0.ebuild
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-cursors-latte
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-cursors-latte-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-cursors-latte
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-cursors-frappe
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-cursors-frappe-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-cursors-frappe
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-cursors-macchiato
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-cursors-macchiato-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-cursors-macchiato
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-cursors-mocha
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-cursors-mocha-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-cursors-mocha
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-gtk-theme-latte
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-gtk-latte-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-gtk-theme-latte
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-gtk-theme-frappe
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-gtk-frappe-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-gtk-theme-frappe
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-gtk-theme-macchiato
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-gtk-theme-macchiato-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-gtk-theme-macchiato
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-gtk-theme-mocha
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-gtk-theme-mocha-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-gtk-theme-mocha
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-latte-grub-theme-git
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-latte-grub-theme-git-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-latte-grub-theme-git
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-frappe-grub-theme-git
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-frappe-grub-theme-git-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-frappe-grub-theme-git
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-macchiato-grub-theme-git-arch
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-macchiato-grub-theme-git-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-macchiato-grub-theme-git
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-mocha-grub-theme-git-arch
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-mocha-grub-theme-git-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-mocha-grub-theme-git
+    current-maintainers: []
+    past-maintainers: []
+- name: sddm-catppuccin-git
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: sddm-catppuccin-git-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/sddm-catppuccin-git
+    current-maintainers: []
+    past-maintainers: []
+- name: refind-theme-catppuccin-git
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: refind-theme-catppuccin-git-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/refind-theme-catppuccin-git
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-catwalk-bin
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-catwalk-bin-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-catwalk-bin
+    current-maintainers: []
+    past-maintainers: []
+- name: catppuccin-whiskers-bin
+  categories:
+  - key: arch
+    name: AUR Packages
+  color: blue
+  icon: archlinux
+  platform: [linux]
+  key: catppuccin-whiskers-bin-arch
+  repository:
+    name: aur
+    url: https://aur.archlinux.org/packages/catppuccin-whiskers-bin
+    current-maintainers: []
+    past-maintainers: []

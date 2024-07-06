@@ -21,6 +21,11 @@ export const header = [
     target: "community",
     accent: "green",
   },
+  {
+    title: "Packages",
+    target: "packages",
+    accent: "sapphire",
+  },
 ];
 
 export const footer = [

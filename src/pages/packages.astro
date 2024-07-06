@@ -1,0 +1,45 @@
+---
+import { ports } from "../lib/packages";
+
+import LayoutWithClampedFooter from "../layouts/LayoutWithClampedFooter.astro";
+
+import PageIntro from "../components/PageIntro.astro";
+import PortExplorer from "../components/PortExplorer.svelte";
+import PortCard from "../components/cards/Port.svelte";
+---
+
+<LayoutWithClampedFooter
+  title="Packages • Catppuccin"
+  description="Explore Catppuccin's extensive range of packages. From applications to tools, we have packages for the AUR, GURU and Nix">
+  <PageIntro title="Packages">
+    <p>
+      Catppuccin provides <strong>{ports.length}</strong> Linux packages, covering a wide range of packages and tools
+      and just about anything you can imagine!
+    </p>
+  </PageIntro>
+
+  <!-- Display ports without search bar for browsers without JavaScript enabled -->
+<noscript>
+    <div class="port-grid">
+      {ports.map((port) => <PortCard {port} />)}
+    </div>
+</noscript>
+
+  <PortExplorer {ports} client:only="svelte">
+    <svelte:fragment slot="no-results">
+      <p>Sorry, we couldn't find any ports matching your search :(</p>
+    </svelte:fragment>
+  </PortExplorer>
+</LayoutWithClampedFooter>
+
+<style lang="scss" is:global>
+  @use "../styles/utils";
+
+  :root {
+    --accent-color: var(--peach);
+  }
+
+  .port-grid {
+    @include utils.grid($column: 300px, $gap: var(--space-sm));
+  }
+</style>
