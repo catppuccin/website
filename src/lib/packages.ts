@@ -77,7 +77,7 @@ export interface Showcase {
 }
 
 export const repositoriesYml = (await fetch(
-  "https://raw.githubusercontent.com/catppuccin/website/main/src/lib/packages.yml",
+  "https://raw.githubusercontent.com/somerand0mcat/website/main/src/lib/packages.yml", // needs to be changed to "https://raw.githubusercontent.com/catppuccin/website/main/src/lib/packages.yml" after merge
 )
   .then((r) => r.text())
   .then((t) => parse(t))) as Everything;
