@@ -77,7 +77,7 @@ export interface Showcase {
 }
 
 export const repositoriesYml = (await fetch(
-  "http://localhost:4321/src/lib/packages.yml",
+  "https://raw.githubusercontent.com/somerand0mcat/website/main/src/lib/packages.yml",
 )
   .then((r) => r.text())
   .then((t) => parse(t))) as Everything;
