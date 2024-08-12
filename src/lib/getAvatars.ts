@@ -30,6 +30,7 @@ try {
   await Promise.all(currentMaintainers.map((maintainer) => fetchAndProcessImage(maintainer)));
 } catch (e) {
   console.error("Processing failed: ", e);
+  process.exit(1);
 }
 
 await $`rm ${PUBLIC_DIR}/*.png`;
