@@ -21,4 +21,5 @@ pnpm-debug.log*
 .DS_Store
 
 # GitHub avatars
+maintainersWithoutAvatars.json
 public/maintainers

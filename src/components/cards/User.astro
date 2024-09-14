@@ -1,5 +1,6 @@
 ---
 import type { ColorName } from "@catppuccin/palette";
+import maintainersWithoutAvatars from "../../lib/maintainersWithoutAvatars.json";
 
 import Link from "../Link.astro";
 import Avatar from "../lists/Avatar.svelte";
@@ -9,27 +10,20 @@ const isProd = import.meta.env.PROD;
 interface Props {
   url: string;
   name: string;
-  showAvatar?: boolean;
   color?: ColorName;
 }
 
-const { name, showAvatar, color } = Astro.props;
-const url = isProd ? Astro.props.url : "https://github.com/sgoudham";
+const { name, color } = Astro.props;
+const href = isProd ? Astro.props.url : "https://github.com/sgoudham";
+const username = href.split("/").pop() as string;
+const isPlaceholder = maintainersWithoutAvatars.includes(username);
 ---
 
 <div class="card-user" style={`--user-color: var(--${color})`}>
-  <Link href={url} external>
-    {
-      showAvatar === true ? (
-        <>
-          <Avatar username={url.split("/").pop() as string} size={256} wxh={128} />
-          <br />
-          <span class="user-name">{name}</span>
-        </>
-      ) : (
-        <span class="user-name">{name}</span>
-      )
-    }
+  <Link {href} external>
+    <Avatar {username} size={256} wxh={128} />
+    <br />
+    <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name}</span>
   </Link>
 </div>
 
@@ -47,6 +41,10 @@ const url = isProd ? Astro.props.url : "https://github.com/sgoudham";
     img {
       border-radius: 50%;
       border: var(--space-xxs) solid var(--__user-color);
+    }
+
+    .placeholder {
+      text-decoration: line-through;
     }
   }
 </style>
