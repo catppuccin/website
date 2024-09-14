@@ -17,4 +17,4 @@ interface Props {
 const { users } = Astro.props;
 ---
 
-{users.map((user: Person) => <UserCard url={user.url} name={user.name} showAvatar={true} />)}
+{users.map((user: Person) => <UserCard url={user.url} name={user.name} />)}
