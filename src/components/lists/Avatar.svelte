@@ -3,7 +3,7 @@
   export let username: string;
   export let size: number;
   export let wxh: number;
-  const isPlaceholder = maintainersWithoutAvatars.includes(username);
+  const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username);
 </script>
 
 {#if isPlaceholder}
