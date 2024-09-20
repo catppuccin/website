@@ -18,7 +18,7 @@
     "!(src/layouts/*.astro)src/**/*": "bun prettier --plugin=prettier-plugin-astro . --write"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.0",
+    "@astrojs/check": "^0.9.0",
     "@astrojs/sitemap": "^3.1.1",
     "@astrojs/svelte": "^5.3.0",
     "astro": "^4.5.16",
