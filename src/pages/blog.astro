@@ -1,0 +1,51 @@
+---
+import LayoutWithClampedFooter from "../layouts/LayoutWithClampedFooter.astro";
+
+import PageIntro from "../components/PageIntro.astro";
+import ArticleCard from "../components/cards/Article.astro";
+---
+
+<LayoutWithClampedFooter title="Blog • Catppuccin" description="News and Stories about Catppuccin">
+  <PageIntro title="Blog">
+    <p>Catppuccin News and whatever. ¯\_(ツ)_/¯</p>
+  </PageIntro>
+
+  <section class="bloglist">
+    <ArticleCard author="Hammy" pubDate={new Date("2024-11-22")}>
+      <h3 slot="article-title">The Science of Color: How to Choose the Perfect Palette for Your Project</h3>
+      <p slot="article-content">
+        Choosing the right color palette for your project isn’t just about aesthetics—there’s real science behind it.
+        From color theory and the psychology of hues to the impact of light and contrast, understanding the principles
+        of color can help you make more informed design choices. In this post, we’ll explore how to select colors based
+        on your project’s goals, whether you’re designing for visual impact, readability, or emotional engagement. With
+        practical tips and color formulas, you'll learn how to create a palette that works as hard as your design does.
+      </p>
+    </ArticleCard>
+    <ArticleCard author="Pepperchonk" pubDate={new Date("2024-11-02")} category="community">
+      <h3 slot="article-title">5 Common Mistakes to Avoid When Building a Color Scheme (And How to Fix Them)</h3>
+      <p slot="article-content">
+        Developing a successful color scheme isn’t just about choosing your favorite colors—it’s about making
+        intentional choices that create balance, contrast, and visual appeal. In this post, we’ll cover five common
+        mistakes designers and creators make when selecting colors, from overusing bright hues to ignoring accessibility
+        needs. We’ll also offer practical tips to avoid these pitfalls and help you craft a color palette that’s both
+        stunning and functional.
+      </p>
+    </ArticleCard>
+    <ArticleCard author="Pocco" pubDate={new Date("2024-10-18")} category="release">
+      <h3 slot="article-title">Mastering the Art of Color Schemes</h3>
+      <p slot="article-content">
+        When designing for any project—whether it’s a website, brand identity, or interior design—the color scheme is
+        often the first thing that grabs attention. But how do you pick the right palette? In this guide, we'll walk you
+        through the fundamentals of color theory and how to combine colors that not only look great together but also
+        evoke the right emotional response. From primary and secondary colors to the psychology behind each hue, we’ll
+        help you develop a cohesive scheme that resonates with your audience.
+      </p>
+    </ArticleCard>
+  </section>
+</LayoutWithClampedFooter>
+
+<style lang="scss">
+  :root {
+    --accent-color: var(--red);
+  }
+</style>

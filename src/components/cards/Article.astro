@@ -1,0 +1,99 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  author: string;
+  pubDate: Date;
+  category?: "devlog" | "release" | "community";
+}
+
+const { author, pubDate, category = "devlog" } = Astro.props;
+
+type Category = {
+  [key: string]: {
+    icon: string;
+    color: string;
+    title: string;
+  };
+};
+
+const ArticleCategories: Category = {
+  devlog: {
+    title: "Devlog",
+    color: "green",
+    icon: "article",
+  },
+  release: {
+    title: "Release",
+    color: "blue",
+    icon: "star",
+  },
+  community: {
+    title: "Community",
+    color: "mauve",
+    icon: "users-three",
+  },
+};
+
+const formatDate = (date: Date) => {
+  const month = date.toLocaleString("default", { month: "long" });
+  const day = date.getUTCDate().toString();
+  const year = date.getUTCFullYear();
+
+  return `${day}. ${month} ${year}`;
+};
+---
+
+<div class="article-card" style={`--article-category-color: var(--${ArticleCategories[category.toString()].color})`}>
+  <p class="article-category has-icon">
+    <Icon name=`ph:${ArticleCategories[category.toString()].icon}` size={24} />
+    {ArticleCategories[category.toString()].title}
+  </p>
+  <slot name="article-title" />
+  <slot name="article-content" />
+  <div class="article-meta">
+    <p class="article-author has-icon"><Icon name="ph:pencil-circle-fill" size={24} /> {author}</p>
+    <p class="article-pubdate has-icon"><Icon name="ph:calendar-dots-fill" size={24} /> {formatDate(pubDate)}</p>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../../styles/utils";
+
+  .article-card {
+    @include utils.containerPadding();
+    margin-block-start: var(--space-md);
+
+    border-radius: var(--border-radius-normal);
+    // background-color: color-mix(in srgb, var(--surface0), var(--article-category-color) 5%);
+    background-color: var(--mantle);
+
+    h3,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .article-content {
+      color: var(--subtext0);
+    }
+
+    .article-category,
+    .article-meta {
+      @include utils.flex($direction: row, $gap: var(--space-lg));
+      margin-top: var(--space-md);
+      font-size: 1.6rem;
+      color: var(--overlay0);
+    }
+
+    .article-category {
+      color: var(--article-category-color);
+    }
+
+    .has-icon {
+      @include utils.flex($direction: row, $gap: var(--space-xs));
+      margin: 0;
+      padding: 0;
+    }
+  }
+</style>
