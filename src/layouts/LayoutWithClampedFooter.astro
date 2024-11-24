@@ -63,6 +63,7 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
 
   // Need to put it here because `margin-top: auto` can't be used with `margin-block-start`
   .main-container {
+    container-type: inline-size;
     margin-block-end: var(--space-xl);
     min-height: 100vh;
   }
