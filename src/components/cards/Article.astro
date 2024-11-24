@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 interface Props {
   author: string;
   pubDate: Date;
-  category?: "devlog" | "release" | "community";
+  category?: "announcement" | "devlog" | "community";
 }
 
 const { author, pubDate, category = "devlog" } = Astro.props;
@@ -18,15 +18,15 @@ type Category = {
 };
 
 const ArticleCategories: Category = {
+  announcement: {
+    title: "Announcement",
+    color: "yellow",
+    icon: "star",
+  },
   devlog: {
     title: "Devlog",
     color: "green",
     icon: "article",
-  },
-  release: {
-    title: "Release",
-    color: "blue",
-    icon: "star",
   },
   community: {
     title: "Community",
