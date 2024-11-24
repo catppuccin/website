@@ -44,13 +44,11 @@ const formatDate = (date: Date) => {
 };
 ---
 
-<article
-  class="article-card"
-  style={`--article-category-color: var(--${ArticleCategories[category.toString()].color})`}>
+<article class="article-card" style={`--article-category-color: var(--${ArticleCategories[category].color})`}>
   <header class="article-header">
     <p class="article-category has-icon">
-      <Icon name=`ph:${ArticleCategories[category.toString()].icon}` size={24} />
-      {ArticleCategories[category.toString()].title}
+      <Icon name=`ph:${ArticleCategories[category].icon}` size={24} />
+      {ArticleCategories[category].title}
     </p>
     <slot name="article-title" />
   </header>
@@ -68,7 +66,7 @@ const formatDate = (date: Date) => {
 
   .article-card {
     @include utils.containerPadding();
-
+    @include utils.flex($direction: column, $gap: var(--space-xxs));
     border-radius: var(--border-radius-normal);
     background-color: var(--mantle);
 
@@ -85,13 +83,16 @@ const formatDate = (date: Date) => {
     .article-category,
     .article-meta {
       @include utils.flex($direction: row, $gap: var(--space-lg));
-      margin-top: var(--space-md);
       font-size: 1.6rem;
-      color: var(--overlay0);
     }
 
     .article-category {
       color: var(--article-category-color);
+    }
+
+    .article-meta {
+      margin-block-start: var(--space-md);
+      color: var(--overlay0);
     }
 
     .has-icon {
