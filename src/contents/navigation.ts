@@ -21,6 +21,11 @@ export const header = [
     target: "community",
     accent: "green",
   },
+  {
+    title: "Blog",
+    target: "blog",
+    accent: "blue",
+  },
 ];
 
 export const footer = [
@@ -40,6 +45,11 @@ export const footer = [
       {
         title: "Community",
         target: "/community",
+        external: false,
+      },
+      {
+        title: "Blog",
+        target: "/blog",
         external: false,
       },
       {
