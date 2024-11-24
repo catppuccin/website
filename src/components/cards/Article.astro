@@ -44,18 +44,24 @@ const formatDate = (date: Date) => {
 };
 ---
 
-<div class="article-card" style={`--article-category-color: var(--${ArticleCategories[category.toString()].color})`}>
-  <p class="article-category has-icon">
-    <Icon name=`ph:${ArticleCategories[category.toString()].icon}` size={24} />
-    {ArticleCategories[category.toString()].title}
-  </p>
-  <slot name="article-title" />
-  <slot name="article-content" />
-  <div class="article-meta">
+<article
+  class="article-card"
+  style={`--article-category-color: var(--${ArticleCategories[category.toString()].color})`}>
+  <header class="article-header">
+    <p class="article-category has-icon">
+      <Icon name=`ph:${ArticleCategories[category.toString()].icon}` size={24} />
+      {ArticleCategories[category.toString()].title}
+    </p>
+    <slot name="article-title" />
+  </header>
+  <main class="article-content">
+    <slot name="article-content" />
+  </main>
+  <footer class="article-meta">
     <p class="article-author has-icon"><Icon name="ph:pencil-circle-fill" size={24} /> {author}</p>
     <p class="article-pubdate has-icon"><Icon name="ph:calendar-dots-fill" size={24} /> {formatDate(pubDate)}</p>
-  </div>
-</div>
+  </footer>
+</article>
 
 <style lang="scss">
   @use "../../styles/utils";
@@ -64,7 +70,6 @@ const formatDate = (date: Date) => {
     @include utils.containerPadding();
 
     border-radius: var(--border-radius-normal);
-    // background-color: color-mix(in srgb, var(--surface0), var(--article-category-color) 5%);
     background-color: var(--mantle);
 
     h3,
