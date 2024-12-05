@@ -3,22 +3,22 @@ import { links } from "./links";
 export const header = [
   {
     title: "Ports",
-    target: "ports",
+    target: "/ports",
     accent: "peach",
   },
   {
     title: "Palette",
-    target: "palette",
+    target: "/palette",
     accent: "mauve",
   },
   {
     title: "Community",
-    target: "community",
+    target: "/community",
     accent: "green",
   },
   {
     title: "Blog",
-    target: "blog",
+    target: "/blog",
     accent: "blue",
   },
 ];

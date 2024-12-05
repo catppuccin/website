@@ -1,13 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
+import type { CollectionEntry } from "astro:content";
+import Link from "../Link.astro";
+import Avatar from "../lists/Avatar.svelte";
 
 interface Props {
-  author: string;
-  pubDate: Date;
-  category?: "announcement" | "devlog" | "community";
+  post: CollectionEntry<"blog">;
 }
 
-const { author, pubDate, category = "devlog" } = Astro.props;
+const { post } = Astro.props;
 
 type Category = {
   [key: string]: {
@@ -35,31 +36,37 @@ const ArticleCategories: Category = {
   },
 };
 
-const formatDate = (date: Date) => {
-  const month = date.toLocaleString("default", { month: "long" });
-  const day = date.getUTCDate().toString();
-  const year = date.getUTCFullYear();
-
-  return `${day}. ${month} ${year}`;
-};
+const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
-<article class="article-card" style={`--article-category-color: var(--${ArticleCategories[category].color})`}>
+<section class="article-card" style={`--article-category-color: var(--${ArticleCategories[post.data.category].color})`}>
   <header class="article-header">
     <p class="article-category has-icon">
-      <Icon name=`ph:${ArticleCategories[category].icon}` size={24} />
-      {ArticleCategories[category].title}
+      <Icon name=`ph:${ArticleCategories[post.data.category].icon}` size={24} />
+      {ArticleCategories[post.data.category].title}
     </p>
-    <slot name="article-title" />
+    <Link href={`/blog/${post.slug}`}>
+      <h3>{post.data.title}</h3>
+    </Link>
   </header>
   <main class="article-content">
-    <slot name="article-content" />
+    <p>{post.data.summary}</p>
   </main>
   <footer class="article-meta">
-    <p class="article-author has-icon"><Icon name="ph:pencil-circle-fill" size={24} /> {author}</p>
-    <p class="article-pubdate has-icon"><Icon name="ph:calendar-dots-fill" size={24} /> {formatDate(pubDate)}</p>
+    <div class="article-author has-icon">
+      <Avatar username={post.data.author.github} size={64} wxh={24} />
+      {post.data.author.name}
+    </div>
+    <p class="article-pubdate has-icon">
+      <Icon name="ph:calendar-dots-fill" size={24} />
+      {formattedDatePosted}
+    </p>
   </footer>
-</article>
+</section>
 
 <style lang="scss">
   @use "../../styles/utils";
@@ -70,7 +77,7 @@ const formatDate = (date: Date) => {
     border-radius: var(--border-radius-normal);
     background-color: var(--mantle);
 
-    h3,
+    a h3,
     p {
       margin: 0;
       padding: 0;
@@ -92,7 +99,7 @@ const formatDate = (date: Date) => {
 
     .article-meta {
       margin-block-start: var(--space-md);
-      color: var(--overlay0);
+      color: var(--overlay1);
     }
 
     .has-icon {
@@ -100,5 +107,17 @@ const formatDate = (date: Date) => {
       margin: 0;
       padding: 0;
     }
+  }
+</style>
+
+<style lang="scss" is:global>
+  .article-author {
+    img {
+      margin-right: 0px;
+    }
+  }
+
+  a h3 {
+    color: unset;
   }
 </style>

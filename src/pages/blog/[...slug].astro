@@ -1,0 +1,28 @@
+---
+import { getCollection, render } from "astro:content";
+import LayoutWithClampedFooter from "../../layouts/LayoutWithClampedFooter.astro";
+import PageIntro from "../../components/PageIntro.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<LayoutWithClampedFooter title={`${post.data.title} • Catppuccin`} description={post.data.summary}>
+  <PageIntro title={post.data.title} />
+  <Content />
+</LayoutWithClampedFooter>
+
+<style lang="scss">
+  @use "../../styles/utils";
+
+  :root {
+    --accent-color: var(--yellow);
+  }
+</style>

@@ -10,6 +10,7 @@
     "build": "bun run avatars && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "sync": "astro sync",
     "prepare": "husky",
     "icons": "bun src/lib/iconify/convertCustomIconsToJson.ts",
     "avatars": "bun src/lib/getAvatars.ts"
@@ -19,14 +20,15 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.0",
+    "@astrojs/mdx": "^3.1.9",
     "@astrojs/sitemap": "^3.1.1",
     "@astrojs/svelte": "^5.3.0",
-    "astro": "^4.5.16",
+    "@types/bun": "^1.1.4",
+    "astro": "^4.16.16",
     "fuse.js": "^7.0.0",
     "svelte": "^4.2.12",
     "typescript": "^5.4.4",
-    "yaml": "^2.4.0",
-    "@types/bun": "^1.1.4"
+    "yaml": "^2.4.0"
   },
   "devDependencies": {
     "@catppuccin/palette": "^1.1.0",
