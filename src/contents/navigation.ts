@@ -2,11 +2,6 @@ import { links } from "./links";
 
 export const header = [
   {
-    title: "Home",
-    target: "/",
-    accent: "rosewater",
-  },
-  {
     title: "Ports",
     target: "ports",
     accent: "peach",
