@@ -26,3 +26,13 @@ const { Content } = await render(post);
     --accent-color: var(--yellow);
   }
 </style>
+
+<!-- This feels super dodgy and I don't like it -->
+<style lang="scss" is:global>
+  .main-container {
+    max-width: 80rem;
+    @media (min-width: 832px) {
+      box-sizing: content-box;
+    }
+  }
+</style>

@@ -43,7 +43,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<section class="article-card" style={`--article-category-color: var(--${ArticleCategories[post.data.category].color})`}>
+<div class="article-card" style={`--article-category-color: var(--${ArticleCategories[post.data.category].color})`}>
   <header class="article-header">
     <p class="article-category has-icon">
       <Icon name=`ph:${ArticleCategories[post.data.category].icon}` size={24} />
@@ -66,7 +66,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       {formattedDatePosted}
     </p>
   </footer>
-</section>
+</div>
 
 <style lang="scss">
   @use "../../styles/utils";

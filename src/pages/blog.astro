@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import PageIntro from "../components/PageIntro.astro";
 import ArticleCard from "../components/cards/Article.astro";
 
-const description = "Blog posts about Catppuccin, ranging from announcements, devlogs, general musings and more!";
+const description = "Blog posts related to Catppuccin, ranging from announcements, devlogs, general musings and more!";
 const blogPosts = await getCollection("blog");
 ---
 
@@ -13,10 +13,10 @@ const blogPosts = await getCollection("blog");
     <p>{description}</p>
   </PageIntro>
 
-  <section class="bloglist">
-    <main class="articles">
-      {blogPosts.map((post) => <ArticleCard {post} />)}
-    </main>
+  <section>
+    <div class="bloglist">
+      {blogPosts.filter((post) => !post.data.draft).map((post) => <ArticleCard {post} />)}
+    </div>
   </section>
 </LayoutWithClampedFooter>
 
@@ -29,10 +29,5 @@ const blogPosts = await getCollection("blog");
 
   .bloglist {
     @include utils.flex($direction: column, $gap: var(--space-md));
-  }
-
-  .articles {
-    grid-area: articles;
-    @include utils.flex($direction: row, $gap: var(--space-md));
   }
 </style>
