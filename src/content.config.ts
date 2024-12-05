@@ -15,6 +15,7 @@ const blog = defineCollection({
     draft: z.boolean().optional(),
     author: z.object({
       name: z.string(),
+      title: z.string(),
       github: z.string(),
     }),
   }),
