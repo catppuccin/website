@@ -33,7 +33,8 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
             <span class="article-author-name">{post.data.author.name}</span> • <Link
               href={`https://github.com/${post.data.author.github}`}
               external
-              muted>GitHub</Link>
+              muted>GitHub</Link
+            >
           </p>
           <p class="article-pubdate">Published on: {formattedDatePosted}</p>
         </div>
@@ -92,6 +93,6 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 
 <style lang="scss" is:global>
   .article-meta a.muted {
-    color: var(--overlay1);
+    color: var(--overlay1) !important;
   }
 </style>
