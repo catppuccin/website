@@ -2,6 +2,8 @@
 import { getCollection, render } from "astro:content";
 import LayoutWithClampedFooter from "../../layouts/LayoutWithClampedFooter.astro";
 import PageIntro from "../../components/PageIntro.astro";
+import Link from "../../components/Link.astro";
+import Avatar from "../../components/lists/Avatar.svelte";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -12,11 +14,33 @@ export async function getStaticPaths() {
 }
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
 <LayoutWithClampedFooter title={`${post.data.title} • Catppuccin`} description={post.data.summary}>
-  <PageIntro title={post.data.title} />
-  <Content />
+  <div class="blog-container">
+    <PageIntro title={post.data.title}>
+      <p class="article-summary">{post.data.summary}</p>
+      <footer class="article-meta">
+        <Avatar username={post.data.author.github} size={64} wxh={48} />
+        <div class="article-meta-text-wrap">
+          <p class="article-author-info">
+            <span class="article-author-name">{post.data.author.name}</span> • <Link
+              href={`https://github.com/${post.data.author.github}`}
+              external
+              muted>GitHub</Link>
+          </p>
+          <p class="article-pubdate">Published on: {formattedDatePosted}</p>
+        </div>
+      </footer>
+    </PageIntro>
+    <Content />
+  </div>
 </LayoutWithClampedFooter>
 
 <style lang="scss">
@@ -25,14 +49,49 @@ const { Content } = await render(post);
   :root {
     --accent-color: var(--yellow);
   }
+
+  .blog-container {
+    max-width: 69ch;
+  }
+
+  .article-summary {
+    margin-block: calc(var(--space-md) * -1 + 6px) var(--space-md);
+    color: var(--overlay1);
+  }
+
+  .article-meta {
+    display: flex;
+    gap: 0 var(--space-sm);
+    align-items: center;
+
+    padding-block-end: var(--space-md);
+
+    border-bottom: 1px solid var(--surface0);
+
+    color: var(--overlay1);
+    font-size: 80%;
+
+    .article-author-avatar {
+      margin: 0;
+      padding: 0;
+      grid-row: span 2;
+    }
+
+    .article-author-info,
+    .article-pubdate {
+      margin: 0;
+      padding: 0;
+    }
+
+    .article-author-name {
+      color: var(--text);
+      font-weight: 600;
+    }
+  }
 </style>
 
-<!-- This feels super dodgy and I don't like it -->
 <style lang="scss" is:global>
-  .main-container {
-    max-width: 80rem;
-    @media (min-width: 832px) {
-      box-sizing: content-box;
-    }
+  .article-meta a.muted {
+    color: var(--overlay1);
   }
 </style>
