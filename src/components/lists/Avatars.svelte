@@ -17,3 +17,9 @@
     <NoMaintainerAvatar />
   </div>
 {/if}
+
+<style lang="scss">
+  :global(img) {
+    margin-right: -12px;
+  }
+</style>

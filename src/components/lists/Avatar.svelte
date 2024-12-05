@@ -29,7 +29,6 @@
     display: inline-flex;
     border: 2px solid var(--mantle);
     background-color: var(--base);
-    margin-right: -12px;
     border-radius: 50%;
   }
 
