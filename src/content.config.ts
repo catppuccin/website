@@ -8,9 +8,11 @@ const blog = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
   schema: ({ image }) =>
     z.object({
-      heroImage: image().refine((img) => img),
-      heroAuthor: z.string(),
-      heroSource: z.string(),
+      hero: z.object({
+        path: image(),
+        author: z.string(),
+        source: z.string(),
+      }),
       title: z.string(),
       summary: z.string(),
       category: z.enum(CATEGORIES),

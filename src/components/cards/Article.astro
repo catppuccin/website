@@ -44,7 +44,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 ---
 
 <div class="post-card" style={`--article-category-color: var(--${ArticleCategories[post.data.category].color})`}>
-  <div class="blog-hero-image" style=`--_image-url: url(${post.data.heroImage});`></div>
+  <img src={post.data.heroImage} alt={post.data.title} />
   <div class="post-content">
     <header class="article-header">
       <p class="article-category has-icon">

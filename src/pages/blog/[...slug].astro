@@ -1,6 +1,5 @@
 ---
 import { getCollection, render } from "astro:content";
-import { Image } from "astro:assets";
 import LayoutWithClampedFooter from "../../layouts/LayoutWithClampedFooter.astro";
 import PageIntro from "../../components/PageIntro.astro";
 import Link from "../../components/Link.astro";
@@ -26,8 +25,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 ---
 
 <LayoutWithClampedFooter title={`${post.data.title} • Catppuccin`} description={post.data.summary}>
-  <Image src={post.data.heroImage} alt={post.data.title} title={post.data.title} />
-
+  <img src={post.data.hero.path} alt={post.data.title} title={post.data.title} />
   <div class="blog-container">
     <PageIntro title={post.data.title}>
       <p class="article-summary">{post.data.summary}</p>
@@ -45,7 +43,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     </PageIntro>
     <Content />
     <footer class="article-credit">
-      Hero Image by <Link href={post.data.heroSource} external>{post.data.heroAuthor}</Link> modified with <Link
+      Hero Image by <Link href={post.data.hero.source} external>{post.data.hero.author}</Link> modified with <Link
         href="https://github.com/ozwaldorf/lutgen-rs"
         external>lutgen-rs</Link
       >
