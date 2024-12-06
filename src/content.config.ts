@@ -7,6 +7,9 @@ export const blogCategoriesEnum = z.enum(CATEGORIES);
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
   schema: z.object({
+    heroImage: z.string(),
+    heroAuthor: z.string(),
+    heroSource: z.string(),
     title: z.string(),
     summary: z.string(),
     category: z.enum(CATEGORIES),

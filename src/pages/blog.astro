@@ -13,10 +13,8 @@ const blogPosts = await getCollection("blog");
     <p>{description}</p>
   </PageIntro>
 
-  <section>
-    <div class="bloglist">
-      {blogPosts.filter((post) => !post.data.draft).map((post) => <ArticleCard {post} />)}
-    </div>
+  <section class="bloglist">
+    {blogPosts.filter((post) => !post.data.draft).map((post) => <ArticleCard {post} />)}
   </section>
 </LayoutWithClampedFooter>
 
@@ -26,8 +24,10 @@ const blogPosts = await getCollection("blog");
   :root {
     --accent-color: var(--blue);
   }
+</style>
 
-  .bloglist {
-    @include utils.flex($direction: column, $gap: var(--space-md));
+<style lang="scss" is:global>
+  .bloglist > * + * {
+    margin-block-start: var(--space-md);
   }
 </style>

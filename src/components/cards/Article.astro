@@ -43,37 +43,42 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<div class="article-card" style={`--article-category-color: var(--${ArticleCategories[post.data.category].color})`}>
-  <header class="article-header">
-    <p class="article-category has-icon">
-      <Icon name=`ph:${ArticleCategories[post.data.category].icon}` size={24} />
-      {ArticleCategories[post.data.category].title}
-    </p>
-    <Link href={`/blog/${post.slug}`}>
-      <h3>{post.data.title}</h3>
-    </Link>
-  </header>
-  <main class="article-content">
-    <p>{post.data.summary}</p>
-  </main>
-  <footer class="article-meta">
-    <div class="article-author has-icon">
-      <Avatar username={post.data.author.github} size={64} wxh={24} />
-      {post.data.author.name}
-    </div>
-    <p class="article-pubdate has-icon">
-      <Icon name="ph:calendar-dots-fill" size={24} />
-      {formattedDatePosted}
-    </p>
-  </footer>
+<div class="post-card" style={`--article-category-color: var(--${ArticleCategories[post.data.category].color})`}>
+  <div class="blog-hero-image" style=`--_image-url: url(${post.data.heroImage});`></div>
+  <div class="post-content">
+    <header class="article-header">
+      <p class="article-category has-icon">
+        <Icon name=`ph:${ArticleCategories[post.data.category].icon}` size={24} />
+        {ArticleCategories[post.data.category].title}
+      </p>
+      <Link href={`/blog/${post.slug}`}>
+        <h3>{post.data.title}</h3>
+      </Link>
+    </header>
+    <main class="article-content">
+      <p>{post.data.summary}</p>
+    </main>
+    <footer class="article-meta">
+      <div class="article-author has-icon">
+        <Avatar username={post.data.author.github} size={64} wxh={24} />
+        {post.data.author.name}
+      </div>
+      <p class="article-pubdate has-icon">
+        <Icon name="ph:calendar-dots-fill" size={24} />
+        {formattedDatePosted}
+      </p>
+    </footer>
+  </div>
 </div>
 
 <style lang="scss">
   @use "../../styles/utils";
 
-  .article-card {
-    @include utils.containerPadding();
-    @include utils.flex($direction: column, $gap: var(--space-xxs));
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    @include utils.containerPadding(sm);
     border-radius: var(--border-radius-normal);
     background-color: var(--mantle);
 
@@ -83,13 +88,22 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       padding: 0;
     }
 
+    .blog-hero-image {
+      flex: 0 0 50%;
+      aspect-ratio: 16 / 5;
+      border-radius: var(--border-radius-normal);
+      background-image: var(--_image-url);
+      background-size: cover;
+      background-position: center;
+    }
+
     .article-content {
       color: var(--subtext0);
     }
 
     .article-category,
     .article-meta {
-      @include utils.flex($direction: row, $gap: var(--space-md));
+      @include utils.flex($direction: row, $gap: var(--space-xs) var(--space-md));
       font-size: 1.6rem;
     }
 
@@ -106,6 +120,13 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       @include utils.flex($direction: row, $gap: var(--space-xs));
       margin: 0;
       padding: 0;
+    }
+
+    @container (min-width: 700px) {
+      flex-direction: row;
+      &:nth-of-type(even) {
+        flex-direction: row-reverse;
+      }
     }
   }
 </style>

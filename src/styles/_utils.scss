@@ -11,6 +11,9 @@
   @if $size == xs-y {
     padding: var(--space-xs) var(--space-md);
   }
+  @if $size == sm {
+    padding: var(--space-sm);
+  }
   @if $size == md {
     padding: var(--space-md);
   }

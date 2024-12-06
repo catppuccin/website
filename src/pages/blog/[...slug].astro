@@ -25,6 +25,8 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 ---
 
 <LayoutWithClampedFooter title={`${post.data.title} • Catppuccin`} description={post.data.summary}>
+  <img src={post.data.heroImage} alt={post.data.title} title={post.data.title} />
+
   <div class="blog-container">
     <PageIntro title={post.data.title}>
       <p class="article-summary">{post.data.summary}</p>
@@ -41,6 +43,12 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       </footer>
     </PageIntro>
     <Content />
+    <footer class="article-credit">
+      Hero Image by <Link href={post.data.heroSource} external>{post.data.heroAuthor}</Link> modified with <Link
+        href="https://github.com/ozwaldorf/lutgen-rs"
+        external>lutgen-rs</Link
+      >
+    </footer>
   </div>
 </LayoutWithClampedFooter>
 
@@ -51,8 +59,15 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     --accent-color: var(--yellow);
   }
 
+  img {
+    width: 100%;
+    aspect-ratio: 16 / 5;
+    border-radius: var(--border-radius-normal);
+  }
+
   .blog-container {
     max-width: 69ch;
+    margin-inline: auto;
   }
 
   .article-summary {
@@ -64,10 +79,6 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     display: flex;
     gap: 0 var(--space-sm);
     align-items: center;
-
-    padding-block-end: var(--space-md);
-
-    border-bottom: 1px solid var(--surface0);
 
     color: var(--overlay1);
     font-size: 80%;
@@ -88,5 +99,13 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       color: var(--text);
       font-weight: 600;
     }
+  }
+
+  .article-credit {
+    margin-block-start: var(--space-lg);
+    padding-block-start: var(--space-md);
+    border-top: 1px solid var(--surface0);
+    color: var(--subtext0);
+    font-size: 80%;
   }
 </style>
