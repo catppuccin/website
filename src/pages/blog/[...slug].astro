@@ -24,7 +24,10 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<LayoutWithClampedFooter title={`${post.data.title} • Catppuccin`} description={post.data.summary}>
+<LayoutWithClampedFooter
+  title={`${post.data.title} • Catppuccin`}
+  description={post.data.summary}
+  image={post.data.hero.path}>
   <img src={post.data.hero.path} alt={post.data.title} title={post.data.title} />
   <div class="blog-container">
     <PageIntro title={post.data.title}>

@@ -2,9 +2,10 @@
 interface Props {
   title: string;
   description: string;
+  image?: string;
 }
 
-const { title, description } = Astro.props as Props;
+const { title, description, image = "/embed.png" } = Astro.props as Props;
 ---
 
 <head>
@@ -18,7 +19,7 @@ const { title, description } = Astro.props as Props;
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta content="#CBA6F7" data-react-helmet="true" name="theme-color" />
-  <meta property="og:image" content="/embed.png" />
+  <meta property="og:image" content={image} />
 
   <meta property="twitter:title" content={title} />
   <meta property="twitter:description" content={description} />
