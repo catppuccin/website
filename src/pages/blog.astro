@@ -27,7 +27,11 @@ const blogPosts = await getCollection("blog");
 </style>
 
 <style lang="scss" is:global>
-  .bloglist > * + * {
-    margin-block-start: var(--space-md);
+  @use "../styles/utils";
+  // .bloglist > * + * {
+  //   margin-block-start: var(--space-md);
+  // }
+  .bloglist {
+    @include utils.grid($column: 300px, $gap: var(--space-sm));
   }
 </style>

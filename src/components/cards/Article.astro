@@ -88,8 +88,11 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       padding: 0;
     }
 
+    .post-content {
+      @include utils.flex($direction: column, $gap: 0);
+    }
+
     .blog-hero-image {
-      flex: 0 0 50%;
       border-radius: var(--border-radius-normal);
       object-fit: cover;
     }
@@ -101,7 +104,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     .article-category,
     .article-meta {
       @include utils.flex($direction: row, $gap: var(--space-xs) var(--space-md));
-      font-size: 1.6rem;
+      font-size: 80%;
     }
 
     .article-category {
@@ -117,18 +120,6 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       @include utils.flex($direction: row, $gap: var(--space-xs));
       margin: 0;
       padding: 0;
-    }
-
-    @container (min-width: 700px) {
-      flex-direction: row;
-
-      &:nth-of-type(even) {
-        flex-direction: row-reverse;
-      }
-
-      .blog-hero-image {
-        max-width: 50%;
-      }
     }
   }
 </style>
