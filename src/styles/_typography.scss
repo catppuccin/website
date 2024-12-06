@@ -12,7 +12,7 @@
 
 body {
   font-family: "Inter", system-ui, sans-serif;
-  font-size: 2rem;
+  font-size: clamp(15px, 4vw, 2rem);
   color: var(--subtext1);
   font-weight: 400;
   line-height: 1.5;
@@ -36,11 +36,13 @@ b {
 
 h1 {
   font-weight: 900;
+  line-height: 1.2;
 }
 h2,
 h3,
 h4 {
   font-weight: 600;
+  line-height: 1.2;
 }
 
 h1,
@@ -55,19 +57,19 @@ h5 {
 }
 
 h1 {
-  font-size: 300%;
+  font-size: clamp(28px, 6vw, 250%);
 }
 h2 {
-  font-size: 200%;
+  font-size: clamp(24px, 5vw, 175%);
 }
 h3 {
-  font-size: 125%;
+  font-size: clamp(22px, 4.25vw, 125%);
 }
 h4 {
-  font-size: 100%;
+  font-size: clamp(20px, 4vw, 100%);
 }
 h5 {
-  font-size: 80%;
+  font-size: clamp(16px, 3.2vw, 80%);
 }
 
 summary {

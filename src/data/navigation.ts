@@ -2,24 +2,24 @@ import { links } from "./links";
 
 export const header = [
   {
-    title: "Home",
-    target: "/",
-    accent: "rosewater",
-  },
-  {
     title: "Ports",
-    target: "ports",
+    target: "/ports",
     accent: "peach",
   },
   {
     title: "Palette",
-    target: "palette",
+    target: "/palette",
     accent: "mauve",
   },
   {
     title: "Community",
-    target: "community",
+    target: "/community",
     accent: "green",
+  },
+  {
+    title: "Blog",
+    target: "/blog",
+    accent: "blue",
   },
 ];
 
@@ -40,6 +40,11 @@ export const footer = [
       {
         title: "Community",
         target: "/community",
+        external: false,
+      },
+      {
+        title: "Blog",
+        target: "/blog",
         external: false,
       },
       {

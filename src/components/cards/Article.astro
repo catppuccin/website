@@ -1,0 +1,131 @@
+---
+import { Icon } from "astro-icon/components";
+import type { CollectionEntry } from "astro:content";
+import Link from "../Link.astro";
+import Avatar from "../lists/Avatar.svelte";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+
+type Category = {
+  [key: string]: {
+    icon: string;
+    color: string;
+    title: string;
+  };
+};
+
+const ArticleCategories: Category = {
+  announcement: {
+    title: "Announcement",
+    color: "yellow",
+    icon: "star",
+  },
+  devlog: {
+    title: "Devlog",
+    color: "green",
+    icon: "article",
+  },
+  community: {
+    title: "Community",
+    color: "mauve",
+    icon: "users-three",
+  },
+};
+
+const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<div class="post-card" style={`--article-category-color: var(--${ArticleCategories[post.data.category].color})`}>
+  <img class="blog-hero-image" src={post.data.hero.path} alt={post.data.title} />
+  <div class="post-content">
+    <header class="article-header">
+      <p class="article-category has-icon">
+        <Icon name=`ph:${ArticleCategories[post.data.category].icon}` size={24} />
+        {ArticleCategories[post.data.category].title}
+      </p>
+      <Link href={`/blog/${post.slug}`}>
+        <h3>{post.data.title}</h3>
+      </Link>
+    </header>
+    <main class="article-content">
+      <p>{post.data.summary}</p>
+    </main>
+    <footer class="article-meta">
+      <div class="article-author has-icon">
+        <Avatar username={post.data.author.github} size={64} wxh={24} />
+        {post.data.author.name}
+      </div>
+      <p class="article-pubdate has-icon">
+        <Icon name="ph:calendar-dots-fill" size={24} />
+        {formattedDatePosted}
+      </p>
+    </footer>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../../styles/utils";
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    @include utils.containerPadding(sm);
+    border-radius: var(--border-radius-normal);
+    background-color: var(--mantle);
+
+    a h3,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .post-content {
+      @include utils.flex($direction: column, $gap: 0);
+    }
+
+    .blog-hero-image {
+      border-radius: var(--border-radius-normal);
+      object-fit: cover;
+    }
+
+    .article-content {
+      color: var(--subtext0);
+    }
+
+    .article-category,
+    .article-meta {
+      @include utils.flex($direction: row, $gap: var(--space-xs) var(--space-md));
+      font-size: 80%;
+    }
+
+    .article-category {
+      color: var(--article-category-color);
+    }
+
+    .article-meta {
+      margin-block-start: var(--space-md);
+      color: var(--overlay1);
+    }
+
+    .has-icon {
+      @include utils.flex($direction: row, $gap: var(--space-xs));
+      margin: 0;
+      padding: 0;
+    }
+  }
+</style>
+
+<style lang="scss" is:global>
+  a h3 {
+    color: unset;
+  }
+</style>

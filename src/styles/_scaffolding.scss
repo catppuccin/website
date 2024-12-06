@@ -22,7 +22,7 @@ html {
 }
 
 :root {
-  --website-max-width: 80vw;
+  --website-max-width: 1600px;
 
   --border-radius-normal: 6px;
   --border-radius-large: 12px;
@@ -54,6 +54,7 @@ section + section {
 }
 
 .content-wrapper {
+  container-type: inline-size;
   width: 100%;
   max-width: calc(2 * var(--padding-body) + var(--website-max-width));
   padding: var(--space-md) var(--padding-body);
