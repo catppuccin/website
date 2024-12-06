@@ -44,7 +44,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 ---
 
 <div class="post-card" style={`--article-category-color: var(--${ArticleCategories[post.data.category].color})`}>
-  <img src={post.data.heroImage} alt={post.data.title} />
+  <img class="blog-hero-image" src={post.data.hero.path} alt={post.data.title} />
   <div class="post-content">
     <header class="article-header">
       <p class="article-category has-icon">
@@ -90,11 +90,8 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 
     .blog-hero-image {
       flex: 0 0 50%;
-      aspect-ratio: 16 / 5;
       border-radius: var(--border-radius-normal);
-      background-image: var(--_image-url);
-      background-size: cover;
-      background-position: center;
+      object-fit: cover;
     }
 
     .article-content {
@@ -124,8 +121,13 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 
     @container (min-width: 700px) {
       flex-direction: row;
+
       &:nth-of-type(even) {
         flex-direction: row-reverse;
+      }
+
+      .blog-hero-image {
+        max-width: 50%;
       }
     }
   }

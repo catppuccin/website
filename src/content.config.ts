@@ -9,7 +9,7 @@ const blog = defineCollection({
   schema: ({ image }) =>
     z.object({
       hero: z.object({
-        path: image(),
+        path: z.string(),
         author: z.string(),
         source: z.string(),
       }),
