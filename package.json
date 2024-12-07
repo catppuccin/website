@@ -30,7 +30,7 @@
     "@astrojs/svelte": "^5.3.0",
     "astro": "^4.16.16",
     "fuse.js": "^7.0.0",
-    "svelte": "^4.2.12",
+    "svelte": "^5.0.0",
     "typescript": "^5.4.4",
     "yaml": "^2.4.0"
   },
