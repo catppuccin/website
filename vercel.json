@@ -1,3 +1,0 @@
-{
-  "installCommand": "dnf install -y ImageMagick && bun install"
-}

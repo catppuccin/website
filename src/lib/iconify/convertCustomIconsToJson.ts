@@ -46,5 +46,5 @@ import { cleanupSVG, parseColors, isEmptyColor, runSVGO, deOptimisePaths, import
 
   // Save icon set
   const iconSetContent = iconSet.export();
-  await fs.writeFile(target, JSON.stringify(iconSetContent, null, "\t"), "utf8");
+  await fs.writeFile(target, JSON.stringify(iconSetContent, null, 2), "utf8");
 })();
