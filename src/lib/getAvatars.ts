@@ -1,5 +1,9 @@
-import { $ } from "bun";
+import { promises as fs } from "fs";
+import { rimraf } from "rimraf";
 import { currentMaintainers, type Collaborator } from "./ports";
+import { promisify } from "node:util";
+import { exec as execCallback } from "node:child_process";
+const exec = promisify(execCallback);
 
 const PUBLIC_DIR = "public/maintainers";
 const LIB_DIR = "src/lib";
@@ -18,30 +22,30 @@ async function fetchAndProcessImage(maintainer: Collaborator) {
     maintainersWithoutAvatars.push(maintainer.username);
     return;
   }
-  const image = await response.blob();
 
-  await Bun.write(`${PUBLIC_DIR}/${username}.png`, image);
+  await fs.writeFile(`${PUBLIC_DIR}/${username}.png`, Buffer.from(await response.arrayBuffer()));
 
   await Promise.all(
-    SIZES.map(
-      (size) =>
-        $`convert ${PUBLIC_DIR}/${username}.png -resize ${size}x${size} -quality ${IMAGE_QUALITY} ${PUBLIC_DIR}/${size}x${size}/${username}.webp`,
+    SIZES.map((size) =>
+      exec(
+        `convert ${PUBLIC_DIR}/${username}.png -resize ${size}x${size} -quality ${IMAGE_QUALITY} ${PUBLIC_DIR}/${size}x${size}/${username}.webp`,
+      ),
     ),
   );
 }
 
 try {
-  await Promise.all(SIZES.map((size) => $`mkdir -p ${PUBLIC_DIR}/${size}x${size}`));
+  await Promise.all(SIZES.map((size) => fs.mkdir(`${PUBLIC_DIR}/${size}x${size}`, { recursive: true })));
   await Promise.all(currentMaintainers.map((maintainer) => fetchAndProcessImage(maintainer)));
-  await Bun.write(`${LIB_DIR}/maintainersWithoutAvatars.json`, JSON.stringify(maintainersWithoutAvatars));
+  await fs.writeFile(`${LIB_DIR}/maintainersWithoutAvatars.json`, JSON.stringify(maintainersWithoutAvatars));
 
   // Only include placeholder assets in the public directory when we have failed
   // to retrieve GitHub profile information for at least one maintainer.
   if (maintainersWithoutAvatars.length > 0) {
     console.log("Transferring placeholder images to public directory...");
     await Promise.all(
-      SIZES.map(
-        (size) => $`cp ${LIB_DIR}/placeholder_${size}x${size}.webp ${PUBLIC_DIR}/${size}x${size}/placeholder.webp`,
+      SIZES.map((size) =>
+        exec(`cp ${LIB_DIR}/placeholder_${size}x${size}.webp ${PUBLIC_DIR}/${size}x${size}/placeholder.webp`),
       ),
     );
   }
@@ -50,4 +54,6 @@ try {
   process.exit(1);
 }
 
-await $`rm ${PUBLIC_DIR}/*.png`;
+await rimraf(`${PUBLIC_DIR}/*.png`, {
+  glob: true,
+});

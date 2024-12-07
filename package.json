@@ -2,28 +2,32 @@
   "name": "website",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@9.15.0",
   "scripts": {
     "fmt": "prettier --plugin=prettier-plugin-astro . --write",
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "build": "bun run avatars && astro check && astro build",
+    "build": "pnpm run avatars && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "sync": "astro sync",
     "prepare": "husky",
-    "icons": "bun src/lib/iconify/convertCustomIconsToJson.ts",
-    "avatars": "bun src/lib/getAvatars.ts"
+    "icons": "pnpm tsx src/lib/iconify/convertCustomIconsToJson.ts",
+    "avatars": "pnpm tsx src/lib/getAvatars.ts"
   },
   "lint-staged": {
-    "!(src/layouts/*.astro)src/**/*": "bun prettier --plugin=prettier-plugin-astro . --write"
+    "!(src/layouts/*.astro)src/**/*": "pnpm run fmt"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.0",
     "@astrojs/mdx": "^3.1.9",
     "@astrojs/sitemap": "^3.1.1",
     "@astrojs/svelte": "^5.3.0",
-    "@types/bun": "^1.1.4",
     "astro": "^4.16.16",
     "fuse.js": "^7.0.0",
     "svelte": "^4.2.12",
@@ -38,11 +42,14 @@
     "@iconify/tools": "^4.0.4",
     "@iconify/types": "^2.0.0",
     "@rollup/plugin-yaml": "^4.1.2",
+    "@types/node": "^22.10.1",
     "astro-icon": "^1.1.0",
     "husky": "latest",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.14.0",
-    "sass": "^1.74.1"
+    "rimraf": "^6.0.1",
+    "sass": "^1.74.1",
+    "tsx": "^4.19.2"
   }
 }

@@ -25,8 +25,8 @@
 ## Development
 
 ```
-bun install
-bun dev
+pnpm install
+pnpm dev
 ```
 
 &nbsp;
