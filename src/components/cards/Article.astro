@@ -1,40 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
-import Link from "../Link.astro";
+import Pill from "../lists/Pills.svelte";
 import Avatar from "../lists/Avatar.svelte";
+import Link from "../Link.astro";
 
 interface Props {
   post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
-
-type Category = {
-  [key: string]: {
-    icon: string;
-    color: string;
-    title: string;
-  };
-};
-
-const ArticleCategories: Category = {
-  announcement: {
-    title: "Announcement",
-    color: "yellow",
-    icon: "star",
-  },
-  devlog: {
-    title: "Devlog",
-    color: "green",
-    icon: "article",
-  },
-  community: {
-    title: "Community",
-    color: "mauve",
-    icon: "users-three",
-  },
-};
 
 const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("en-US", {
   year: "numeric",
@@ -43,33 +18,32 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<div class="post-card" style={`--article-category-color: var(--${ArticleCategories[post.data.category].color})`}>
-  <img class="blog-hero-image" src={post.data.hero.path} alt={post.data.title} />
-  <div class="post-content">
-    <header class="article-header">
-      <p class="article-category has-icon">
-        <Icon name=`ph:${ArticleCategories[post.data.category].icon}` size={24} />
-        {ArticleCategories[post.data.category].title}
-      </p>
-      <Link href={`/blog/${post.slug}`}>
+<Link href={`/blog/${post.slug}`}>
+  <article class="post-card">
+    <img class="blog-hero-image" src={post.data.hero.path} alt={post.data.title} />
+    <div class="post-content">
+      <header class="article-header">
         <h3>{post.data.title}</h3>
-      </Link>
-    </header>
-    <main class="article-content">
-      <p>{post.data.summary}</p>
-    </main>
-    <footer class="article-meta">
-      <div class="article-author has-icon">
-        <Avatar username={post.data.author.github} size={64} wxh={24} />
-        {post.data.author.name}
-      </div>
-      <p class="article-pubdate has-icon">
-        <Icon name="ph:calendar-dots-fill" size={24} />
-        {formattedDatePosted}
-      </p>
-    </footer>
-  </div>
-</div>
+      </header>
+      <main class="article-content">
+        <p>{post.data.summary}</p>
+      </main>
+      <footer class="article-footer">
+        <Pill list={[post.data.category]} />
+        <div class="article-meta">
+          <div class="article-author has-icon">
+            <Avatar username={post.data.author.github} size={64} wxh={24} />
+            {post.data.author.name}
+          </div>
+          <p class="article-pubdate has-icon">
+            <Icon name="ph:calendar-dots-fill" size={24} />
+            {formattedDatePosted}
+          </p>
+        </div>
+      </footer>
+    </div>
+  </article>
+</Link>
 
 <style lang="scss">
   @use "../../styles/utils";
@@ -77,10 +51,22 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
   .post-card {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
-    @include utils.containerPadding(sm);
     border-radius: var(--border-radius-normal);
     background-color: var(--mantle);
+    overflow: clip;
+    height: 100%;
+
+    transition: all 300ms ease-in-out;
+
+    &:hover {
+      transform: scale(102%);
+
+      background-position: top right;
+
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
+    }
 
     a h3,
     p {
@@ -89,11 +75,12 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     }
 
     .post-content {
-      @include utils.flex($direction: column, $gap: 0);
+      @include utils.flex($direction: column, $gap: var(--space-sm));
+      @include utils.containerPadding(sm);
+      height: 100%;
     }
 
     .blog-hero-image {
-      border-radius: var(--border-radius-normal);
       object-fit: cover;
     }
 
@@ -101,10 +88,13 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       color: var(--subtext0);
     }
 
-    .article-category,
     .article-meta {
-      @include utils.flex($direction: row, $gap: var(--space-xs) var(--space-md));
+      @include utils.flex($direction: row, $gap: var(--space-xs) var(--space-sm));
       font-size: 80%;
+    }
+
+    .article-footer {
+      margin-block-start: auto;
     }
 
     .article-category {
@@ -112,7 +102,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     }
 
     .article-meta {
-      margin-block-start: var(--space-md);
+      margin-block-start: var(--space-sm);
       color: var(--overlay1);
     }
 
@@ -127,5 +117,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 <style lang="scss" is:global>
   a h3 {
     color: unset;
+    margin: 0;
+    padding: 0;
   }
 </style>
