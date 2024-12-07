@@ -4,7 +4,6 @@ import Layout from "../layouts/Layout.astro";
 import PageIntro from "../components/PageIntro.astro";
 import Users, { type Person } from "../components/lists/Users.astro";
 import TeamName from "../components/TeamName.astro";
-import Link from "../components/Link.astro";
 
 import { currentMaintainers } from "../lib/ports";
 ---
@@ -59,7 +58,7 @@ import { currentMaintainers } from "../lib/ports";
     <h3><TeamName team="userstyles" color="green">userstyles Staff</TeamName></h3>
     <p>
       Overseers of all userstyles in
-      <Link href="https://github.com/catppuccin/userstyles" external>catppuccin/userstyles</Link>.
+      <a href="https://github.com/catppuccin/userstyles">catppuccin/userstyles</a>.
       <strong>Responsible for all matters regarding userstyles.</strong>
     </p>
     <div class="user-grid">

@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-import Link from "../components/Link.astro";
 import PageIntro from "../components/PageIntro.astro";
 import FlavorName from "../components/FlavorName.astro";
 import CopyButton from "../components/ClipboardButton.svelte";
@@ -37,9 +36,9 @@ import { toRgb, toHsl } from "../lib/colorFormat";
       </ul>
       <p>
         If you'd like to use them for your own project, refer to our
-        <Link href=`${links.github}/catppuccin/blob/main/docs/style-guide.md` external>style guide</Link>
+        <a href=`${links.github}/catppuccin/blob/main/docs/style-guide.md`>style guide</a>
         for general use cases and guidelines. Additionally, you can find integrations with popular frameworks and tools in
-        <Link href=`${links.github}/palette` external>catppuccin/palette</Link>.
+        <a href=`${links.github}/palette`>catppuccin/palette</a>.
       </p>
     </p>
 

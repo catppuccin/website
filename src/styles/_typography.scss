@@ -95,8 +95,31 @@ li {
   margin: 0;
 }
 
+// all of this mess is because astro is adding a whitespace after the previously used <Link> component
+// this now is an issue because we're now using underlines for links
+// see: https://github.com/withastro/astro/issues/6893
 a {
   text-decoration: none;
+  color: var(--blue);
+
+  // prevents underlines in links, navigationbar, pills
+  &:not(:has(button)):not(.nav-link):hover,
+  &:not(:has(button)):not(.nav-link):focus {
+    text-decoration: underline;
+  }
+
+  &.muted {
+    color: var(--subtext0);
+  }
+
+  // adds external indicator to links
+  // EXCEPT for port cards, links with images/svgs (avatars, vercel logo, etc.)
+  &[href^="http"]:not(:has(svg)):not(:has(img)):after {
+    content: "\2197";
+    font-size: 60%;
+    font-weight: 900;
+    vertical-align: super;
+  }
 }
 
 pre:has(code) {

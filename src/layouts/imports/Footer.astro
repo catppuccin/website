@@ -1,5 +1,4 @@
 ---
-import Link from "../../components/Link.astro";
 import PoweredByVercel from "../../components/svgs/PoweredByVercel.astro";
 import Volume from "../../components/svgs/Volume.astro";
 
@@ -14,11 +13,9 @@ import { footer as navLinkList } from "../../data/navigation";
           <strong>{categoryTitle}</strong>
         </p>
         <ul>
-          {categoryLinks.map(({ title, target, external }) => (
+          {categoryLinks.map(({ title, target }) => (
             <li>
-              <Link href={target} {external}>
-                {title}
-              </Link>
+              <a href={target}>{title}</a>
             </li>
           ))}
         </ul>
@@ -41,11 +38,11 @@ import { footer as navLinkList } from "../../data/navigation";
     </div>
     <p>catppuccin.com is built and maintained by the community under the MIT license.</p>
     <p>
-      &copy; {new Date(Date.now()).getFullYear()} • <Link href="/licensing" muted>Licensing</Link>
+      &copy; {new Date(Date.now()).getFullYear()} • <a href="/licensing" class="muted">Licensing</a>
     </p>
-    <Link href="https://vercel.com/?utm_source=Catppuccin&utm_campaign=oss">
+    <a href="https://vercel.com/?utm_source=Catppuccin&utm_campaign=oss">
       <PoweredByVercel />
-    </Link>
+    </a>
   </div>
 
   <style lang="scss">

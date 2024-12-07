@@ -6,7 +6,6 @@ import LayoutWithClampedFooter from "../layouts/LayoutWithClampedFooter.astro";
 import PageIntro from "../components/PageIntro.astro";
 import PortExplorer from "../components/PortExplorer.svelte";
 import PortCard from "../components/cards/Port.svelte";
-import Link from "../components/Link.astro";
 ---
 
 <LayoutWithClampedFooter
@@ -31,12 +30,9 @@ import Link from "../components/Link.astro";
       <p>Sorry, we couldn't find any ports matching your search :(</p>
       <p>
         You can request a port to be themed by raising a
-        <Link
-          href="https://github.com/catppuccin/catppuccin/discussions/new?category=port-requests"
-          external
-          slot="link">port request in catppuccin/catppuccin</Link
-        >
-        .
+        <a href="https://github.com/catppuccin/catppuccin/discussions/new?category=port-requests" slot="link"
+          >port request in catppuccin/catppuccin</a
+        >.
       </p>
     </svelte:fragment>
   </PortExplorer>

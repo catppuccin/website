@@ -28,5 +28,6 @@
     background-color: color-mix(in srgb, var(--base), var(--subtext0) 20%);
 
     font-size: 80%;
+    color: var(--subtext0);
   }
 </style>
