@@ -25,10 +25,10 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.0",
-    "@astrojs/mdx": "^3.1.9",
+    "@astrojs/mdx": "^4.0.0",
     "@astrojs/sitemap": "^3.1.1",
-    "@astrojs/svelte": "^5.3.0",
-    "astro": "^4.16.16",
+    "@astrojs/svelte": "^7.0.0",
+    "astro": "^5.0.0",
     "fuse.js": "^7.0.0",
     "svelte": "^4.2.12",
     "typescript": "^5.4.4",
