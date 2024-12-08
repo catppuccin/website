@@ -2,7 +2,7 @@
 import type { ColorName } from "@catppuccin/palette";
 import maintainersWithoutAvatars from "../../lib/maintainersWithoutAvatars.json";
 
-import Link from "../Link.astro";
+import Link from "../Link.svelte";
 import Avatar from "../lists/Avatar.svelte";
 
 const isProd = import.meta.env.PROD;
@@ -23,8 +23,8 @@ const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username)
   <Link {href} external>
     <Avatar {username} size={256} wxh={128} />
     <br />
-    <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name}</span>
-  </Link>
+    <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name}</span></Link
+  >
 </div>
 
 <style lang="scss">
