@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Port } from "../lib/ports";
+  import type { Port } from "../data/ports";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
   import Fuse from "fuse.js";

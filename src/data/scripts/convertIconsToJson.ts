@@ -2,9 +2,9 @@ import { promises as fs } from "fs";
 import { cleanupSVG, parseColors, isEmptyColor, runSVGO, deOptimisePaths, importDirectory } from "@iconify/tools";
 
 (async () => {
-  const source = "src/icons/ports";
+  const source = "src/data/icons/ports";
   const prefix = "ctp";
-  const target = "src/lib/iconify/icons.json";
+  const target = "src/data/icons.json";
 
   // Load icon set
   const iconSet = await importDirectory(source, { prefix });
