@@ -79,7 +79,7 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
       sass:
-        specifier: ^1.74.1
+        specifier: ^1.82.0
         version: 1.82.0
       tsx:
         specifier: ^4.19.2

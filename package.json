@@ -15,7 +15,6 @@
     "build": "pnpm run avatars && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "sync": "astro sync",
     "prepare": "husky",
     "icons": "pnpm tsx src/lib/iconify/convertCustomIconsToJson.ts",
     "avatars": "pnpm tsx src/lib/getAvatars.ts"
@@ -49,7 +48,7 @@
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.14.0",
     "rimraf": "^6.0.1",
-    "sass": "^1.74.1",
+    "sass": "^1.82.0",
     "tsx": "^4.19.2"
   }
 }
