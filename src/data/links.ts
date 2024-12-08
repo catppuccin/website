@@ -21,11 +21,12 @@ export interface Social {
   url: string;
 }
 
-export const socials = (await fetch(
+export const socialsYml = (await fetch(
   "https://raw.githubusercontent.com/catppuccin/.github/refs/heads/main/socials/socials.yml",
 )
   .then((r) => r.text())
   .then((t) => parse(t))) as SocialsSchema;
+const socials = socialsYml.socials;
 
 export const navigationLinks = [
   {
@@ -63,7 +64,14 @@ export const footerProjectLinks = [
   },
 ];
 
-export const socialLinks = Object.values(socials.socials).map((link) => {
+const socialLinks = [
+  socials.github,
+  socials.discord,
+  socials.mastodon,
+  socials.twitter,
+  socials.bsky,
+  socials.spotify,
+].map((link) => {
   return {
     title: link.name,
     target: link.url,
@@ -71,14 +79,16 @@ export const socialLinks = Object.values(socials.socials).map((link) => {
   };
 });
 
+const footerSocial = {
+  categoryTitle: "Social",
+  categoryLinks: socialLinks,
+};
+
 export const projectLinks = {
   categoryTitle: "Project",
   categoryLinks: footerProjectLinks,
 };
 
-export const footerSocial = {
-  categoryTitle: "Social",
-  categoryLinks: socialLinks,
-};
-
 export const footerLinks = [projectLinks, footerSocial];
+
+export const githubUrl = socials.github.url;
