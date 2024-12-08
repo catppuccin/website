@@ -59,6 +59,10 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     transition: all 300ms ease-in-out;
 
     &:hover {
+      h3 {
+        text-decoration: underline;
+      }
+
       transform: scale(102%);
 
       background-position: top right;
@@ -116,9 +120,6 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 
 <style lang="scss" is:global>
   a:has(.post-card) h3 {
-    &:hover {
-      text-decoration: underline;
-    }
     color: unset;
     margin: 0;
     padding: 0;
