@@ -1,0 +1,33 @@
+---
+import type { AccentName } from "@catppuccin/palette";
+import { flavors } from "@catppuccin/palette";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  accent?: AccentName;
+}
+
+const { title, description, ogImage = "/embed.png", accent = "mauve" } = Astro.props as Props;
+
+const isVercelProd = import.meta.env.VERCEL_PROD;
+const themeColor = `#${flavors.mocha.colors[accent].hex}`;
+---
+
+<meta name="generator" content={Astro.generator} />
+<meta name="description" content={description} />
+
+<meta property="og:url" content="https://catppuccin.com" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta name="theme-color" content={themeColor} data-react-helmet="true" />
+
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta name="twitter:card" content="summary_large_image" />
+
+{isVercelProd && <script is:inline defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
+
+<title>{title}</title>

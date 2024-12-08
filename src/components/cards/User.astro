@@ -1,6 +1,6 @@
 ---
 import type { ColorName } from "@catppuccin/palette";
-import maintainersWithoutAvatars from "../../data/maintainersWithoutAvatars.json";
+import maintainersWithoutAvatars from "@data/maintainersWithoutAvatars.json";
 
 import Link from "../Link.svelte";
 import Avatar from "../lists/Avatar.svelte";
@@ -28,7 +28,7 @@ const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username)
 </div>
 
 <style lang="scss">
-  @use "../../styles/utils";
+  @use "@styles/utils";
 
   .card-user {
     --__user-color: var(--user-color, var(--mantle));

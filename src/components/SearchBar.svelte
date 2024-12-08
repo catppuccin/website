@@ -18,7 +18,7 @@
 </div>
 
 <style lang="scss">
-  @use "../styles/utils";
+  @use "@styles/utils";
 
   .search-bar {
     background-color: var(--mantle);

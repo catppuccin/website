@@ -1,9 +1,9 @@
 ---
 import { getCollection, render } from "astro:content";
-import LayoutWithClampedFooter from "@layouts/LayoutWithClampedFooter.astro";
 import PageIntro from "@components/PageIntro.astro";
 import Link from "@components/Link.svelte";
 import Avatar from "@components/lists/Avatar.svelte";
+import Page from "@layouts/Page.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -24,10 +24,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<LayoutWithClampedFooter
-  title={`${post.data.title} • Catppuccin`}
-  description={post.data.summary}
-  image={post.data.hero.path}>
+<Page title={`${post.data.title} • Catppuccin`} description={post.data.summary} ogImage={post.data.hero.path}>
   <img src={post.data.hero.path} alt={post.data.title} title={post.data.title} />
   <div class="blog-container">
     <PageIntro title={post.data.title}>
@@ -52,7 +49,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       >
     </footer>
   </div>
-</LayoutWithClampedFooter>
+</Page>
 
 <style lang="scss">
   @use "@styles/utils";

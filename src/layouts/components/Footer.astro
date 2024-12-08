@@ -1,9 +1,9 @@
 ---
-import Link from "../../components/Link.svelte";
-import PoweredByVercel from "../../components/svgs/PoweredByVercel.astro";
-import Volume from "../../components/svgs/Volume.astro";
+import Link from "@components/Link.svelte";
+import PoweredByVercel from "@components/svgs/PoweredByVercel.astro";
+import Volume from "@components/svgs/Volume.astro";
 
-import { footerLinks } from "../../data/links";
+import { footerLinks } from "@data/links";
 ---
 
 <footer>
@@ -49,7 +49,7 @@ import { footerLinks } from "../../data/links";
   </div>
 
   <style lang="scss">
-    @use "../../styles/utils";
+    @use "@styles/utils";
 
     footer {
       @include utils.flex($gap: var(--space-md));

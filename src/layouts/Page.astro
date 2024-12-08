@@ -1,0 +1,49 @@
+---
+import type { AccentName } from "@catppuccin/palette";
+
+import Website from "@layouts/Website.astro";
+
+import Navigation from "./components/Navigation.astro";
+import Footer from "./components/Footer.astro";
+
+import Head from "@components/Head.astro";
+import AccentBar from "@components/AccentBar.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  accent?: AccentName;
+}
+
+const { title, description, ogImage, accent } = Astro.props;
+---
+
+<Website>
+  <Head slot="seo" title={title} description={description} ogImage={ogImage} accent={accent} />
+
+  <section class="header-container">
+    <div class="content-wrapper no-padding">
+      <Navigation />
+    </div>
+  </section>
+
+  <div class="content-wrapper main-container">
+    <slot />
+  </div>
+
+  <section class="footer-container">
+    <div class="content-wrapper no-padding">
+      <Footer />
+    </div>
+    <AccentBar />
+  </section>
+</Website>
+
+<style lang="scss">
+  .main-container {
+    container-type: inline-size;
+    margin-block-end: var(--space-xl);
+    min-height: 100vh;
+  }
+</style>

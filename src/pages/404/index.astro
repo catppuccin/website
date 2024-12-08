@@ -1,12 +1,10 @@
 ---
 import Link from "@components/Link.svelte";
 import PageIntro from "@components/PageIntro.astro";
-import LayoutWithClampedFooter from "@layouts/LayoutWithClampedFooter.astro";
+import Page from "@layouts/Page.astro";
 ---
 
-<LayoutWithClampedFooter
-  title="404 Not Found • Catppuccin"
-  description="Oops! The page you're looking for could not be found.">
+<Page title="404 Not Found • Catppuccin" description="Oops! The page you're looking for could not be found.">
   <div class="wrapper">
     <div class="page-content">
       <PageIntro title="404 Not Found">
@@ -15,7 +13,7 @@ import LayoutWithClampedFooter from "@layouts/LayoutWithClampedFooter.astro";
       </PageIntro>
     </div>
   </div>
-</LayoutWithClampedFooter>
+</Page>
 
 <style lang="scss">
   @use "@styles/utils";

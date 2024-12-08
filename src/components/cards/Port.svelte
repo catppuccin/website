@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Port } from "../../data/ports";
+  import type { Port } from "@data/ports";
   import Pills from "../lists/Pills.svelte";
   import Icon from "@iconify/svelte";
   import Avatars from "../lists/Avatars.svelte";
@@ -26,7 +26,7 @@
 </a>
 
 <style lang="scss">
-  @use "../../styles/utils";
+  @use "@styles/utils";
 
   .port-card {
     @include utils.flex($direction: column, $gap: var(--space-md));

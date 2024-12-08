@@ -1,6 +1,6 @@
 <script lang="ts">
   import PortCard from "./cards/Port.svelte";
-  import type { Port } from "../data/ports";
+  import type { Port } from "@data/ports";
 
   export let portGrid: Array<Port & { icon: string }> | undefined;
   export let searchTerm: string;

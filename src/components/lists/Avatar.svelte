@@ -1,5 +1,5 @@
 <script lang="ts">
-  import maintainersWithoutAvatars from "../../data/maintainersWithoutAvatars.json";
+  import maintainersWithoutAvatars from "@data/maintainersWithoutAvatars.json";
   export let username: string;
   export let size: number;
   export let wxh: number;

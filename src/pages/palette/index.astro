@@ -1,5 +1,5 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import Page from "@layouts/Page.astro";
 import Link from "@components/Link.svelte";
 import PageIntro from "@components/PageIntro.astro";
 import FlavorName from "@components/FlavorName.astro";
@@ -15,7 +15,7 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
 };
 ---
 
-<Layout
+<Page
   title="Palette • Catppuccin"
   description="Dive into Catppuccin's palette: four unique pastel color palettes named 'flavors'. Ideal for your next project!">
   <PageIntro title="Palette">
@@ -158,4 +158,4 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
       }
     }
   </style>
-</Layout>
+</Page>

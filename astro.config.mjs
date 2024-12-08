@@ -3,7 +3,6 @@ import yaml from "@rollup/plugin-yaml";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import icon from "astro-icon";
-
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
