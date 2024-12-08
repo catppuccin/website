@@ -1,8 +1,8 @@
 ---
-import LayoutWithClampedFooter from "../../layouts/LayoutWithClampedFooter.astro";
+import LayoutWithClampedFooter from "@layouts/LayoutWithClampedFooter.astro";
 import { getCollection } from "astro:content";
-import PageIntro from "../../components/PageIntro.astro";
-import ArticleCard from "../../components/cards/Article.astro";
+import PageIntro from "@components/PageIntro.astro";
+import ArticleCard from "@components/cards/Article.astro";
 
 const description = "Blog posts related to Catppuccin, ranging from announcements, devlogs, general musings and more!";
 const blogPosts = await getCollection("blog");
