@@ -14,10 +14,10 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          api: 'modern'
-        }
-      }
-    }
+          api: "modern",
+        },
+      },
+    },
   },
   integrations: [sitemap(), icon(), svelte(), mdx()],
 });
