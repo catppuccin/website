@@ -3,7 +3,7 @@ import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
 import Pill from "../lists/Pills.svelte";
 import Avatar from "../lists/Avatar.svelte";
-import Link from "../Link.astro";
+import Link from "../Link.svelte";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -115,6 +115,10 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 </style>
 
 <style lang="scss" is:global>
+  a:hover .post-card {
+    text-decoration: none !important;
+  }
+
   a h3 {
     color: unset;
     margin: 0;
