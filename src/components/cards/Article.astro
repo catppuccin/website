@@ -18,7 +18,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<Link href={`/blog/${post.slug}`}>
+<Link href={`/blog/${post.slug}`} underline={false}>
   <article class="post-card">
     <img class="blog-hero-image" src={post.data.hero.path} alt={post.data.title} />
     <div class="post-content">
@@ -115,20 +115,10 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 </style>
 
 <style lang="scss" is:global>
-  /*  The entire card is wrapped as a link which results in all text being underlined on hover.
-   *  To prevent this we remove all underlines from links that have the post-card as a child.
-   *  But since we want the headline to be underlined we have to reintroduce the underline specifically.
-   *  !important is used to fix specificity issues with the scoped styles from the Link-component.
-   *  It's not pretty but it works.
-   */
-  a:hover:has(.post-card) {
-    text-decoration: none !important;
-    h3 {
-      text-decoration: underline !important;
+  a:has(.post-card) h3 {
+    &:hover {
+      text-decoration: underline;
     }
-  }
-
-  a h3 {
     color: unset;
     margin: 0;
     padding: 0;
