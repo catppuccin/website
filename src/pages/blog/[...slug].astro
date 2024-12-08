@@ -26,7 +26,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 
 <Page title={`${post.data.title} • Catppuccin`} description={post.data.summary} ogImage={post.data.hero.path}>
   <img src={post.data.hero.path} alt={post.data.title} title={post.data.title} />
-  <div class="blog-container">
+  <article class="blog-container" role="main">
     <PageIntro title={post.data.title}>
       <p class="article-summary">{post.data.summary}</p>
       <footer class="article-meta">
@@ -48,7 +48,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
         external>lutgen-rs</Link
       >
     </footer>
-  </div>
+  </article>
 </Page>
 
 <style lang="scss">
