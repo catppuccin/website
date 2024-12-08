@@ -1,7 +1,7 @@
 ---
-import Logo from "../../components/svgs/Logo.astro";
+import Logo from "@components/svgs/Logo.astro";
 
-import { header as navLinkList } from "../../data/navigation";
+import { navigationLinks } from "@data/links";
 ---
 
 <header>
@@ -12,7 +12,7 @@ import { header as navLinkList } from "../../data/navigation";
 
     <ul>
       {
-        navLinkList.map(({ title, target, accent }) => (
+        navigationLinks.map(({ title, target, accent }) => (
           <li>
             <a href={target} style={`--accent-colour: var(--${accent});`} class="nav-link">
               {title}

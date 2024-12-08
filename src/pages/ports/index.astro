@@ -1,15 +1,15 @@
 ---
-import { ports } from "../lib/ports";
+import { ports } from "@data/ports";
 
-import LayoutWithClampedFooter from "../layouts/LayoutWithClampedFooter.astro";
+import Page from "@layouts/Page.astro";
 
-import PageIntro from "../components/PageIntro.astro";
-import PortExplorer from "../components/PortExplorer.svelte";
-import PortCard from "../components/cards/Port.svelte";
-import Link from "../components/Link.svelte";
+import PageIntro from "@components/PageIntro.astro";
+import PortExplorer from "@components/PortExplorer.svelte";
+import PortCard from "@components/cards/Port.svelte";
+import Link from "@components/Link.svelte";
 ---
 
-<LayoutWithClampedFooter
+<Page
   title="Ports • Catppuccin"
   description="Explore Catppuccin's extensive range of ports. From applications and tools to websites, we have a port for just about anything!">
   <PageIntro title="Ports">
@@ -40,10 +40,10 @@ import Link from "../components/Link.svelte";
       </p>
     </svelte:fragment>
   </PortExplorer>
-</LayoutWithClampedFooter>
+</Page>
 
 <style lang="scss" is:global>
-  @use "../styles/utils";
+  @use "@styles/utils";
 
   :root {
     --accent-color: var(--peach);

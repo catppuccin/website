@@ -12,12 +12,12 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "build": "pnpm run avatars && astro check && astro build",
+    "build": "pnpm run maintainers && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "prepare": "husky",
-    "icons": "pnpm tsx src/lib/iconify/convertCustomIconsToJson.ts",
-    "avatars": "pnpm tsx src/lib/getAvatars.ts"
+    "icons": "pnpm tsx src/data/scripts/convertIconsToJson.ts",
+    "maintainers": "pnpm tsx src/data/scripts/fetchMaintainerAvatars.ts"
   },
   "lint-staged": {
     "!(src/layouts/*.astro)src/**/*": "pnpm run fmt"

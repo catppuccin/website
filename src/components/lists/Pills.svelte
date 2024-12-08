@@ -9,7 +9,7 @@
 </ul>
 
 <style lang="scss">
-  @use "../../styles/utils";
+  @use "@styles/utils";
 
   .pill-list {
     @include utils.flex($gap: var(--space-xs));

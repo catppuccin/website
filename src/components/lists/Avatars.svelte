@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Port } from "../../lib/ports";
+  import type { Port } from "@data/ports";
   import NoMaintainerAvatar from "../svgs/NoMaintainer.svelte";
   import Avatar from "./Avatar.svelte";
 

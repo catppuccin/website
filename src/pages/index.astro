@@ -1,53 +1,182 @@
 ---
-import Home from "../layouts/Home.astro";
+import Website from "@layouts/Website.astro";
+import Footer from "@layouts/components/Footer.astro";
 
-import Illustration from "../components/svgs/LaptopIllustration.astro";
+import LaptopIllustration from "@components/svgs/LaptopIllustration.astro";
+import AccentBar from "@components/AccentBar.astro";
+import Head from "@components/Head.astro";
+import Logo from "@components/svgs/Logo.astro";
+
 import { Icon } from "astro-icon/components";
 ---
 
-<Home
-  title="Catppuccin"
-  description="A soothing pastel theme for the high-spirited! We are a community-driven color scheme, perfect for coding, designing, and more. Explore our color palettes, discover our wide range of ports, and view our vibrant community.">
-  <div slot="hero-content" class="hero-content">
-    <h1>Soothing pastel theme for the <nobr>high-spirited!</nobr></h1>
-    <p>A community-driven color scheme meant for coding, designing, and much more!</p>
-    <div class="btn-group">
-      <a href="/ports">
-        <button class="btn btn-has-icon btn-peach">
-          <Icon name="ph:cube-fill" />
-          Discover Ports
-        </button>
-      </a>
-      <a href="/palette">
-        <button class="btn btn-has-icon btn-mauve">
-          <Icon name="ph:palette-fill" />
-          Explore Colors
-        </button>
-      </a>
-      <a href="/community">
-        <button class="btn btn-has-icon btn-green">
-          <Icon name="ph:users-three-fill" />
-          View Community
-        </button>
-      </a>
-      <a href="/blog">
-        <button class="btn btn-has-icon btn-blue">
-          <Icon name="ph:article-fill" />
-          Read Blog
-        </button>
-      </a>
+<Website>
+  <Head
+    slot="seo"
+    title="Catppuccin"
+    description="A soothing pastel theme for the high-spirited! We are a community-driven color scheme, perfect for coding, designing, and more. Explore our color palettes, discover our wide range of ports, and view our vibrant community."
+  />
+  <div id="hero">
+    <div class="content-wrapper no-padding hero-grid">
+      <div class="hero-content-wrapper">
+        <div class="hero-logo">
+          <Logo type="icon" height={4} />
+          <Logo type="text" color="mauve" height={3} />
+        </div>
+        <div class="hero-content">
+          <h1>Soothing pastel theme for the <nobr>high-spirited!</nobr></h1>
+          <p>A community-driven color scheme meant for coding, designing, and much more!</p>
+          <div class="btn-group">
+            <a href="/ports">
+              <button class="btn btn-has-icon btn-peach">
+                <Icon name="ph:cube-fill" />
+                Discover Ports
+              </button>
+            </a>
+            <a href="/palette">
+              <button class="btn btn-has-icon btn-mauve">
+                <Icon name="ph:palette-fill" />
+                Explore Colors
+              </button>
+            </a>
+            <a href="/community">
+              <button class="btn btn-has-icon btn-green">
+                <Icon name="ph:users-three-fill" />
+                View Community
+              </button>
+            </a>
+            <a href="/blog">
+              <button class="btn btn-has-icon btn-blue">
+                <Icon name="ph:article-fill" />
+                Read Blog
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <LaptopIllustration />
+      </div>
     </div>
   </div>
 
-  <Illustration slot="hero-image" />
-</Home>
+  <section class="footer-container">
+    <div class="content-wrapper no-padding">
+      <Footer />
+    </div>
+    <AccentBar />
+  </section>
+</Website>
 
-<style lang="scss">
+<style lang="scss" is:global>
+  @use "@styles/utils";
+
   :root {
     --accent-color: var(--rosewater);
   }
 
   h2 {
     color: var(--accent-color);
+  }
+
+  #hero {
+    background-color: color-mix(in srgb, var(--base), var(--mauve) 10%);
+    background-image: linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--base), var(--peach) 5%),
+      color-mix(in srgb, var(--base), var(--mauve) 10%)
+    );
+
+    @media (prefers-color-scheme: dark) {
+      background-color: color-mix(in srgb, var(--base), var(--mantle) 30%);
+      background-image: none;
+    }
+
+    + .footer-container {
+      margin-block-start: 0;
+    }
+  }
+
+  .hero-logo {
+    @include utils.flex($gap: var(--space-sm));
+    align-items: center;
+
+    svg + svg {
+      margin-block-start: 6px;
+    }
+  }
+
+  .hero-grid {
+    @include utils.flex($direction: column, $gap: var(--space-lg));
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    min-height: 100svh;
+
+    @media (min-width: 800px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      padding-block: 0;
+    }
+  }
+
+  .hero-content-wrapper {
+    display: grid;
+    grid-template-rows: max-content auto;
+    gap: var(--space-xl);
+    container-type: inline-size;
+
+    padding-block: var(--padding-body);
+  }
+
+  .hero-content {
+    @include utils.flex($direction: column, $gap: var(--space-md));
+    justify-content: center;
+    align-items: flex-start;
+
+    line-height: 1.1;
+
+    h1 {
+      margin: 0;
+      padding-block: 6px;
+
+      background-image: linear-gradient(120deg, var(--peach), var(--mauve));
+      background-clip: text;
+
+      font-size: clamp(4rem, 4vw, 6rem);
+      color: transparent;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+  }
+
+  .hero-image {
+    display: grid;
+    place-items: center;
+    container-type: inline-size;
+
+    max-height: 40vh;
+
+    svg {
+      padding: var(--space-md);
+    }
+
+    @media (min-width: 800px) {
+      max-height: 100vh;
+
+      svg {
+        @container (min-width: 400px) {
+          padding-inline-start: var(--space-lg);
+        }
+
+        @container (min-width: 500px) {
+          padding-inline-start: var(--space-xl);
+        }
+      }
+    }
   }
 </style>

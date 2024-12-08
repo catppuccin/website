@@ -1,18 +1,21 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Page from "@layouts/Page.astro";
+import Link from "@components/Link.svelte";
+import PageIntro from "@components/PageIntro.astro";
+import FlavorName from "@components/FlavorName.astro";
+import CopyButton from "@components/ClipboardButton.svelte";
+import { githubUrl } from "@data/links";
+import { flavorEntries, type ColorFormat } from "@catppuccin/palette";
 
-import Link from "../components/Link.svelte";
-import PageIntro from "../components/PageIntro.astro";
-import FlavorName from "../components/FlavorName.astro";
-import CopyButton from "../components/ClipboardButton.svelte";
-
-import { links } from "../data/links";
-
-import { flavorEntries } from "@catppuccin/palette";
-import { toRgb, toHsl } from "../lib/colorFormat";
+const toRgb = (rgb: ColorFormat["rgb"]) => {
+  return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+};
+const toHsl = (hsl: ColorFormat["hsl"]) => {
+  return `hsl(${Math.round(hsl.h)}deg, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%)`;
+};
 ---
 
-<Layout
+<Page
   title="Palette • Catppuccin"
   description="Dive into Catppuccin's palette: four unique pastel color palettes named 'flavors'. Ideal for your next project!">
   <PageIntro title="Palette">
@@ -37,9 +40,9 @@ import { toRgb, toHsl } from "../lib/colorFormat";
       </ul>
       <p>
         If you'd like to use them for your own project, refer to our
-        <Link href=`${links.github}/catppuccin/blob/main/docs/style-guide.md` external>style guide</Link>
+        <Link href=`${githubUrl}/catppuccin/blob/main/docs/style-guide.md` external>style guide</Link>
         for general use cases and guidelines. Additionally, you can find integrations with popular frameworks and tools in
-        <Link href=`${links.github}/palette` external>catppuccin/palette</Link>.
+        <Link href=`${githubUrl}/palette` external>catppuccin/palette</Link>.
       </p>
     </p>
 
@@ -95,7 +98,7 @@ import { toRgb, toHsl } from "../lib/colorFormat";
   </PageIntro>
 
   <style lang="scss">
-    @use "../styles/utils";
+    @use "@styles/utils";
 
     :root {
       --accent-color: var(--mauve);
@@ -155,4 +158,4 @@ import { toRgb, toHsl } from "../lib/colorFormat";
       }
     }
   </style>
-</Layout>
+</Page>
