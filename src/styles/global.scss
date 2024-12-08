@@ -1,7 +1,7 @@
-@import url(_palette.scss);
-@import url(_typography.scss);
+@use "./palette";
+@use "./typography";
 
-@import url(_scaffolding.scss);
+@use "./scaffolding";
 
-@import url(_tables.scss);
-@import url(_buttons.scss);
+@use "./tables";
+@use "./buttons";

@@ -1,8 +1,9 @@
-@import "@catppuccin/palette/scss/catppuccin";
+@use "@catppuccin/palette/scss/catppuccin" as *;
+@use "sass:string";
 
 :root {
   @each $flavor, $colors in $palette {
-    @if str-index($flavor, "latte") {
+    @if string.index($flavor, "latte") {
       @each $color, $value in $colors {
         --#{$color}: #{$value};
       }
@@ -14,7 +15,7 @@
 
   @media (prefers-color-scheme: dark) {
     @each $flavor, $colors in $palette {
-      @if str-index($flavor, "mocha") {
+      @if string.index($flavor, "mocha") {
         @each $color, $value in $colors {
           --#{$color}: #{$value};
         }
