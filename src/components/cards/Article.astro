@@ -115,8 +115,17 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 </style>
 
 <style lang="scss" is:global>
-  a:hover .post-card {
+  /*  The entire card is wrapped as a link which results in all text being underlined on hover.
+   *  To prevent this we remove all underlines from links that have the post-card as a child.
+   *  But since we want the headline to be underlined we have to reintroduce the underline specifically.
+   *  !important is used to fix specificity issues with the scoped styles from the Link-component.
+   *  It's not pretty but it works.
+   */
+  a:hover:has(.post-card) {
     text-decoration: none !important;
+    h3 {
+      text-decoration: underline !important;
+    }
   }
 
   a h3 {
