@@ -11,6 +11,13 @@ export default defineConfig({
   site: "https://catppuccin.com",
   vite: {
     plugins: [yaml()],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern'
+        }
+      }
+    }
   },
   integrations: [sitemap(), icon(), svelte(), mdx()],
 });
