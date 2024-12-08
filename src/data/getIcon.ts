@@ -1,6 +1,6 @@
 import type { IconifyJSON } from "@iconify/types";
 
-import customIconsJson from "./iconify/icons.json";
+import customIconsJson from "./icons.json";
 import simpleIconsJson from "@iconify-json/simple-icons/icons.json";
 const customIcons = customIconsJson as IconifyJSON;
 const simpleIcons = simpleIconsJson as IconifyJSON;

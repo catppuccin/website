@@ -3,12 +3,12 @@ import Link from "../../components/Link.svelte";
 import PoweredByVercel from "../../components/svgs/PoweredByVercel.astro";
 import Volume from "../../components/svgs/Volume.astro";
 
-import { footer as navLinkList } from "../../data/navigation";
+import { footerLinks } from "../../data/links";
 ---
 
 <footer>
   {
-    navLinkList.map(({ categoryTitle, categoryLinks }) => (
+    footerLinks.map(({ categoryTitle, categoryLinks }) => (
       <nav>
         <p>
           <strong>{categoryTitle}</strong>

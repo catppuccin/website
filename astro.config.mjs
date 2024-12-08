@@ -19,5 +19,12 @@ export default defineConfig({
       },
     },
   },
-  integrations: [sitemap(), icon(), svelte(), mdx()],
+  integrations: [
+    sitemap(),
+    icon({
+      iconDir: "src/data/icons",
+    }),
+    svelte(),
+    mdx(),
+  ],
 });

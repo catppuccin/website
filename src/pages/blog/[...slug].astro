@@ -1,9 +1,9 @@
 ---
 import { getCollection, render } from "astro:content";
-import LayoutWithClampedFooter from "../../layouts/LayoutWithClampedFooter.astro";
-import PageIntro from "../../components/PageIntro.astro";
-import Link from "../../components/Link.svelte";
-import Avatar from "../../components/lists/Avatar.svelte";
+import LayoutWithClampedFooter from "@layouts/LayoutWithClampedFooter.astro";
+import PageIntro from "@components/PageIntro.astro";
+import Link from "@components/Link.svelte";
+import Avatar from "@components/lists/Avatar.svelte";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -55,7 +55,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 </LayoutWithClampedFooter>
 
 <style lang="scss">
-  @use "../../styles/utils";
+  @use "@styles/utils";
 
   :root {
     --accent-color: var(--yellow);

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Port } from "../../lib/ports";
+  import type { Port } from "../../data/ports";
   import Pills from "../lists/Pills.svelte";
   import Icon from "@iconify/svelte";
   import Avatars from "../lists/Avatars.svelte";
