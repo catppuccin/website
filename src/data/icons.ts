@@ -1,40 +1,39 @@
-import type { IconifyIcon, IconifyJSON } from "@iconify/types";
+import type { IconifyIcon, IconifyJSON, IconifyJSONIconsData } from "@iconify/types";
 
-import customIconsJson from "./icons/ports/icons.json";
+import customIconsJson from "./icons.json";
 import simpleIconsJson from "@iconify-json/simple-icons/icons.json";
 import phIconsJson from "@iconify-json/ph/icons.json";
 
-const customIcons = customIconsJson as IconifyJSON;
-const simpleIcons = simpleIconsJson as IconifyJSON;
-const phIcons = phIconsJson as IconifyJSON;
+const customIcons = customIconsJson as IconifyJSONIconsData;
+const simpleIcons = simpleIconsJson as IconifyJSONIconsData;
+const phIcons = phIconsJson as IconifyJSONIconsData;
 
-const cubeFillIcon = {
-  body: phIcons.icons["cube-fill"].body,
-  width: 256,
-  height: 256,
+const DEFAULT_VIEWBOX = 16;
+
+const phosphorIcon = (name: string) => {
+  const icon = phIcons.icons[name];
+  return {
+    body: icon.body,
+    width: icon.width ?? phIcons.width ?? DEFAULT_VIEWBOX,
+    height: icon.height ?? phIcons.height ?? DEFAULT_VIEWBOX,
+  };
 };
 
-const simpleIcon = (name: string) => ({
-  body: simpleIcons.icons[name].body,
-  width: 24,
-  height: 24,
-});
+const simpleIcon = (name: string) => {
+  const icon = simpleIcons.icons[name];
+  return {
+    body: icon.body,
+    width: icon.width ?? simpleIcons.width ?? DEFAULT_VIEWBOX,
+    height: icon.height ?? simpleIcons.height ?? DEFAULT_VIEWBOX,
+  };
+};
 
-/**
- * Equivalent to a simpleIcon()
- */
-const customIcon = (name: string) => ({
-  body: customIcons.icons[name.split(".")[0]].body,
-  width: 24,
-  height: 24,
-});
-
-export const getIcon = (name: string | undefined): IconifyIcon => {
+export const portIcon = (name: string | undefined): IconifyIcon => {
   if (!name) {
-    return cubeFillIcon;
+    return phosphorIcon("cube-fill");
   }
   if (name.endsWith(".svg")) {
-    return customIcon(name);
+    return customIcon(name.split(".")[0]);
   }
   if (name in simpleIcons.icons) {
     return simpleIcon(name);
@@ -43,5 +42,14 @@ export const getIcon = (name: string | undefined): IconifyIcon => {
   if (simpleIcons.aliases && name in simpleIcons.aliases) {
     return simpleIcon(simpleIcons.aliases[name].parent);
   }
-  return cubeFillIcon;
+  return phosphorIcon("cube-fill");
+};
+
+export const customIcon = (name: string): IconifyIcon => {
+  const icon = customIcons.icons[name];
+  return {
+    body: icon.body,
+    width: icon.width ?? customIcons.width ?? DEFAULT_VIEWBOX,
+    height: icon.height ?? customIcons.height ?? DEFAULT_VIEWBOX,
+  };
 };

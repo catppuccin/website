@@ -1,50 +1,50 @@
 import { promises as fs } from "fs";
-import { cleanupSVG, parseColors, isEmptyColor, runSVGO, deOptimisePaths, importDirectory } from "@iconify/tools";
+import { importDirectory, cleanupSVG, runSVGO, parseColors, isEmptyColor } from "@iconify/tools";
+
+const source = "src/data/icons";
+const target = "src/data/icons.json";
 
 (async () => {
-  const source = "src/data/icons/ports";
-  const prefix = "ctp";
-  const target = "src/data/icons/ports/icons.json";
+  const iconSet = await importDirectory(source, {
+    prefix: "ctp",
+  });
 
-  // Load icon set
-  const iconSet = await importDirectory(source, { prefix });
-
-  // Parse all icons
-  await iconSet.forEach((name, type) => {
-    // Do not parse aliases
+  // Validate, clean up, fix palette and optimise
+  iconSet.forEach((name, type) => {
     if (type !== "icon") {
       return;
     }
 
     const svg = iconSet.toSVG(name);
     if (!svg) {
+      iconSet.remove(name);
       return;
     }
 
-    // This will throw an exception if icon is invalid
-    cleanupSVG(svg);
+    try {
+      cleanupSVG(svg);
 
-    parseColors(svg, {
-      defaultColor: "currentColor",
-      callback: (_, colorStr, color) => {
-        return !color || isEmptyColor(color) ? colorStr : "currentColor";
-      },
-    });
+      // Magnifying Glass is rainbow accent colored so don't override that
+      if (name !== "magnifying-glass") {
+        // Assume icon is monotone: replace color with currentColor, add if missing
+        parseColors(svg, {
+          defaultColor: "currentColor",
+          callback: (attr, colorStr, color) => {
+            return !color || isEmptyColor(color) ? colorStr : "currentColor";
+          },
+        });
+      }
 
-    // Optimise
-    runSVGO(svg);
+      runSVGO(svg);
+    } catch (err) {
+      console.error(`Error parsing ${name}:`, err);
+      iconSet.remove(name);
+      return;
+    }
 
-    // Update paths for compatibility with old software
-    deOptimisePaths(svg);
-
-    // SVG instance is detached from icon set, so changes to
-    // icon are not stored in icon set automatically.
-
-    // Update icon in icon set
     iconSet.fromSVG(name, svg);
   });
 
-  // Save icon set
-  const iconSetContent = iconSet.export();
-  await fs.writeFile(target, JSON.stringify(iconSetContent, null, 2), "utf8");
+  const exported = JSON.stringify(iconSet.export(), null, "\t") + "\n";
+  await fs.writeFile(target, exported, "utf8");
 })();

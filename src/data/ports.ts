@@ -1,6 +1,6 @@
 import { parse } from "yaml";
 import { PropertyBasedSet } from "./propertyBasedSet";
-import { getIcon } from "./icons";
+import { portIcon } from "./icons";
 import type { ColorName } from "@catppuccin/palette";
 import type { IconifyIcon } from "@iconify/types";
 
@@ -95,7 +95,7 @@ export const ports = [...repositoriesYml.ports]
   .map((port) => {
     return {
       ...port,
-      icon: getIcon(port.icon),
+      icon: portIcon(port.icon),
     } as PortWithIcons;
   });
 

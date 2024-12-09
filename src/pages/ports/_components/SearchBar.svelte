@@ -1,5 +1,5 @@
 <script lang="ts">
-  import MagnifyingGlass from "./MagnifyingGlass.svelte";
+  import Icon from "@components/Icon.svelte";
 
   let {
     searchTerm = $bindable(),
@@ -11,7 +11,7 @@
 </script>
 
 <div class="search-bar">
-  <MagnifyingGlass />
+  <Icon name="magnifying-glass" width={32} height={32} />
   <input
     type="text"
     id="search-field"
