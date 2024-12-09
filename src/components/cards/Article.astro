@@ -18,7 +18,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<Link href={`/blog/${post.slug}`} underline={false}>
+<Link href={`/blog/${post.id}`} underline={false}>
   <article class="post-card">
     <img class="blog-hero-image" src={post.data.hero.path} alt={post.data.title} />
     <div class="post-content">

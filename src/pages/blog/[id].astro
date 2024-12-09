@@ -1,20 +1,19 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
 import PageIntro from "@components/PageIntro.astro";
 import Link from "@components/Link.svelte";
 import Avatar from "@components/lists/Avatar.svelte";
 import Page from "@layouts/Page.astro";
+import { render } from "astro:content";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts
-    .filter((post) => !post.data.draft)
-    .map((post) => ({
-      params: { slug: post.slug },
-      props: { post },
-    }));
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: post,
+  }));
 }
-const { post } = Astro.props;
+const post = Astro.props;
 const { Content } = await render(post);
 
 const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("en-US", {
@@ -43,10 +42,10 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     </PageIntro>
     <Content />
     <footer class="article-credit">
-      Hero Image by <Link href={post.data.hero.source} external>{post.data.hero.author}</Link> modified with <Link
+      Hero image by <Link href={post.data.hero.source} external>{post.data.hero.author}</Link> modified with <Link
         href="https://github.com/ozwaldorf/lutgen-rs"
         external>lutgen-rs</Link
-      >
+      >.
     </footer>
   </article>
 </Page>
