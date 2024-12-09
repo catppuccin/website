@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import PageIntro from "@components/PageIntro.astro";
 import Link from "@components/Link.svelte";
 import Avatar from "@components/lists/Avatar.svelte";
-import Page from "@layouts/Page.astro";
+import Default from "@layouts/Default.astro";
 import { render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -23,7 +23,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<Page title={`${post.data.title} • Catppuccin`} description={post.data.summary} ogImage={post.data.hero.path}>
+<Default title={`${post.data.title} • Catppuccin`} description={post.data.summary} ogImage={post.data.hero.path}>
   <img src={post.data.hero.path} alt={post.data.title} title={post.data.title} />
   <article class="blog-container" role="main">
     <PageIntro title={post.data.title}>
@@ -48,7 +48,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       >.
     </footer>
   </article>
-</Page>
+</Default>
 
 <style lang="scss">
   @use "@styles/utils";
