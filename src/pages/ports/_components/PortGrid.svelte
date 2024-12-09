@@ -1,9 +1,9 @@
 <!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
   import PortCard from "./PortCard.svelte";
-  import type { Port } from "@data/ports";
+  import type { PortWithIcons } from "@data/ports";
 
-  export let portGrid: Array<Port & { icon: string }> | undefined;
+  export let portGrid: Array<PortWithIcons> | undefined;
   export let searchTerm: string;
 </script>
 

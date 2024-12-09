@@ -4,7 +4,7 @@ import { cleanupSVG, parseColors, isEmptyColor, runSVGO, deOptimisePaths, import
 (async () => {
   const source = "src/data/icons/ports";
   const prefix = "ctp";
-  const target = "src/data/icons.json";
+  const target = "src/data/icons/ports/icons.json";
 
   // Load icon set
   const iconSet = await importDirectory(source, { prefix });

@@ -1,12 +1,12 @@
 <!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
-  import type { Port } from "@data/ports";
+  import Fuse from "fuse.js";
+  import type { PortWithIcons } from "@data/ports";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
-  import Fuse from "fuse.js";
 
-  export let ports: Array<Port & { icon: string }>;
-  let portGrid: Array<Port & { icon: string }> | undefined = undefined;
+  export let ports: Array<PortWithIcons>;
+  let portGrid: Array<PortWithIcons> | undefined = undefined;
   let debounceTimeout: ReturnType<typeof setTimeout> | undefined;
 
   const fuse = new Fuse(ports, {

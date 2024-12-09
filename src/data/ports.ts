@@ -1,7 +1,8 @@
 import { parse } from "yaml";
 import { PropertyBasedSet } from "./propertyBasedSet";
-import { getIcon } from "./getIcon";
+import { getIcon } from "./icons";
 import type { ColorName } from "@catppuccin/palette";
+import type { IconifyIcon } from "@iconify/types";
 
 // Mostly auto-generated but have made manual edits to the types
 // to stop TypeScript from complaining about the types. Future
@@ -67,6 +68,8 @@ export interface Port {
   links?: Link[];
 }
 
+export type PortWithIcons = Port & { icon: IconifyIcon };
+
 export interface Link {
   name: string;
   icon?: string;
@@ -93,7 +96,7 @@ export const ports = [...repositoriesYml.ports]
     return {
       ...port,
       icon: getIcon(port.icon),
-    } as Port & { icon: string };
+    } as PortWithIcons;
   });
 
 // We need the current maintainers for both userstyles and ports

@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { Port } from "@data/ports";
+  import type { PortWithIcons } from "@data/ports";
   import Pills from "../../../components/Pills.svelte";
   import Icon from "@iconify/svelte";
   import Avatars from "./PortMaintainers.svelte";
 
-  let { port }: { port: Port & { icon: string } } = $props();
+  let { port }: { port: PortWithIcons } = $props();
 </script>
 
 <a href={port.repository.url} class="port-card">
@@ -15,9 +15,9 @@
       width={32}
       height={32}
       icon={{
-        body: port.icon,
-        width: 24,
-        height: 24,
+        body: port.icon.body,
+        width: port.icon.width,
+        height: port.icon.height,
       }} />
   </div>
 
