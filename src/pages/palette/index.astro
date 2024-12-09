@@ -8,7 +8,7 @@ import Default from "@layouts/Default.astro";
 import Link from "@components/Link.svelte";
 import PageIntro from "@components/PageIntro.astro";
 
-import CopyButton from "./_components/ClipboardButton.svelte";
+import CopyToClipboardIcon from "./_components/CopyToClipboardButton.svelte";
 import FlavorName from "./_components/FlavorName.astro";
 
 const toRgb = (rgb: ColorFormat["rgb"]) => {
@@ -76,19 +76,19 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
                         <h5 class="color-name">{name}</h5>
                       </td>
                       <td class="color-hex">
-                        <CopyButton client:load value={hex}>
+                        <CopyToClipboardIcon client:load value={hex}>
                           {hex}
-                        </CopyButton>
+                        </CopyToClipboardIcon>
                       </td>
                       <td class="color-rgb">
-                        <CopyButton client:load value={toRgb(rgb)}>
+                        <CopyToClipboardIcon client:load value={toRgb(rgb)}>
                           {toRgb(rgb)}
-                        </CopyButton>
+                        </CopyToClipboardIcon>
                       </td>
                       <td class="color-hsl">
-                        <CopyButton client:load value={toHsl(hsl)}>
+                        <CopyToClipboardIcon client:load value={toHsl(hsl)}>
                           {toHsl(hsl)}
-                        </CopyButton>
+                        </CopyToClipboardIcon>
                       </td>
                     </tr>
                   ))}
