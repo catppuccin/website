@@ -5,7 +5,7 @@ import Default from "@layouts/Default.astro";
 
 import PageIntro from "@components/PageIntro.astro";
 import Link from "@components/Link.svelte";
-import GitHubProfilePicture from "@components/GitHubProfilePicture.svelte";
+import ProfilePicture from "@components/ProfilePicture.svelte";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -31,7 +31,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       <p class="article-summary">{post.data.summary}</p>
       <footer class="article-meta">
         <Link href={`https://github.com/${post.data.author.github}`}>
-          <GitHubProfilePicture username={post.data.author.github} size={64} wxh={48} />
+          <ProfilePicture username={post.data.author.github} size={64} wxh={48} />
         </Link>
         <div class="article-meta-text-wrap">
           <p class="article-author-info">
