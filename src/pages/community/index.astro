@@ -1,11 +1,13 @@
 ---
 import Default from "@layouts/Default.astro";
-import PageIntro from "@components/PageIntro.astro";
-import Users, { type Person } from "@components/lists/Users.astro";
-import TeamName from "@components/TeamName.astro";
-import Link from "@components/Link.svelte";
 
 import { currentMaintainers } from "@data/ports";
+
+import PageIntro from "@components/PageIntro.astro";
+import Link from "@components/Link.svelte";
+
+import TeamName from "./_components/TeamName.astro";
+import Users, { type Person } from "./_components/Users.astro";
 ---
 
 <Default

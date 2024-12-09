@@ -1,5 +1,5 @@
 <script lang="ts">
-  import MagnifyingGlass from "./svgs/MagnifyingGlass.svelte";
+  import MagnifyingGlass from "./MagnifyingGlass.svelte";
 
   export let searchTerm: string;
   export let handleInput: () => void;
@@ -18,7 +18,7 @@
 </div>
 
 <style lang="scss">
-  @use "@styles/utils";
+  @use "../../../styles/utils";
 
   .search-bar {
     background-color: var(--mantle);

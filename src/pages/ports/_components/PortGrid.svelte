@@ -1,5 +1,5 @@
 <script lang="ts">
-  import PortCard from "./cards/Port.svelte";
+  import PortCard from "./PortCard.svelte";
   import type { Port } from "@data/ports";
 
   export let portGrid: Array<Port & { icon: string }> | undefined;

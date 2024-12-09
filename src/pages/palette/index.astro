@@ -1,11 +1,15 @@
 ---
+import { flavorEntries, type ColorFormat } from "@catppuccin/palette";
+
+import { githubUrl } from "@data/links";
+
 import Default from "@layouts/Default.astro";
+
 import Link from "@components/Link.svelte";
 import PageIntro from "@components/PageIntro.astro";
-import FlavorName from "@components/FlavorName.astro";
-import CopyButton from "@components/ClipboardButton.svelte";
-import { githubUrl } from "@data/links";
-import { flavorEntries, type ColorFormat } from "@catppuccin/palette";
+
+import CopyButton from "./_components/ClipboardButton.svelte";
+import FlavorName from "./_components/FlavorName.astro";
 
 const toRgb = (rgb: ColorFormat["rgb"]) => {
   return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;

@@ -1,9 +1,10 @@
 <script lang="ts">
   import type { Port } from "@data/ports";
-  import Pills from "../lists/Pills.svelte";
+  import Pills from "../../../components/Pills.svelte";
   import Icon from "@iconify/svelte";
-  import Avatars from "../lists/Avatars.svelte";
-  export let port: Port & { icon: string };
+  import Avatars from "./PortMaintainers.svelte";
+
+  let { port }: { port: Port & { icon: string } } = $props();
 </script>
 
 <a href={port.repository.url} class="port-card">
@@ -26,7 +27,7 @@
 </a>
 
 <style lang="scss">
-  @use "@styles/utils";
+  @use "../../../styles/utils";
 
   .port-card {
     @include utils.flex($direction: column, $gap: var(--space-md));

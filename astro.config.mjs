@@ -19,4 +19,7 @@ export default defineConfig({
     svelte(),
     mdx(),
   ],
+  experimental: {
+    svg: true,
+  },
 });
