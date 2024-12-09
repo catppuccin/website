@@ -3,7 +3,11 @@
   import NoMaintainerIcon from "./NoMaintainerIcon.svelte";
   import ProfilePicture from "@components/ProfilePicture.svelte";
 
-  export let port: Port & { icon: string };
+  let {
+    port,
+  }: {
+    port: Port & { icon: string };
+  } = $props();
 </script>
 
 {#if port.repository["current-maintainers"].length > 0}

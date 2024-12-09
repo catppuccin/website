@@ -1,3 +1,5 @@
+<!-- @migration-task Error while migrating Svelte code: can't migrate `let state: "ready" | "success" | "failed" = "ready";` to `$state` because there's a variable named state.
+     Rename the variable and try again or migrate by hand. -->
 <button class="btn btn-small btn-transparent {state === 'success' ? "success" : state === 'failed' ? 'failed' : ''}" on:click={copyToClipboard}>
   <span class="copy-icon">
     <svg width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">

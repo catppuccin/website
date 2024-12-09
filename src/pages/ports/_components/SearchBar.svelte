@@ -1,8 +1,13 @@
 <script lang="ts">
   import MagnifyingGlass from "./MagnifyingGlass.svelte";
 
-  export let searchTerm: string;
-  export let handleInput: () => void;
+  let {
+    searchTerm = $bindable(),
+    handleInput,
+  }: {
+    searchTerm: string;
+    handleInput: () => void;
+  } = $props();
 </script>
 
 <div class="search-bar">
@@ -14,7 +19,7 @@
     placeholder="Search port or category..."
     autocomplete="off"
     bind:value={searchTerm}
-    on:input={handleInput} />
+    oninput={handleInput} />
 </div>
 
 <style lang="scss">

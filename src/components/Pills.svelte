@@ -1,5 +1,9 @@
 <script lang="ts">
-  export let list: string[] = [];
+  let {
+    list = [],
+  }: {
+    list?: string[];
+  } = $props();
 </script>
 
 <ul class="pill-list">
