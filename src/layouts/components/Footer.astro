@@ -1,7 +1,7 @@
 ---
 import Link from "@components/Link.svelte";
-import SpeakerHighVolume from "@data/icons/speaker-high-volume.svg";
-import VercelBadge from "@data/icons/vercel-badge.svg";
+import PoweredByVercel from "@components/svgs/PoweredByVercel.astro";
+import Volume from "@components/svgs/Volume.astro";
 
 import { footerLinks } from "@data/links";
 ---
@@ -35,7 +35,7 @@ import { footerLinks } from "@data/links";
         class="play-pronunciation"
         aria-label="Play pronunciation"
         onclick="document.querySelector('#pronunciation').play();">
-        <SpeakerHighVolume width={20} height={20} fill="currentColor" />
+        <Volume />
       </button>
       <audio id="pronunciation"><source src="/pronunciation.mp3" type="audio/mpeg" /></audio>
     </div>
@@ -50,7 +50,7 @@ import { footerLinks } from "@data/links";
       &copy; {new Date(Date.now()).getFullYear()} • <Link href="/licensing" muted>Licensing</Link>
     </p>
     <Link href="https://vercel.com/?utm_source=Catppuccin&utm_campaign=oss">
-      <VercelBadge id="vercel" height={32} />
+      <PoweredByVercel />
     </Link>
   </div>
 
@@ -92,10 +92,6 @@ import { footerLinks } from "@data/links";
       &:hover {
         cursor: pointer;
       }
-    }
-
-    #vercel {
-      margin-block-start: var(--space-xs);
     }
   </style>
 </footer>

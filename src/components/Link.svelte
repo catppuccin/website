@@ -1,21 +1,14 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
-
-  interface Props {
-    href: string;
-    external?: boolean;
-    muted?: boolean;
-    underline?: boolean;
-    children: Snippet;
-  }
-
-  let { href, external = false, muted = false, underline = true, children }: Props = $props();
+  export let href: string;
+  export let external: boolean = false;
+  export let muted: boolean = false;
+  export let underline: boolean = true;
 </script>
 
 <!-- The <a> tag needs to be formatted like this to avoid weird whitespace issues -->
 <!-- See: https://github.com/withastro/astro/issues/6893 -->
 <a {href} class:external class:muted class:underline>
-  {@render children()}{#if external}<span class="external">&#x2197;</span>{/if}</a>
+  <slot />{#if external}<span class="external">&#x2197;</span>{/if}</a>
 
 <style lang="scss">
   a {
