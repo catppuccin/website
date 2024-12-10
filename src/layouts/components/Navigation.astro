@@ -38,6 +38,14 @@ import { navigationLinks } from "@data/links";
   .nav-logo {
     width: 4rem;
     height: 4rem;
+
+    :global(svg *) {
+      animation-play-state: paused;
+    }
+
+    &:hover :global(svg *) {
+      animation-play-state: running;
+    }
   }
 
   ul {
