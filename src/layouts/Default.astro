@@ -1,13 +1,12 @@
 ---
 import type { AccentName } from "@catppuccin/palette";
 
-import Website from "@layouts/Website.astro";
+import Skeleton from "./Skeleton.astro";
 
 import Navigation from "./components/Navigation.astro";
+import Head from "./components/Head.astro";
 import Footer from "./components/Footer.astro";
-
-import Head from "@components/Head.astro";
-import AccentBar from "@components/AccentBar.astro";
+import AccentBar from "./components/AccentBar.astro";
 
 interface Props {
   title: string;
@@ -19,7 +18,7 @@ interface Props {
 const { title, description, ogImage, accent } = Astro.props;
 ---
 
-<Website>
+<Skeleton>
   <Head slot="seo" title={title} description={description} ogImage={ogImage} accent={accent} />
 
   <section class="header-container">
@@ -38,7 +37,7 @@ const { title, description, ogImage, accent } = Astro.props;
     </div>
     <AccentBar />
   </section>
-</Website>
+</Skeleton>
 
 <style lang="scss">
   .main-container {

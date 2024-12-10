@@ -1,11 +1,15 @@
 ---
-import Page from "@layouts/Page.astro";
+import { flavorEntries, type ColorFormat } from "@catppuccin/palette";
+
+import { githubUrl } from "@data/links";
+
+import Default from "@layouts/Default.astro";
+
 import Link from "@components/Link.svelte";
 import PageIntro from "@components/PageIntro.astro";
-import FlavorName from "@components/FlavorName.astro";
-import CopyButton from "@components/ClipboardButton.svelte";
-import { githubUrl } from "@data/links";
-import { flavorEntries, type ColorFormat } from "@catppuccin/palette";
+
+import CopyToClipboardIcon from "./_components/CopyToClipboardButton.svelte";
+import FlavorName from "./_components/FlavorName.astro";
 
 const toRgb = (rgb: ColorFormat["rgb"]) => {
   return `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
@@ -15,7 +19,7 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
 };
 ---
 
-<Page
+<Default
   title="Palette • Catppuccin"
   description="Dive into Catppuccin's palette: four unique pastel color palettes named 'flavors'. Ideal for your next project!">
   <PageIntro title="Palette">
@@ -72,19 +76,19 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
                         <h5 class="color-name">{name}</h5>
                       </td>
                       <td class="color-hex">
-                        <CopyButton client:load value={hex}>
+                        <CopyToClipboardIcon client:load value={hex}>
                           {hex}
-                        </CopyButton>
+                        </CopyToClipboardIcon>
                       </td>
                       <td class="color-rgb">
-                        <CopyButton client:load value={toRgb(rgb)}>
+                        <CopyToClipboardIcon client:load value={toRgb(rgb)}>
                           {toRgb(rgb)}
-                        </CopyButton>
+                        </CopyToClipboardIcon>
                       </td>
                       <td class="color-hsl">
-                        <CopyButton client:load value={toHsl(hsl)}>
+                        <CopyToClipboardIcon client:load value={toHsl(hsl)}>
                           {toHsl(hsl)}
-                        </CopyButton>
+                        </CopyToClipboardIcon>
                       </td>
                     </tr>
                   ))}
@@ -158,4 +162,4 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
       }
     }
   </style>
-</Page>
+</Default>

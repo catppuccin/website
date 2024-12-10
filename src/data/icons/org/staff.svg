@@ -1,4 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 1707 1707" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-<path id="Staff" d="M1260.09,1706.67l-813.51,-0c0,-0 -305.612,0.267 -305.612,-296.804c0,-297.07 106.895,-586.998 366.576,-586.998c93.32,-0 137.165,126.942 345.791,129.988c208.627,-3.046 252.472,-129.988 345.792,-129.988c259.681,-0 366.575,289.928 366.575,586.998c0,297.071 -305.612,296.804 -305.612,296.804Zm-406.755,-1706.67c227.635,0 412.445,184.81 412.445,412.445c0,227.634 -184.81,412.444 -412.445,412.444c-227.634,0 -412.444,-184.81 -412.444,-412.444c-0,-227.635 184.81,-412.445 412.444,-412.445Z"/>
+<svg width="100%" height="100%" viewBox="0 0 1707 1707" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <path id="Staff"
+        d="M1260.09,1706.67l-813.51,-0c0,-0 -305.612,0.267 -305.612,-296.804c0,-297.07 106.895,-586.998 366.576,-586.998c93.32,-0 137.165,126.942 345.791,129.988c208.627,-3.046 252.472,-129.988 345.792,-129.988c259.681,-0 366.575,289.928 366.575,586.998c0,297.071 -305.612,296.804 -305.612,296.804Zm-406.755,-1706.67c227.635,0 412.445,184.81 412.445,412.445c0,227.634 -184.81,412.444 -412.445,412.444c-227.634,0 -412.444,-184.81 -412.444,-412.444c-0,-227.635 184.81,-412.445 412.444,-412.445Z" />
 </svg>
