@@ -1,9 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
-import Pill from "../lists/Pills.svelte";
-import Avatar from "../lists/Avatar.svelte";
-import Link from "../Link.svelte";
+import Pill from "@components/Pills.svelte";
+import ProfilePicture from "@components/ProfilePicture.svelte";
+import Link from "@components/Link.svelte";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -18,7 +18,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<Link href={`/blog/${post.slug}`} underline={false}>
+<Link href={`/blog/${post.id}`} underline={false}>
   <article class="post-card">
     <img class="blog-hero-image" src={post.data.hero.path} alt={post.data.title} />
     <div class="post-content">
@@ -32,7 +32,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
         <Pill list={[post.data.category]} />
         <div class="article-meta">
           <div class="article-author has-icon">
-            <Avatar username={post.data.author.github} size={64} wxh={24} />
+            <ProfilePicture username={post.data.author.github} size={64} wxh={24} />
             {post.data.author.name}
           </div>
           <p class="article-pubdate has-icon">

@@ -21,12 +21,11 @@ export interface Social {
   url: string;
 }
 
-export const socialsYml = (await fetch(
-  "https://raw.githubusercontent.com/catppuccin/.github/refs/heads/main/socials/socials.yml",
-)
-  .then((r) => r.text())
-  .then((t) => parse(t))) as SocialsSchema;
-const socials = socialsYml.socials;
+const socials = (
+  (await fetch("https://raw.githubusercontent.com/catppuccin/.github/refs/heads/main/socials/socials.yml")
+    .then((r) => r.text())
+    .then((t) => parse(t))) as SocialsSchema
+).socials;
 
 export const navigationLinks = [
   {
@@ -55,40 +54,33 @@ export const navigationLinks = [
   },
 ];
 
-export const footerProjectLinks = [
-  ...navigationLinks,
+export const footerLinks = [
   {
-    title: "Open Collective",
-    target: "https://opencollective.com/catppuccin",
-    external: true,
+    categoryTitle: "Project",
+    categoryLinks: [
+      ...navigationLinks,
+      {
+        title: "Open Collective",
+        target: "https://opencollective.com/catppuccin",
+        external: true,
+      },
+    ],
+  },
+  {
+    categoryTitle: "Social",
+    categoryLinks: [
+      socials.github,
+      socials.discord,
+      socials.mastodon,
+      socials.twitter,
+      socials.bsky,
+      socials.spotify,
+    ].map((link) => ({
+      title: link.name,
+      target: link.url,
+      external: true,
+    })),
   },
 ];
-
-const socialLinks = [
-  socials.github,
-  socials.discord,
-  socials.mastodon,
-  socials.twitter,
-  socials.bsky,
-  socials.spotify,
-].map((link) => {
-  return {
-    title: link.name,
-    target: link.url,
-    external: true,
-  };
-});
-
-const footerSocial = {
-  categoryTitle: "Social",
-  categoryLinks: socialLinks,
-};
-
-export const projectLinks = {
-  categoryTitle: "Project",
-  categoryLinks: footerProjectLinks,
-};
-
-export const footerLinks = [projectLinks, footerSocial];
 
 export const githubUrl = socials.github.url;

@@ -1,54 +1,53 @@
 {
   "name": "website",
-  "type": "module",
   "version": "0.0.1",
   "private": true,
-  "engines": {
-    "node": ">=22"
-  },
-  "packageManager": "pnpm@9.15.0",
+  "type": "module",
   "scripts": {
-    "fmt": "prettier --plugin=prettier-plugin-astro . --write",
-    "dev": "astro dev",
-    "start": "astro dev",
-    "check": "astro check",
-    "build": "pnpm run maintainers && astro check && astro build",
-    "preview": "astro preview",
     "astro": "astro",
-    "prepare": "husky",
+    "build": "pnpm run maintainers && astro check && astro build",
+    "check": "astro check",
+    "dev": "astro dev",
+    "fmt": "prettier --plugin=prettier-plugin-astro . --write",
     "icons": "pnpm tsx src/data/scripts/convertIconsToJson.ts",
-    "maintainers": "pnpm tsx src/data/scripts/fetchMaintainerAvatars.ts"
+    "maintainers": "pnpm tsx src/data/scripts/fetchMaintainerAvatars.ts",
+    "prepare": "husky",
+    "preview": "astro preview",
+    "start": "astro dev"
   },
   "lint-staged": {
-    "!(src/layouts/*.astro)src/**/*": "pnpm run fmt"
-  },
-  "dependencies": {
-    "@astrojs/check": "^0.5.0",
-    "@astrojs/mdx": "^3.1.9",
-    "@astrojs/sitemap": "^3.1.1",
-    "@astrojs/svelte": "^5.3.0",
-    "astro": "^4.16.16",
-    "fuse.js": "^7.0.0",
-    "svelte": "^4.2.12",
-    "typescript": "^5.4.4",
-    "yaml": "^2.4.0"
+    "src/**/*": "pnpm run fmt"
   },
   "devDependencies": {
-    "@catppuccin/palette": "^1.1.0",
-    "@iconify-json/ph": "^1.1.13",
-    "@iconify-json/simple-icons": "^1.1.106",
-    "@iconify/svelte": "^4.0.2",
-    "@iconify/tools": "^4.0.4",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^4.0.1",
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/svelte": "^7.0.1",
+    "@catppuccin/palette": "^1.7.1",
+    "@iconify-json/lucide": "^1.2.18",
+    "@iconify-json/ph": "^1.2.1",
+    "@iconify-json/simple-icons": "^1.2.14",
+    "@iconify/svelte": "^4.1.0",
+    "@iconify/tools": "^4.0.7",
     "@iconify/types": "^2.0.0",
     "@rollup/plugin-yaml": "^4.1.2",
     "@types/node": "^22.10.1",
-    "astro-icon": "^1.1.0",
-    "husky": "latest",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.14.0",
+    "astro": "^5.0.3",
+    "astro-icon": "^1.1.4",
+    "fuse.js": "^7.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
     "rimraf": "^6.0.1",
     "sass": "^1.82.0",
-    "tsx": "^4.19.2"
+    "svelte": "^5.9.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "yaml": "^2.6.1"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=22"
   }
 }
