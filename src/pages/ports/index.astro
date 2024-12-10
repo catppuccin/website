@@ -4,7 +4,6 @@ import { ports } from "@data/ports";
 import Default from "@layouts/Default.astro";
 
 import PageIntro from "@components/PageIntro.astro";
-import Link from "@components/Link.svelte";
 
 import PortExplorer from "./_components/PortExplorer.svelte";
 import PortCard from "./_components/PortCard.svelte";
@@ -27,20 +26,7 @@ import PortCard from "./_components/PortCard.svelte";
     </div>
   </noscript>
 
-  <PortExplorer {ports} client:only="svelte">
-    <svelte:fragment slot="no-results">
-      <p>Sorry, we couldn't find any ports matching your search :(</p>
-      <p>
-        You can request a port to be themed by raising a
-        <Link
-          href="https://github.com/catppuccin/catppuccin/discussions/new?category=port-requests"
-          external
-          slot="link">port request in catppuccin/catppuccin</Link
-        >
-        .
-      </p>
-    </svelte:fragment>
-  </PortExplorer>
+  <PortExplorer {ports} client:only="svelte" />
 </Default>
 
 <style lang="scss" is:global>

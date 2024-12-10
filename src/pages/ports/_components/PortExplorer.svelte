@@ -42,8 +42,4 @@
 </script>
 
 <SearchBar bind:searchTerm {handleInput} />
-<PortGrid bind:portGrid bind:searchTerm>
-  <svelte:fragment slot="no-results">
-    <slot name="no-results" />
-  </svelte:fragment>
-</PortGrid>
+<PortGrid bind:portGrid bind:searchTerm />
