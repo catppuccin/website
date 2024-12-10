@@ -31,7 +31,7 @@ const coloredIcons = ["magnifying-glass", "logo", "logo-text"];
         // Assume icon is monotone: replace color with currentColor, add if missing
         parseColors(svg, {
           defaultColor: "currentColor",
-          callback: (attr, colorStr, color) => {
+          callback: (_, colorStr, color) => {
             return !color || isEmptyColor(color) ? colorStr : "currentColor";
           },
         });

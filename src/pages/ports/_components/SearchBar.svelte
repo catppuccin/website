@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Icon from "@components/Icon.svelte";
+  import MagnifyingGlass from "@data/icons/magnifying-glass.svg?raw";
 
   interface Props {
     searchTerm: string;
@@ -10,7 +10,7 @@
 </script>
 
 <div class="search-bar">
-  <Icon name="ctp:magnifying-glass" width={32} height={32} />
+  {@html MagnifyingGlass}
   <input
     type="text"
     id="search-field"

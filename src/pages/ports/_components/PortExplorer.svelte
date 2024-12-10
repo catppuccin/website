@@ -4,7 +4,11 @@
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
 
-  let { ports }: { ports: Array<PortWithIcons> } = $props();
+  interface Props {
+    ports: Array<PortWithIcons>;
+  }
+
+  let { ports }: Props = $props();
 
   const fuse = new Fuse(ports, {
     keys: [
