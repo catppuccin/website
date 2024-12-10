@@ -7,7 +7,8 @@ import Head from "./components/Head.astro";
 import Footer from "./components/Footer.astro";
 import AccentBar from "./components//AccentBar.astro";
 
-import Logo from "@components/Logo.astro";
+import LogoText from "@data/icons/logo-text.svg";
+import Logo from "@data/icons/logo.svg";
 
 interface Props {
   title: string;
@@ -25,8 +26,8 @@ const { title, description, ogImage, accent } = Astro.props;
     <div class="content-wrapper no-padding hero-grid">
       <div class="hero-content-wrapper">
         <div class="hero-logo">
-          <Logo type="icon" height={4} />
-          <Logo type="text" color="mauve" height={3} />
+          <Logo height={40} />
+          <LogoText fill="var(--mauve)" height={30} />
         </div>
         <slot name="hero-content" />
       </div>
