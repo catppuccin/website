@@ -39,10 +39,15 @@ import { navigationLinks } from "@data/links";
     width: 4rem;
     height: 4rem;
 
+    /*  The SVG is playing the animation by default; To avoid a
+     *  constantly playing animation the playstate is set to paused.
+     *  The :global() selector is necessary to avoid Astro's auto scoping.
+     */
     :global(svg *) {
       animation-play-state: paused;
     }
 
+    /*  Start playing the animation again on hover. */
     &:hover :global(svg *) {
       animation-play-state: running;
     }
