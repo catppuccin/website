@@ -1,10 +1,9 @@
 <script lang="ts">
-  import type { PortWithIcons } from "@data/ports";
-  import Pills from "@components/Pills.svelte";
+  import type { Port } from "@data/ports";
+  import Pills from "../lists/Pills.svelte";
   import Icon from "@iconify/svelte";
-  import PortMaintainers from "./PortMaintainers.svelte";
-
-  let { port }: { port: PortWithIcons } = $props();
+  import Avatars from "../lists/Avatars.svelte";
+  export let port: Port & { icon: string };
 </script>
 
 <a href={port.repository.url} class="port-card">
@@ -15,19 +14,19 @@
       width={32}
       height={32}
       icon={{
-        body: port.icon.body,
-        width: port.icon.width,
-        height: port.icon.height,
+        body: port.icon,
+        width: 24,
+        height: 24,
       }} />
   </div>
 
   <Pills list={port.categories.map((category) => `${category.name}`)} />
 
-  <PortMaintainers {port} />
+  <Avatars {port} />
 </a>
 
 <style lang="scss">
-  @use "../../../styles/utils";
+  @use "@styles/utils";
 
   .port-card {
     @include utils.flex($direction: column, $gap: var(--space-md));

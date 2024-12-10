@@ -1,14 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import PageIntro from "@components/PageIntro.astro";
-import ArticleCard from "./_components/ArticleCard.astro";
-import Default from "@layouts/Default.astro";
+import ArticleCard from "@components/cards/Article.astro";
+import Page from "@layouts/Page.astro";
 
 const description = "Blog posts related to Catppuccin, ranging from announcements, devlogs, general musings and more!";
 const blogPosts = await getCollection("blog");
 ---
 
-<Default title="Blog • Catppuccin" {description}>
+<Page title="Blog • Catppuccin" {description}>
   <PageIntro title="Blog">
     <p>{description}</p>
   </PageIntro>
@@ -16,7 +16,7 @@ const blogPosts = await getCollection("blog");
   <section class="bloglist">
     {blogPosts.filter((post) => !post.data.draft).map((post) => <ArticleCard {post} />)}
   </section>
-</Default>
+</Page>
 
 <style lang="scss">
   @use "@styles/utils";

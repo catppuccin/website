@@ -1,14 +1,8 @@
 <script lang="ts">
   import maintainersWithoutAvatars from "@data/maintainersWithoutAvatars.json";
-
-  interface Props {
-    username: string;
-    size: number;
-    wxh: number;
-  }
-
-  let { username, size, wxh }: Props = $props();
-
+  export let username: string;
+  export let size: number;
+  export let wxh: number;
   const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username);
 </script>
 

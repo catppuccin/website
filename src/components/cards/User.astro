@@ -2,8 +2,8 @@
 import type { ColorName } from "@catppuccin/palette";
 import maintainersWithoutAvatars from "@data/maintainersWithoutAvatars.json";
 
-import Link from "@components/Link.svelte";
-import ProfilePicture from "@components/ProfilePicture.svelte";
+import Link from "../Link.svelte";
+import Avatar from "../lists/Avatar.svelte";
 
 const isProd = import.meta.env.PROD;
 
@@ -21,7 +21,7 @@ const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username)
 
 <div class="card-user" style={`--user-color: var(--${color})`}>
   <Link {href} external>
-    <ProfilePicture {username} size={256} wxh={128} />
+    <Avatar {username} size={256} wxh={128} />
     <br />
     <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name}</span></Link
   >

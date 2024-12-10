@@ -1,5 +1,5 @@
 <script lang="ts">
-  let { list = [] }: { list?: string[] } = $props();
+  export let list: string[] = [];
 </script>
 
 <ul class="pill-list">
@@ -9,7 +9,7 @@
 </ul>
 
 <style lang="scss">
-  @use "../styles/utils";
+  @use "@styles/utils";
 
   .pill-list {
     @include utils.flex($gap: var(--space-xs));

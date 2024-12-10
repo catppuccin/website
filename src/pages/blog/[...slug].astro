@@ -1,20 +1,20 @@
 ---
 import { getCollection, render } from "astro:content";
-
-import Default from "@layouts/Default.astro";
-
 import PageIntro from "@components/PageIntro.astro";
 import Link from "@components/Link.svelte";
-import ProfilePicture from "@components/ProfilePicture.svelte";
+import Avatar from "@components/lists/Avatar.svelte";
+import Page from "@layouts/Page.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { id: post.id },
-    props: post,
-  }));
+  return posts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
 }
-const post = Astro.props;
+const { post } = Astro.props;
 const { Content } = await render(post);
 
 const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("en-US", {
@@ -24,14 +24,14 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<Default title={`${post.data.title} • Catppuccin`} description={post.data.summary} ogImage={post.data.hero.path}>
+<Page title={`${post.data.title} • Catppuccin`} description={post.data.summary} ogImage={post.data.hero.path}>
   <img src={post.data.hero.path} alt={post.data.title} title={post.data.title} />
   <article class="blog-container" role="main">
     <PageIntro title={post.data.title}>
       <p class="article-summary">{post.data.summary}</p>
       <footer class="article-meta">
         <Link href={`https://github.com/${post.data.author.github}`}>
-          <ProfilePicture username={post.data.author.github} size={64} wxh={48} />
+          <Avatar username={post.data.author.github} size={64} wxh={48} />
         </Link>
         <div class="article-meta-text-wrap">
           <p class="article-author-info">
@@ -43,13 +43,13 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     </PageIntro>
     <Content />
     <footer class="article-credit">
-      Hero image by <Link href={post.data.hero.source} external>{post.data.hero.author}</Link> modified with <Link
+      Hero Image by <Link href={post.data.hero.source} external>{post.data.hero.author}</Link> modified with <Link
         href="https://github.com/ozwaldorf/lutgen-rs"
         external>lutgen-rs</Link
-      >.
+      >
     </footer>
   </article>
-</Default>
+</Page>
 
 <style lang="scss">
   @use "@styles/utils";

@@ -1,16 +1,12 @@
 <script lang="ts">
-  import Icon from "@components/Icon.svelte";
+  import MagnifyingGlass from "./svgs/MagnifyingGlass.svelte";
 
-  interface Props {
-    searchTerm: string;
-    handleInput: () => void;
-  }
-
-  let { searchTerm = $bindable(), handleInput }: Props = $props();
+  export let searchTerm: string;
+  export let handleInput: () => void;
 </script>
 
 <div class="search-bar">
-  <Icon name="ctp:magnifying-glass" width={32} height={32} />
+  <MagnifyingGlass />
   <input
     type="text"
     id="search-field"
@@ -18,11 +14,11 @@
     placeholder="Search port or category..."
     autocomplete="off"
     bind:value={searchTerm}
-    oninput={handleInput} />
+    on:input={handleInput} />
 </div>
 
 <style lang="scss">
-  @use "../../../styles/utils";
+  @use "@styles/utils";
 
   .search-bar {
     background-color: var(--mantle);
