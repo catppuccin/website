@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { PortWithIcons } from "@data/ports";
-  import Pills from "../../../components/Pills.svelte";
+  import Pills from "@components/Pills.svelte";
   import Icon from "@iconify/svelte";
-  import Avatars from "./PortMaintainers.svelte";
+  import PortMaintainers from "./PortMaintainers.svelte";
 
   let { port }: { port: PortWithIcons } = $props();
 </script>
@@ -23,7 +23,7 @@
 
   <Pills list={port.categories.map((category) => `${category.name}`)} />
 
-  <Avatars {port} />
+  <PortMaintainers {port} />
 </a>
 
 <style lang="scss">

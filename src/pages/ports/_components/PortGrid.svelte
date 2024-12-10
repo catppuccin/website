@@ -1,11 +1,14 @@
-<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
   import type { PortWithIcons } from "@data/ports";
   import Link from "@components/Link.svelte";
   import PortCard from "./PortCard.svelte";
 
-  export let portGrid: Array<PortWithIcons> | undefined;
-  export let searchTerm: string;
+  interface Props {
+    portGrid: Array<PortWithIcons> | undefined;
+    searchTerm: string;
+  }
+
+  let { portGrid, searchTerm }: Props = $props();
 </script>
 
 <div class="port-grid">

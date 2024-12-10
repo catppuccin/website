@@ -19,7 +19,7 @@
 {/if}
 
 <style lang="scss">
-  :global(img) {
+  .current-maintainers :global(img) {
     margin-right: -12px;
   }
 </style>

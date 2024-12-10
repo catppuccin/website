@@ -1,13 +1,10 @@
-<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
   import Fuse from "fuse.js";
   import type { PortWithIcons } from "@data/ports";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
 
-  export let ports: Array<PortWithIcons>;
-  let portGrid: Array<PortWithIcons> | undefined = undefined;
-  let debounceTimeout: ReturnType<typeof setTimeout> | undefined;
+  let { ports }: { ports: Array<PortWithIcons> } = $props();
 
   const fuse = new Fuse(ports, {
     keys: [
@@ -20,9 +17,12 @@
     includeScore: false,
     threshold: 0.3,
   });
-
   const url = new URL(window.location.href);
-  let searchTerm = url.searchParams.get("q") ?? "";
+
+  let debounceTimeout: ReturnType<typeof setTimeout> | undefined;
+  let searchTerm = $state(url.searchParams.get("q") ?? "");
+  let portGrid: Array<PortWithIcons> | undefined = $state(undefined);
+
   handleInput();
 
   function handleInput() {
@@ -42,4 +42,4 @@
 </script>
 
 <SearchBar bind:searchTerm {handleInput} />
-<PortGrid bind:portGrid bind:searchTerm />
+<PortGrid {portGrid} {searchTerm} />
