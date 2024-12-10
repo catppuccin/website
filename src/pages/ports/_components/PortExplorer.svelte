@@ -1,12 +1,10 @@
 <script lang="ts">
-  import type { Port } from "@data/ports";
+  import Fuse from "fuse.js";
+  import type { PortWithIcons } from "@data/ports";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
-  import Fuse from "fuse.js";
 
-  export let ports: Array<Port & { icon: string }>;
-  let portGrid: Array<Port & { icon: string }> | undefined = undefined;
-  let debounceTimeout: ReturnType<typeof setTimeout> | undefined;
+  let { ports }: { ports: Array<PortWithIcons> } = $props();
 
   const fuse = new Fuse(ports, {
     keys: [
@@ -19,9 +17,12 @@
     includeScore: false,
     threshold: 0.3,
   });
-
   const url = new URL(window.location.href);
-  let searchTerm = url.searchParams.get("q") ?? "";
+
+  let debounceTimeout: ReturnType<typeof setTimeout> | undefined;
+  let searchTerm = $state(url.searchParams.get("q") ?? "");
+  let portGrid: Array<PortWithIcons> | undefined = $state(undefined);
+
   handleInput();
 
   function handleInput() {
@@ -41,8 +42,4 @@
 </script>
 
 <SearchBar bind:searchTerm {handleInput} />
-<PortGrid bind:portGrid bind:searchTerm>
-  <svelte:fragment slot="no-results">
-    <slot name="no-results" />
-  </svelte:fragment>
-</PortGrid>
+<PortGrid {portGrid} {searchTerm} />

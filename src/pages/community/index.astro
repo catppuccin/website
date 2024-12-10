@@ -1,14 +1,16 @@
 ---
-import Page from "@layouts/Page.astro";
-import PageIntro from "@components/PageIntro.astro";
-import Users, { type Person } from "@components/lists/Users.astro";
-import TeamName from "@components/TeamName.astro";
-import Link from "@components/Link.svelte";
+import Default from "@layouts/Default.astro";
 
 import { currentMaintainers } from "@data/ports";
+
+import PageIntro from "@components/PageIntro.astro";
+import Link from "@components/Link.svelte";
+
+import TeamName from "./_components/TeamName.astro";
+import Users, { type Person } from "./_components/Users.astro";
 ---
 
-<Page
+<Default
   title="Community • Catppuccin"
   description="View the Catppuccin community! Learn about our teams, their roles, and how every contributor, including you, is at the heart of our project.">
   <PageIntro title="Community">
@@ -104,7 +106,7 @@ import { currentMaintainers } from "@data/ports";
       />
     </div>
   </section>
-</Page>
+</Default>
 
 <style lang="scss">
   @use "@styles/utils";
