@@ -2,7 +2,13 @@
   import Icon from "@iconify/svelte";
   import { icon } from "@data/icons";
 
-  let { name, width, height }: { name: string; width: number; height: number } = $props();
+  interface Props {
+    name: string;
+    width: number;
+    height: number;
+  }
+
+  let { name, width, height }: Props = $props();
 </script>
 
 <Icon icon={icon(name)} {width} {height} />

@@ -1,13 +1,12 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  let {
-    value,
-    children,
-  }: {
+  interface Props {
     value: string;
     children: Snippet;
-  } = $props();
+  }
+
+  let { value, children }: Props = $props();
 
   const STATE = {
     ready: "ready",

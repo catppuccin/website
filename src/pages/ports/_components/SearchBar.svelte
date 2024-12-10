@@ -1,13 +1,12 @@
 <script lang="ts">
   import Icon from "@components/Icon.svelte";
 
-  let {
-    searchTerm = $bindable(),
-    handleInput,
-  }: {
+  interface Props {
     searchTerm: string;
     handleInput: () => void;
-  } = $props();
+  }
+
+  let { searchTerm = $bindable(), handleInput }: Props = $props();
 </script>
 
 <div class="search-bar">

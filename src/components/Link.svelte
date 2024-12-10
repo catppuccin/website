@@ -1,19 +1,15 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  let {
-    href,
-    external = false,
-    muted = false,
-    underline = true,
-    children,
-  }: {
+  interface Props {
     href: string;
     external?: boolean;
     muted?: boolean;
     underline?: boolean;
     children: Snippet;
-  } = $props();
+  }
+
+  let { href, external = false, muted = false, underline = true, children }: Props = $props();
 </script>
 
 <!-- The <a> tag needs to be formatted like this to avoid weird whitespace issues -->
