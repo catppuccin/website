@@ -4,6 +4,8 @@ import { importDirectory, cleanupSVG, runSVGO, parseColors, isEmptyColor } from 
 const source = "src/data/icons";
 const target = "src/data/icons.json";
 
+const coloredIcons = ["magnifying-glass", "logo", "logo-text"];
+
 (async () => {
   const iconSet = await importDirectory(source, {
     prefix: "ctp",
@@ -24,8 +26,8 @@ const target = "src/data/icons.json";
     try {
       cleanupSVG(svg);
 
-      // Magnifying Glass is rainbow accent colored so don't override that
-      if (name !== "magnifying-glass") {
+      // Skip the colored SVGs from being monochrome
+      if (!coloredIcons.includes(name)) {
         // Assume icon is monotone: replace color with currentColor, add if missing
         parseColors(svg, {
           defaultColor: "currentColor",
