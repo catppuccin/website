@@ -1,13 +1,9 @@
 <script lang="ts">
-  import type { Port } from "@data/ports";
-  import NoMaintainerIcon from "./NoMaintainerIcon.svelte";
+  import type { PortWithIcons } from "@data/ports";
   import ProfilePicture from "@components/ProfilePicture.svelte";
+  import Icon from "@components/Icon.svelte";
 
-  let {
-    port,
-  }: {
-    port: Port & { icon: string };
-  } = $props();
+  let { port }: { port: PortWithIcons } = $props();
 </script>
 
 {#if port.repository["current-maintainers"].length > 0}
@@ -18,7 +14,7 @@
   </div>
 {:else}
   <div title="This port has no active maintainer(s)">
-    <NoMaintainerIcon />
+    <Icon name="lucide:user-round-x" width={32} height={32} />
   </div>
 {/if}
 

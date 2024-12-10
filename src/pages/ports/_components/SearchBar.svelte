@@ -11,7 +11,7 @@
 </script>
 
 <div class="search-bar">
-  <Icon name="magnifying-glass" width={32} height={32} />
+  <Icon name="ctp:magnifying-glass" width={32} height={32} />
   <input
     type="text"
     id="search-field"

@@ -23,6 +23,9 @@ importers:
       '@catppuccin/palette':
         specifier: ^1.7.1
         version: 1.7.1
+      '@iconify-json/lucide':
+        specifier: ^1.2.18
+        version: 1.2.18
       '@iconify-json/ph':
         specifier: ^1.2.1
         version: 1.2.1
@@ -620,6 +623,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@iconify-json/lucide@1.2.18':
+    resolution: {integrity: sha512-SFBoHBSULntem84iWxGM9NzlP6QY/dwjxC5t4c1lC7+xq31Fous8JkppoJih0/ICJ3CsbppRZeb11y3iLcwwug==}
 
   '@iconify-json/ph@1.2.1':
     resolution: {integrity: sha512-x0DNfwWrS18dbsBYOq3XGiZnGz4CgRyC+YSl/TZvMQiKhIUl1woWqUbMYqqfMNUBzjyk7ulvaRovpRsIlqIf8g==}
@@ -3295,6 +3301,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.24.0':
     optional: true
+
+  '@iconify-json/lucide@1.2.18':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify-json/ph@1.2.1':
     dependencies:

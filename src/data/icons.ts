@@ -1,12 +1,14 @@
-import type { IconifyIcon, IconifyJSON, IconifyJSONIconsData } from "@iconify/types";
+import type { IconifyIcon, IconifyJSONIconsData } from "@iconify/types";
 
 import customIconsJson from "./icons.json";
 import simpleIconsJson from "@iconify-json/simple-icons/icons.json";
 import phIconsJson from "@iconify-json/ph/icons.json";
+import lucideIconsJson from "@iconify-json/lucide/icons.json";
 
 const customIcons = customIconsJson as IconifyJSONIconsData;
 const simpleIcons = simpleIconsJson as IconifyJSONIconsData;
 const phIcons = phIconsJson as IconifyJSONIconsData;
+const lucideIcons = lucideIconsJson as IconifyJSONIconsData;
 
 const DEFAULT_VIEWBOX = 16;
 
@@ -28,6 +30,15 @@ const simpleIcon = (name: string) => {
   };
 };
 
+const customIcon = (name: string): IconifyIcon => {
+  const icon = customIcons.icons[name];
+  return {
+    body: icon.body,
+    width: icon.width ?? customIcons.width ?? DEFAULT_VIEWBOX,
+    height: icon.height ?? customIcons.height ?? DEFAULT_VIEWBOX,
+  };
+};
+
 export const portIcon = (name: string | undefined): IconifyIcon => {
   if (!name) {
     return phosphorIcon("cube-fill");
@@ -45,11 +56,18 @@ export const portIcon = (name: string | undefined): IconifyIcon => {
   return phosphorIcon("cube-fill");
 };
 
-export const customIcon = (name: string): IconifyIcon => {
-  const icon = customIcons.icons[name];
-  return {
-    body: icon.body,
-    width: icon.width ?? customIcons.width ?? DEFAULT_VIEWBOX,
-    height: icon.height ?? customIcons.height ?? DEFAULT_VIEWBOX,
-  };
+export const icon = (identifier: string): IconifyIcon => {
+  const [prefix, name] = identifier.split(":");
+  const lib = [customIcons, simpleIcons, phIcons, lucideIcons].find((lib) => lib.prefix === prefix);
+  if (lib) {
+    const icon = lib.icons[name];
+    if (icon) {
+      return {
+        body: icon.body,
+        width: icon.width ?? lib.width ?? DEFAULT_VIEWBOX,
+        height: icon.height ?? lib.height ?? DEFAULT_VIEWBOX,
+      };
+    }
+  }
+  throw new Error(`Icon '${name}' for identifier '${identifier}' could not be found.`);
 };
