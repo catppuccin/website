@@ -74,6 +74,14 @@ const { title, description, ogImage, accent } = Astro.props;
     svg + svg {
       margin-block-start: 6px;
     }
+
+    svg:nth-child(1) * {
+      animation-play-state: paused;
+    }
+
+    &:hover svg:nth-child(1) * {
+      animation-play-state: running;
+    }
   }
 
   .hero-grid {
