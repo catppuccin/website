@@ -26,7 +26,6 @@ import PortCard from "./_components/PortCard.svelte";
     </div>
   </noscript>
 
-  <!-- The Icon component isn't used inside here since it would try to bundle all of IconifyJSON icons -->
   <!-- TODO: Figure out a better general solution that doesn't involve defining SVGs as Svelte components or passing in nested Svelte 5 snippets/slots -->
   <PortExplorer {ports} client:only="svelte" />
 </Default>
