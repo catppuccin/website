@@ -12,7 +12,6 @@ interface Props {
 const { title, description, ogImage = "/embed.png", accent = "mauve" } = Astro.props as Props;
 
 const isVercelProd = import.meta.env.VERCEL_PROD;
-const themeColor = `#${flavors.mocha.colors[accent].hex}`;
 ---
 
 <meta name="generator" content={Astro.generator} />
@@ -22,7 +21,7 @@ const themeColor = `#${flavors.mocha.colors[accent].hex}`;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
-<meta name="theme-color" content={themeColor} data-react-helmet="true" />
+<meta name="theme-color" content={flavors.mocha.colors[accent].hex} data-react-helmet="true" />
 
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
