@@ -23,6 +23,7 @@ const blog = defineCollection({
         name: z.string(),
         title: z.string(),
         github: z.string(),
+        email: z.string().email(),
       }),
     }),
 });
