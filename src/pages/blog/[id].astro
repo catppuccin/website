@@ -9,10 +9,12 @@ import ProfilePicture from "@components/ProfilePicture.svelte";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { id: post.id },
-    props: post,
-  }));
+  return posts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: { id: post.id },
+      props: post,
+    }));
 }
 const post = Astro.props;
 const { Content } = await render(post);
