@@ -19,9 +19,6 @@ const remarkReadingTime = () => {
 // https://astro.build/config
 export default defineConfig({
   site: "https://catppuccin.com",
-  markdown: {
-    remarkPlugins: [remarkReadingTime],
-  },
   vite: {
     plugins: [yaml()],
   },
@@ -31,7 +28,9 @@ export default defineConfig({
       iconDir: "src/data/icons",
     }),
     svelte(),
-    mdx(),
+    mdx({
+      remarkPlugins: [remarkReadingTime],
+    }),
   ],
   experimental: {
     svg: true,
