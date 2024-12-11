@@ -1,6 +1,7 @@
 ---
 import type { AccentName } from "@catppuccin/palette";
 import { flavors } from "@catppuccin/palette";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -30,3 +31,5 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
 {isVercelProd && <script is:inline defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
 
 <title>{title}</title>
+
+<ClientRouter />
