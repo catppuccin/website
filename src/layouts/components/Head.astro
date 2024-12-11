@@ -37,6 +37,6 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
 
 {isVercelProd && <script is:inline defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
 
-{enableViewTransition && <ClientRouter />}
+{enableViewTransition && <ClientRouter fallback="swap" />}
 
 <title>{title}</title>
