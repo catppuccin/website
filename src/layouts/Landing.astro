@@ -74,6 +74,18 @@ const { title, description, ogImage, accent } = Astro.props;
     svg + svg {
       margin-block-start: 6px;
     }
+
+    /*  The SVG is playing the animation by default; To avoid a
+     *  constantly playing animation the playstate is set to paused.
+     */
+    svg:nth-child(1) * {
+      animation-play-state: paused;
+    }
+
+    /*  Start playing the animation again on hover. */
+    &:hover svg:nth-child(1) * {
+      animation-play-state: running;
+    }
   }
 
   .hero-grid {
