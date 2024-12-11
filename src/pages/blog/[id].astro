@@ -29,10 +29,10 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 <Default
   title={`${post.data.title} • Catppuccin`}
   description={post.data.summary}
-  ogImage={post.data.hero.path.src}
+  ogImage={post.data.hero.image.src}
   enableViewTransition>
   <img
-    src={post.data.hero.path.src}
+    src={post.data.hero.image.src}
     alt={post.data.title}
     title={post.data.title}
     transition:name="hero"
