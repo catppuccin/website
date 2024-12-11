@@ -12,6 +12,7 @@ export async function GET(context) {
     site: context.site,
     xmlns: {
       media: "http://search.yahoo.com/mrss/",
+      atom: "http://www.w3.org/2005/Atom",
     },
     items: blog
       .filter((post) => !post.data.draft)
