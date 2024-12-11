@@ -10,6 +10,9 @@ export async function GET(context) {
     title,
     description,
     site: context.site,
+    xmlns: {
+      media: "http://search.yahoo.com/mrss/",
+    },
     items: blog
       .filter((post) => !post.data.draft)
       .map((post) => ({
