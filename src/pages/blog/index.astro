@@ -4,11 +4,14 @@ import PageIntro from "@components/PageIntro.astro";
 import ArticleCard from "./_components/ArticleCard.astro";
 import Default from "@layouts/Default.astro";
 
-const description = "Blog posts related to Catppuccin, ranging from announcements, devlogs, general musings and more!";
+export const description =
+  "Blog posts related to Catppuccin, ranging from announcements, devlogs, general musings and more!";
+export const title = "Blog • Catppuccin";
+
 const blogPosts = await getCollection("blog");
 ---
 
-<Default title="Blog • Catppuccin" {description} enableViewTransition>
+<Default {title} {description} enableViewTransition>
   <PageIntro title="Blog">
     <p>{description}</p>
   </PageIntro>
