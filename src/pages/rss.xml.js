@@ -22,11 +22,11 @@ export async function GET(context) {
         link: `/blog/${post.id}/`,
         author: `${post.data.author.name}`,
         customData: `<media:content
-          type="image/${post.data.hero.path.format}"
-          width="${post.data.hero.path.width}"
-          height="${post.data.hero.path.height}"
+          type="image/${post.data.hero.image.format}"
+          width="${post.data.hero.image.width}"
+          height="${post.data.hero.image.height}"
           medium="image"
-          url="${context.site.origin}${post.data.hero.path.src}" />
+          url="${context.site.origin}${post.data.hero.image.src}" />
       `,
       })),
   });
