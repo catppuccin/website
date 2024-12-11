@@ -8,7 +8,7 @@ const description = "Blog posts related to Catppuccin, ranging from announcement
 const blogPosts = await getCollection("blog");
 ---
 
-<Default title="Blog • Catppuccin" {description}>
+<Default title="Blog • Catppuccin" {description} enableViewTransition>
   <PageIntro title="Blog">
     <p>{description}</p>
   </PageIntro>
