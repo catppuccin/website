@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
-import type { CollectionEntry } from "astro:content";
+import { render, type CollectionEntry } from "astro:content";
+
 import Pill from "@components/Pills.svelte";
 import ProfilePicture from "@components/ProfilePicture.svelte";
 import Link from "@components/Link.svelte";
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
+const { remarkPluginFrontmatter } = await render(post);
 
 const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("en-US", {
   year: "numeric",
@@ -44,6 +46,10 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
           <p class="article-pubdate has-icon">
             <Icon name="ph:calendar-dots-fill" size={24} />
             {formattedDatePosted}
+          </p>
+          <p class="article-readingtime has-icon">
+            <Icon name="ph:clock" size={24} />
+            {remarkPluginFrontmatter.minutesRead}
           </p>
         </div>
       </footer>
