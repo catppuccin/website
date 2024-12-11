@@ -8,9 +8,16 @@ interface Props {
   description: string;
   ogImage?: string;
   accent?: AccentName;
+  enableViewTransition?: boolean;
 }
 
-const { title, description, ogImage = "/embed.png", accent = "mauve" } = Astro.props as Props;
+const {
+  title,
+  description,
+  ogImage = "/embed.png",
+  accent = "mauve",
+  enableViewTransition = false,
+} = Astro.props as Props;
 
 const isVercelProd = import.meta.env.VERCEL_PROD;
 ---
@@ -30,6 +37,6 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
 
 {isVercelProd && <script is:inline defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
 
-<title>{title}</title>
+{enableViewTransition && <ClientRouter />}
 
-<ClientRouter />
+<title>{title}</title>

@@ -13,13 +13,14 @@ interface Props {
   description: string;
   ogImage?: string;
   accent?: AccentName;
+  enableViewTransition?: boolean;
 }
 
-const { title, description, ogImage, accent } = Astro.props;
+const { title, description, ogImage, accent, enableViewTransition } = Astro.props;
 ---
 
 <Skeleton>
-  <Head slot="seo" title={title} description={description} ogImage={ogImage} accent={accent} />
+  <Head slot="seo" {title} {description} {ogImage} {accent} {enableViewTransition} />
 
   <section class="header-container">
     <div class="content-wrapper no-padding">

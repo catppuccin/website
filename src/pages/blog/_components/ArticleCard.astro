@@ -20,7 +20,13 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 
 <Link href={`/blog/${post.id}`} underline={false}>
   <article class="post-card">
-    <img class="blog-hero-image" src={post.data.hero.path} alt={post.data.title} />
+    <img
+      class="blog-hero-image"
+      src={post.data.hero.path}
+      alt={post.data.title}
+      transition:name="hero"
+      transition:animate="fade"
+    />
     <div class="post-content">
       <header class="article-header">
         <h3>{post.data.title}</h3>
@@ -86,6 +92,8 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 
     .blog-hero-image {
       object-fit: cover;
+      transition: 0.2s ease;
+      transition-property: scale, border, box-shadow;
     }
 
     .article-content {

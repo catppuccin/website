@@ -24,8 +24,18 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<Default title={`${post.data.title} • Catppuccin`} description={post.data.summary} ogImage={post.data.hero.path}>
-  <img src={post.data.hero.path} alt={post.data.title} title={post.data.title} />
+<Default
+  title={`${post.data.title} • Catppuccin`}
+  description={post.data.summary}
+  ogImage={post.data.hero.path}
+  enableViewTransition>
+  <img
+    src={post.data.hero.path}
+    alt={post.data.title}
+    title={post.data.title}
+    transition:name="hero"
+    transition:animate="fade"
+  />
   <article class="blog-container" role="main">
     <PageIntro title={post.data.title}>
       <p class="article-summary">{post.data.summary}</p>
