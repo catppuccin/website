@@ -9,7 +9,7 @@ export async function GET(context) {
   return rss({
     title,
     description,
-    site: context.site,
+    site: `${context.site}blog`,
     xmlns: {
       media: "http://search.yahoo.com/mrss/",
       atom: "http://www.w3.org/2005/Atom",
