@@ -42,7 +42,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     <PageIntro title={post.data.title}>
       <p class="article-summary">{post.data.summary}</p>
       <footer class="article-meta">
-        <Link href={`https://github.com/${post.data.author.github}`}>
+        <Link href={`https://github.com/${post.data.author.github}`} externalIcon={false}>
           <ProfilePicture username={post.data.author.github} size={64} wxh={56} />
         </Link>
         <div class="article-meta-text-wrap">
@@ -54,11 +54,10 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
         </div>
       </footer>
     </PageIntro>
-    <Content />
+    <Content components={{ a: Link }} />
     <footer class="article-credit">
-      Hero image by <Link href={post.data.hero.source} external>{post.data.hero.author}</Link> modified with <Link
-        href="https://github.com/ozwaldorf/lutgen-rs"
-        external>lutgen-rs</Link
+      Hero image by <Link href={post.data.hero.source}>{post.data.hero.author}</Link> modified with <Link
+        href="https://github.com/ozwaldorf/lutgen-rs">lutgen-rs</Link
       >.
     </footer>
   </article>

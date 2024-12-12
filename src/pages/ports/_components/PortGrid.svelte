@@ -18,7 +18,7 @@
         <p>Sorry, we couldn't find any ports matching your search :(</p>
         <p>
           You can request a port to be themed by raising a
-          <Link href="https://github.com/catppuccin/catppuccin/discussions/new?category=port-requests" external
+          <Link href="https://github.com/catppuccin/catppuccin/discussions/new?category=port-requests"
             >port request in catppuccin/catppuccin</Link
           >.
         </p>

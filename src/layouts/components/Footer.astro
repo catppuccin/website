@@ -14,11 +14,9 @@ import { footerLinks } from "@data/links";
           <strong>{categoryTitle}</strong>
         </p>
         <ul>
-          {categoryLinks.map(({ title, target, external }) => (
+          {categoryLinks.map(({ title, target }) => (
             <li>
-              <Link href={target} {external}>
-                {title}
-              </Link>
+              <Link href={target}>{title}</Link>
             </li>
           ))}
         </ul>
@@ -42,15 +40,14 @@ import { footerLinks } from "@data/links";
     <p>
       catppuccin.com is built and maintained by the community at <Link
         href="https://github.com/catppuccin/website"
-        muted
-        external>catppuccin/website</Link
+        muted>catppuccin/website</Link
       >.
     </p>
     <p>
       &copy; {new Date(Date.now()).getFullYear()} • <Link href="/licensing" muted>Licensing</Link>
     </p>
-    <Link href="https://vercel.com/?utm_source=Catppuccin&utm_campaign=oss">
-      <VercelBadge id="vercel" height={32} />
+    <Link href="https://vercel.com/?utm_source=Catppuccin&utm_campaign=oss" externalIcon={false}>
+      <VercelBadge id="vercel" height={40} />
     </Link>
   </div>
 
