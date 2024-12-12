@@ -6,6 +6,7 @@ import Default from "@layouts/Default.astro";
 import PageIntro from "@components/PageIntro.astro";
 import Link from "@components/Link.svelte";
 import ProfilePicture from "@components/ProfilePicture.svelte";
+import { Icon } from "astro-icon/components";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -29,10 +30,10 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 <Default
   title={`${post.data.title} • Catppuccin`}
   description={post.data.summary}
-  ogImage={post.data.hero.path}
+  ogImage={post.data.hero.image.src}
   enableViewTransition>
   <img
-    src={post.data.hero.path}
+    src={post.data.hero.image.src}
     alt={post.data.title}
     title={post.data.title}
     transition:name="hero"
@@ -56,9 +57,16 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     </PageIntro>
     <Content components={{ a: Link }} />
     <footer class="article-credit">
-      Hero image by <Link href={post.data.hero.source}>{post.data.hero.author}</Link> modified with <Link
-        href="https://github.com/ozwaldorf/lutgen-rs">lutgen-rs</Link
-      >.
+      <p>
+        Hero image by <Link href={post.data.hero.source}>{post.data.hero.author}</Link> modified with <Link
+          href="https://github.com/ozwaldorf/lutgen-rs">lutgen-rs</Link
+        >.
+      </p>
+      <p>
+        Want to keep up-to-date? Subscribe to our <Link href="/rss.xml"
+          >RSS Feed <Icon class="rss-icon" name="ph:rss-bold" width={24} height={24} /></Link
+        >
+      </p>
     </footer>
   </article>
 </Default>
@@ -74,6 +82,11 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     width: 100%;
     aspect-ratio: 16 / 5;
     border-radius: var(--border-radius-normal);
+  }
+
+  .rss-icon {
+    position: relative;
+    top: 6px;
   }
 
   .blog-container {
