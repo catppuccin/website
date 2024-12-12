@@ -3,19 +3,28 @@
 
   interface Props {
     href: string;
-    external?: boolean;
+    externalIcon?: boolean;
     muted?: boolean;
     underline?: boolean;
     children: Snippet;
   }
 
-  let { href, external = false, muted = false, underline = true, children }: Props = $props();
+  let { href, externalIcon = true, muted = false, underline = true, children }: Props = $props();
+
+  const domain = import.meta.env.SITE;
 </script>
 
-<!-- The <a> tag needs to be formatted like this to avoid weird whitespace issues -->
-<!-- See: https://github.com/withastro/astro/issues/6893 -->
-<a {href} class:external class:muted class:underline>
-  {@render children()}{#if external}<span class="external">&#x2197;</span>{/if}</a>
+<!-- We need the "externalIcon" boolean since we may not always to put the external icon on external links. -->
+<!-- For example, the "Powered By Vercel" badge. -->
+{#snippet externalLinkIcon()}
+  {#if externalIcon}<span class="external">&#x2197;</span>{/if}
+{/snippet}
+
+{#if !href.includes(domain) && !href.startsWith("/") && !href.startsWith("#")}
+  <a {href} class:muted class:underline>{@render children()}{@render externalLinkIcon()}</a>
+{:else}
+  <a {href} class:muted class:underline>{@render children()}</a>
+{/if}
 
 <style lang="scss">
   a {

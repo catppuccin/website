@@ -32,25 +32,21 @@ export const navigationLinks = [
     title: "Ports",
     target: "/ports",
     accent: "peach",
-    external: false,
   },
   {
     title: "Palette",
     target: "/palette",
     accent: "mauve",
-    external: false,
   },
   {
     title: "Community",
     target: "/community",
     accent: "green",
-    external: false,
   },
   {
     title: "Blog",
     target: "/blog",
     accent: "blue",
-    external: false,
   },
 ];
 
@@ -62,7 +58,6 @@ export const footerLinks = [
       {
         title: "Open Collective",
         target: "https://opencollective.com/catppuccin",
-        external: true,
       },
     ],
   },
@@ -78,7 +73,6 @@ export const footerLinks = [
     ].map((link) => ({
       title: link.name,
       target: link.url,
-      external: true,
     })),
   },
 ];
