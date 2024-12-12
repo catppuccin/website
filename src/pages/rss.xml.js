@@ -14,6 +14,7 @@ export async function GET(context) {
       media: "http://search.yahoo.com/mrss/",
       atom: "http://www.w3.org/2005/Atom",
     },
+    customData: `<atom:link href="${context.site}rss.xml" rel="self" type="application/rss+xml" />`,
     items: blog
       .filter((post) => !post.data.draft)
       .map((post) => ({
@@ -21,7 +22,7 @@ export async function GET(context) {
         description: post.data.summary,
         pubDate: post.data.datePosted,
         link: `/blog/${post.id}/`,
-        author: `${post.data.author.email}`,
+        author: `${post.data.author.email} (${post.data.author.name})`,
         customData: `<media:content
           type="image/${post.data.hero.image.format}"
           width="${post.data.hero.image.width}"
