@@ -6,24 +6,26 @@ export const blogCategoriesEnum = z.enum(CATEGORIES);
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/data/blog" }),
-  schema: z.object({
-    hero: z.object({
-      path: z.string(),
-      author: z.string(),
-      source: z.string(),
-    }),
-    title: z.string(),
-    summary: z.string(),
-    category: z.enum(CATEGORIES),
-    datePosted: z.coerce.date(),
-    dateUpdated: z.coerce.date().optional(),
-    draft: z.boolean().optional(),
-    author: z.object({
-      name: z.string(),
+  schema: ({ image }) =>
+    z.object({
+      hero: z.object({
+        image: image(),
+        author: z.string(),
+        source: z.string(),
+      }),
       title: z.string(),
-      github: z.string(),
+      summary: z.string(),
+      category: z.enum(CATEGORIES),
+      datePosted: z.coerce.date(),
+      dateUpdated: z.coerce.date().optional(),
+      draft: z.boolean().optional(),
+      author: z.object({
+        name: z.string(),
+        title: z.string(),
+        github: z.string(),
+        email: z.string().email(),
+      }),
     }),
-  }),
 });
 
 export const collections = { blog };
