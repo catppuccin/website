@@ -163,6 +163,10 @@ code {
   }
 }
 
+.rehype-heading {
+  padding-block: var(--space-md) var(--space-xs);
+}
+
 .rehype-heading-link {
   color: var(--text) !important;
   &:hover,
