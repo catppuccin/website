@@ -96,7 +96,16 @@ li {
 }
 
 a {
+  transition: color 250ms ease-in-out;
+
   text-decoration: none;
+
+  color: var(--blue);
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
 }
 
 pre:has(code) {

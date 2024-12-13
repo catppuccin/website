@@ -4,7 +4,6 @@ import { getCollection, render } from "astro:content";
 import Default from "@layouts/Default.astro";
 
 import PageIntro from "@components/PageIntro.astro";
-import Link from "@components/Link.svelte";
 import ProfilePicture from "@components/ProfilePicture.svelte";
 import { Icon } from "astro-icon/components";
 
@@ -43,9 +42,9 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     <PageIntro title={post.data.title}>
       <p class="article-summary">{post.data.summary}</p>
       <footer class="article-meta">
-        <Link href={`https://github.com/${post.data.author.github}`} externalIcon={false}>
+        <a href={`https://github.com/${post.data.author.github}`}>
           <ProfilePicture username={post.data.author.github} size={64} wxh={56} />
-        </Link>
+        </a>
         <div class="article-meta-text-wrap">
           <p class="article-author-info">
             <span class="article-author-name">{post.data.author.name}</span> • {post.data.author.title}
@@ -55,16 +54,16 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
         </div>
       </footer>
     </PageIntro>
-    <Content components={{ a: Link }} />
+    <Content />
     <footer class="article-credit">
       <p>
-        Hero image by <Link href={post.data.hero.source}>{post.data.hero.author}</Link> modified with <Link
-          href="https://github.com/ozwaldorf/lutgen-rs">lutgen-rs</Link
+        Hero image by <a href={post.data.hero.source}>{post.data.hero.author}</a> modified with <a
+          href="https://github.com/ozwaldorf/lutgen-rs">lutgen-rs</a
         >.
       </p>
       <p>
-        Want to keep up-to-date? Subscribe to our <Link href="/rss.xml"
-          >RSS Feed <Icon class="rss-icon" name="ph:rss-bold" width={24} height={24} /></Link
+        Want to keep up-to-date? Subscribe to our <a href="/rss.xml"
+          >RSS Feed <Icon class="rss-icon" name="ph:rss-bold" width={24} height={24} /></a
         >
       </p>
     </footer>

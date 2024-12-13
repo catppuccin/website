@@ -4,7 +4,6 @@ import { render, type CollectionEntry } from "astro:content";
 
 import Pill from "@components/Pills.svelte";
 import ProfilePicture from "@components/ProfilePicture.svelte";
-import Link from "@components/Link.svelte";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -20,7 +19,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<Link href={`/blog/${post.id}`} underline={false}>
+<a href={`/blog/${post.id}`}>
   <article class="post-card">
     <img
       class="blog-hero-image"
@@ -55,7 +54,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       </footer>
     </div>
   </article>
-</Link>
+</a>
 
 <style lang="scss">
   @use "@styles/utils";
