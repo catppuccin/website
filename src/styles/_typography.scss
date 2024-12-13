@@ -138,22 +138,28 @@ code {
     content: "#";
     color: var(--subtext0);
     visibility: hidden;
-    transition: opacity 0.2s;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
     position: relative;
     right: 0.6ch;
   }
 
   .rehype-heading:hover .rehype-heading-link::before {
     visibility: visible;
+    opacity: 0.7;
   }
 }
 
 @media (max-width: 1007px) {
+  .rehype-heading {
+    position: relative;
+  }
+
   .rehype-heading-link::after {
     content: "#";
     color: var(--subtext0);
-    position: relative;
-    left: 0.6ch;
+    position: absolute;
+    right: 0;
   }
 }
 
