@@ -5,6 +5,7 @@ import Default from "@layouts/Default.astro";
 
 import PageIntro from "@components/PageIntro.astro";
 import Link from "@components/Link.svelte";
+import BlogLink from "./_components/BlogLink.svelte";
 import ProfilePicture from "@components/ProfilePicture.svelte";
 import { Icon } from "astro-icon/components";
 
@@ -55,7 +56,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
         </div>
       </footer>
     </PageIntro>
-    <Content components={{ a: Link }} />
+    <Content components={{ a: BlogLink }} />
     <footer class="article-credit">
       <p>
         Hero image by <Link href={post.data.hero.source}>{post.data.hero.author}</Link> modified with <Link

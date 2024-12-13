@@ -26,11 +26,7 @@ export default defineConfig({
       [
         rehypeAutolinkHeadings,
         {
-          behavior: "prepend",
-          content: {
-            type: "text",
-            value: "#",
-          },
+          behavior: "wrap",
           headingProperties: {
             className: ["rehype-heading"],
           },

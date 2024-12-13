@@ -129,17 +129,38 @@ code {
   overflow-x: scroll;
 }
 
-.rehype-heading {
-  margin-left: -1ch;
+@media (min-width: 1007px) {
+  .rehype-heading {
+    margin-left: -1ch;
+  }
+
+  .rehype-heading-link::before {
+    content: "#";
+    color: var(--subtext0);
+    visibility: hidden;
+    transition: opacity 0.2s;
+    position: relative;
+    right: 0.6ch;
+  }
+
+  .rehype-heading:hover .rehype-heading-link::before {
+    visibility: visible;
+  }
 }
 
-.rehype-heading .rehype-heading-link {
-  opacity: 0;
-  transition: opacity 0.2s;
-  position: relative;
-  right: 0.6ch;
+@media (max-width: 1007px) {
+  .rehype-heading-link::after {
+    content: "#";
+    color: var(--subtext0);
+    position: relative;
+    left: 0.6ch;
+  }
 }
 
-.rehype-heading:hover .rehype-heading-link {
-  opacity: 0.8;
+.rehype-heading-link {
+  color: var(--text) !important;
+  &:hover,
+  &:focus {
+    text-decoration: none !important;
+  }
 }
