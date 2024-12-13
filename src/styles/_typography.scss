@@ -128,3 +128,18 @@ code {
 
   overflow-x: scroll;
 }
+
+.rehype-heading {
+  margin-left: -1ch;
+}
+
+.rehype-heading .rehype-heading-link {
+  opacity: 0;
+  transition: opacity 0.2s;
+  position: relative;
+  right: 0.6ch;
+}
+
+.rehype-heading:hover .rehype-heading-link {
+  opacity: 0.8;
+}

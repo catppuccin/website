@@ -23,7 +23,7 @@
 {#if !href.includes(domain) && !href.startsWith("/") && !href.startsWith("#")}
   <a {href} class:muted class:underline>{@render children()}{@render externalLinkIcon()}</a>
 {:else}
-  <a {href} class:muted class:underline>{@render children()}</a>
+  <a {href} class:muted class:underline class="rehype-heading-link">{@render children()}</a>
 {/if}
 
 <style lang="scss">
