@@ -38,9 +38,15 @@ if (!featuredPost) {
   .bloglist {
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-md);
-    max-width: 69rem;
+
+    @container (min-width: 800px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @container (min-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   :root {
