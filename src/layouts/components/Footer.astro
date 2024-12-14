@@ -12,7 +12,7 @@ import { footerLinks } from "@data/links";
         <p>
           <strong>{categoryTitle}</strong>
         </p>
-        <ul>
+        <ul class={categoryTitle.toLowerCase()}>
           {categoryLinks.map(({ title, target }) => (
             <li>
               <a href={target}>{title}</a>
@@ -64,6 +64,14 @@ import { footerLinks } from "@data/links";
       margin: 0 0 var(--space-xs) 0;
       padding: 0;
       list-style: none;
+    }
+
+    .project {
+      li:nth-last-child(2) {
+        margin-block-start: 0.5em;
+        padding-block-start: 0.5em;
+        border-top: 2px solid var(--overlay0);
+      }
     }
 
     .rights-notice {
