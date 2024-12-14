@@ -91,6 +91,16 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
   .blog-container {
     max-width: 69ch;
     margin-inline: auto;
+
+    // all non-h1 headlines inside blog articles
+    :global(h2, h3, h4, h5, h6) {
+      margin-block: 1.5em 0.5em;
+    }
+
+    // all paragraphs inside blog articles except the summary
+    :global(p:not(.article-summary)) {
+      margin-block: 1em;
+    }
   }
 
   .article-summary {
@@ -121,6 +131,10 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     .article-author-name {
       color: var(--text);
       font-weight: 600;
+    }
+
+    p {
+      margin: 0;
     }
   }
 

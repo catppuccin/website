@@ -108,6 +108,46 @@ a {
   }
 }
 
+blockquote {
+  margin-inline: 0;
+  padding-inline-start: 2em;
+  position: relative;
+  overflow: hidden;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+
+  p,
+  cite {
+    margin: 0;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    color: var(--accent-color);
+  }
+
+  &::before {
+    content: "\275E";
+    left: 0;
+    font-size: 1.5em;
+  }
+
+  &::after {
+    content: "";
+    left: 0.6em;
+    top: 2em;
+    width: 1px;
+    height: 100%;
+    background-color: currentColor;
+  }
+}
+
+blockquote cite {
+  display: block;
+  margin-top: 1em;
+  font-size: 80%;
+}
+
 pre:has(code) {
   margin: 0;
   @include utils.containerPadding(xs);
