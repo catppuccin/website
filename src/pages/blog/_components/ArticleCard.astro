@@ -4,6 +4,7 @@ import { render, type CollectionEntry } from "astro:content";
 
 import Pill from "@components/Pills.svelte";
 import ProfilePicture from "@components/ProfilePicture.svelte";
+import { fade } from "astro:transitions";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -25,8 +26,8 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       class="blog-hero-image"
       src={post.data.hero.image.src}
       alt={post.data.title}
-      transition:name={post.data.title}
-      transition:animate="fade"
+      transition:name=`${post.data.title}${post.data.featured}`
+      transition:animate={fade({ duration: "0.4s" })}
     />
     <div class="post-content">
       <header class="article-header">

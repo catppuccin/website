@@ -18,6 +18,7 @@ const blog = defineCollection({
       category: z.enum(CATEGORIES),
       datePosted: z.coerce.date(),
       dateUpdated: z.coerce.date().optional(),
+      featured: z.boolean().optional(),
       draft: z.boolean().optional(),
       author: z.object({
         name: z.string(),

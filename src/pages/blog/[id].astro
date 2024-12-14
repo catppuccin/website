@@ -6,6 +6,7 @@ import Default from "@layouts/Default.astro";
 import PageIntro from "@components/PageIntro.astro";
 import ProfilePicture from "@components/ProfilePicture.svelte";
 import { Icon } from "astro-icon/components";
+import { fade } from "astro:transitions";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -35,8 +36,8 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     src={post.data.hero.image.src}
     alt={post.data.title}
     title={post.data.title}
-    transition:name={post.data.title}
-    transition:animate="fade"
+    transition:name=`${post.data.title}${post.data.featured}`
+    transition:animate={fade({ duration: "0.4s" })}
   />
   <article class="blog-container" role="main">
     <PageIntro title={post.data.title}>
