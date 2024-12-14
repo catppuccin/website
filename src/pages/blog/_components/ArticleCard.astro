@@ -25,7 +25,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       class="blog-hero-image"
       src={post.data.hero.image.src}
       alt={post.data.title}
-      transition:name="hero"
+      transition:name={post.data.title}
       transition:animate="fade"
     />
     <div class="post-content">
