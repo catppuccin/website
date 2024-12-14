@@ -10,6 +10,16 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url("/inter.woff2") format("woff2-variations");
+
+  font-display: swap;
+  font-weight: 125 950;
+  font-stretch: 75% 125%;
+  font-style: oblique;
+}
+
 body {
   font-family: "Inter", system-ui, sans-serif;
   font-size: clamp(15px, 4vw, 2rem);
@@ -148,43 +158,15 @@ blockquote cite {
   font-size: 80%;
 }
 
-pre:has(code) {
-  margin: 0;
-  @include utils.containerPadding(xs);
-  max-width: 100%;
-  overflow-x: scroll;
-
-  border-radius: var(--border-radius-normal);
-  // Override Shiki's default background colour of "base"
-  background-color: var(--mantle) !important;
-
-  line-height: 1.2;
-
-  code {
-    margin: 0;
-    padding: 0;
-  }
-}
-
 code {
   padding-inline: var(--space-xxs);
   max-width: 100%;
 
   border-radius: var(--border-radius-normal);
-  background-color: var(--mantle);
+  background-color: var(--surface0);
 
   font-family: monospace;
   font-size: 80%;
 
   overflow-x: scroll;
-}
-
-@media (prefers-color-scheme: dark) {
-  .astro-code,
-  .astro-code span {
-    color: var(--shiki-dark) !important;
-    font-style: var(--shiki-dark-font-style) !important;
-    font-weight: var(--shiki-dark-font-weight) !important;
-    text-decoration: var(--shiki-dark-text-decoration) !important;
-  }
 }

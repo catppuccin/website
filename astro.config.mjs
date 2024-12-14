@@ -1,9 +1,12 @@
 import { defineConfig } from "astro/config";
-import yaml from "@rollup/plugin-yaml";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
+import icon from "astro-icon";
+
+import yaml from "@rollup/plugin-yaml";
+
+import astroExpressiveCode from "astro-expressive-code";
 
 import getReadingTime from "reading-time";
 import { toString } from "mdast-util-to-string";
@@ -19,18 +22,28 @@ const remarkReadingTime = () => {
 // https://astro.build/config
 export default defineConfig({
   site: "https://catppuccin.com",
-  markdown: {
-    shikiConfig: {
-      themes: {
-        light: "catppuccin-latte",
-        dark: "catppuccin-mocha",
-      },
-    },
-  },
+
   vite: {
     plugins: [yaml()],
   },
   integrations: [
+    astroExpressiveCode({
+      themes: ["catppuccin-mocha", "catppuccin-latte"],
+      // Stop it from auto-correcting colour contrast
+      minSyntaxHighlightingColorContrast: 0,
+      styleOverrides: {
+        frames: {
+          tooltipSuccessBackground: "var(--green)",
+          tooltipSuccessForeground: "var(--base)",
+        },
+        borderRadius: "0",
+        borderWidth: "0.1px",
+        codePaddingInline: "var(--space-sm)",
+        uiFontSize: "1.5rem",
+        codeFontSize: "1.5rem",
+        codeBackground: "var(--mantle)",
+      },
+    }),
     sitemap(),
     icon({
       iconDir: "src/data/icons",

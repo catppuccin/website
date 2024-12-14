@@ -36,7 +36,10 @@ if (!featuredPost) {
   @use "@styles/utils";
 
   .bloglist {
-    @include utils.grid($column: 300px, $gap: var(--space-sm));
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
     max-width: 69rem;
   }
 
