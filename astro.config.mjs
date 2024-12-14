@@ -19,6 +19,14 @@ const remarkReadingTime = () => {
 // https://astro.build/config
 export default defineConfig({
   site: "https://catppuccin.com",
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: "catppuccin-latte",
+        dark: "catppuccin-mocha",
+      },
+    },
+  },
   vite: {
     plugins: [yaml()],
   },
