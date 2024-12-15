@@ -43,12 +43,19 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     <PageIntro title={post.data.title}>
       <p class="article-summary">{post.data.summary}</p>
       <footer class="article-meta">
-        <a href={`https://github.com/${post.data.author.github}`}>
-          <ProfilePicture username={post.data.author.github} size={64} wxh={56} />
-        </a>
+        <div class="article-author-profiles">
+          {post.data.authors.map((author) => <ProfilePicture username={author.github} size={64} wxh={56} />)}
+        </div>
         <div class="article-meta-text-wrap">
           <p class="article-author-info">
-            <span class="article-author-name">{post.data.author.name}</span> • {post.data.author.title}
+            Authored by {
+              // prettier-ignore
+              post.data.authors.map((author, index) => (
+                <>
+                  <a href={`https://github.com/${author.github}`}>{author.name}</a>{index < post.data.authors.length - 1 ? ", " : ""}
+                </>
+              ))
+            }
           </p>
           <p class="article-pubdate">Published on: {formattedDatePosted}</p>
           <p>{remarkPluginFrontmatter.minutesRead}</p>
@@ -118,16 +125,14 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 
   .article-meta {
     display: flex;
-    gap: 0 var(--space-sm);
+    gap: 0 calc(var(--space-sm) + 28px);
     align-items: center;
 
     color: var(--overlay1);
     font-size: 80%;
 
-    .article-author-avatar {
-      margin: 0;
-      padding: 0;
-      grid-row: span 2;
+    .article-author-profiles :global(img) {
+      margin-right: -28px;
     }
 
     .article-author-info,

@@ -39,9 +39,8 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       <footer class="article-footer">
         <Pill list={[post.data.category]} />
         <div class="article-meta">
-          <div class="article-author has-icon">
-            <ProfilePicture username={post.data.author.github} size={64} wxh={24} />
-            {post.data.author.name}
+          <div class="article-author">
+            {post.data.authors.map((author) => <ProfilePicture username={author.github} size={64} wxh={24} />)}
           </div>
           <p class="article-pubdate has-icon">
             <Icon name="ph:calendar-dots-fill" size={24} />

@@ -20,12 +20,14 @@ const blog = defineCollection({
       dateUpdated: z.coerce.date().optional(),
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),
-      author: z.object({
-        name: z.string(),
-        title: z.string(),
-        github: z.string(),
-        email: z.string().email(),
-      }),
+      authors: z.array(
+        z.object({
+          name: z.string(),
+          title: z.string(),
+          github: z.string(),
+          email: z.string().email(),
+        }),
+      ),
     }),
 });
 
