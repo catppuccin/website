@@ -198,32 +198,59 @@ Much to our disappointment, rehype was unable to inject the anchor tags into the
 headings because our own `Link` component was being applied afterwards, removing
 the crucial CSS classes needed to style the headings.
 
-The `Link` component was created with pure intentions but evolved into a
-consistent headache. It felt pretty bad knowing that we invented ourselves into
-this corner of complexity and that our problems would practically vanish if the
-external link icon was removed and therefore the requirement for the component
-itself.
+The `Link` component was created with pure intentions but evolved into a pretty
+big headache. It was annoying knowing that we engineered ourselves into this
+corner of complexity and that our problems would practically vanish if the
+external link icon was removed and therefore the need for the component itself.
 
 ## What does the icon _really_ mean?
+
+Moving away from the technical complexity, an important question we didn't think
+to ask ourselves was _"What does the icon really mean?"_.
 
 This kind of iconography has existed for a long time and while we personally
 thought the meaning of the icon was clear, it turns out not everyone thinks
 about it the same way we do.
 
-If you come to think of it... what does it _actually_ indicate? Does it This
-kind of iconography has been around for ages but it has kinda gotten out of use
-in recent years and as it turns out this is not just because people don't like
-it. If you come to think of it.. what does it _actually_ indicate?  Does it
-indicate an external link – _like we used it on this website_ – or would it
-indicate that the link – _no matter the domain_ – opens in a new tab – or...
+Does it indicate an external link – _like we used it on this website_ – or would
+it indicate that the link – _no matter the domain_ – opens in a new tab – or...
 _both_?
 
-> We’d assumed that there was a clear need for the external link icon, but in 4 years we’ve seen no evidence that backs this up [...]
+There are numerous sources online ~~debating~~ discussing what this icon should
+indicate. One of the strongest arguments for removing it is from the U.K
+government who decided to remove the icon from their design system in 2016:
+
+> We’d assumed that there was a clear need for the external link icon, but in 4
+> years we’ve seen no evidence that backs this up [...]
+>
+> We drew on the experience of the design and research communities in government
+> and asked them if they’d ever observed users making use of the icon, which they
+> hadn’t. [...] 
 >
 > <cite>~ Tim Paul on [designnotes.blog.gov.uk](https://designnotes.blog.gov.uk/2016/11/28/removing-the-external-link-icon-from-gov-uk/)</cite>
 
+Similarly, the [United States Web Design System
+(USWDS)](https://designsystem.digital.gov/) team carried out a [research
+study](https://github.com/uswds/uswds/wiki/2021-07-29-External-Link-Indicator-Research-Findings)
+involving users being exposed to consistent usage of an external link icon and
+arrived at the following conclusions:
 
-## Issues with development in our website system
+> Users didn't consistently understand the external link icon or the "Exit" badge. [...]
+>
+> Users are more likely to ignore link icons and badges than think about their
+> meaning. Majority of the participants didn't mention the external link
+> indicators when asked to read aloud the paragraph that contained external links. [...]
+>
+> <cite>~ USWDS team via [External Link Indicator Research Findings](https://github.com/uswds/uswds/wiki/2021-07-29-External-Link-Indicator-Research-Findings)</cite>
+
+## Conclusion
+
+TODO: Talk about our final decision to remove the external icon for good and
+relying on good 'ol CSS to style links across the website.
+
+Farewell little guy! You will be missed. 💔
+
+{/* ## Issues with development in our website system
 
 Initially we wrapped our links inside a custom Astro component which takes
 `external` as a prop and depending on that it would add a `span` including the
@@ -318,6 +345,4 @@ And suddenly we're a million overrides and conditionals deep down in a mess
 that's really annoying to work with.
 
 This prompted us to just remove the icon in order to re-simplify our codebase
-and overhead for writing code and content.
-
-Farewell little guy! You will be missed. 💔
+and overhead for writing code and content. */}
