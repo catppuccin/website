@@ -22,7 +22,7 @@ export async function GET(context) {
         description: post.data.summary,
         pubDate: post.data.datePosted,
         link: `/blog/${post.id}/`,
-        author: `${post.data.author.email} (${post.data.author.name})`,
+        author: `${post.data.authors.map((author) => `${author.email} (${author.name})`).join(", ")}`,
         customData: `<media:content
           type="image/${post.data.hero.image.format}"
           width="${post.data.hero.image.width}"
