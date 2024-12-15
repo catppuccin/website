@@ -3,8 +3,8 @@ hero:
   image: "./the-external-link-icon-and-why-its-gone.webp"
   author: "Karina Vorozheeva"
   source: "https://unsplash.com/photos/photo-of-three-butterflies-pollinating-on-purple-petaled-flowers-Kol2ib6ehQE"
-title: "The external link icon – and why it's gone!"
-summary: "It was nice... so why did we get rid of it?"
+title: "Why we stopped treating external links differently"
+summary: "The small arrow beside external links was nice... so why did we get rid of it?"
 category: "DevLog"
 datePosted: "2024-12-14"
 featured: true
@@ -15,17 +15,102 @@ author:
   email: "lemon@unseen.ninja"
 ---
 
-You may or may not have already noticed it: The small arrow we used to indicate links that link a target outside of catppuccin.com is gone. For us this has been quite a tough decision as we grew quite attached to the little guy.
+You may or may not have already noticed it; The small arrow (`↗`) we used to
+indicate links with a target outside of `catppuccin.com` has been removed. 
 
+Surprisingly, this ended up being a tough decision as we grew quite attached to
+the little guy, but ultimately the decision came down to two key concerns:
 
-## An ambigious little bugger
+1. **Growing technical complexity**
+2. **Icon ambiguity**
 
-This kind of iconography has been around for ages but it has kinda gotten out of use in recent years and as it turns out this is not just because people don't like it. If you come to think of it.. what does it _actually_ indicate?
-Does it indicate an external link – _like we used it on this website_ – or would it indicate that the link – _no matter the domain_ – opens in a new tab – or... _both_?
+Let's dive in!
+
+## Initial implementation
+
+For the initial release of the website, we created a `Link` component to be used
+throughout the codebase. This worked the way we wanted it to as we could control
+the styling by passing in or omitting props.
+
+```astro title="Link.astro"
+---
+interface Props {
+  href: string;
+  external?: boolean;
+  muted?: boolean;
+}
+
+const { href, external = false, muted = false } = Astro.props;
+---
+
+<a href={href} class:list={[`${muted ? "muted" : ""}`]}>
+  <slot />{external ? <span class="external">&#x2197;</span> : ""}
+</a>
+
+<style lang="scss">
+  ...
+</style>
+```
+
+While there are certainly multiple approaches to achieve the same goal that we
+had, this one worked and we were more or less happy with it.
+
+## External link icons in blog posts
+
+Recently, we made the decision to launch a blog and, thankfully, Astro made it
+_very easy_ to get one up and running. We added the official
+[@astrojs/mdx](https://github.com/withastro/astro/tree/main/packages/integrations/mdx/)
+integration, created the new blog layout, and wrote [our first blog
+post!](/blog/celebrating-three-years-of-catppuccin) 🥳
+
+While writing this blog post, we realised that our design meant the `Link`
+component needed to be imported to specify an external link, which we weren't
+particularly fond of...
+
+```mdx title="celebrating-three-years-of-catppuccin.mdx"
+import Link from "../../components/Link.astro"
+
+Three years ago today, 5th December 2021, <Link
+href="https://github.com/pocco81" external>Pocco</Link> created the <Link
+href="https://github.com/catppuccin/catppuccin/releases/tag/v0.1.0"
+external>v0.1.0</Link> GitHub release.
+```
+
+We tried mapping the `<a>` tag to the `Link` component, but we couldn't quite
+figure out how to pass in the `external` prop.
+
+It would be a bad idea to assume all links within a blog post are internal or
+external, so we ditched this idea and continued on with other tasks we wanted to
+accomplish.
+
+## Auto detecting external links
+
+TODO
+
+- Talk about shifting the approach from a prop to an automatic one
+- Talk about the extra complexity of a new `externalIcon` prop to support
+overrides to external links with images.
+- Talk about how we aren't happy with the extra complexity and how this affects
+upcoming work to implement heading anchor links (which will need to be another
+override)
+
+## What does the icon _really_ mean?
+
+This kind of iconography has existed for a long time and while we personally
+thought the meaning of the icon was clear, it turns out not everyone thinks
+about it the same way we do.
+
+If you come to think of it... what does it _actually_ indicate? Does it
+This kind of iconography has been around for ages but it has kinda gotten out of
+use in recent years and as it turns out this is not just because people don't
+like it. If you come to think of it.. what does it _actually_ indicate?  Does it
+indicate an external link – _like we used it on this website_ – or would it
+indicate that the link – _no matter the domain_ – opens in a new tab – or...
+_both_?
 
 > We’d assumed that there was a clear need for the external link icon, but in 4 years we’ve seen no evidence that backs this up [...]
 >
-> <cite>Tim Paul on [designnotes.blog.gov.uk](https://designnotes.blog.gov.uk/2016/11/28/removing-the-external-link-icon-from-gov-uk/) </cite>
+> <cite>~ Tim Paul on [designnotes.blog.gov.uk](https://designnotes.blog.gov.uk/2016/11/28/removing-the-external-link-icon-from-gov-uk/)</cite>
 
 
 ## Issues with development in our website system
@@ -47,7 +132,7 @@ Oh, right; The port cards also are links so let's wrap them inside our link comp
 
 And since link styling was scoped to the component – let's throw in a little `:global()` just for good measure.
 
-```scss
+```scss title="Link.svelte" {2-3}
 a:global(:has(img, svg, .port-card)) {
   text-decoration: none;
 
@@ -64,15 +149,21 @@ Thanks, I hate it!
 The next big thing was the release of our blog. Suddenly we had a place where our content was written in Markdown. By default the Markdown compiler obviously just uses regular anchor tags so if we were to use links with a target outside of catppuccin.com we obviously wouldn't have the indicator icon.
 
 Out first idea was to just place the icon through CSS and ditch the custom link component.
-```scss
+
+```scss title="_typography.css"
 a[href^="https://"]::after {
   content: '\2197';
 }
 ```
+
 That works **but** the setup for overrides just got even more complicated with this – so let's not do it.
 
-An amazing feature that comes with Astro and MDX is that you can specify custom components to replace default HTML mappings – oh, wait: You can't pass props. What if we just change the link component to have a check for external URLs? That's exactly what we did:
-```svelte
+An amazing feature that comes with Astro and MDX is that you can specify custom
+components to replace default HTML mappings – oh, wait: You can't pass props.
+What if we just change the link component to have a check for external URLs?
+That's exactly what we did:
+
+```svelte title="Link.svelte"
 {#snippet externalLinkIcon()}
   {#if externalIcon}
     <span class="external">&#x2197;</span>

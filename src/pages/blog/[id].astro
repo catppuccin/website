@@ -96,11 +96,18 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     // all non-h1 headlines inside blog articles
     :global(h2, h3, h4, h5, h6) {
       margin-block: 1.5em 0.5em;
+      // remove extra padding below headlines before the first paragraph
+      padding-block: var(--space-xs) 0;
     }
 
     // all paragraphs inside blog articles except the summary
     :global(p:not(.article-summary)) {
       margin-block: 1em;
+    }
+
+    // add extra margin to code blocks
+    :global(.expressive-code) {
+      margin-block: 2em;
     }
   }
 

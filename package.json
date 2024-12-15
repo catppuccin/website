@@ -35,7 +35,7 @@
     "@types/node": "^22.10.1",
     "astro": "^5.0.3",
     "astro-expressive-code": "^0.38.3",
-    "astro-icon": "^1.1.4",
+    "astro-icon": "1.1.2",
     "fuse.js": "^7.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
