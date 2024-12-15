@@ -3,7 +3,7 @@ hero:
   image: "./the-external-link-icon-and-why-its-gone.webp"
   author: "Karina Vorozheeva"
   source: "https://unsplash.com/photos/photo-of-three-butterflies-pollinating-on-purple-petaled-flowers-Kol2ib6ehQE"
-title: "Why we stopped treating external links differently"
+title: "Why We Ditched the Icon for External Links"
 summary: "The small arrow beside external links was nice... so why did we get rid of it?"
 category: "DevLog"
 datePosted: "2024-12-14"
@@ -80,8 +80,8 @@ href="https://github.com/catppuccin/catppuccin/releases/tag/v0.1.0"
 external>v0.1.0</Link> GitHub release.
 ```
 
-We tried mapping the `<a>` tag to the `Link` component, but we couldn't quite
-figure out how to pass in the `external` prop.
+We tried mapping the `a` tag to the `Link` component, but couldn't quite figure
+out how to pass in the `external` prop.
 
 It would be a bad idea to assume all links within a blog post are internal or
 external, so we ditched this idea and continued on with other tasks we wanted to
@@ -89,14 +89,70 @@ accomplish.
 
 ## Auto detecting external links
 
+A few days later, we performed the upgrade to [Astro 5 and Svelte
+5](https://github.com/catppuccin/website/pull/116), prompting us to reconsider
+and re-evaluate the structure of the codebase. From revisiting the `Link`
+component, we realised that we could use the `SITE` environment variable given
+to us by Astro to determine external links.
+
+Here's our brand new and improved `Link` component:
+
+```svelte title="Link.svelte"
+<script lang="ts">
+  import type { Snippet } from "svelte";
+
+  interface Props {
+    href: string;
+    externalIcon?: boolean;
+    muted?: boolean;
+    underline?: boolean;
+    children: Snippet;
+  }
+
+  let { href, externalIcon = true, muted = false, underline = true, children }: Props = $props();
+
+  const domain = import.meta.env.SITE;
+</script>
+
+<!-- We need the "externalIcon" boolean since we may not always to put the external icon on external links. -->
+<!-- For example, the "Powered By Vercel" badge. -->
+{#snippet externalLinkIcon()}
+  {#if externalIcon}<span class="external">&#x2197;</span>{/if}
+{/snippet}
+
+{#if !href.includes(domain) && !href.startsWith("/") && !href.startsWith("#")}
+  <a {href} class:muted class:underline>{@render children()}{@render externalLinkIcon()}</a>
+{:else}
+  <a {href} class:muted class:underline>{@render children()}</a>
+{/if}
+
+<style lang="scss">
+  ...
+</style>
+```
+
+This approach is... much better... right? Well, actually, we didn't think so.
+The implementation is much more complicated and convoluted than we'd have liked
+it to be.
+
+With external links now identified based on the value of `href`, we needed an
+extra `externalIcon` prop to disable the icon. The most notable example being
+the "Powered By Vercel" badge in our footer. 
+
+At this point, we were suitably fed up of the extra complexity we were bringing
+into this codebase, but the real breaking point was yet to come...
+
+## Adding links to headings
+
+This breaking point came when we started work on adding anchor links to blog
+headings.
+
 TODO
 
-- Talk about shifting the approach from a prop to an automatic one
-- Talk about the extra complexity of a new `externalIcon` prop to support
-overrides to external links with images.
-- Talk about how we aren't happy with the extra complexity and how this affects
-upcoming work to implement heading anchor links (which will need to be another
-override)
+- Talk about how rehype tries to inject an anchor tag to all the headings but it
+cannot since we're using a custom Link component
+- Talk about how this then really prompted the idea of removing the external
+icon altogether
 
 ## What does the icon _really_ mean?
 
