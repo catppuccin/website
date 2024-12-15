@@ -25,8 +25,8 @@ indicate links with a target outside of `catppuccin.com` has been removed.
 Surprisingly, this ended up being a tough decision as we grew quite attached to
 the little guy, but ultimately the decision came down to two key concerns:
 
-1. **Growing technical complexity**
-2. **Icon ambiguity**
+1. **Rise in technical complexity.**
+2. **Icon ambiguity.**
 
 Let's dive in!
 
@@ -56,8 +56,21 @@ const { href, external = false, muted = false } = Astro.props;
 </style>
 ```
 
-While there are certainly multiple approaches to achieve the same goal that we
-had, this one worked and we were more or less happy with it.
+This isn't the only approach we could have taken to append the icon after all
+our links. For example, we could have opted for a CSS based approach:
+
+```scss title="_typography.css"
+a[href^="https://"]::after {
+  content: '\2197';
+}
+```
+
+However, we decided against this approach as a number of exceptions had to be
+made which we, at the time, thought was better handled via props instead of CSS
+rules.
+
+In any case, our component based approach worked fine and we were, more or less,
+happy with the way it worked.
 
 ## External link icons in blog posts
 
@@ -131,9 +144,35 @@ Here's our brand new and improved `Link` component:
 </style>
 ```
 
-This approach is... much better... right? Well, actually, we didn't think so.
-The implementation is much more complicated and convoluted than we'd have liked
-it to be.
+Also, we took the opportunity to add the mapping between the `a` tag and the new
+`Link` component:
+
+```astro title="blog/[id].astro" ins="components={{ a: Link }}"
+<Content components={{ a: Link }} />
+```
+
+Meaning the MDX files no longer had to import the `Link` component and could use
+normal Markdown:
+
+```diff title="celebrating-three-years-of-catppuccin.mdx" lang="mdx"
+-   import Link from "../../components/Link.astro"
+
+-   Three years ago today, 5th December 2021, <Link
+-   href="https://github.com/pocco81" external>Pocco</Link> created the <Link
+-   href="https://github.com/catppuccin/catppuccin/releases/tag/v0.1.0"
+-   external>v0.1.0</Link> GitHub release.
++   Three years ago today, 5th December 2021, [Pocco](https://github.com/pocco81)
++   created the
++   [v0.1.0](https://github.com/catppuccin/catppuccin/releases/tag/v0.1.0) GitHub
++   release.
+```
+
+Of course, this meant the external icon couldn't be disabled in blog posts but
+that was a tradeoff we were okay with making.
+
+The new approach is much better right...? Well, actually, we didn't think so.
+The implementation is a lot more complicated and convoluted than we ever
+imagined a "simple" Link component to be.
 
 With external links now identified based on the value of `href`, we needed an
 extra `externalIcon` prop to disable the icon. The most notable example being
@@ -145,14 +184,25 @@ into this codebase, but the real breaking point was yet to come...
 ## Adding links to headings
 
 This breaking point came when we started work on adding anchor links to blog
-headings.
+headings. Once again, Astro comes to the rescue by making it relatively painless
+to configure and set up anchor links.
 
-TODO
+Astro supports importing
+[rehype](https://docs.astro.build/en/guides/markdown-content/#adding-remark-and-rehype-plugins)
+plugins, meaning we can import
+[rehype-autolink-headings](https://github.com/rehypejs/rehype-autolink-headings)
+and have our headings automatically wrapped, prepended, appended, etc with
+anchor tags.
 
-- Talk about how rehype tries to inject an anchor tag to all the headings but it
-cannot since we're using a custom Link component
-- Talk about how this then really prompted the idea of removing the external
-icon altogether
+Much to our disappointment, rehype was unable to inject the anchor tags into the
+headings because our own `Link` component was being applied afterwards, removing
+the crucial CSS classes needed to style the headings.
+
+The `Link` component was created with pure intentions but evolved into a
+consistent headache. It felt pretty bad knowing that we invented ourselves into
+this corner of complexity and that our problems would practically vanish if the
+external link icon was removed and therefore the requirement for the component
+itself.
 
 ## What does the icon _really_ mean?
 
@@ -160,10 +210,10 @@ This kind of iconography has existed for a long time and while we personally
 thought the meaning of the icon was clear, it turns out not everyone thinks
 about it the same way we do.
 
-If you come to think of it... what does it _actually_ indicate? Does it
-This kind of iconography has been around for ages but it has kinda gotten out of
-use in recent years and as it turns out this is not just because people don't
-like it. If you come to think of it.. what does it _actually_ indicate?  Does it
+If you come to think of it... what does it _actually_ indicate? Does it This
+kind of iconography has been around for ages but it has kinda gotten out of use
+in recent years and as it turns out this is not just because people don't like
+it. If you come to think of it.. what does it _actually_ indicate?  Does it
 indicate an external link – _like we used it on this website_ – or would it
 indicate that the link – _no matter the domain_ – opens in a new tab – or...
 _both_?
@@ -175,22 +225,38 @@ _both_?
 
 ## Issues with development in our website system
 
-Initially we wrapped our links inside a custom Astro component which takes `external` as a prop and depending on that it would add a `span` including the `↗` character.
+Initially we wrapped our links inside a custom Astro component which takes
+`external` as a prop and depending on that it would add a `span` including the
+`↗` character.
 
-So far, so good.. but if we look at the website footer now we can find the Vercel badge – that's an external link. Okay.. so one edge case, we just wrap it inside a regular anchor tag and because there is no text for that link we don't miss out on the styling from our custom component.
+So far, so good.. but if we look at the website footer now we can find the
+Vercel badge – that's an external link. Okay.. so one edge case, we just wrap it
+inside a regular anchor tag and because there is no text for that link we don't
+miss out on the styling from our custom component.
 
-Then the ports and maintainers arrived. Now we suddently had long lists that all contained external links. No biggie for [community](/community) but on the [ports](/ports) page the arrow was really out of place. Just another place where we use a regular anchor tag, right? At least that how we handled it.
+Then the ports and maintainers arrived. Now we suddently had long lists that all
+contained external links. No biggie for [community](/community) but on the
+[ports](/ports) page the arrow was really out of place. Just another place where
+we use a regular anchor tag, right? At least that how we handled it.
 
-Far from pretty and as we recently went through our codebase we decided to clean up everything which also came with the decision to use the link component wherever we have links; and suddenly the issue came flooding in.
+Far from pretty and as we recently went through our codebase we decided to clean
+up everything which also came with the decision to use the link component
+wherever we have links; and suddenly the issue came flooding in.
 
 
 ### Links that have content other than plain text
 
-Likely our biggest offender: Images inside links. To avoid it we need to specify CSS that applies to `anchor` tags which include graphics and ensure that we don't get the arrow icon (as well as removing the underline effect).
+Likely our biggest offender: Images inside links. To avoid it we need to specify
+CSS that applies to `anchor` tags which include graphics and ensure that we
+don't get the arrow icon (as well as removing the underline effect).
 
-Oh, right; The port cards also are links so let's wrap them inside our link component! Aaand we get a weird dangling arrow trailing underneath the card layout. Let's extend our override – luckily we can use the same as for images because they should act the same.
+Oh, right; The port cards also are links so let's wrap them inside our link
+component! Aaand we get a weird dangling arrow trailing underneath the card
+layout. Let's extend our override – luckily we can use the same as for images
+because they should act the same.
 
-And since link styling was scoped to the component – let's throw in a little `:global()` just for good measure.
+And since link styling was scoped to the component – let's throw in a little
+`:global()` just for good measure.
 
 ```scss title="Link.svelte" {2-3}
 a:global(:has(img, svg, .port-card)) {
@@ -201,14 +267,19 @@ a:global(:has(img, svg, .port-card)) {
   }
 }
 ```
+
 Thanks, I hate it!
 
 
 ### Links in blog posts
 
-The next big thing was the release of our blog. Suddenly we had a place where our content was written in Markdown. By default the Markdown compiler obviously just uses regular anchor tags so if we were to use links with a target outside of catppuccin.com we obviously wouldn't have the indicator icon.
+The next big thing was the release of our blog. Suddenly we had a place where
+our content was written in Markdown. By default the Markdown compiler obviously
+just uses regular anchor tags so if we were to use links with a target outside
+of catppuccin.com we obviously wouldn't have the indicator icon.
 
-Out first idea was to just place the icon through CSS and ditch the custom link component.
+Out first idea was to just place the icon through CSS and ditch the custom link
+component.
 
 ```scss title="_typography.css"
 a[href^="https://"]::after {
@@ -216,7 +287,8 @@ a[href^="https://"]::after {
 }
 ```
 
-That works **but** the setup for overrides just got even more complicated with this – so let's not do it.
+That works **but** the setup for overrides just got even more complicated with
+this – so let's not do it.
 
 An amazing feature that comes with Astro and MDX is that you can specify custom
 components to replace default HTML mappings – oh, wait: You can't pass props.
@@ -237,10 +309,15 @@ That's exactly what we did:
   [...]
 {/if}
 ```
-We're kinda doubling the overhead by both having the `externalIcon` prop which overwrites the added icon in case we don't want it, and the check whether or not the target URL is an external one.
 
-And suddenly we're a million overrides and conditionals deep down in a mess that's really annoying to work with.
+We're kinda doubling the overhead by both having the `externalIcon` prop which
+overwrites the added icon in case we don't want it, and the check whether or not
+the target URL is an external one.
 
-This prompted us to just remove the icon in order to re-simplify our codebase and overhead for writing code and content.
+And suddenly we're a million overrides and conditionals deep down in a mess
+that's really annoying to work with.
+
+This prompted us to just remove the icon in order to re-simplify our codebase
+and overhead for writing code and content.
 
 Farewell little guy! You will be missed. 💔
