@@ -60,11 +60,13 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
   @use "@styles/utils";
 
   a {
-    &:hover {
+    &:hover,
+    &:focus {
       text-decoration: none;
     }
 
-    &:has(h3):hover {
+    &:has(h3):hover,
+    &:has(h3):focus {
       h3 {
         text-decoration: underline;
       }
