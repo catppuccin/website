@@ -25,6 +25,21 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
   month: "long",
   day: "numeric",
 });
+
+const authorSep = (index: number) => {
+  if (post.data.authors.length === 1) {
+    return ""; // no separator needed
+  } else if (post.data.authors.length === 2) {
+    return index === 0 ? " & " : ""; // The only separator is " and "
+  } else {
+    // For three or more authors
+    if (index < post.data.authors.length - 2) {
+      return ", "; // Use ", " for all but last
+    } else if (index === post.data.authors.length - 2) {
+      return " & "; // Use " and " for last
+    }
+  }
+};
 ---
 
 <Default
@@ -52,7 +67,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
               // prettier-ignore
               post.data.authors.map((author, index) => (
                 <>
-                  <a href={`https://github.com/${author.github}`}>{author.name}</a>{index < post.data.authors.length - 1 ? ", " : ""}
+                  <a href={`https://github.com/${author.github}`}>{author.name}</a>{authorSep(index)}
                 </>
               ))
             }
@@ -125,14 +140,14 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 
   .article-meta {
     display: flex;
-    gap: 0 calc(var(--space-sm) + 28px);
+    gap: 0 calc(var(--space-sm) + 2px);
     align-items: center;
 
     color: var(--overlay1);
     font-size: 80%;
 
     .article-author-profiles :global(img) {
-      margin-right: -28px;
+      margin-right: -2px;
     }
 
     .article-author-info,
