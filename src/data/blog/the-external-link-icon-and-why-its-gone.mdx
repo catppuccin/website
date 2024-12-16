@@ -66,9 +66,9 @@ a[href^="https://"]::after {
 }
 ```
 
-The CSS based approach is less code and less overhead, but we decided against it
-as a number of exceptions (images/badges as links) had to be made which we, at
-the time, thought could be better handled via a component with props.
+The CSS based approach is less code and less overhead, but decided against it as
+a number of exceptions (e.g. images/badges as links, etc) would have made this
+quite complex as well.
 
 With no real reason to revisit or refactor this approach after the initial
 launch, the component stayed the same - until a few weeks ago.
@@ -93,8 +93,8 @@ href="https://github.com/catppuccin/catppuccin/releases/tag/v0.1.0"
 external>v0.1.0</Link> GitHub release.
 ```
 
-We tried mapping the `a` tag to the `<Link>` component, but couldn't quite figure
-out how to pass in the `external` prop.
+We tried mapping the `<a>` tag to the `<Link>` component, but couldn't quite
+figure out how to pass in the `external` prop.
 
 It would be a bad idea to assume all links within a blog post are internal or
 external, so we ditched this idea and continued on with other tasks we wanted to
@@ -144,8 +144,8 @@ Here's the new and improved `<Link>` component:
 </style>
 ```
 
-We took the opportunity to add the mapping between the `<a>` tag and the new
-`<Link>` component:
+We again took the opportunity to add the mapping between the `<a>` tag and the
+new `<Link>` component:
 
 ```astro title="blog/[id].astro" ins="components={{ a: Link }}"
 <Content components={{ a: Link }} />
@@ -201,11 +201,11 @@ afterwards, removing the crucial CSS classes needed to style the headings.
 Looking back, we're quite happy that rehype didn't support this as it only would
 have resulted in more overrides and complexity. The component was originally
 designed to unify our approach but with so many overrides, it ended up evolving
-into a pretty big headache.
+into nothing but a pretty big headache.
 
 It hurt knowing that we engineered ourselves into this little corner of
 complexity and that our problems would practically vanish if the external link
-icon was removed (therefore also removing the need for the component entirely.)
+icon was removed, therefore removing the need for a `<Link>` component too.
 
 ## Ambiguity around the external link icon
 
