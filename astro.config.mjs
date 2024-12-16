@@ -36,6 +36,12 @@ export default defineConfig({
           tooltipSuccessBackground: "var(--green)",
           tooltipSuccessForeground: "var(--base)",
         },
+        textMarkers: {
+          insBackground: "color-mix(in oklab, var(--green) 25%, var(--mantle));",
+          insBorderColor: "var(--surface0)",
+          delBackground: "color-mix(in oklab, var(--red) 25%, var(--mantle));",
+          delBorderColor: "var(--surface0)",
+        },
         codePaddingInline: "var(--space-md)",
         uiFontSize: "1.6rem",
         codeFontSize: "1.4rem",
