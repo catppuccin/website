@@ -22,7 +22,6 @@ const remarkReadingTime = () => {
 // https://astro.build/config
 export default defineConfig({
   site: "https://catppuccin.com",
-
   vite: {
     plugins: [yaml()],
   },
