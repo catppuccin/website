@@ -30,11 +30,11 @@ the little guy, but ultimately the decision came down to two key concerns:
 
 Let's dive in!
 
-## Initial implementation
+## The `<Link>` component
 
-For the initial release of the website, we created a `Link` component to be used
-throughout the codebase. This worked the way we wanted it to as we could control
-the styling by passing in or omitting props.
+For the initial release of the website, we created a `<Link>` component to be used
+throughout the codebase. This worked as expected, giving us control of the
+styling based on the props passed in or omitted.
 
 ```astro title="Link.astro"
 ---
@@ -56,8 +56,8 @@ const { href, external = false, muted = false } = Astro.props;
 </style>
 ```
 
-This isn't the only approach we could have taken to append the icon after all
-our links. For example, we could have opted for a CSS based approach:
+This isn't the only approach we could have taken to append the icon to all
+external links. For example, an alternative CSS based approach:
 
 ```scss title="_typography.css"
 a[href^="https://"]::after {
@@ -65,24 +65,23 @@ a[href^="https://"]::after {
 }
 ```
 
-However, we decided against this approach as a number of exceptions had to be
-made which we, at the time, thought was better handled via props instead of CSS
-rules.
+The CSS based approach is less code and less overhead, but we decided against it
+as a number of exceptions (images/badges as links) had to be made which we, at
+the time, thought could be better handled via a component with props.
 
-In any case, our component based approach worked fine and we were, more or less,
-happy with the way it worked.
+With no real reason to revisit or refactor this approach after the initial
+launch, the component stayed the same - until a few weeks ago.
 
 ## External link icons in blog posts
 
 Recently, we made the decision to launch a blog and, thankfully, Astro made it
 _very easy_ to get one up and running. We added the official
 [@astrojs/mdx](https://github.com/withastro/astro/tree/main/packages/integrations/mdx/)
-integration, created the new blog layout, and wrote [our first blog
+integration, created the new blog page, and wrote [our first blog
 post!](/blog/celebrating-three-years-of-catppuccin) 🥳
 
-While writing this blog post, we realised that our design meant the `Link`
-component needed to be imported to specify an external link, which we weren't
-particularly fond of...
+While writing the first blog post, we realised the `<Link>` component needed to
+be imported to specify an external link, which we weren't excited about:
 
 ```mdx title="celebrating-three-years-of-catppuccin.mdx"
 import Link from "../../components/Link.astro"
@@ -93,7 +92,7 @@ href="https://github.com/catppuccin/catppuccin/releases/tag/v0.1.0"
 external>v0.1.0</Link> GitHub release.
 ```
 
-We tried mapping the `a` tag to the `Link` component, but couldn't quite figure
+We tried mapping the `a` tag to the `<Link>` component, but couldn't quite figure
 out how to pass in the `external` prop.
 
 It would be a bad idea to assume all links within a blog post are internal or
@@ -104,11 +103,11 @@ accomplish.
 
 A few days later, we performed the upgrade to [Astro 5 and Svelte
 5](https://github.com/catppuccin/website/pull/116), prompting us to reconsider
-and re-evaluate the structure of the codebase. From revisiting the `Link`
+and re-evaluate the structure of the codebase. When revisiting the `<Link>`
 component, we realised that we could use the `SITE` environment variable given
-to us by Astro to determine external links.
+by Astro to detect external links.
 
-Here's our brand new and improved `Link` component:
+Here's the new and improved `<Link>` component:
 
 ```svelte title="Link.svelte"
 <script lang="ts">
@@ -144,15 +143,15 @@ Here's our brand new and improved `Link` component:
 </style>
 ```
 
-Also, we took the opportunity to add the mapping between the `a` tag and the new
-`Link` component:
+We took the opportunity to add the mapping between the `<a>` tag and the new
+`<Link>` component:
 
 ```astro title="blog/[id].astro" ins="components={{ a: Link }}"
 <Content components={{ a: Link }} />
 ```
 
-Meaning the MDX files no longer had to import the `Link` component and could use
-normal Markdown:
+Meaning the MDX files didn't have to import the `<Link>` component and instead
+use normal Markdown:
 
 ```diff title="celebrating-three-years-of-catppuccin.mdx" lang="mdx"
 -   import Link from "../../components/Link.astro"
@@ -167,21 +166,21 @@ normal Markdown:
 +   release.
 ```
 
-Of course, this meant the external icon couldn't be disabled in blog posts but
-that was a tradeoff we were okay with making.
+Of course, this meant the external link icon couldn't be disabled in blog posts
+but that was a trade-off we were okay with.
 
 The new approach is much better right...? Well, actually, we didn't think so.
 The implementation is a lot more complicated and convoluted than we ever
-imagined a "simple" Link component to be.
+imagined a "simple" `<Link>` component to be.
 
 With external links now identified based on the value of `href`, we needed an
-extra `externalIcon` prop to disable the icon. The most notable example being
-the "Powered By Vercel" badge in our footer. 
+extra `externalIcon` prop to disable the icon. For example, the "Powered By
+Vercel" badge in our footer is an external link but should not display the icon.
 
 At this point, we were suitably fed up of the extra complexity we were bringing
 into this codebase, but the real breaking point was yet to come...
 
-## Adding links to headings
+## Adding links to blog headings
 
 This breaking point came when we started work on adding anchor links to blog
 headings. Once again, Astro comes to the rescue by making it relatively painless
@@ -195,19 +194,23 @@ and have headings automatically wrapped, prepended, appended, etc with anchor
 tags.
 
 Unfortunately, much to our disappointment, rehype was unable to inject the
-anchor tags into the headings because our own `Link` component was being applied
+anchor tags into the headings because our own `<Link>` component was being applied
 afterwards, removing the crucial CSS classes needed to style the headings.
 
-The `Link` component was created with pure intentions but evolved into a pretty
-big headache. It was annoying knowing that we engineered ourselves into this
-corner of complexity and that our problems would practically vanish if the
-external link icon was removed (therefore also removing the need for the
-component entirely.)
+Looking back, we're quite happy that rehype didn't support this as it only would
+have resulted in more overrides and complexity. The component was originally
+designed to unify our approach but with so many overrides, it ended up evolving
+into a pretty big headache.
 
-## Ambiguity around the icon
+It hurt knowing that we engineered ourselves into this little corner of
+complexity and that our problems would practically vanish if the external link
+icon was removed (therefore also removing the need for the component entirely.)
 
-Moving away from the technical complexity, an important question we didn't think
-to ask ourselves at the beginning was "What does the icon _really_ mean?"
+## Ambiguity around the external link icon
+
+Leaving the technical complexity aside for one moment, an important question we
+didn't ask ourselves at the beginning was "What does the external link icon
+_really_ mean?"
 
 This kind of iconography has existed for a long time and while we personally
 thought the meaning of the icon was clear, it turns out not everyone thinks
@@ -217,10 +220,10 @@ Does it indicate an external link – _like we used it on this website_ – or w
 it indicate that the link – _no matter the domain_ – opens in a new tab – or...
 _both_?
 
-There are numerous forums online ~~debating~~ discussing what this icon should
-indicate. One of the most compelling sources of information we found in favour
-of removing it was from the UK government, who decided to wipe the icon
-completely from their design system back in 2016:
+There are numerous forums online ~~debating~~ discussing what this icon's
+behaviour should be. One of the most interesting sources of information we found
+in favour of removing it was from the UK government, who decided to remove the
+icon from their design system back in 2016:
 
 > We’d assumed that there was a clear need for the external link icon, but in 4
 > years we’ve seen no evidence that backs this up [...]
@@ -252,13 +255,12 @@ The more we researched, the more we understood what we had to do.
 At last, we've arrived to present day.
 
 With the release of this blog post, the external link icon has been removed and
-the custom `Link` component has been deleted. Normal `<a>` tags are used
+the custom `<Link>` component has been deleted. Normal `<a>` tags are used
 throughout the codebase and the CSS is defined globally, allowing it to be
 overridden at a local level.
 
 ```scss title="_typography.scss"
 a {
-  transition: color 250ms ease-in-out;
   text-decoration: none;
   color: var(--blue);
 
@@ -273,4 +275,4 @@ There's probably a life lesson here about avoiding unnecessary complexity and
 actually understanding user behaviour, but we'll leave you to come to your own
 conclusions for that one.
  
-Farewell little `↗`, you will be missed. \</3
+Farewell little `↗`, you will be missed.

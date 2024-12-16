@@ -42,7 +42,7 @@ export default defineConfig({
           delBorderColor: "var(--surface0)",
         },
         codePaddingInline: "var(--space-md)",
-        uiFontSize: "1.6rem",
+        uiFontSize: "1.5rem",
         codeFontSize: "1.4rem",
         codeBackground: "var(--mantle)",
       },
