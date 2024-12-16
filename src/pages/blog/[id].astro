@@ -54,7 +54,7 @@ const authorSep = (index: number) => {
     transition:name=`${post.data.title}${post.data.featured}`
     transition:animate={fade({ duration: "0.4s" })}
   />
-  <article class="blog-container" role="main">
+  <article class="blog-container" role="main" style=`--accent-color: var(--${post.data.accentColor});`>
     <PageIntro title={post.data.title}>
       <p class="article-summary">{post.data.summary}</p>
       <footer class="article-meta">

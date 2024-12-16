@@ -1,5 +1,6 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
+import type { AccentName } from "@catppuccin/palette";
 
 const CATEGORIES = ["Announcement", "DevLog"] as const;
 export const blogCategoriesEnum = z.enum(CATEGORIES);
@@ -16,6 +17,7 @@ const blog = defineCollection({
       title: z.string(),
       summary: z.string(),
       category: z.enum(CATEGORIES),
+      accentColor: z.custom<AccentName>(),
       datePosted: z.coerce.date(),
       dateUpdated: z.coerce.date().optional(),
       featured: z.boolean().optional(),
