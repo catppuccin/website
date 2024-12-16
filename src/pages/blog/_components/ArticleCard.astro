@@ -21,7 +21,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 ---
 
 <a href={`/blog/${post.id}`}>
-  <article class="post-card" style=`--accent-color: var(--${post.data.accentColor});`>
+  <article class="post-card">
     <img
       class="blog-hero-image"
       src={post.data.hero.image.src}
@@ -73,7 +73,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     }
 
     &:has(.post-card) h3 {
-      color: var(--accent-color);
+      color: unset;
       margin: 0;
       padding: 0;
     }
