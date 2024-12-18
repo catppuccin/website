@@ -60,7 +60,7 @@ const { href, external = false, muted = false } = Astro.props;
 This isn't the only approach we could have taken to append the icon to all
 external links. For example, an alternative CSS based approach:
 
-```scss title="_typography.css"
+```scss title="_typography.scss"
 a[href^="https://"]::after {
   content: '\2197';
 }
