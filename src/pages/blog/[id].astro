@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import { Picture } from "astro:assets";
 
 import Default from "@layouts/Default.astro";
 
@@ -47,13 +48,12 @@ const authorSep = (index: number) => {
   description={post.data.summary}
   ogImage={post.data.hero.image.src}
   enableViewTransition>
-  <img
-    src={post.data.hero.image.src}
-    alt={post.data.title}
-    title={post.data.title}
+  <figure
+    class="blog-hero-image"
     transition:name=`${post.data.title}${post.data.featured}`
-    transition:animate={fade({ duration: "0.4s" })}
-  />
+    transition:animate={fade({ duration: "0.4s" })}>
+    <Picture src={post.data.hero.image} alt={post.data.title} formats={["avif", "webp"]} widths={[400, 600, 1000]} />
+  </figure>
   <article class="blog-container" role="main" style=`--accent-color: var(--${post.data.accentColor});`>
     <PageIntro title={post.data.title}>
       <p class="article-summary">{post.data.summary}</p>
@@ -100,10 +100,17 @@ const authorSep = (index: number) => {
     --accent-color: var(--yellow);
   }
 
-  img {
-    width: 100%;
+  figure {
+    max-width: 100%;
     aspect-ratio: 16 / 5;
-    border-radius: var(--border-radius-normal);
+    margin: 0;
+
+    :global(picture, img) {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      border-radius: var(--border-radius-normal);
+    }
   }
 
   .rss-icon {

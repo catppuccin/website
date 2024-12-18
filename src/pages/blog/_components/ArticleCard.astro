@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { render, type CollectionEntry } from "astro:content";
+import { Picture } from "astro:assets";
 
 import Pill from "@components/Pills.svelte";
 import ProfilePicture from "@components/ProfilePicture.svelte";
@@ -22,13 +23,12 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 
 <a href={`/blog/${post.id}`}>
   <article class="post-card">
-    <img
+    <figure
       class="blog-hero-image"
-      src={post.data.hero.image.src}
-      alt={post.data.title}
       transition:name=`${post.data.title}${post.data.featured}`
-      transition:animate={fade({ duration: "0.4s" })}
-    />
+      transition:animate={fade({ duration: "0.4s" })}>
+      <Picture src={post.data.hero.image} alt={post.data.title} formats={["avif", "webp"]} widths={[400, 600, 1000]} />
+    </figure>
     <div class="post-content">
       <header class="article-header">
         <h3>{post.data.title}</h3>
@@ -99,8 +99,16 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       }
     }
 
-    img {
+    figure {
       max-width: 100%;
+      aspect-ratio: 16 / 5;
+      margin: 0;
+
+      :global(picture, img) {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+      }
     }
 
     a h3,
@@ -113,10 +121,6 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       @include utils.flex($direction: column, $gap: var(--space-sm));
       @include utils.containerPadding(sm);
       height: 100%;
-    }
-
-    .blog-hero-image {
-      object-fit: cover;
     }
 
     .article-content {
