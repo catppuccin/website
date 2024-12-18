@@ -7,7 +7,6 @@ import Default from "@layouts/Default.astro";
 import PageIntro from "@components/PageIntro.astro";
 import ProfilePicture from "@components/ProfilePicture.svelte";
 import { Icon } from "astro-icon/components";
-import { fade } from "astro:transitions";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
