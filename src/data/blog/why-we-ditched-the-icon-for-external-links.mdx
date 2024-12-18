@@ -7,7 +7,7 @@ title: "Why We Ditched the Icon for External Links"
 summary: "The small arrow beside external links was nice... so why did we get rid of it?"
 category: "DevLog"
 accentColor: maroon
-datePosted: "2024-12-14"
+datePosted: "2024-12-18"
 featured: true
 authors:
   - name: "Lemon"
@@ -66,12 +66,12 @@ a[href^="https://"]::after {
 }
 ```
 
-The CSS based approach is less code and less overhead, but decided against it as
-a number of exceptions (e.g. images/badges as links, etc) would have made this
-quite complex as well.
+At first glance, this approach seems quite elegant. However, we decided against
+it as a number of exceptions (e.g. images/badges as links, etc) made this quite
+complex as well. 
 
-With no real reason to revisit or refactor this approach after the initial
-launch, the component stayed the same - until a few weeks ago.
+With no real reason to revisit or refactor the approach after the initial
+launch, the `<Link>` component was left untouched - until a few weeks ago.
 
 ## External link icons in blog posts
 
@@ -81,8 +81,10 @@ _very easy_ to get one up and running. We added the official
 integration, created the new blog page, and wrote [our first blog
 post!](/blog/celebrating-three-years-of-catppuccin) 🥳
 
-While writing the first blog post, we realised the `<Link>` component needed to
-be imported to specify an external link, which we weren't excited about:
+
+
+While writing the first blog post, we realised the `<Link>` component must be
+imported to specify an external link, which we weren't excited about:
 
 ```mdx title="celebrating-three-years-of-catppuccin.mdx"
 import Link from "../../components/Link.astro"
@@ -108,7 +110,7 @@ and re-evaluate the structure of the codebase. When revisiting the `<Link>`
 component, we realised that we could use the `SITE` environment variable given
 by Astro to detect external links.
 
-Here's the new and improved `<Link>` component:
+Here's the new rewritten `<Link>` component:
 
 ```svelte title="Link.svelte"
 <script lang="ts">
@@ -151,8 +153,7 @@ new `<Link>` component:
 <Content components={{ a: Link }} />
 ```
 
-Meaning the MDX files didn't have to import the `<Link>` component and instead
-use normal Markdown:
+Allowing the import to be removed in favour of normal Markdown:
 
 ```diff title="celebrating-three-years-of-catppuccin.mdx" lang="mdx"
 -   import Link from "../../components/Link.astro"
@@ -174,9 +175,10 @@ The new approach is much better right...? Well, actually, we didn't think so.
 The implementation is a lot more complicated and convoluted than we ever
 imagined a "simple" `<Link>` component to be.
 
-With external links now identified based on the value of `href`, we needed an
-extra `externalIcon` prop to disable the icon. For example, the "Powered By
-Vercel" badge in our footer is an external link but should not display the icon.
+External links were now identified based on the value of `href`, resulting in an
+extra `externalIcon` prop to override this behaviour. For example, the "Powered
+By Vercel" badge in the footer is an external link but should not display the
+icon.
 
 At this point, we were suitably fed up of the extra complexity we were bringing
 into this codebase, but the real breaking point was yet to come...
@@ -187,9 +189,9 @@ This breaking point came when we started work on adding anchor links to blog
 headings. Once again, Astro comes to the rescue by making it relatively painless
 to configure and set up anchor links.
 
-Astro supports importing
+Astro supports plugins within the
 [rehype](https://docs.astro.build/en/guides/markdown-content/#adding-remark-and-rehype-plugins)
-plugins, meaning we can import
+ecosystem, meaning we can import
 [rehype-autolink-headings](https://github.com/rehypejs/rehype-autolink-headings)
 and have headings automatically wrapped, prepended, appended, etc with anchor
 tags.
@@ -253,7 +255,7 @@ The more we researched, the more we understood what we had to do.
 
 ## Saying farewell
 
-At last, we've arrived to present day.
+At last, we've arrived at present day.
 
 With the release of this blog post, the external link icon has been removed and
 the custom `<Link>` component has been deleted. Normal `<a>` tags are used
@@ -272,8 +274,8 @@ a {
 }
 ```
 
-There's probably a life lesson here about avoiding unnecessary complexity and
+There are some life lessons here about avoiding unnecessary complexity and
 actually understanding user behaviour, but we'll leave you to come to your own
-conclusions for that one.
+conclusions.
 
 Farewell little `↗`, you will be missed.
