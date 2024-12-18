@@ -52,7 +52,13 @@ const authorSep = (index: number) => {
     class="blog-hero-image"
     transition:name=`${post.data.title}${post.data.featured}`
     transition:animate={fade({ duration: "0.4s" })}>
-    <Picture src={post.data.hero.image} alt={post.data.title} formats={["avif", "webp"]} widths={[400, 600, 1000]} />
+    <Picture
+      src={post.data.hero.image}
+      alt={post.data.title}
+      formats={["avif", "webp"]}
+      widths={[800, 1600, post.data.hero.image.width]}
+      sizes={`(max-width: 720px) 800px, (max-width: 1080px) 1600px, ${post.data.hero.image.width}px`}
+    />
   </figure>
   <article class="blog-container" role="main" style=`--accent-color: var(--${post.data.accentColor});`>
     <PageIntro title={post.data.title}>
