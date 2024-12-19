@@ -4,7 +4,6 @@ import Default from "@layouts/Default.astro";
 import { currentMaintainers } from "@data/ports";
 
 import PageIntro from "@components/PageIntro.astro";
-import Link from "@components/Link.svelte";
 
 import TeamName from "./_components/TeamName.astro";
 import Users, { type Person } from "./_components/Users.astro";
@@ -60,7 +59,7 @@ import Users, { type Person } from "./_components/Users.astro";
     <h3><TeamName team="userstyles" color="green">userstyles Staff</TeamName></h3>
     <p>
       Overseers of all userstyles in
-      <Link href="https://github.com/catppuccin/userstyles">catppuccin/userstyles</Link>.
+      <a href="https://github.com/catppuccin/userstyles">catppuccin/userstyles</a>.
       <strong>Responsible for all matters regarding userstyles.</strong>
     </p>
     <div class="user-grid">

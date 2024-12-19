@@ -1,9 +1,12 @@
 import { defineConfig } from "astro/config";
-import yaml from "@rollup/plugin-yaml";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
+import icon from "astro-icon";
+
+import yaml from "@rollup/plugin-yaml";
+
+import astroExpressiveCode from "astro-expressive-code";
 
 import getReadingTime from "reading-time";
 import { toString } from "mdast-util-to-string";
@@ -23,6 +26,27 @@ export default defineConfig({
     plugins: [yaml()],
   },
   integrations: [
+    astroExpressiveCode({
+      themes: ["catppuccin-mocha", "catppuccin-latte"],
+      // Stop it from auto-correcting colour contrast
+      minSyntaxHighlightingColorContrast: 0,
+      styleOverrides: {
+        frames: {
+          tooltipSuccessBackground: "var(--green)",
+          tooltipSuccessForeground: "var(--base)",
+        },
+        textMarkers: {
+          insBackground: "color-mix(in oklab, var(--green) 25%, var(--mantle));",
+          insBorderColor: "var(--surface0)",
+          delBackground: "color-mix(in oklab, var(--red) 25%, var(--mantle));",
+          delBorderColor: "var(--surface0)",
+        },
+        codePaddingInline: "var(--space-md)",
+        uiFontSize: "1.5rem",
+        codeFontSize: "1.4rem",
+        codeBackground: "var(--mantle)",
+      },
+    }),
     sitemap(),
     icon({
       iconDir: "src/data/icons",

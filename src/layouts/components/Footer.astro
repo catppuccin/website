@@ -1,5 +1,4 @@
 ---
-import Link from "@components/Link.svelte";
 import SpeakerHighVolume from "@data/icons/speaker-high-volume.svg";
 import VercelBadge from "@data/icons/vercel-badge.svg";
 
@@ -13,10 +12,10 @@ import { footerLinks } from "@data/links";
         <p>
           <strong>{categoryTitle}</strong>
         </p>
-        <ul>
+        <ul class={categoryTitle.toLowerCase()}>
           {categoryLinks.map(({ title, target }) => (
             <li>
-              <Link href={target}>{title}</Link>
+              <a href={target}>{title}</a>
             </li>
           ))}
         </ul>
@@ -38,17 +37,16 @@ import { footerLinks } from "@data/links";
       <audio id="pronunciation"><source src="/pronunciation.mp3" type="audio/mpeg" /></audio>
     </div>
     <p>
-      catppuccin.com is built and maintained by the community at <Link
-        href="https://github.com/catppuccin/website"
-        muted>catppuccin/website</Link
+      catppuccin.com is built and maintained by the community at <a href="https://github.com/catppuccin/website"
+        >catppuccin/website</a
       >.
     </p>
     <p>
-      &copy; {new Date(Date.now()).getFullYear()} • <Link href="/licensing" muted>Licensing</Link>
+      &copy; {new Date(Date.now()).getFullYear()} • <a href="/licensing">Licensing</a>
     </p>
-    <Link href="https://vercel.com/?utm_source=Catppuccin&utm_campaign=oss" externalIcon={false}>
+    <a href="https://vercel.com/?utm_source=Catppuccin&utm_campaign=oss">
       <VercelBadge id="vercel" height={40} />
-    </Link>
+    </a>
   </div>
 
   <style lang="scss">
@@ -66,6 +64,14 @@ import { footerLinks } from "@data/links";
       margin: 0 0 var(--space-xs) 0;
       padding: 0;
       list-style: none;
+    }
+
+    .project {
+      li:nth-last-child(2) {
+        margin-block-start: 0.2em;
+        padding-block-start: 0.2em;
+        border-top: 1px solid var(--overlay0);
+      }
     }
 
     .rights-notice {

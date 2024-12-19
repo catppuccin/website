@@ -10,6 +10,16 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url("/inter.woff2") format("woff2-variations");
+
+  font-display: swap;
+  font-weight: 125 950;
+  font-stretch: 75% 125%;
+  font-style: oblique;
+}
+
 body {
   font-family: "Inter", system-ui, sans-serif;
   font-size: clamp(15px, 4vw, 2rem);
@@ -97,23 +107,54 @@ li {
 
 a {
   text-decoration: none;
+
+  color: var(--blue);
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
 }
 
-pre:has(code) {
-  margin: 0;
-  @include utils.containerPadding(xs);
-  max-width: 100%;
-  overflow-x: scroll;
+blockquote {
+  margin-inline: 0;
+  margin-block-end: 2em;
+  padding-inline-start: 2em;
+  position: relative;
+  overflow: hidden;
+  quotes: "\201C" "\201D" "\2018" "\2019";
 
-  border-radius: var(--border-radius-normal);
-  background-color: var(--crust);
-
-  line-height: 1.2;
-
-  code {
+  p,
+  cite {
     margin: 0;
-    padding: 0;
   }
+
+  &::before,
+  &::after {
+    position: absolute;
+    color: var(--accent-color);
+  }
+
+  &::before {
+    content: "\275E";
+    left: 0;
+    font-size: 1.5em;
+  }
+
+  &::after {
+    content: "";
+    left: 0.6em;
+    top: 2em;
+    width: 1px;
+    height: 100%;
+    background-color: currentColor;
+  }
+}
+
+blockquote cite {
+  display: block;
+  margin-top: 1em;
+  font-size: 80%;
 }
 
 code {
@@ -121,7 +162,7 @@ code {
   max-width: 100%;
 
   border-radius: var(--border-radius-normal);
-  background-color: var(--crust);
+  background-color: var(--surface0);
 
   font-family: monospace;
   font-size: 80%;

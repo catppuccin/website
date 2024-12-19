@@ -50,6 +50,8 @@
 
       background-position: top right;
 
+      text-decoration: none;
+
       @media (prefers-reduced-motion) {
         transform: none;
       }

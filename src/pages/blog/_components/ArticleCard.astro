@@ -1,10 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
 import { render, type CollectionEntry } from "astro:content";
+import { Picture } from "astro:assets";
 
 import Pill from "@components/Pills.svelte";
 import ProfilePicture from "@components/ProfilePicture.svelte";
-import Link from "@components/Link.svelte";
+import { fade } from "astro:transitions";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -20,15 +21,20 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 });
 ---
 
-<Link href={`/blog/${post.id}`} underline={false}>
+<a href={`/blog/${post.id}`}>
   <article class="post-card">
-    <img
+    <figure
       class="blog-hero-image"
-      src={post.data.hero.image.src}
-      alt={post.data.title}
-      transition:name="hero"
-      transition:animate="fade"
-    />
+      transition:name=`${post.data.title}${post.data.featured}`
+      transition:animate={fade({ duration: "0.4s" })}>
+      <Picture
+        src={post.data.hero.image}
+        alt={post.data.title}
+        formats={["avif", "webp"]}
+        widths={[800, 1600, post.data.hero.image.width]}
+        sizes={`(max-width: 720px) 800px, (max-width: 1080px) 1600px, ${post.data.hero.image.width}px`}
+      />
+    </figure>
     <div class="post-content">
       <header class="article-header">
         <h3>{post.data.title}</h3>
@@ -39,9 +45,8 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       <footer class="article-footer">
         <Pill list={[post.data.category]} />
         <div class="article-meta">
-          <div class="article-author has-icon">
-            <ProfilePicture username={post.data.author.github} size={64} wxh={24} />
-            {post.data.author.name}
+          <div class="article-author">
+            {post.data.authors.map((author) => <ProfilePicture username={author.github} size={64} wxh={24} />)}
           </div>
           <p class="article-pubdate has-icon">
             <Icon name="ph:calendar-dots-fill" size={24} />
@@ -55,10 +60,30 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       </footer>
     </div>
   </article>
-</Link>
+</a>
 
 <style lang="scss">
   @use "@styles/utils";
+
+  a {
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+
+    &:has(h3):hover,
+    &:has(h3):focus {
+      h3 {
+        text-decoration: underline;
+      }
+    }
+
+    &:has(.post-card) h3 {
+      color: unset;
+      margin: 0;
+      padding: 0;
+    }
+  }
 
   .post-card {
     display: flex;
@@ -71,16 +96,28 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     transition: all 300ms ease-in-out;
 
     &:hover {
-      h3 {
-        text-decoration: underline;
-      }
-
       transform: scale(102%);
 
       background-position: top right;
 
       @media (prefers-reduced-motion) {
         transform: none;
+      }
+    }
+
+    figure {
+      max-width: 100%;
+      aspect-ratio: 16 / 5;
+      margin: 0;
+      overflow: clip;
+
+      :global(.blog-hero-image picture, .blog-hero-image img) {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        max-height: 100%;
+        aspect-ratio: 16 / 5;
+        object-fit: cover;
       }
     }
 
@@ -94,10 +131,6 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       @include utils.flex($direction: column, $gap: var(--space-sm));
       @include utils.containerPadding(sm);
       height: 100%;
-    }
-
-    .blog-hero-image {
-      object-fit: cover;
     }
 
     .article-content {
@@ -127,13 +160,5 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       margin: 0;
       padding: 0;
     }
-  }
-</style>
-
-<style lang="scss" is:global>
-  a:has(.post-card) h3 {
-    color: unset;
-    margin: 0;
-    padding: 0;
   }
 </style>

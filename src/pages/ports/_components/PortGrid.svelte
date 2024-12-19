@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { PortWithIcons } from "@data/ports";
-  import Link from "@components/Link.svelte";
   import PortCard from "./PortCard.svelte";
 
   interface Props {
@@ -18,8 +17,8 @@
         <p>Sorry, we couldn't find any ports matching your search :(</p>
         <p>
           You can request a port to be themed by raising a
-          <Link href="https://github.com/catppuccin/catppuccin/discussions/new?category=port-requests"
-            >port request in catppuccin/catppuccin</Link
+          <a href="https://github.com/catppuccin/catppuccin/discussions/new?category=port-requests"
+            >port request in catppuccin/catppuccin</a
           >.
         </p>
       </div>

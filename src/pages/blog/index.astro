@@ -8,7 +8,13 @@ export const description =
   "Blog posts related to Catppuccin, ranging from announcements, devlogs, general musings and more!";
 export const title = "Blog • Catppuccin";
 
-const blogPosts = await getCollection("blog");
+let blogPosts = await getCollection("blog", ({ data }) => !data.draft);
+const featuredPost = blogPosts.find((post) => post.data.featured);
+blogPosts = blogPosts.filter((post) => !post.data.featured);
+
+if (!featuredPost) {
+  throw new Error("At least one blog post must be featured");
+}
 ---
 
 <Default {title} {description} enableViewTransition>
@@ -16,16 +22,31 @@ const blogPosts = await getCollection("blog");
     <p>{description}</p>
   </PageIntro>
 
+  <section class="featured-blog">
+    <ArticleCard post={featuredPost} />
+  </section>
+
+  <!-- Hardcode for now, generalise when we have more blog content -->
   <section class="bloglist">
-    {blogPosts.filter((post) => !post.data.draft).map((post) => <ArticleCard {post} />)}
+    {blogPosts.filter((post) => post.data.category === "Announcement").map((post) => <ArticleCard {post} />)}
   </section>
 </Default>
 
 <style lang="scss">
   @use "@styles/utils";
 
-  :global(.bloglist) {
-    @include utils.grid($column: 300px, $gap: var(--space-sm));
+  .bloglist {
+    display: grid;
+    grid-template-rows: auto;
+    gap: var(--space-md);
+
+    @container (min-width: 800px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @container (min-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   :root {

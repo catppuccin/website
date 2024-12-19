@@ -59,6 +59,10 @@ export const footerLinks = [
         title: "Open Collective",
         target: "https://opencollective.com/catppuccin",
       },
+      {
+        title: "GitHub Sponsors",
+        target: "https://github.com/sponsors/catppuccin",
+      },
     ],
   },
   {
