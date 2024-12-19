@@ -11,6 +11,9 @@ importers:
       '@astrojs/check':
         specifier: ^0.9.4
         version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.4.2)(typescript@5.7.2)
+      '@astrojs/markdown-remark':
+        specifier: ^6.0.1
+        version: 6.0.1
       '@astrojs/mdx':
         specifier: ^4.0.1
         version: 4.0.2(astro@5.0.4(@types/node@22.10.1)(rollup@4.28.1)(sass@1.82.0)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.6.1))
@@ -80,6 +83,9 @@ importers:
       reading-time:
         specifier: ^1.5.0
         version: 1.5.0
+      rehype-autolink-headings:
+        specifier: ^7.1.0
+        version: 7.1.0
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1689,6 +1695,9 @@ packages:
   hast-util-has-property@3.0.0:
     resolution: {integrity: sha512-MNilsvEKLFpV604hwfhVStK0usFY/QmM5zX16bo7EjnAEGofr5YyI37kzopBlZJkHD4t887i+q/C8/tr5Q94cA==}
 
+  hast-util-heading-rank@3.0.0:
+    resolution: {integrity: sha512-EJKb8oMUXVHcWZTDepnr+WNbfnXKFNf9duMesmr4S8SXTJBJ9M4Yok08pu9vxdJwdlGRhVumk9mEhkEvKGifwA==}
+
   hast-util-is-element@3.0.0:
     resolution: {integrity: sha512-Val9mnv2IWpLbNPqc/pUem+a7Ipj2aHacCwgNfTiK0vJKl0LF+4Ba4+v1oPHFpf3bLYmreq0/l3Gud9S5OH42g==}
 
@@ -2368,6 +2377,9 @@ packages:
 
   regex@5.0.2:
     resolution: {integrity: sha512-/pczGbKIQgfTMRV0XjABvc5RzLqQmwqxLHdQao2RTXPk+pmTXB2P0IaUHYdYyk412YLwUIkaeMd5T+RzVgTqnQ==}
+
+  rehype-autolink-headings@7.1.0:
+    resolution: {integrity: sha512-rItO/pSdvnvsP4QRB1pmPiNHUskikqtPojZKJPPPAVx9Hj8i8TwMBhofrrAYRhYOOBZH9tgmG5lPqDLuIWPWmw==}
 
   rehype-expressive-code@0.38.3:
     resolution: {integrity: sha512-RYSSDkMBikoTbycZPkcWp6ELneANT4eTpND1DSRJ6nI2eVFUwTBDCvE2vO6jOOTaavwnPiydi4i/87NRyjpdOA==}
@@ -4595,6 +4607,10 @@ snapshots:
     dependencies:
       '@types/hast': 3.0.4
 
+  hast-util-heading-rank@3.0.0:
+    dependencies:
+      '@types/hast': 3.0.4
+
   hast-util-is-element@3.0.0:
     dependencies:
       '@types/hast': 3.0.4
@@ -5632,6 +5648,15 @@ snapshots:
   regex@5.0.2:
     dependencies:
       regex-utilities: 2.3.0
+
+  rehype-autolink-headings@7.1.0:
+    dependencies:
+      '@types/hast': 3.0.4
+      '@ungap/structured-clone': 1.2.1
+      hast-util-heading-rank: 3.0.0
+      hast-util-is-element: 3.0.0
+      unified: 11.0.5
+      unist-util-visit: 5.0.0
 
   rehype-expressive-code@0.38.3:
     dependencies:

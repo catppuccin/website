@@ -169,3 +169,36 @@ code {
 
   overflow-x: scroll;
 }
+
+@media (min-width: 110ch) {
+  .rehype-heading {
+    margin-left: -1ch;
+  }
+
+  .rehype-heading-link::before {
+    content: "#";
+    color: var(--subtext0);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    position: relative;
+    right: 0.6ch;
+  }
+
+  .rehype-heading:hover .rehype-heading-link::before {
+    visibility: visible;
+    opacity: 0.8;
+  }
+}
+
+.rehype-heading {
+  padding-block: var(--space-md) var(--space-xs);
+}
+
+.rehype-heading-link {
+  color: var(--text) !important;
+  &:hover,
+  &:focus {
+    text-decoration: none !important;
+  }
+}
