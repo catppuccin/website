@@ -50,7 +50,7 @@ const authorSep = (index: number) => {
   <figure class="blog-hero-image" transition:name=`${post.data.title}${post.data.featured}`>
     <Picture
       src={post.data.hero.image}
-      alt={post.data.title}
+      alt={post.data.hero.alt}
       formats={["avif", "webp"]}
       widths={[800, 1600, post.data.hero.image.width]}
       sizes={`(max-width: 720px) 800px, (max-width: 1080px) 1600px, ${post.data.hero.image.width}px`}
