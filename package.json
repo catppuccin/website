@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "astro": "astro",
-    "build": "pnpm run maintainers && astro check && astro build",
+    "build": "astro check && astro build",
     "check": "astro check",
     "dev": "astro dev",
     "fmt": "prettier --plugin=prettier-plugin-astro . --write",
@@ -26,7 +26,6 @@
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/svelte": "^7.0.1",
     "@catppuccin/palette": "^1.7.1",
-    "@iconify-json/lucide": "^1.2.18",
     "@iconify-json/ph": "^1.2.1",
     "@iconify-json/simple-icons": "^1.2.14",
     "@iconify/svelte": "^4.1.0",
