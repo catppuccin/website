@@ -3,12 +3,10 @@ import type { IconifyIcon, IconifyJSONIconsData } from "@iconify/types";
 import customIconsJson from "./icons.json";
 import simpleIconsJson from "@iconify-json/simple-icons/icons.json";
 import phIconsJson from "@iconify-json/ph/icons.json";
-import lucideIconsJson from "@iconify-json/lucide/icons.json";
 
 const customIcons = customIconsJson as IconifyJSONIconsData;
 const simpleIcons = simpleIconsJson as IconifyJSONIconsData;
 const phIcons = phIconsJson as IconifyJSONIconsData;
-const lucideIcons = lucideIconsJson as IconifyJSONIconsData;
 
 const DEFAULT_VIEWBOX = 16;
 
@@ -58,7 +56,7 @@ export const portIcon = (name: string | undefined): IconifyIcon => {
 
 export const icon = (identifier: string): IconifyIcon => {
   const [prefix, name] = identifier.split(":");
-  const lib = [customIcons, simpleIcons, phIcons, lucideIcons].find((lib) => lib.prefix === prefix);
+  const lib = [customIcons, simpleIcons, phIcons].find((lib) => lib.prefix === prefix);
   if (lib) {
     const icon = lib.icons[name];
     if (icon) {
