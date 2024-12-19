@@ -29,7 +29,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       transition:animate={fade({ duration: "0.4s" })}>
       <Picture
         src={post.data.hero.image}
-        alt={post.data.title}
+        alt={post.data.hero.alt}
         formats={["avif", "webp"]}
         widths={[800, 1600, post.data.hero.image.width]}
         sizes={`(max-width: 720px) 800px, (max-width: 1080px) 1600px, ${post.data.hero.image.width}px`}
