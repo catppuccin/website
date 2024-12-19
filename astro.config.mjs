@@ -3,11 +3,10 @@ import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import mdx from "@astrojs/mdx";
 import icon from "astro-icon";
-
+import { rehypeHeadingIds } from "@astrojs/markdown-remark";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import yaml from "@rollup/plugin-yaml";
-
 import astroExpressiveCode from "astro-expressive-code";
-
 import getReadingTime from "reading-time";
 import { toString } from "mdast-util-to-string";
 
@@ -24,6 +23,23 @@ export default defineConfig({
   site: "https://catppuccin.com",
   vite: {
     plugins: [yaml()],
+  },
+  markdown: {
+    rehypePlugins: [
+      rehypeHeadingIds,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: "wrap",
+          headingProperties: {
+            className: ["rehype-heading"],
+          },
+          properties: {
+            className: ["rehype-heading-link"],
+          },
+        },
+      ],
+    ],
   },
   integrations: [
     astroExpressiveCode({
