@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "astro": "astro",
-    "build": "astro check && astro build",
+    "build": "pnpm run maintainers && astro check && astro build",
     "check": "astro check",
     "dev": "astro dev",
     "fmt": "prettier --plugin=prettier-plugin-astro . --write",
