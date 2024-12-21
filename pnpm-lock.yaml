@@ -29,9 +29,6 @@ importers:
       '@catppuccin/palette':
         specifier: ^1.7.1
         version: 1.7.1
-      '@iconify-json/lucide':
-        specifier: ^1.2.18
-        version: 1.2.18
       '@iconify-json/ph':
         specifier: ^1.2.1
         version: 1.2.2
@@ -663,9 +660,6 @@ packages:
 
   '@expressive-code/plugin-text-markers@0.38.3':
     resolution: {integrity: sha512-dPK3+BVGTbTmGQGU3Fkj3jZ3OltWUAlxetMHI6limUGCWBCucZiwoZeFM/WmqQa71GyKRzhBT+iEov6kkz2xVA==}
-
-  '@iconify-json/lucide@1.2.18':
-    resolution: {integrity: sha512-SFBoHBSULntem84iWxGM9NzlP6QY/dwjxC5t4c1lC7+xq31Fous8JkppoJih0/ICJ3CsbppRZeb11y3iLcwwug==}
 
   '@iconify-json/ph@1.2.2':
     resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
@@ -3694,10 +3688,6 @@ snapshots:
     dependencies:
       '@expressive-code/core': 0.38.3
 
-  '@iconify-json/lucide@1.2.18':
-    dependencies:
-      '@iconify/types': 2.0.0
-
   '@iconify-json/ph@1.2.2':
     dependencies:
       '@iconify/types': 2.0.0
@@ -4100,7 +4090,7 @@ snapshots:
 
   '@shikijs/vscode-textmate@9.3.1': {}
 
-  '@sveltejs/vite-plugin-svelte-inspector@4.0.1(@sveltejs/vite-plugin-svelte@5.0.1(svelte@5.14.5)(vite@6.0.3(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(tsx@4.19.2)(yaml@2.6.1)))(svelte@5.14.5)(vite@6.0.3(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(tsx@4.19.2)(yaml@2.6.1))':
+  '@sveltejs/vite-plugin-svelte-inspector@4.0.1(@sveltejs/vite-plugin-svelte@5.0.1(svelte@5.14.5)(vite@6.0.4(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(tsx@4.19.2)(yaml@2.6.1)))(svelte@5.14.5)(vite@6.0.3(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(tsx@4.19.2)(yaml@2.6.1))':
     dependencies:
       '@sveltejs/vite-plugin-svelte': 5.0.1(svelte@5.14.5)(vite@6.0.3(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(tsx@4.19.2)(yaml@2.6.1))
       debug: 4.4.0
@@ -4111,7 +4101,7 @@ snapshots:
 
   '@sveltejs/vite-plugin-svelte@5.0.1(svelte@5.14.5)(vite@6.0.3(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(tsx@4.19.2)(yaml@2.6.1))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 4.0.1(@sveltejs/vite-plugin-svelte@5.0.1(svelte@5.14.5)(vite@6.0.3(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(tsx@4.19.2)(yaml@2.6.1)))(svelte@5.14.5)(vite@6.0.3(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(tsx@4.19.2)(yaml@2.6.1))
+      '@sveltejs/vite-plugin-svelte-inspector': 4.0.1(@sveltejs/vite-plugin-svelte@5.0.1(svelte@5.14.5)(vite@6.0.4(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(tsx@4.19.2)(yaml@2.6.1)))(svelte@5.14.5)(vite@6.0.3(@types/node@22.10.2)(jiti@2.4.2)(sass@1.83.0)(tsx@4.19.2)(yaml@2.6.1))
       debug: 4.4.0
       deepmerge: 4.3.1
       kleur: 4.1.5

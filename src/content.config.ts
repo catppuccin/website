@@ -11,6 +11,7 @@ const blog = defineCollection({
     z.object({
       hero: z.object({
         image: image(),
+        alt: z.string(),
         author: z.string(),
         source: z.string(),
       }),
@@ -25,9 +26,7 @@ const blog = defineCollection({
       authors: z.array(
         z.object({
           name: z.string(),
-          title: z.string(),
           github: z.string(),
-          email: z.string().email(),
         }),
       ),
     }),
