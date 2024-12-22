@@ -1,7 +1,7 @@
 ---
 import Landing from "@layouts/Landing.astro";
+import Button from "@components/Button.svelte";
 import LaptopIllustration from "./_components/LaptopIllustration.astro";
-import { Icon } from "astro-icon/components";
 ---
 
 <Landing
@@ -12,28 +12,16 @@ import { Icon } from "astro-icon/components";
     <p>A community-driven color scheme meant for coding, designing, and much more!</p>
     <div class="btn-group">
       <a href="/ports">
-        <button class="btn btn-has-icon btn-peach">
-          <Icon name="ph:cube-fill" width={24} height={24} />
-          Discover Ports
-        </button>
+        <Button style="peach" phIconName="cube-fill"> Discover Ports </Button>
       </a>
       <a href="/palette">
-        <button class="btn btn-has-icon btn-mauve">
-          <Icon name="ph:palette-fill" width={24} height={24} />
-          Explore Colors
-        </button>
+        <Button style="mauve" phIconName="palette-fill"> Explore Palettes </Button>
       </a>
       <a href="/community">
-        <button class="btn btn-has-icon btn-green">
-          <Icon name="ph:users-three-fill" width={24} height={24} />
-          View Community
-        </button>
+        <Button style="green" phIconName="users-three-fill"> View Community </Button>
       </a>
       <a href="/blog">
-        <button class="btn btn-has-icon btn-blue">
-          <Icon name="ph:article-fill" width={24} height={24} />
-          Read Blog
-        </button>
+        <Button style="blue" phIconName="article-fill"> Read Blog </Button>
       </a>
     </div>
   </div>
