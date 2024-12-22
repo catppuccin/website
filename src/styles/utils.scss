@@ -1,13 +1,13 @@
 @use "sass:math";
 
-$base-size: 1em;
+$base-size: 3;
 
 @function border-radius($size: sm) {
   @if $size == sm {
-    @return 6px;
+    @return $base-size * 2px;
   }
-  @if $size == md {
-    @return 12px;
+  @if $size == lg {
+    @return $base-size * 4px;
   }
 }
 

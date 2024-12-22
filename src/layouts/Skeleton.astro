@@ -18,3 +18,57 @@ import "@styles/global.scss";
     <slot />
   </body>
 </html>
+
+<style lang="scss" is:global>
+  @use "@styles/utils" as *;
+
+  :root {
+    --website-max-width: 1600px;
+
+    --border-radius-normal: #{border-radius(sm)};
+    --border-radius-large: #{border-radius(lg)};
+
+    --base-unit: 1em;
+
+    --space-xxs: calc(0.25 * var(--base-unit));
+    --space-xs: calc(0.5 * var(--base-unit));
+    --space-sm: calc(0.75 * var(--base-unit));
+    --space-md: calc(1.25 * var(--base-unit));
+    --space-lg: calc(2 * var(--base-unit));
+    --space-xl: calc(3.25 * var(--base-unit));
+    --space-xxl: calc(5.25 * var(--base-unit));
+
+    --padding-body: clamp(20px, 5vw, 500px);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    interpolate-size: allow-keywords;
+  }
+
+  @media (prefers-reduced-motion) {
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: var(--base);
+  }
+</style>
