@@ -9,9 +9,10 @@ import { fade } from "astro:transitions";
 
 interface Props {
   post: CollectionEntry<"blog">;
+  heroImageLoading?: "eager" | "lazy";
 }
 
-const { post } = Astro.props;
+const { post, heroImageLoading = "eager" } = Astro.props;
 const { remarkPluginFrontmatter } = await render(post);
 
 const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("en-US", {
@@ -33,6 +34,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
         formats={["avif", "webp"]}
         widths={[800, 1600, post.data.hero.image.width]}
         sizes={`(max-width: 720px) 800px, (max-width: 1080px) 1600px, ${post.data.hero.image.width}px`}
+        loading={heroImageLoading}
       />
     </figure>
     <div class="post-content">

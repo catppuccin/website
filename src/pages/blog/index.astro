@@ -28,7 +28,11 @@ if (!featuredPost) {
 
   <!-- Hardcode for now, generalise when we have more blog content -->
   <section class="bloglist">
-    {blogPosts.filter((post) => post.data.category === "Announcement").map((post) => <ArticleCard {post} />)}
+    {
+      blogPosts
+        .filter((post) => post.data.category === "Announcement")
+        .map((post) => <ArticleCard {post} heroImageLoading="lazy" />)
+    }
   </section>
 </Default>
 

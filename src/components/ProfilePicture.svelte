@@ -5,9 +5,10 @@
     username: string;
     size: number;
     wxh: number;
+    loading?: "eager" | "lazy";
   }
 
-  let { username, size, wxh }: Props = $props();
+  let { username, size, wxh, loading = "eager" }: Props = $props();
 
   const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username);
 </script>
@@ -20,14 +21,9 @@
     src="/maintainers/{size}x{size}/placeholder.webp"
     width={wxh}
     height={wxh}
-    loading="lazy" />
+    {loading} />
 {:else}
-  <img
-    alt="{username}'s Avatar"
-    src="/maintainers/{size}x{size}/{username}.webp"
-    width={wxh}
-    height={wxh}
-    loading="lazy" />
+  <img alt="{username}'s Avatar" src="/maintainers/{size}x{size}/{username}.webp" width={wxh} height={wxh} {loading} />
 {/if}
 
 <style lang="scss">

@@ -54,6 +54,7 @@ const authorSep = (index: number) => {
       formats={["avif", "webp"]}
       widths={[800, 1600, post.data.hero.image.width]}
       sizes={`(max-width: 720px) 800px, (max-width: 1080px) 1600px, ${post.data.hero.image.width}px`}
+      loading="eager"
     />
   </figure>
   <article class="blog-container" role="main" style=`--accent-color: var(--${post.data.accentColor});`>
