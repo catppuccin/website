@@ -2,8 +2,10 @@ import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 import type { AccentName } from "@catppuccin/palette";
 
-const CATEGORIES = ["Announcement", "DevLog"] as const;
-export const blogCategoriesEnum = z.enum(CATEGORIES);
+export type BlogAuthor = {
+  name: string;
+  github: string;
+};
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/data/blog" }),
@@ -17,18 +19,13 @@ const blog = defineCollection({
       }),
       title: z.string(),
       summary: z.string(),
-      category: z.enum(CATEGORIES),
+      category: z.enum(["Announcement", "DevLog"]),
       accentColor: z.custom<AccentName>(),
       datePosted: z.coerce.date(),
       dateUpdated: z.coerce.date().optional(),
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),
-      authors: z.array(
-        z.object({
-          name: z.string(),
-          github: z.string(),
-        }),
-      ),
+      authors: z.array(z.custom<BlogAuthor>()),
     }),
 });
 
