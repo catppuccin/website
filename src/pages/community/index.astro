@@ -2,107 +2,68 @@
 import Default from "@layouts/Default.astro";
 
 import { currentMaintainers } from "@data/ports";
+import { leadership, type LeadershipTeam } from "@data/governance";
 
 import PageIntro from "@components/PageIntro.astro";
 
 import TeamName from "./_components/TeamName.astro";
-import Users, { type Person } from "./_components/Users.astro";
+import UserCard from "./_components/UserCard.astro";
 ---
 
 <Default
   title="Community • Catppuccin"
-  description="View the Catppuccin community! Learn about our teams, their roles, and how every contributor, including you, is at the heart of our project.">
+  description="View the Catppuccin community! Learn about our teams, their roles, and how every contributor, including you, is at the heart of the project.">
   <PageIntro title="Community">
     <p>
-      Catppuccin is not led by one person, 4 main teams are responsible for various different aspects of the project.
+      Catppuccin is not governed or controlled by one person, 4 main teams are responsible for different parts of the
+      project.
     </p>
     <p>
       <strong>And of course you!</strong> Whether you maintain your own port; have contributed via a pull request; or raised
       an issue. The community is at the heart and soul of Catppuccin.
     </p>
   </PageIntro>
-
   <section>
     <h2>Teams</h2>
-
-    <h3><TeamName team="core" color="teal">Core</TeamName></h3>
-    <p>
-      Owners of the GitHub organisation. <strong>Responsible for org-wide matters.</strong>
-    </p>
-    <div class="user-grid">
-      <Users
-        users={[
-          { url: "https://github.com/pocco81", name: "Pocco" },
-          { url: "https://github.com/unseen-ninja", name: "Lemon" },
-          { url: "https://github.com/sgoudham", name: "Hammy" },
-          { url: "https://github.com/backwardspy", name: "pigeon" },
-        ]}
-      />
-    </div>
-
-    <h3><TeamName team="staff" color="mauve">Staff</TeamName></h3>
-    <p>
-      Maintainers of all GitHub repositories.
-      <strong>Responsible for assisting core maintainers in their activities.</strong>
-    </p>
-    <div class="user-grid">
-      <Users
-        users={[
-          { url: "https://github.com/ghostx31", name: "Spooky" },
-          { url: "https://github.com/taka0o", name: "Taka" },
-          { url: "https://github.com/isabelincorp", name: "Isabel" },
-          { url: "https://github.com/nullishamy", name: "Amy" },
-        ]}
-      />
-    </div>
-
-    <h3><TeamName team="userstyles" color="green">userstyles Staff</TeamName></h3>
-    <p>
-      Overseers of all userstyles in
-      <a href="https://github.com/catppuccin/userstyles">catppuccin/userstyles</a>.
-      <strong>Responsible for all matters regarding userstyles.</strong>
-    </p>
-    <div class="user-grid">
-      <Users
-        users={[
-          { url: "https://github.com/isabelroses", name: "Bell" },
-          { url: "https://github.com/uncenter", name: "uncenter" },
-        ]}
-      />
-    </div>
-
-    <h3><TeamName team="moderator" color="peach">Moderator</TeamName></h3>
-    <p>
-      Moderators of the Discord server.
-      <strong>Responsible for moderating the community.</strong>
-    </p>
-    <div class="user-grid">
-      <Users
-        users={[
-          { url: "https://github.com/nyxkrage", name: "Nyx" },
-          { url: "https://github.com/jolheiser", name: "Etzelia" },
-          { url: "https://github.com/isabelroses", name: "Bell" },
-        ]}
-      />
-    </div>
+    {
+      leadership.map((team) => {
+        return (
+          <>
+            <h3>
+              <TeamName team={team.identifier} color={team.color}>
+                {team.name}
+              </TeamName>
+            </h3>
+            <p>
+              <strong>
+                {team.identifier === "userstyles-staff" ? (
+                  <>
+                    Overseers of all <a href="https://github.com/catppuccin/userstyles">catppuccin/userstyles</a>.
+                  </>
+                ) : (
+                  team.description
+                )}
+              </strong>
+            </p>
+            <p>{team.responsibilities}</p>
+            <div class="user-grid">
+              {team["current-members"].map((user) => (
+                <UserCard url={user.url} name={user.name} />
+              ))}
+            </div>
+          </>
+        );
+      })
+    }
   </section>
-
   <section>
     <h2>Maintainers</h2>
     <p>
-      Maintainers of ports and userstyles, {currentMaintainers.length} in total.
-      <strong>Responsible for the upkeep of their respective repositories.</strong>
+      <strong>Maintainers of ports and userstyles, {currentMaintainers.length} in total.</strong>
     </p>
+    <p>Responsible for the upkeep of their respective repositories.</p>
     <div class="user-grid">
-      <Users
-        users={currentMaintainers.map(
-          (maintainer) =>
-            ({
-              url: maintainer.url,
-              name: maintainer.name ?? maintainer.url.split("/").pop(),
-            }) as Person,
-        )}
-      />
+      {currentMaintainers.map((maintainer) => <UserCard url={maintainer.url} name={maintainer.name} />)}
     </div>
   </section>
 </Default>

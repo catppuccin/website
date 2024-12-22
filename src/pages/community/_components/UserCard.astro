@@ -1,5 +1,4 @@
 ---
-import type { ColorName } from "@catppuccin/palette";
 import maintainersWithoutAvatars from "@data/maintainersWithoutAvatars.json";
 
 import ProfilePicture from "@components/ProfilePicture.svelte";
@@ -8,21 +7,20 @@ const isProd = import.meta.env.PROD;
 
 interface Props {
   url: string;
-  name: string;
-  color?: ColorName;
+  name?: string;
 }
 
-const { name, color } = Astro.props;
+const { name } = Astro.props;
 const href = isProd ? Astro.props.url : "https://github.com/sgoudham";
 const username = href.split("/").pop() as string;
 const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username);
 ---
 
-<div class="card-user" style={`--user-color: var(--${color})`}>
+<div class="card-user">
   <a {href}>
     <ProfilePicture {username} size={256} wxh={128} />
     <br />
-    <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name}</span></a
+    <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name ?? username}</span></a
   >
 </div>
 
@@ -30,8 +28,6 @@ const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username)
   @use "@styles/utils";
 
   .card-user {
-    --__user-color: var(--user-color, var(--mantle));
-
     @include utils.containerPadding(md);
     border-radius: var(--border-radius-large);
     background-color: var(--mantle);
@@ -39,7 +35,6 @@ const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username)
 
     img {
       border-radius: 50%;
-      border: var(--space-xxs) solid var(--__user-color);
     }
 
     .placeholder {
