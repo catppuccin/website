@@ -20,7 +20,7 @@ const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username)
 
 <div class="card-user" style={`--user-color: var(--${color})`}>
   <a {href}>
-    <ProfilePicture {username} size={256} wxh={128} />
+    <ProfilePicture {username} size={256} wxh={128} loading="lazy" />
     <br />
     <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name}</span></a
   >
