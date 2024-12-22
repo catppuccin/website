@@ -5,7 +5,8 @@ import { Icon } from "astro-icon/components";
 import Default from "@layouts/Default.astro";
 import PageIntro from "@components/PageIntro.astro";
 import ProfilePicture from "@components/ProfilePicture.svelte";
-import { formattedAuthors, formattedDatePosted } from "./[id]";
+import { formattedDatePosted } from "./_logic/[id]";
+import { formattedAuthors } from "./_logic/[id]";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
