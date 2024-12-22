@@ -1,0 +1,132 @@
+@use "sass:math";
+
+$base-size: 1em;
+
+@function border-radius($size: sm) {
+  @if $size == sm {
+    @return 6px;
+  }
+  @if $size == md {
+    @return 12px;
+  }
+}
+
+@function space($size: md) {
+  @if $size == xs {
+    @return math.div($base-size, 10) * 1rem;
+  }
+  @if $size == sm {
+    @return math.div($base-size, 10) * 2rem;
+  }
+  @if $size == md {
+    @return math.div($base-size, 10) * 4rem;
+  }
+  @if $size == lg {
+    @return math.div($base-size, 10) * 8rem;
+  }
+  @if $size == xl {
+    @return math.div($base-size, 10) * 16rem;
+  }
+  @if $size == 2x {
+    @return math.div($base-size, 10) * 22rem;
+  }
+  @if $size == 3x {
+    @return math.div($base-size, 10) * 48rem;
+  }
+  @if $size == 4x {
+    @return math.div($base-size, 10) * 64rem;
+  }
+}
+
+@function font-size($size: m) {
+  @if $size == xs {
+    @return 79%;
+  }
+  @if $size == sm {
+    @return 88%;
+  }
+  @if $size == md {
+    @return 100%;
+  }
+  @if $size == lg {
+    @return 112%;
+  }
+  @if $size == xl {
+    @return 126%;
+  }
+  @if $size == 2x {
+    @return 142%;
+  }
+  @if $size == 3x {
+    @return 160%;
+  }
+  @if $size == 4x {
+    @return 202%;
+  }
+  @if $size == 5x {
+    @return 248%;
+  }
+}
+
+@mixin containerPadding($size: md) {
+  @if $size == xxs {
+    padding: var(--space-xxs);
+  }
+  @if $size == xxs-y {
+    padding: var(--space-xxs) var(--space-xs);
+  }
+  @if $size == xs {
+    padding: var(--space-xs);
+  }
+  @if $size == xs-y {
+    padding: var(--space-xs) var(--space-md);
+  }
+  @if $size == sm {
+    padding: var(--space-sm);
+  }
+  @if $size == md {
+    padding: var(--space-md);
+  }
+  @if $size == lg {
+    padding: var(--space-lg);
+  }
+  @if $size == xl {
+    padding: var(--space-xl) var(--space-xxl);
+  }
+}
+
+// TODO: remove
+@mixin flex($direction: row, $gap: var(--space-md)) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: wrap;
+  gap: $gap;
+}
+
+@mixin flexbox($direction: row, $gap: space(md)) {
+  display: flex;
+  gap: $gap;
+  flex-direction: $direction;
+  @content;
+}
+
+@mixin grid($column: 250px, $gap: var(--space-md)) {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(auto-fit, minmax($column, 1fr));
+  gap: $gap;
+}
+
+@mixin auto-grid($column: 250px) {
+  grid-template-rows: auto;
+  grid-template-columns: repeat(auto-fit, minmax($column, 1fr));
+}
+
+@mixin grid2($gap: space(md), $column: null) {
+  display: grid;
+  gap: $gap;
+  @if $column {
+    @include auto-grid($column);
+  }
+  @content;
+}
