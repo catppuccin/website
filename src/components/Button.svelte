@@ -16,13 +16,13 @@
   let { children, style, small, phIconName, disabled }: Props = $props();
 
 
-  let phIcon = $state({
+  let phIcon = {
     body: "",
     width: 0,
     height: 0
-  });
+  }
 
-  let phIconSize = $state(24);
+  let phIconSize = 24;
 
   if (phIconName != null) phIcon = phosphorIcon(phIconName);
   if (small) phIconSize = 16;
