@@ -110,8 +110,8 @@ a {
 
   color: var(--blue);
 
-  &:hover,
-  &:focus {
+  &:not(:has(button)):hover,
+  &:not(:has(button)):focus {
     text-decoration: underline;
   }
 }
