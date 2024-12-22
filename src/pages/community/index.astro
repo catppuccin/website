@@ -59,9 +59,9 @@ import UserCard from "./_components/UserCard.astro";
   <section>
     <h2>Maintainers</h2>
     <p>
-      Maintainers of ports and userstyles, {currentMaintainers.length} in total.
-      <strong>Responsible for the upkeep of their respective repositories.</strong>
+      <strong>Maintainers of ports and userstyles, {currentMaintainers.length} in total.</strong>
     </p>
+    <p>Responsible for the upkeep of their respective repositories.</p>
     <div class="user-grid">
       {currentMaintainers.map((maintainer) => <UserCard url={maintainer.url} name={maintainer.name} />)}
     </div>
