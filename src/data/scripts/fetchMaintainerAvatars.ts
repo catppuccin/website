@@ -1,5 +1,4 @@
 import { promises as fs } from "fs";
-import { rimraf } from "rimraf";
 import { currentMaintainers, type Collaborator } from "../ports";
 import { promisify } from "node:util";
 import { exec as execCallback } from "node:child_process";
@@ -41,7 +40,3 @@ try {
   console.error("Processing failed: ", e);
   process.exit(1);
 }
-
-await rimraf(`${PUBLIC_MAINTAINERS_DIR}/*.png`, {
-  glob: true,
-});
