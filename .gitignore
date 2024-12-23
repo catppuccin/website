@@ -22,7 +22,7 @@ pnpm-debug.log*
 .DS_Store
 
 # GitHub avatars
-src/data/maintainersWithoutAvatars.json
+src/data/maintainers
 public/maintainers/64x64/*
 public/maintainers/256x256/*
 !public/maintainers/64x64/placeholder.webp
