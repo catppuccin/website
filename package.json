@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "astro": "astro",
-    "build": "pnpm run maintainers && astro check && astro build",
+    "build": "pnpm run maintainers && pnpm run test:run && astro check && astro build",
     "check": "astro check",
     "dev": "astro dev",
     "fmt": "prettier --plugin=prettier-plugin-astro . --write",
@@ -13,7 +13,10 @@
     "maintainers": "pnpm tsx src/data/scripts/fetchMaintainerAvatars.ts",
     "prepare": "husky",
     "preview": "astro preview",
-    "start": "astro dev"
+    "start": "astro dev",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:cov": "vitest run --coverage"
   },
   "lint-staged": {
     "src/**/*": "pnpm run fmt"
@@ -33,6 +36,7 @@
     "@iconify/types": "^2.0.0",
     "@rollup/plugin-yaml": "^4.1.2",
     "@types/node": "^22.10.1",
+    "@vitest/coverage-v8": "^2.1.8",
     "astro": "^5.0.3",
     "astro-expressive-code": "^0.38.3",
     "astro-icon": "1.1.2",
@@ -49,6 +53,7 @@
     "svelte": "^5.9.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
     "yaml": "^2.6.1"
   },
   "packageManager": "pnpm@9.15.1",
