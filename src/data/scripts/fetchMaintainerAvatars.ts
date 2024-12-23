@@ -43,6 +43,7 @@ try {
 
   console.info(`[INFO]: ${currentMaintainers.length} total maintainers`);
   const maintainers = await maintainersToFetch();
+  console.info(`[INFO]: ${currentMaintainers.length - maintainers.length} maintainers already fetched`);
   console.info(`[INFO]: fetching ${maintainers.length} maintainers`);
 
   await Promise.all(maintainers.map((maintainer) => fetchAndProcessImage(maintainer)));
