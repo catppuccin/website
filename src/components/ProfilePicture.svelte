@@ -1,5 +1,5 @@
 <script lang="ts">
-  import maintainersWithoutAvatars from "@data/maintainersWithoutAvatars.json";
+  import maintainersWithoutAvatars from "@data/maintainers/maintainersWithoutAvatars.json";
 
   interface Props {
     username: string;
