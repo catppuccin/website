@@ -51,7 +51,7 @@ importers:
         specifier: ^22.10.1
         version: 22.10.2
       '@vitest/coverage-v8':
-        specifier: 2.1.8
+        specifier: ^2.1.8
         version: 2.1.8(vitest@2.1.8(@types/node@22.10.2)(sass@1.83.0))
       astro:
         specifier: ^5.0.3
