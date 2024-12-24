@@ -50,11 +50,12 @@ import { footerLinks } from "@data/links";
   </div>
 
   <style lang="scss">
-    @use "@styles/utils";
+    @use "@styles/utils" as *;
 
     footer {
-      @include utils.flex($gap: var(--space-md));
+      @include flex($gap: var(--space-md));
       justify-content: space-between;
+      padding-block: space(lg);
 
       font-size: 1.6rem;
       color: var(--subtext0);

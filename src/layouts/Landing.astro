@@ -39,7 +39,7 @@ const { title, description, ogImage, accent } = Astro.props;
   </div>
 
   <section class="footer-container">
-    <div class="content-wrapper no-padding">
+    <div class="content-wrapper">
       <Footer />
     </div>
     <AccentBar />
@@ -47,7 +47,21 @@ const { title, description, ogImage, accent } = Astro.props;
 </Skeleton>
 
 <style lang="scss" is:global>
-  @use "@styles/utils";
+  @use "@styles/utils" as *;
+
+  .content-wrapper {
+    container-type: inline-size;
+    container-name: content-wrapper;
+    width: 100%;
+    max-width: calc(2 * var(--padding-body) + var(--website-max-width));
+    margin-inline: auto;
+    padding: space(md) var(--padding-body);
+  }
+
+  .footer-container {
+    margin-block-start: var(--space-xl);
+    background-color: var(--mantle);
+  }
 
   #hero {
     background-color: color-mix(in srgb, var(--base), var(--mauve) 10%);
@@ -68,7 +82,7 @@ const { title, description, ogImage, accent } = Astro.props;
   }
 
   .hero-logo {
-    @include utils.flex($gap: var(--space-sm));
+    @include flex($gap: var(--space-sm));
     align-items: center;
 
     svg + svg {
@@ -89,7 +103,7 @@ const { title, description, ogImage, accent } = Astro.props;
   }
 
   .hero-grid {
-    @include utils.flex($direction: column, $gap: var(--space-lg));
+    @include flex($direction: column, $gap: var(--space-lg));
     justify-content: space-between;
     flex-wrap: nowrap;
 
@@ -113,7 +127,7 @@ const { title, description, ogImage, accent } = Astro.props;
   }
 
   .hero-content {
-    @include utils.flex($direction: column, $gap: var(--space-md));
+    @include flex($direction: column, $gap: var(--space-md));
     justify-content: center;
     align-items: flex-start;
 

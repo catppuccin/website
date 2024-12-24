@@ -29,7 +29,7 @@
   };
 </script>
 
-<button class="btn btn-small btn-transparent {stateClass}" onclick={copyToClipboard}>
+<button class="btn {stateClass}" onclick={copyToClipboard}>
   <span class="copy-icon">
     <svg width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
       {#if stateClass == "success"}
@@ -49,10 +49,25 @@
 </button>
 
 <style lang="scss">
-  button {
-    font-size: 80%;
+
+  @use "../../../styles/utils";
+
+
+  .btn {
+    @include utils.containerPadding(xxs);
+
+    border-radius: var(--border-radius-normal);
+    border: none;
+    background-color: transparent;
+
     font-family: monospace;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text);
     white-space: pre;
+
+    transition: all 150ms ease-in-out;
+    cursor: pointer;
 
     svg path {
       fill: currentColor;
