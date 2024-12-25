@@ -1,4 +1,4 @@
-@use "./utils";
+@use "./utils" as *;
 
 @font-face {
   font-family: "Inter";
@@ -61,7 +61,7 @@ h3,
 h4,
 h5 {
   margin: 0;
-  padding-block: var(--space-xs) var(--space-xs);
+  padding-block: space(xl) space(md);
 
   color: var(--text);
 }
@@ -99,7 +99,7 @@ summary {
 p,
 ul,
 ol {
-  margin-block: 0 var(--space-xs);
+  margin-block: 0 space(sm);
 }
 li {
   margin: 0;
@@ -158,7 +158,7 @@ blockquote cite {
 }
 
 code {
-  padding-inline: var(--space-xxs);
+  padding-inline: space(xs);
   max-width: 100%;
 
   border-radius: var(--border-radius-normal);
@@ -192,7 +192,7 @@ code {
 }
 
 .rehype-heading {
-  padding-block: var(--space-md) var(--space-xs);
+  padding-block: space(md) space(xs);
 }
 
 .rehype-heading-link {

@@ -63,16 +63,16 @@
 
 <style lang="scss">
 
-@use "../styles/utils";
+@use "../styles/utils" as *;
 
   :global(.btn-group) {
     display: flex;
-    gap: var(--space-xs);
+    gap: space(sm);
     flex-wrap: wrap;
   }
 
   .btn {
-    @include utils.containerPadding(xs-y);
+    padding: space(sm) space(lg);
 
     border-radius: 9999px;
     border: none;
@@ -86,7 +86,7 @@
     cursor: pointer;
 
     &-small {
-      @include utils.containerPadding(xxs);
+      padding: space(xs);
       border-radius: var(--border-radius-normal);
     }
 
@@ -102,7 +102,7 @@
     &-has-icon {
       display: flex;
       align-items: center;
-      gap: var(--space-xs);
+      gap: space(sm);
     }
 
     &-peach,

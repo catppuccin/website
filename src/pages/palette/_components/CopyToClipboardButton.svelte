@@ -54,7 +54,7 @@
 
 
   .btn {
-    @include utils.containerPadding(xxs);
+    padding: space(xs);
 
     border-radius: var(--border-radius-normal);
     border: none;

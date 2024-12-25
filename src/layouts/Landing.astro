@@ -59,7 +59,7 @@ const { title, description, ogImage, accent } = Astro.props;
   }
 
   .footer-container {
-    margin-block-start: var(--space-xl);
+    margin-block-start: space(xl);
     background-color: var(--mantle);
   }
 
@@ -82,7 +82,7 @@ const { title, description, ogImage, accent } = Astro.props;
   }
 
   .hero-logo {
-    @include flex($gap: var(--space-sm));
+    @include flexbox($gap: space(md));
     align-items: center;
 
     svg + svg {
@@ -103,7 +103,7 @@ const { title, description, ogImage, accent } = Astro.props;
   }
 
   .hero-grid {
-    @include flex($direction: column, $gap: var(--space-lg));
+    @include flexbox($direction: column, $gap: space(lg));
     justify-content: space-between;
     flex-wrap: nowrap;
 
@@ -120,14 +120,14 @@ const { title, description, ogImage, accent } = Astro.props;
   .hero-content-wrapper {
     display: grid;
     grid-template-rows: max-content auto;
-    gap: var(--space-xl);
+    gap: space(xl);
     container-type: inline-size;
 
     padding-block: var(--padding-body);
   }
 
   .hero-content {
-    @include flex($direction: column, $gap: var(--space-md));
+    @include flexbox($direction: column, $gap: space(lg));
     justify-content: center;
     align-items: flex-start;
 
@@ -157,7 +157,7 @@ const { title, description, ogImage, accent } = Astro.props;
     max-height: 40vh;
 
     svg {
-      padding: var(--space-md);
+      padding: space(md);
     }
 
     @media (min-width: 800px) {
@@ -165,11 +165,11 @@ const { title, description, ogImage, accent } = Astro.props;
 
       svg {
         @container (min-width: 400px) {
-          padding-inline-start: var(--space-lg);
+          padding-inline-start: space(lg);
         }
 
         @container (min-width: 500px) {
-          padding-inline-start: var(--space-xl);
+          padding-inline-start: space(xl);
         }
       }
     }

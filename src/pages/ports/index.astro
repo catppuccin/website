@@ -33,13 +33,13 @@ import PortCard from "./_components/PortCard.svelte";
 </Default>
 
 <style lang="scss" is:global>
-  @use "@styles/utils";
+  @use "@styles/utils" as *;
 
   :root {
     --accent-color: var(--peach);
   }
 
   .port-grid {
-    @include utils.grid($column: 300px, $gap: var(--space-sm));
+    @include grid($column: 300px, $gap: space(md));
   }
 </style>

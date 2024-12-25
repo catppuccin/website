@@ -71,16 +71,20 @@ import UserCard from "./_components/UserCard.astro";
 </Default>
 
 <style lang="scss">
-  @use "@styles/utils";
+  @use "@styles/utils" as *;
 
   :root {
     --accent-color: var(--green);
   }
+
+  section + section {
+    margin-block: space(md) space(xl);
+  }
+
   h3 {
-    margin-top: var(--space-sm);
   }
 
   .user-grid {
-    @include utils.grid($column: 250px, $gap: var(--space-md));
+    @include grid($column: 250px, $gap: space(md));
   }
 </style>

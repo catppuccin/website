@@ -25,9 +25,11 @@ import { navigationLinks } from "@data/links";
 </header>
 
 <style lang="scss">
+  @use "@styles/utils" as *;
+
   header {
-    --spacing-nav: var(--space-sm);
-    margin-block: var(--spacing-nav);
+    --spacing-nav: #{space(md)};
+    margin-block: space(lg);
   }
 
   #main-navigation {

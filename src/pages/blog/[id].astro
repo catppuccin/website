@@ -96,7 +96,7 @@ const authorSep = (index: number) => {
 </Default>
 
 <style lang="scss">
-  @use "@styles/utils";
+  @use "@styles/utils" as *;
 
   :root {
     --accent-color: var(--yellow);
@@ -129,7 +129,7 @@ const authorSep = (index: number) => {
     :global(h6) {
       margin-block: 1.5em 0.5em;
       // remove extra padding below headlines before the first paragraph
-      padding-block: var(--space-xs) 0;
+      padding-block: space(xs) 0;
     }
 
     // all paragraphs inside blog articles
@@ -150,13 +150,13 @@ const authorSep = (index: number) => {
   }
 
   .article-summary {
-    margin-block: calc(var(--space-md) * -1 + 6px) var(--space-md);
+    margin-block: calc(#{space(md)} * -1 + 6px) space(md);
     color: var(--overlay1);
   }
 
   .article-meta {
     display: flex;
-    gap: 0 calc(var(--space-sm) + 2px);
+    gap: 0 calc(#{space(sm)} + 2px);
     align-items: center;
 
     color: var(--overlay1);
@@ -178,8 +178,8 @@ const authorSep = (index: number) => {
   }
 
   .article-credit {
-    margin-block-start: var(--space-lg);
-    padding-block-start: var(--space-md);
+    margin-block-start: space(lg);
+    padding-block-start: space(md);
     border-top: 1px solid var(--surface0);
     color: var(--subtext0);
     font-size: 80%;

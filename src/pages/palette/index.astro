@@ -104,7 +104,7 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
   </main>
 
   <style lang="scss">
-    @use "@styles/utils";
+    @use "@styles/utils" as *;
 
     :root {
       --accent-color: var(--mauve);
@@ -115,8 +115,8 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
     }
 
     .flavor {
-      @include utils.containerPadding();
-      margin-block-start: var(--space-md);
+      padding: space(md);
+      margin-block-start: space(lg);
 
       border-radius: var(--border-radius-normal);
       background: var(--mantle);
@@ -134,7 +134,7 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
     }
 
     .color-list {
-      margin-block-start: var(--space-md);
+      margin-block-start: space(lg);
       margin-inline: auto;
     }
 
