@@ -22,43 +22,18 @@ const { title, description, ogImage, accent, enableViewTransition } = Astro.prop
 <Skeleton>
   <Head slot="seo" {title} {description} {ogImage} {accent} {enableViewTransition} />
 
-  <section class="header-container">
-    <div class="content-wrapper">
-      <Navigation />
-    </div>
-  </section>
+  <Navigation />
 
-  <div class="content-wrapper main-container">
-    <slot />
-  </div>
+  <slot />
 
-  <section class="footer-container">
-    <div class="content-wrapper">
-      <Footer />
-    </div>
+  <section class="full-width footer-container">
+    <Footer />
     <AccentBar />
   </section>
 </Skeleton>
 
 <style lang="scss">
   @use "@styles/utils" as *;
-
-  .main-container {
-    min-height: 100vh;
-  }
-
-  .content-wrapper {
-    container-type: inline-size;
-    container-name: content-wrapper;
-    width: 100%;
-    max-width: calc(2 * var(--padding-body) + var(--website-max-width));
-    margin-inline: auto;
-    padding: space(md) var(--padding-body);
-  }
-
-  .header-container {
-    padding-block: var(--space-md);
-  }
 
   .footer-container {
     margin-block-start: var(--space-xl);

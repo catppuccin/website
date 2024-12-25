@@ -14,7 +14,7 @@ import "@styles/global.scss";
     <link rel="alternate" type="application/rss+xml" title="Catppuccin Blog" href={new URL("rss.xml", Astro.site)} />
     <slot name="seo" />
   </head>
-  <body>
+  <body class="content-grid">
     <slot />
   </body>
 </html>
@@ -23,7 +23,7 @@ import "@styles/global.scss";
   @use "@styles/utils" as *;
 
   :root {
-    --website-max-width: 1600px;
+    --padding-body: clamp(20px, 5vw, 500px);
 
     --border-radius-normal: #{border-radius(sm)};
     --border-radius-large: #{border-radius(lg)};
@@ -37,8 +37,6 @@ import "@styles/global.scss";
     --space-lg: calc(2 * var(--base-unit));
     --space-xl: calc(3.25 * var(--base-unit));
     --space-xxl: calc(5.25 * var(--base-unit));
-
-    --padding-body: clamp(20px, 5vw, 500px);
   }
 
   *,
@@ -70,5 +68,43 @@ import "@styles/global.scss";
     padding: 0;
     min-height: 100vh;
     background-color: var(--base);
+  }
+
+  .content-grid,
+  .full-width {
+    --_padding-inline: 2rem;
+    --_content-max-width: 1200px;
+    --_breakout-max-width: 1400px;
+    --_breakout-size: calc((var(--_breakout-max-width) - var(--_content-max-width)) / 2);
+
+    @include grid($gap: 0) {
+      grid-template-columns:
+        [full-width-start]
+        minmax(var(--_padding-inline), 1fr)
+        [breakout-start]
+        minmax(0, var(--_breakout-size))
+        [content-start]
+        min(100% - (var(--_padding-inline) * 2), var(--_content-max-width))
+        [content-end]
+        minmax(0, var(--_breakout-size))
+        [breakout-end]
+        minmax(var(--_padding-inline), 1fr)
+        [full-width-end];
+      grid-template-rows: auto 1fr auto;
+    }
+
+    > :not(.breakout, .full-width),
+    > .full-width:not(.breakout, .full-width) {
+      grid-column: content;
+    }
+
+    > .breakout {
+      grid-column: breakout;
+    }
+
+    > .content-grid,
+    > .full-width {
+      grid-column: full-width;
+    }
   }
 </style>

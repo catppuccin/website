@@ -22,7 +22,7 @@ const { title, description, ogImage, accent } = Astro.props;
 
 <Skeleton>
   <Head slot="seo" title={title} description={description} ogImage={ogImage} accent={accent} />
-  <div id="hero">
+  <div id="hero full-width">
     <div class="content-wrapper no-padding hero-grid">
       <div class="hero-content-wrapper">
         <div class="hero-logo">
@@ -38,7 +38,7 @@ const { title, description, ogImage, accent } = Astro.props;
     </div>
   </div>
 
-  <section class="footer-container">
+  <section class="full-width footer-container">
     <div class="content-wrapper">
       <Footer />
     </div>

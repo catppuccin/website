@@ -110,7 +110,7 @@ $base-size: 3;
   @content;
 }
 
-@mixin grid($column: 250px, $gap: var(--space-md)) {
+@mixin grid-old($column: 250px, $gap: var(--space-md)) {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: repeat(auto-fit, minmax($column, 1fr));
@@ -122,7 +122,7 @@ $base-size: 3;
   grid-template-columns: repeat(auto-fit, minmax($column, 1fr));
 }
 
-@mixin grid2($gap: space(md), $column: null) {
+@mixin grid($gap: space(md), $column: null) {
   display: grid;
   gap: $gap;
   @if $column {

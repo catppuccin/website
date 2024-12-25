@@ -47,7 +47,7 @@ const authorSep = (index: number) => {
   description={post.data.summary}
   ogImage={post.data.hero.image.src}
   enableViewTransition>
-  <figure class="blog-hero-image" transition:name=`${post.data.title}${post.data.featured}`>
+  <figure class="breakout blog-hero-image" transition:name=`${post.data.title}${post.data.featured}`>
     <Picture
       src={post.data.hero.image}
       alt={post.data.hero.alt}
@@ -56,10 +56,10 @@ const authorSep = (index: number) => {
       sizes={`(max-width: 720px) 800px, (max-width: 1080px) 1600px, ${post.data.hero.image.width}px`}
     />
   </figure>
-  <article class="blog-container" role="main" style=`--accent-color: var(--${post.data.accentColor});`>
+  <article class="content-grid" role="main" style=`--accent-color: var(--${post.data.accentColor});`>
     <PageIntro title={post.data.title}>
       <p class="article-summary">{post.data.summary}</p>
-      <footer class="article-meta">
+      <footer class="article-meta breakout">
         <div class="article-author-profiles">
           {post.data.authors.map((author) => <ProfilePicture username={author.github} size={64} wxh={56} />)}
         </div>
@@ -79,9 +79,7 @@ const authorSep = (index: number) => {
         </div>
       </footer>
     </PageIntro>
-    <div class="article-content">
-      <Content />
-    </div>
+    <Content />
     <footer class="article-credit">
       <p>
         Hero image by <a href={post.data.hero.source}>{post.data.hero.author}</a> modified with <a
@@ -120,9 +118,35 @@ const authorSep = (index: number) => {
     }
   }
 
-  .blog-container {
-    max-width: 69ch;
-    margin-inline: auto;
+  article {
+    --_content-max-width: 69ch;
+    --_breakout-max-width: 79ch;
+
+    :global(h2),
+    :global(h3),
+    :global(h4),
+    :global(h5),
+    :global(h6) {
+      margin-block: 1.5em 0.5em;
+      // remove extra padding below headlines before the first paragraph
+      padding-block: var(--space-xs) 0;
+    }
+
+    // all paragraphs inside blog articles
+    :global(p) {
+      margin-block-end: 1em;
+    }
+
+    // add extra margin to code blocks
+    :global(.expressive-code) {
+      margin-block: 2em;
+      grid-column: breakout;
+    }
+
+    :global(blockquote) {
+      // !important is required due to selector specificity
+      grid-column: breakout !important;
+    }
   }
 
   .article-summary {
@@ -150,28 +174,6 @@ const authorSep = (index: number) => {
 
     p {
       margin: 0;
-    }
-  }
-
-  .article-content {
-    :global(h2),
-    :global(h3),
-    :global(h4),
-    :global(h5),
-    :global(h6) {
-      margin-block: 1.5em 0.5em;
-      // remove extra padding below headlines before the first paragraph
-      padding-block: var(--space-xs) 0;
-    }
-
-    // all paragraphs inside blog articles
-    :global(p) {
-      margin-block: 1em;
-    }
-
-    // add extra margin to code blocks
-    :global(.expressive-code) {
-      margin-block: 2em;
     }
   }
 

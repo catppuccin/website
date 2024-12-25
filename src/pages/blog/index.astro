@@ -18,27 +18,34 @@ if (!featuredPost) {
 ---
 
 <Default {title} {description} enableViewTransition>
-  <PageIntro title="Blog">
-    <p>{description}</p>
-  </PageIntro>
+  <main>
+    <PageIntro title="Blog">
+      <p>{description}</p>
+    </PageIntro>
 
-  <section class="featured-blog">
-    <ArticleCard post={featuredPost} />
-  </section>
+    <section class="featured-blog">
+      <ArticleCard post={featuredPost} />
+    </section>
 
-  <!-- Hardcode for now, generalise when we have more blog content -->
-  <section class="bloglist">
-    {blogPosts.filter((post) => post.data.category === "Announcement").map((post) => <ArticleCard {post} />)}
-  </section>
+    <!-- Hardcode for now, generalise when we have more blog content -->
+    <section class="bloglist">
+      {blogPosts.filter((post) => post.data.category === "Announcement").map((post) => <ArticleCard {post} />)}
+    </section>
+  </main>
 </Default>
 
 <style lang="scss">
-  @use "@styles/utils";
+  @use "@styles/utils" as *;
+
+  main {
+    container-type: inline-size;
+  }
 
   .bloglist {
-    display: grid;
-    grid-template-rows: auto;
-    gap: var(--space-md);
+    @include grid($gap: space(md)) {
+      grid-template-rows: auto;
+    }
+    margin-block-start: space(xl);
 
     @container (min-width: 800px) {
       grid-template-columns: repeat(2, 1fr);

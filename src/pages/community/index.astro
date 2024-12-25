@@ -13,59 +13,61 @@ import UserCard from "./_components/UserCard.astro";
 <Default
   title="Community • Catppuccin"
   description="View the Catppuccin community! Learn about our teams, their roles, and how every contributor, including you, is at the heart of the project.">
-  <PageIntro title="Community">
-    <p>
-      Catppuccin is not governed or controlled by one person, 4 main teams are responsible for different parts of the
-      project.
-    </p>
-    <p>
-      <strong>And of course you!</strong> Whether you maintain your own port; have contributed via a pull request; or raised
-      an issue. The community is at the heart and soul of Catppuccin.
-    </p>
-  </PageIntro>
-  <section>
-    <h2>Teams</h2>
-    {
-      leadership.map((team) => {
-        return (
-          <>
-            <h3>
-              <TeamName team={team.identifier} color={team.color}>
-                {team.name}
-              </TeamName>
-            </h3>
-            <p>
-              <strong>
-                {team.identifier === "userstyles-staff" ? (
-                  <>
-                    Overseers of all <a href="https://github.com/catppuccin/userstyles">catppuccin/userstyles</a>.
-                  </>
-                ) : (
-                  team.description
-                )}
-              </strong>
-            </p>
-            <p>{team.responsibilities}</p>
-            <div class="user-grid">
-              {team["current-members"].map((user) => (
-                <UserCard url={user.url} name={user.name} />
-              ))}
-            </div>
-          </>
-        );
-      })
-    }
-  </section>
-  <section>
-    <h2>Maintainers</h2>
-    <p>
-      <strong>Maintainers of ports and userstyles, {currentMaintainers.length} in total.</strong>
-    </p>
-    <p>Responsible for the upkeep of their respective repositories.</p>
-    <div class="user-grid">
-      {currentMaintainers.map((maintainer) => <UserCard url={maintainer.url} name={maintainer.name} />)}
-    </div>
-  </section>
+  <main>
+    <PageIntro title="Community">
+      <p>
+        Catppuccin is not governed or controlled by one person, 4 main teams are responsible for different parts of the
+        project.
+      </p>
+      <p>
+        <strong>And of course you!</strong> Whether you maintain your own port; have contributed via a pull request; or raised
+        an issue. The community is at the heart and soul of Catppuccin.
+      </p>
+    </PageIntro>
+    <section>
+      <h2>Teams</h2>
+      {
+        leadership.map((team) => {
+          return (
+            <>
+              <h3>
+                <TeamName team={team.identifier} color={team.color}>
+                  {team.name}
+                </TeamName>
+              </h3>
+              <p>
+                <strong>
+                  {team.identifier === "userstyles-staff" ? (
+                    <>
+                      Overseers of all <a href="https://github.com/catppuccin/userstyles">catppuccin/userstyles</a>.
+                    </>
+                  ) : (
+                    team.description
+                  )}
+                </strong>
+              </p>
+              <p>{team.responsibilities}</p>
+              <div class="user-grid">
+                {team["current-members"].map((user) => (
+                  <UserCard url={user.url} name={user.name} />
+                ))}
+              </div>
+            </>
+          );
+        })
+      }
+    </section>
+    <section>
+      <h2>Maintainers</h2>
+      <p>
+        <strong>Maintainers of ports and userstyles, {currentMaintainers.length} in total.</strong>
+      </p>
+      <p>Responsible for the upkeep of their respective repositories.</p>
+      <div class="user-grid">
+        {currentMaintainers.map((maintainer) => <UserCard url={maintainer.url} name={maintainer.name} />)}
+      </div>
+    </section>
+  </main>
 </Default>
 
 <style lang="scss">
