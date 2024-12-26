@@ -2,49 +2,50 @@
 
 <style lang="scss">
   @use "sass:map";
+  @use "sass:math";
 
   @keyframes gradient {
     0%,
     100% {
       background-color: var(--rosewater);
     }
-    #{ 100 / 14 * 1% } {
+    #{ math.div(100, 14) * 1% } {
       background-color: var(--flamingo);
     }
-    #{ 100 / 14 * 2% } {
+    #{ math.div(100, 14) * 2% } {
       background-color: var(--pink);
     }
-    #{ 100 / 14 * 3% } {
+    #{ math.div(100, 14) * 3% } {
       background-color: var(--mauve);
     }
-    #{ 100 / 14 * 4% } {
+    #{ math.div(100, 14) * 4% } {
       background-color: var(--red);
     }
-    #{ 100 / 14 * 5% } {
+    #{ math.div(100, 14) * 5% } {
       background-color: var(--maroon);
     }
-    #{ 100 / 14 * 6% } {
+    #{ math.div(100, 14) * 6% } {
       background-color: var(--peach);
     }
-    #{ 100 / 14 * 7% } {
+    #{ math.div(100, 14) * 7% } {
       background-color: var(--yellow);
     }
-    #{ 100 / 14 * 8% } {
+    #{ math.div(100, 14) * 8% } {
       background-color: var(--green);
     }
-    #{ 100 / 14 * 9% } {
+    #{ math.div(100, 14) * 9% } {
       background-color: var(--teal);
     }
-    #{ 100 / 14 * 10% } {
+    #{ math.div(100, 14) * 10% } {
       background-color: var(--sky);
     }
-    #{ 100 / 14 * 11% } {
+    #{ math.div(100, 14) * 11% } {
       background-color: var(--sapphire);
     }
-    #{ 100 / 14 * 12% } {
+    #{ math.div(100, 14) * 12% } {
       background-color: var(--blue);
     }
-    #{ 100 / 14 * 13% } {
+    #{ math.div(100, 14) * 13% } {
       background-color: var(--lavender);
     }
   }
