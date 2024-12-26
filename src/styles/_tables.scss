@@ -1,4 +1,4 @@
-@use "./utils";
+@use "./utils" as *;
 
 table {
   width: 100%;
@@ -13,12 +13,12 @@ table {
 
   th,
   td {
-    @include utils.containerPadding(xs-y);
+    padding: space(xs) space(md);
   }
 
   th + th,
   td + td {
-    padding-inline-start: var(--space-lg);
+    padding-inline-start: space(lg);
   }
 
   th {

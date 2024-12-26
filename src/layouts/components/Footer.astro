@@ -50,18 +50,19 @@ import { footerLinks } from "@data/links";
   </div>
 
   <style lang="scss">
-    @use "@styles/utils";
+    @use "@styles/utils" as *;
 
     footer {
-      @include utils.flex($gap: var(--space-md));
+      @include flexbox($gap: space(md));
       justify-content: space-between;
+      padding-block: space(lg);
 
       font-size: 1.6rem;
       color: var(--subtext0);
     }
 
     nav ul {
-      margin: 0 0 var(--space-xs) 0;
+      margin: 0 0 space(xs) 0;
       padding: 0;
       list-style: none;
     }
@@ -98,7 +99,7 @@ import { footerLinks } from "@data/links";
     }
 
     #vercel {
-      margin-block-start: var(--space-xs);
+      margin-block-start: space(xs);
     }
   </style>
 </footer>

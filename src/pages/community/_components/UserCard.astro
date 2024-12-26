@@ -25,10 +25,10 @@ const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username)
 </div>
 
 <style lang="scss">
-  @use "@styles/utils";
+  @use "@styles/utils" as *;
 
   .card-user {
-    @include utils.containerPadding(md);
+    padding: space(md);
     border-radius: var(--border-radius-large);
     background-color: var(--mantle);
     text-align: center;

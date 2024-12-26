@@ -10,7 +10,7 @@ const phIcons = phIconsJson as IconifyJSONIconsData;
 
 const DEFAULT_VIEWBOX = 16;
 
-const phosphorIcon = (name: string) => {
+export const phosphorIcon = (name: string) => {
   const icon = phIcons.icons[name];
   return {
     body: icon.body,
