@@ -39,7 +39,7 @@
     "@vitest/coverage-v8": "^2.1.8",
     "astro": "^5.0.3",
     "astro-expressive-code": "^0.38.3",
-    "astro-icon": "1.1.2",
+    "astro-icon": "1.1.5",
     "fuse.js": "^7.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
