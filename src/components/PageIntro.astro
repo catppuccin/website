@@ -13,8 +13,10 @@ const { title } = Astro.props;
 </section>
 
 <style lang="scss">
+  @use "@styles/utils" as *;
+
   .page-intro {
-    margin-block-end: var(--space-lg);
+    margin-block-end: space(xl);
   }
 
   .page-intro h1 {

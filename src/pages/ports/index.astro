@@ -12,32 +12,34 @@ import PortCard from "./_components/PortCard.svelte";
 <Default
   title="Ports • Catppuccin"
   description="Explore Catppuccin's extensive range of ports. From applications and tools to websites, we have a port for just about anything!">
-  <PageIntro title="Ports">
-    <p>
-      Catppuccin provides <strong>{ports.length}</strong> ports, covering a wide range of applications, tools, websites,
-      and just about anything you can imagine!
-    </p>
-  </PageIntro>
+  <main>
+    <PageIntro title="Ports">
+      <p>
+        Catppuccin provides <strong>{ports.length}</strong> ports, covering a wide range of applications, tools, websites,
+        and just about anything you can imagine!
+      </p>
+    </PageIntro>
 
-  <!-- Display ports without search bar for browsers without JavaScript enabled -->
-  <noscript>
-    <div class="port-grid">
-      {ports.map((port) => <PortCard {port} />)}
-    </div>
-  </noscript>
+    <!-- Display ports without search bar for browsers without JavaScript enabled -->
+    <noscript>
+      <div class="port-grid">
+        {ports.map((port) => <PortCard {port} />)}
+      </div>
+    </noscript>
 
-  <!-- TODO: Figure out a better general solution that doesn't involve defining SVGs as Svelte components or passing in nested Svelte 5 snippets/slots -->
-  <PortExplorer {ports} client:only="svelte" />
+    <!-- TODO: Figure out a better general solution that doesn't involve defining SVGs as Svelte components or passing in nested Svelte 5 snippets/slots -->
+    <PortExplorer {ports} client:only="svelte" />
+  </main>
 </Default>
 
 <style lang="scss" is:global>
-  @use "@styles/utils";
+  @use "@styles/utils" as *;
 
   :root {
     --accent-color: var(--peach);
   }
 
   .port-grid {
-    @include utils.grid($column: 300px, $gap: var(--space-sm));
+    @include grid($column: 300px, $gap: space(md));
   }
 </style>
