@@ -22,19 +22,19 @@
 </div>
 
 <style lang="scss">
-  @use "../../../styles/utils";
+  @use "../../../styles/utils" as *;
 
   .search-bar {
     background-color: var(--mantle);
     display: flex;
-    gap: var(--space-xs);
+    gap: space(sm);
     align-items: center;
-    margin-block-end: var(--space-sm);
+    margin-block-end: space(lg);
     border-radius: var(--border-radius-normal);
-    padding-inline: var(--space-xs);
+    padding-inline: space(sm);
 
     input {
-      padding: var(--space-sm) 0;
+      padding: space(md) 0;
       background-color: inherit;
       border-color: inherit;
       color: inherit;

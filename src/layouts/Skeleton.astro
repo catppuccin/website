@@ -15,7 +15,87 @@ import "@styles/global.scss";
     <link rel="preload" href="/inter.woff2" as="font" type="font/woff2" crossorigin />
     <slot name="seo" />
   </head>
-  <body>
+  <body class="content-grid">
     <slot />
   </body>
 </html>
+
+<style lang="scss" is:global>
+  @use "@styles/utils" as *;
+
+  :root {
+    --padding-body: clamp(20px, 5vw, 500px);
+
+    --border-radius-normal: #{border-radius(sm)};
+    --border-radius-large: #{border-radius(lg)};
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    interpolate-size: allow-keywords;
+  }
+
+  @media (prefers-reduced-motion) {
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: var(--base);
+  }
+
+  .content-grid,
+  .full-width {
+    --_padding-inline: 2rem;
+    --_content-max-width: 1200px;
+    --_breakout-max-width: 1400px;
+    --_breakout-size: calc((var(--_breakout-max-width) - var(--_content-max-width)) / 2);
+
+    @include grid($gap: 0) {
+      grid-template-columns:
+        [full-width-start]
+        minmax(var(--_padding-inline), 1fr)
+        [breakout-start]
+        minmax(0, var(--_breakout-size))
+        [content-start]
+        min(100% - (var(--_padding-inline) * 2), var(--_content-max-width))
+        [content-end]
+        minmax(0, var(--_breakout-size))
+        [breakout-end]
+        minmax(var(--_padding-inline), 1fr)
+        [full-width-end];
+      grid-template-rows: auto 1fr auto;
+    }
+
+    > :not(.breakout, .full-width),
+    > .full-width:not(.breakout, .full-width) {
+      grid-column: content;
+    }
+
+    > .breakout {
+      grid-column: breakout;
+    }
+
+    > .content-grid,
+    > .full-width {
+      grid-column: full-width;
+    }
+  }
+</style>

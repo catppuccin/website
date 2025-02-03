@@ -63,7 +63,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
 </a>
 
 <style lang="scss">
-  @use "@styles/utils";
+  @use "@styles/utils" as *;
 
   a {
     &:hover,
@@ -128,8 +128,8 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     }
 
     .post-content {
-      @include utils.flex($direction: column, $gap: var(--space-sm));
-      @include utils.containerPadding(sm);
+      @include flexbox($direction: column, $gap: space(sm));
+      padding: space(sm);
       height: 100%;
     }
 
@@ -138,7 +138,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     }
 
     .article-meta {
-      @include utils.flex($direction: row, $gap: var(--space-xs) var(--space-sm));
+      @include flexbox($direction: row, $gap: space(sm) space(md));
       font-size: 80%;
     }
 
@@ -151,12 +151,12 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
     }
 
     .article-meta {
-      margin-block-start: var(--space-sm);
+      margin-block-start: space(md);
       color: var(--overlay1);
     }
 
     .has-icon {
-      @include utils.flex($direction: row, $gap: var(--space-xs));
+      @include flexbox($direction: row, $gap: space(sm));
       margin: 0;
       padding: 0;
     }
