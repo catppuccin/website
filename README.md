@@ -38,6 +38,3 @@ pnpm dev
 <p align="center">
 	<a href="https://github.com/catppuccin/website/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=MIT&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8"/></a>
 </p>
-<p align="center">
-	<a href="https://vercel.com?utm_source=catppuccin&utm_campaign=oss"><img src="src/data/icons/vercel-badge.svg" height=32/></a>
-</p>
