@@ -27,13 +27,13 @@
 </a>
 
 <style lang="scss">
-  @use "../../../styles/utils";
+  @use "../../../styles/utils" as *;
 
   .port-card {
-    @include utils.flex($direction: column, $gap: var(--space-md));
+    @include flexbox($direction: column, $gap: space(md));
     justify-content: space-between;
 
-    @include utils.containerPadding();
+    padding: space(md);
 
     border-radius: var(--border-radius-normal);
     background-color: var(--mantle);
@@ -63,7 +63,7 @@
     }
 
     .port-header {
-      @include utils.flex($gap: var(--space-sm));
+      @include flexbox($gap: space(sm));
       flex-wrap: nowrap;
       justify-content: space-between;
     }

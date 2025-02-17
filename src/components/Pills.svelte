@@ -9,10 +9,10 @@
 </ul>
 
 <style lang="scss">
-  @use "../styles/utils";
+  @use "../styles/utils" as *;
 
   .pill-list {
-    @include utils.flex($gap: var(--space-xs));
+    @include flexbox($gap: space(xs));
 
     margin: 0;
     padding: 0;
@@ -22,7 +22,7 @@
   }
 
   .pill {
-    @include utils.containerPadding(xxs-y);
+    padding: space(xs) space(sm);
 
     border-radius: 9999px;
     background-color: color-mix(in srgb, var(--base), var(--subtext0) 20%);

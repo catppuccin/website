@@ -57,7 +57,7 @@ export default defineConfig({
           delBackground: "color-mix(in oklab, var(--red) 25%, var(--mantle));",
           delBorderColor: "var(--surface0)",
         },
-        codePaddingInline: "var(--space-md)",
+        codePaddingInline: "2ch",
         uiFontSize: "1.5rem",
         codeFontSize: "1.4rem",
         codeBackground: "var(--mantle)",
