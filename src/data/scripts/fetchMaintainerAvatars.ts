@@ -1,8 +1,6 @@
 import { promises as fs } from "fs";
 import { currentMaintainers, type Collaborator } from "../ports";
-import { promisify } from "node:util";
-import { exec as execCallback } from "node:child_process";
-const exec = promisify(execCallback);
+import sharp from "sharp";
 
 const MAINTAINERS_DIR = "src/data/maintainers";
 const PUBLIC_MAINTAINERS_DIR = "public/maintainers";
@@ -28,12 +26,14 @@ async function fetchAndProcessImage(maintainer: Collaborator) {
     return;
   }
 
-  await fs.writeFile(`${MAINTAINERS_DIR}/${username}.png`, Buffer.from(await response.arrayBuffer()));
+  const buffer = await response.arrayBuffer();
+
   await Promise.all(
     SIZES.map((size) =>
-      exec(
-        `convert ${MAINTAINERS_DIR}/${username}.png -resize ${size}x${size} -quality ${IMAGE_QUALITY} ${PUBLIC_MAINTAINERS_DIR}/${size}x${size}/${username}.webp`,
-      ),
+      sharp(buffer)
+        .resize(size, size)
+        .webp({ quality: IMAGE_QUALITY })
+        .toFile(`${PUBLIC_MAINTAINERS_DIR}/${size}x${size}/${username}.webp`),
     ),
   );
 }

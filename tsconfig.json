@@ -10,6 +10,7 @@
       "@layouts/*": ["src/layouts/*"],
       "@data/*": ["src/data/*"],
       "@styles/*": ["src/styles/*"]
-    }
+    },
+    "esModuleInterop": true
   }
 }
