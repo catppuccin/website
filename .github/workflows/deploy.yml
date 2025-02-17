@@ -18,6 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: withastro/action@v3
+        env:
+          CATPPUCCIN_PROD: true
 
   deploy:
     needs: build
