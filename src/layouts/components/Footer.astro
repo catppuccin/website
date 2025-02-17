@@ -1,6 +1,5 @@
 ---
 import SpeakerHighVolume from "@data/icons/speaker-high-volume.svg";
-import VercelBadge from "@data/icons/vercel-badge.svg";
 
 import { footerLinks } from "@data/links";
 ---
@@ -44,9 +43,6 @@ import { footerLinks } from "@data/links";
     <p>
       &copy; {new Date(Date.now()).getFullYear()} • <a href="/licensing">Licensing</a>
     </p>
-    <a href="https://vercel.com/?utm_source=Catppuccin&utm_campaign=oss">
-      <VercelBadge id="vercel" height={40} />
-    </a>
   </div>
 
   <style lang="scss">
@@ -95,10 +91,6 @@ import { footerLinks } from "@data/links";
       &:hover {
         cursor: pointer;
       }
-    }
-
-    #vercel {
-      margin-block-start: var(--space-xs);
     }
   </style>
 </footer>

@@ -19,7 +19,7 @@ const {
   enableViewTransition = false,
 } = Astro.props as Props;
 
-const isVercelProd = import.meta.env.VERCEL_PROD;
+const isProduction = import.meta.env.CATPPUCCIN_PROD;
 ---
 
 <meta name="generator" content={Astro.generator} />
@@ -35,7 +35,7 @@ const isVercelProd = import.meta.env.VERCEL_PROD;
 <meta property="twitter:description" content={description} />
 <meta name="twitter:card" content="summary_large_image" />
 
-{isVercelProd && <script is:inline defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
+{isProduction && <script is:inline defer data-domain="catppuccin.com" src="https://p.catppuccin.com/js/script.js" />}
 
 {enableViewTransition && <ClientRouter fallback="swap" />}
 
