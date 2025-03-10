@@ -56,7 +56,7 @@
     "vitest": "^3.0.0",
     "yaml": "^2.6.1"
   },
-  "packageManager": "pnpm@10.6.1",
+  "packageManager": "pnpm@10.6.2",
   "engines": {
     "node": ">=22"
   }
