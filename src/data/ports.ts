@@ -20,7 +20,7 @@ export interface ArchivedPort {
   name: string;
   reason: string;
   categories: Category[];
-  platform: Platform[] | "agnostic";
+  platform: Platform[] | ["agnostic"];
   color: ColorName;
   icon?: string;
   key: string;
@@ -58,7 +58,7 @@ export interface Collaborator {
 export interface Port {
   name: string;
   categories: Category[];
-  platform?: Platform[] | "agnostic";
+  platform?: Platform[] | ["agnostic"];
   color: ColorName;
   key: string;
   repository: Repository;
@@ -103,14 +103,4 @@ export const ports = [...repositoriesYml.ports]
 export const currentMaintainers: Collaborator[] = new PropertyBasedSet<Collaborator>(
   (m) => m.url,
   [...repositoriesYml.ports.map((p) => p.repository)].flatMap((p) => p["current-maintainers"]),
-).sorted();
-
-// Only needed until collaborators are deduplicated from the ports.porcelain.json
-export const collaborators = new PropertyBasedSet<Collaborator>(
-  (m) => m.url,
-  [
-    ...repositoriesYml.ports.flatMap((p) =>
-      p.repository["current-maintainers"].concat(p.repository["past-maintainers"]),
-    ),
-  ],
 ).sorted();
