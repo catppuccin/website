@@ -52,7 +52,6 @@ export interface Repository {
 export interface Collaborator {
   username: string;
   url: string;
-  name?: string;
 }
 
 export interface Port {
