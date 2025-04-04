@@ -19,5 +19,6 @@ jobs:
           surge_token: ${{ secrets.SURGE_TOKEN }}
           dist: dist
           build: pnpm run build
+          teardown: 'true'
       - name: Output Preview URL
         run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
