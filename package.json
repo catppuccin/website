@@ -50,6 +50,7 @@
     "rehype-autolink-headings": "^7.1.0",
     "sass": "^1.86.0",
     "sharp": "^0.33.5",
+    "surge": "^0.24.6",
     "svelte": "^5.23.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
