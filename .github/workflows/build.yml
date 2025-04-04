@@ -7,6 +7,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.repository == 'catppuccin/website' }}
+    permissions:
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
-      - uses: withastro/action@v4
+      - name: Build & Deploy To Surge
+        uses: afc163/surge-preview@a17bbee72e236f18b248797bbf21f1f9f06900e6
+        id: preview_step
+        with:
+          surge_token: ${{ secrets.SURGE_TOKEN }}
+          dist: dist
+          build: pnpm run build
+      - name: Output Preview URL
+        run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
