@@ -20,5 +20,6 @@ jobs:
           dist: dist
           build: pnpm run build
           teardown: 'true'
+          failOnError: 'true'
       - name: Output Preview URL
         run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
