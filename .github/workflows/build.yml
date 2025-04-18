@@ -15,13 +15,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: withastro/action@v4
       - name: Build & Deploy To Surge
+        if: ${{ env.surge_token != '' }}
         uses: afc163/surge-preview@a17bbee72e236f18b248797bbf21f1f9f06900e6
         id: preview_step
         with:
           surge_token: ${{ secrets.SURGE_TOKEN }}
           dist: dist
           build: echo "Website Already Built"
-          teardown: 'true'
-          failOnError: 'true'
+          teardown: "true"
+          failOnError: "true"
+        env:
+          surge_token: ${{ secrets.SURGE_TOKEN }}
       - name: Output Preview URL
+        if: ${{ env.surge_token != '' }}
         run: echo "url => ${{ steps.preview_step.outputs.preview_url }}"
+        env:
+          surge_token: ${{ secrets.SURGE_TOKEN }}
