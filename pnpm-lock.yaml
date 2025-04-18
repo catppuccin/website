@@ -26,6 +26,9 @@ importers:
       '@astrojs/svelte':
         specifier: ^7.0.6
         version: 7.0.6(@types/node@22.14.0)(astro@5.5.3(@types/node@22.14.0)(jiti@2.4.2)(rollup@4.38.0)(sass@1.86.3)(tsx@4.19.3)(typescript@5.8.3)(yaml@2.7.1))(jiti@2.4.2)(sass@1.86.3)(svelte@5.25.6)(tsx@4.19.3)(typescript@5.8.3)(yaml@2.7.1)
+      '@catppuccin/catppuccin':
+        specifier: github:catppuccin/catppuccin#53198c332acd511b2ec870ceb7c482a19a698bef
+        version: catppuccin#53198c332acd511b2ec870ceb7c482a19a698bef@https://codeload.github.com/catppuccin/catppuccin/tar.gz/53198c332acd511b2ec870ceb7c482a19a698bef
       '@catppuccin/palette':
         specifier: ^1.7.1
         version: 1.7.1
@@ -1379,6 +1382,10 @@ packages:
 
   caseless@0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
+
+  catppuccin#53198c332acd511b2ec870ceb7c482a19a698bef@https://codeload.github.com/catppuccin/catppuccin/tar.gz/53198c332acd511b2ec870ceb7c482a19a698bef:
+    resolution: {tarball: https://codeload.github.com/catppuccin/catppuccin/tar.gz/53198c332acd511b2ec870ceb7c482a19a698bef}
+    version: 0.0.0
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -4905,6 +4912,8 @@ snapshots:
   camelcase@8.0.0: {}
 
   caseless@0.12.0: {}
+
+  catppuccin#53198c332acd511b2ec870ceb7c482a19a698bef@https://codeload.github.com/catppuccin/catppuccin/tar.gz/53198c332acd511b2ec870ceb7c482a19a698bef: {}
 
   ccount@2.0.1: {}
 
