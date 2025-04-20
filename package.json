@@ -38,7 +38,7 @@
     "@types/node": "^22.10.1",
     "@vitest/coverage-v8": "^3.0.9",
     "astro": "^5.5.3",
-    "astro-expressive-code": "^0.40.0",
+    "astro-expressive-code": "^0.41.0",
     "astro-icon": "1.1.5",
     "fuse.js": "^7.1.0",
     "husky": "^9.1.7",
