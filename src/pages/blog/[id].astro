@@ -37,9 +37,9 @@ const { Content, remarkPluginFrontmatter } = await render(post);
       sizes={`(max-width: 720px) 800px, (max-width: 1080px) 1600px, ${post.data.hero.image.width}px`}
     />
   </figure>
-  <div class="main-wrapper">
+  <div class="main-wrapper" style=`--accent-color: var(--${post.data.accentColor});`>
     <TableOfContents client:load />
-    <article class="blog-container" role="main" style=`--accent-color: var(--${post.data.accentColor});`>
+    <article class="blog-container" role="main">
       <PageIntro title={post.data.title}>
         <p class="article-summary">{post.data.summary}</p>
         <footer class="article-meta">
