@@ -4,22 +4,23 @@
 </script>
 
 <Toc
-  --toc-font-size="clamp(15px, 4vw, 2rem)"
-  --toc-padding="0.25em"
+  --toc-font-size="inherit"
+  --toc-padding="1rem"
   --toc-z-index="10"
   --toc-width="auto"
   --toc-mobile-btn-border-radius="0.25em"
   --toc-mobile-btn-color="var(--text)"
   --toc-mobile-btn-bg="var(--surface0)"
   --toc-mobile-bg="var(--surface0)"
-  --toc-desktop-max-width="300px"
-  --toc-desktop-sticky-top="1em"
-  --toc-li-hover-color="var(--accent-color)"
+  --toc-desktop-sticky-top="0"
+  --toc-li-color="var(--subtext1)"
+  --toc-li-hover-bg="color-mix(in oklab, transparent, currentcolor 8%)"
+  --toc-li-hover-color="var(--text)"
   --toc-li-border-radius="0.5em"
-  --toc-li-padding="0.25em 0.5em"
+  --toc-li-padding="0.35em 0.6em"
   --toc-active-border-radius="0.5em"
-  --toc-active-bg="var(--accent-color)"
-  --toc-active-color="var(--base)"
+  --toc-active-bg="color-mix(in oklab, color-mix(in oklab, var(--base), currentcolor 25%), #000 25%)"
+  --toc-active-color="var(--accent-color)"
   breakpoint="1000"
   blurParams={{ duration: 0 }}>
 </Toc>
@@ -30,11 +31,12 @@
       & > nav {
         border-radius: 1em;
         & > h2 {
-          padding: 0.25em 0.1em;
+          padding-inline: 0.1em;
+          padding-block: 0.5em 0.4em;
         }
         & > ol {
           & > li {
-            font-size: clamp(15px, 4vw, 2rem) !important;
+            font-size: 90% !important;
           }
         }
       }
