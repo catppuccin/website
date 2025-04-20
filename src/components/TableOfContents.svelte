@@ -38,14 +38,7 @@
         }
       }
       &.mobile {
-        & > nav {
-          & > h2 {
-            display: none;
-          }
-          & > ol {
-            margin-block: 0;
-          }
-        }
+        display: none;
       }
     }
   }
