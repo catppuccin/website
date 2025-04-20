@@ -24,27 +24,28 @@
 </Toc>
 
 <style>
-  :global(aside.toc) {
-    & > nav {
-      border-radius: 1em;
-      :global(& > h2) {
-        padding: 0.25em 0.1em;
-      }
-      :global(& > ol) {
-        & > li {
-          font-size: clamp(15px, 4vw, 2rem) !important;
+  :global {
+    aside.toc {
+      & > nav {
+        border-radius: 1em;
+        & > h2 {
+          padding: 0.25em 0.1em;
+        }
+        & > ol {
+          & > li {
+            font-size: clamp(15px, 4vw, 2rem) !important;
+          }
         }
       }
-    }
-  }
-
-  :global(aside.toc.mobile) {
-    & > nav {
-      :global(& > h2) {
-        display: none;
-      }
-      :global(& > ol) {
-        margin-block: 0;
+      &.mobile {
+        & > nav {
+          & > h2 {
+            display: none;
+          }
+          & > ol {
+            margin-block: 0;
+          }
+        }
       }
     }
   }
