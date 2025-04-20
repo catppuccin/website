@@ -692,19 +692,21 @@
 
   svg * {
     transition:
-      transform 400ms cubic-bezier(0.34, 0.2, 0.56, 0.81),
-      opacity 400ms;
+      transform 700ms cubic-bezier(0.2, 0, 0, 1),
+      opacity 700ms;
   }
 
-  #coffee:hover,
-  #laptop:hover {
-    transform: translateY(-32px);
-  }
-
-  @media (prefers-reduced-motion) {
+  @media (hover: hover) {
     #coffee:hover,
     #laptop:hover {
-      transform: none;
+      transform: translateY(-32px);
+    }
+
+    @media (prefers-reduced-motion) {
+      #coffee:hover,
+      #laptop:hover {
+        transform: none;
+      }
     }
   }
 

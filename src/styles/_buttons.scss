@@ -25,8 +25,44 @@
   font-weight: 500;
   color: var(--text);
 
-  transition: all 350ms ease-in-out;
   cursor: pointer;
+
+  transition:
+    opacity 225ms cubic-bezier(0, 0, 0, 1),
+    translate 225ms cubic-bezier(0, 0, 0, 1),
+    scale 150ms cubic-bezier(0, 0, 0, 1),
+    background 225ms cubic-bezier(0, 0, 0, 1);
+
+  will-change: opacity, scale;
+
+  // State layer
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: currentColor;
+    transition: opacity 50ms linear;
+    opacity: 0;
+
+    will-change: opacity;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      // scale: 1.05;
+      &::after {
+        opacity: 0.08;
+      }
+    }
+  }
+
+  &:active {
+    scale: 0.95;
+    &::after {
+      opacity: 0.16;
+    }
+  }
 
   &-small {
     @include utils.containerPadding(xxs);
@@ -38,15 +74,20 @@
     background-color: transparent;
   }
 
-  &-transparent:hover,
-  &-transparent:focus {
-    background-color: color-mix(in srgb, transparent, var(--text) 10%);
-  }
-
   &-has-icon {
     display: flex;
     align-items: center;
     gap: var(--space-xs);
+  }
+
+  @media (pointer: coarse) {
+    & {
+      min-width: var(--btn-target-size, 44px);
+      min-height: var(--btn-target-size, 44px);
+    }
+    &-small {
+      @include utils.containerPadding(xxs-y);
+    }
   }
 
   &-peach {
@@ -113,9 +154,4 @@
     animation: btnFadeOut 350ms linear forwards;
     animation-delay: 500ms;
   }
-}
-
-.btn,
-.btn * {
-  transition: background-position 350ms ease-in-out;
 }

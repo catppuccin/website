@@ -137,6 +137,12 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
 
     .color-list-entry {
       --__current-color: var(--current-color, var(--text));
+      @media (pointer: coarse) {
+        & > td {
+          --btn-target-size: 50px;
+          padding-block: calc(0 * var(--base-unit));
+        }
+      }
     }
 
     .color-name {

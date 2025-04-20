@@ -24,6 +24,11 @@ import PortCard from "./_components/PortCard.svelte";
     <div class="port-grid">
       {ports.map((port) => <PortCard {port} />)}
     </div>
+    <style>
+      .loader {
+        display: none;
+      }
+    </style>
   </noscript>
 
   <!-- TODO: Figure out a better general solution that doesn't involve defining SVGs as Svelte components or passing in nested Svelte 5 snippets/slots -->

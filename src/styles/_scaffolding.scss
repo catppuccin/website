@@ -6,8 +6,10 @@
 
 html {
   font-size: 62.5%;
-
   scroll-behavior: smooth;
+
+  color-scheme: light dark;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 @media (prefers-reduced-motion) {
