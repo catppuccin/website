@@ -38,8 +38,10 @@ const { Content, remarkPluginFrontmatter } = await render(post);
     />
   </figure>
   <div class="main-wrapper" style=`--accent-color: var(--${post.data.accentColor});`>
-    <TableOfContents client:load />
-    <article class="blog-container" role="main">
+    <div class="layout-sidebar-start">
+      <TableOfContents client:load />
+    </div>
+    <article class="layout-main blog-container" role="main">
       <PageIntro title={post.data.title}>
         <p class="article-summary">{post.data.summary}</p>
         <footer class="article-meta">
@@ -100,9 +102,35 @@ const { Content, remarkPluginFrontmatter } = await render(post);
 
   .main-wrapper {
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: repeat(1, 1fr);
-    gap: var(--space-sm);
+    grid-template-columns: minmax(25vw, 0.25fr) 1fr auto;
+    gap: var(--space-md);
+    grid-template-areas: "sidebar-start main sidebar-end";
+  }
+
+  .layout-sidebar-start {
+    grid-area: sidebar-start;
+  }
+
+  .layout-main {
+    grid-area: main;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .layout-sidebar-end {
+    grid-area: sidebar-end;
+  }
+
+  .layout-sidebar-start,
+  .layout-sidebar-end {
+    margin-block: var(--space-xs) var(--space-xs);
+  }
+
+  @media (max-width: 1000px) {
+    .main-wrapper {
+      grid-template-columns: auto;
+      gap: 0;
+    }
   }
 
   .blog-container {
