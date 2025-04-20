@@ -6,6 +6,7 @@
 <Toc
   --toc-font-size="clamp(15px, 4vw, 2rem)"
   --toc-padding="0.25em"
+  --toc-z-index="10"
   --toc-width="auto"
   --toc-mobile-btn-border-radius="0.25em"
   --toc-mobile-btn-color="var(--text)"
