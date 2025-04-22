@@ -43,7 +43,13 @@ export default defineConfig({
   },
   integrations: [
     astroExpressiveCode({
-      themes: ["catppuccin-mocha", "catppuccin-latte"],
+      themes: ["catppuccin-latte", "catppuccin-mocha", "catppuccin-frappe", "catppuccin-macchiato"],
+      themeCssSelector: (theme) => {
+        const themeName = theme.name.split("-")[1];
+        const selector = `[data-theme='${themeName}']`;
+        return selector;
+      },
+      useDarkModeMediaQuery: true,
       // Stop it from auto-correcting colour contrast
       minSyntaxHighlightingColorContrast: 0,
       styleOverrides: {

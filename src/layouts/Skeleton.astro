@@ -3,7 +3,7 @@ import "@styles/global.scss";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,4 +18,8 @@ import "@styles/global.scss";
   <body>
     <slot />
   </body>
+  <script is:inline>
+    const theme = localStorage.getItem("theme") || "system";
+    document.documentElement.setAttribute("data-theme", theme);
+  </script>
 </html>

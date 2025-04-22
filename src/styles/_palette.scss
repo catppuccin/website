@@ -1,7 +1,8 @@
 @use "@catppuccin/palette/scss/catppuccin" as *;
 @use "sass:string";
 
-:root {
+:where([data-theme="system"]) {
+  color-scheme: light dark;
   @each $flavor, $colors in $palette {
     @if string.index($flavor, "latte") {
       @each $color, $value in $colors {
@@ -25,4 +26,58 @@
     --inverted-text: var(--crust);
     --selection-color: var(--mauve);
   }
+}
+
+:where([data-theme="latte"]) {
+  color-scheme: light;
+  @each $flavor, $colors in $palette {
+    @if string.index($flavor, "latte") {
+      @each $color, $value in $colors {
+        --#{$color}: #{$value};
+      }
+    }
+  }
+}
+
+:where([data-theme="macchiato"]) {
+  color-scheme: dark;
+  @each $flavor, $colors in $palette {
+    @if string.index($flavor, "macchiato") {
+      @each $color, $value in $colors {
+        --#{$color}: #{$value};
+      }
+    }
+  }
+}
+
+:where([data-theme="frappe"]) {
+  color-scheme: dark;
+  @each $flavor, $colors in $palette {
+    @if string.index($flavor, "frappe") {
+      @each $color, $value in $colors {
+        --#{$color}: #{$value};
+      }
+    }
+  }
+}
+
+:where([data-theme="mocha"]) {
+  color-scheme: dark;
+  @each $flavor, $colors in $palette {
+    @if string.index($flavor, "mocha") {
+      @each $color, $value in $colors {
+        --#{$color}: #{$value};
+      }
+    }
+  }
+}
+
+:where([data-theme="latte"]) {
+  --inverted-text: var(--base);
+  --selection-color: var(--blue);
+}
+
+:where([data-theme="macchiato"], [data-theme="frappe"], [data-theme="mocha"]) {
+  --inverted-text: var(--crust);
+  --selection-color: var(--mauve);
 }
