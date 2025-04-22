@@ -1,4 +1,3 @@
-import { parse } from "yaml";
 import { PropertyBasedSet } from "./propertyBasedSet";
 import { portIcon } from "./icons";
 import type { IconifyIcon } from "@iconify/types";
