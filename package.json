@@ -29,7 +29,7 @@
     "@astrojs/sitemap": "^3.3.0",
     "@astrojs/svelte": "^7.0.6",
     "@catppuccin/palette": "^1.7.1",
-    "@catppuccin/catppuccin": "github:catppuccin/catppuccin#80d4676029115ea0f00786f9438dc4983b38f036",
+    "@catppuccin/catppuccin": "github:catppuccin/catppuccin#2e3cb5a4bd020aa5af1a8398163d313809510ab5",
     "@iconify-json/ph": "^1.2.1",
     "@iconify-json/simple-icons": "^1.2.29",
     "@iconify/svelte": "^4.1.0",
