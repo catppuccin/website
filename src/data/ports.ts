@@ -12,7 +12,7 @@ export type PortWithIcons = Port & { icon: IconifyIcon };
 
 // Trust upstream (catppuccin/catppuccin) has validated against the JSONSchema
 export const porcelain = (await fetch(
-  "https://raw.githubusercontent.com/catppuccin/catppuccin/portscelain/resources/ports.porcelain.json",
+  "https://raw.githubusercontent.com/catppuccin/catppuccin/main/resources/ports.porcelain.json",
 )
   .then((r) => r.text())
   .then((t) => JSON.parse(t))) as PortsPorcelainSchema;
