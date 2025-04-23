@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
-import { currentMaintainers, type Collaborator } from "../ports";
+import { currentMaintainers } from "../ports";
 import sharp from "sharp";
+import type { Collaborator } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
 
 const MAINTAINERS_DIR = "src/data/maintainers";
 const PUBLIC_MAINTAINERS_DIR = "public/maintainers";
@@ -17,8 +18,6 @@ async function maintainersToFetch() {
 }
 
 async function fetchAndProcessImage(maintainer: Collaborator) {
-  const username = maintainer.url.split("/").pop();
-
   const response = await fetch(`${maintainer.url}.png?size=${REQUEST_SIZE}`);
   if (!response.ok) {
     console.warn(`Failed to fetch ${maintainer.url}: ${response.status} ${response.statusText}`);
@@ -33,7 +32,7 @@ async function fetchAndProcessImage(maintainer: Collaborator) {
       sharp(buffer)
         .resize(size, size)
         .webp({ quality: IMAGE_QUALITY })
-        .toFile(`${PUBLIC_MAINTAINERS_DIR}/${size}x${size}/${username}.webp`),
+        .toFile(`${PUBLIC_MAINTAINERS_DIR}/${size}x${size}/${maintainer.username}.webp`),
     ),
   );
 }
