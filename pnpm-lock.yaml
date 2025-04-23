@@ -26,6 +26,9 @@ importers:
       '@astrojs/svelte':
         specifier: ^7.0.6
         version: 7.0.6(@types/node@22.14.1)(astro@5.5.3(@types/node@22.14.1)(jiti@2.4.2)(rollup@4.38.0)(sass@1.86.3)(tsx@4.19.3)(typescript@5.8.3)(yaml@2.7.1))(jiti@2.4.2)(sass@1.86.3)(svelte@5.25.6)(tsx@4.19.3)(typescript@5.8.3)(yaml@2.7.1)
+      '@catppuccin/catppuccin':
+        specifier: github:catppuccin/catppuccin#2e3cb5a4bd020aa5af1a8398163d313809510ab5
+        version: https://codeload.github.com/catppuccin/catppuccin/tar.gz/2e3cb5a4bd020aa5af1a8398163d313809510ab5
       '@catppuccin/palette':
         specifier: ^1.7.1
         version: 1.7.1
@@ -213,6 +216,11 @@ packages:
   '@bcoe/v8-coverage@1.0.2':
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
+
+  '@catppuccin/catppuccin@https://codeload.github.com/catppuccin/catppuccin/tar.gz/2e3cb5a4bd020aa5af1a8398163d313809510ab5':
+    resolution: {tarball: https://codeload.github.com/catppuccin/catppuccin/tar.gz/2e3cb5a4bd020aa5af1a8398163d313809510ab5}
+    version: 0.0.0
+    engines: {node: '>=22.0.0'}
 
   '@catppuccin/palette@1.7.1':
     resolution: {integrity: sha512-aRc1tbzrevOTV7nFTT9SRdF26w/MIwT4Jwt4fDMc9itRZUDXCuEDBLyz4TQMlqO9ZP8mf5Hu4Jr6D03NLFc6Gw==}
@@ -3775,6 +3783,8 @@ snapshots:
       '@babel/helper-validator-identifier': 7.25.9
 
   '@bcoe/v8-coverage@1.0.2': {}
+
+  '@catppuccin/catppuccin@https://codeload.github.com/catppuccin/catppuccin/tar.gz/2e3cb5a4bd020aa5af1a8398163d313809510ab5': {}
 
   '@catppuccin/palette@1.7.1': {}
 
