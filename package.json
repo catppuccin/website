@@ -53,10 +53,11 @@
     "sharp": "^0.33.5",
     "surge": "^0.24.6",
     "svelte": "^5.23.2",
+    "svelte-toc": "^0.6.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "vitest": "^3.0.9",
-    "yaml": "^2.6.1"
+    "yaml": "^2.7.1"
   },
   "packageManager": "pnpm@10.8.1",
   "engines": {

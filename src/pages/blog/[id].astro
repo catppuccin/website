@@ -5,6 +5,7 @@ import { Icon } from "astro-icon/components";
 import Default from "@layouts/Default.astro";
 import PageIntro from "@components/PageIntro.astro";
 import ProfilePicture from "@components/ProfilePicture.svelte";
+import TableOfContents from "@components/TableOfContents.svelte";
 import { formattedDatePosted } from "./_logic/[id]";
 import { formattedAuthors } from "./_logic/[id]";
 
@@ -36,39 +37,44 @@ const { Content, remarkPluginFrontmatter } = await render(post);
       sizes={`(max-width: 720px) 800px, (max-width: 1080px) 1600px, ${post.data.hero.image.width}px`}
     />
   </figure>
-  <article class="blog-container" role="main" style=`--accent-color: var(--${post.data.accentColor});`>
-    <PageIntro title={post.data.title}>
-      <p class="article-summary">{post.data.summary}</p>
-      <footer class="article-meta">
-        <div class="article-author-profiles">
-          {post.data.authors.map((author) => <ProfilePicture username={author.github} size={64} wxh={56} />)}
-        </div>
-        <div>
-          <p class="article-author-info">
-            Authored by
-            <Fragment set:html={formattedAuthors(post.data.authors)} />
-          </p>
-          <p class="article-pubdate">Published on: {formattedDatePosted(post.data.datePosted)}</p>
-          <p>{remarkPluginFrontmatter.minutesRead}</p>
-        </div>
-      </footer>
-    </PageIntro>
-    <div class="article-content">
-      <Content />
+  <div class="main-wrapper" style=`--accent-color: var(--${post.data.accentColor});`>
+    <div class="layout-sidebar-start">
+      <TableOfContents client:load />
     </div>
-    <footer class="article-credit">
-      <p>
-        Hero image by <a href={post.data.hero.source}>{post.data.hero.author}</a> modified with <a
-          href="https://github.com/ozwaldorf/lutgen-rs">lutgen-rs</a
-        >.
-      </p>
-      <p>
-        Want to keep up-to-date? Subscribe to our <a href="/rss.xml"
-          >RSS Feed <Icon class="rss-icon" name="ph:rss-bold" width={24} height={24} /></a
-        >
-      </p>
-    </footer>
-  </article>
+    <article class="layout-main blog-container" role="main">
+      <PageIntro title={post.data.title}>
+        <p class="article-summary">{post.data.summary}</p>
+        <footer class="article-meta">
+          <div class="article-author-profiles">
+            {post.data.authors.map((author) => <ProfilePicture username={author.github} size={64} wxh={56} />)}
+          </div>
+          <div>
+            <p class="article-author-info">
+              Authored by
+              <Fragment set:html={formattedAuthors(post.data.authors)} />
+            </p>
+            <p class="article-pubdate">Published on: {formattedDatePosted(post.data.datePosted)}</p>
+            <p>{remarkPluginFrontmatter.minutesRead}</p>
+          </div>
+        </footer>
+      </PageIntro>
+      <main class="article-content">
+        <Content />
+      </main>
+      <footer class="article-credit">
+        <p>
+          Hero image by <a href={post.data.hero.source}>{post.data.hero.author}</a> modified with <a
+            href="https://github.com/ozwaldorf/lutgen-rs">lutgen-rs</a
+          >.
+        </p>
+        <p>
+          Want to keep up-to-date? Subscribe to our <a href="/rss.xml"
+            >RSS Feed <Icon class="rss-icon" name="ph:rss-bold" width={24} height={24} /></a
+          >
+        </p>
+      </footer>
+    </article>
+  </div>
 </Default>
 
 <style lang="scss">
@@ -91,6 +97,39 @@ const { Content, remarkPluginFrontmatter } = await render(post);
       aspect-ratio: 16 / 5;
       object-fit: cover;
       border-radius: var(--border-radius-normal);
+    }
+  }
+
+  .main-wrapper {
+    display: grid;
+    grid-template-columns: minmax(25ch, 1fr) 2fr auto;
+    gap: var(--space-md);
+    grid-template-areas: "sidebar-start main sidebar-end";
+  }
+
+  .layout-sidebar-start {
+    grid-area: sidebar-start;
+  }
+
+  .layout-main {
+    grid-area: main;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .layout-sidebar-end {
+    grid-area: sidebar-end;
+  }
+
+  .layout-sidebar-start,
+  .layout-sidebar-end {
+    margin-block: var(--space-xs) var(--space-xs);
+  }
+
+  @media (max-width: 1000px) {
+    .main-wrapper {
+      grid-template-columns: auto;
+      gap: 0;
     }
   }
 
