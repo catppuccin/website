@@ -78,7 +78,4 @@ export default defineConfig({
       remarkPlugins: [remarkReadingTime],
     }),
   ],
-  experimental: {
-    svg: true,
-  },
 });
