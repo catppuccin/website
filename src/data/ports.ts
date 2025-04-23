@@ -6,7 +6,7 @@ import type {
   Collaborators,
   Port,
   PortsPorcelainSchema,
-} from "@catppuccin/catppuccin/resources/types/ports.porcelain";
+} from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
 
 export type PortWithIcons = Port & { icon: IconifyIcon };
 

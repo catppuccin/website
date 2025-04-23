@@ -1,7 +1,7 @@
 import { promises as fs } from "fs";
 import { currentMaintainers } from "../ports";
 import sharp from "sharp";
-import type { Collaborator } from "@catppuccin/catppuccin/resources/types/ports.porcelain";
+import type { Collaborator } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
 
 const MAINTAINERS_DIR = "src/data/maintainers";
 const PUBLIC_MAINTAINERS_DIR = "public/maintainers";
