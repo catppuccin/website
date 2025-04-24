@@ -4,14 +4,14 @@
 
   interface Props {
     portGrid: Array<PortWithIcons> | undefined;
-    searchTerm: string;
+    userInteracted: boolean;
   }
 
-  let { portGrid, searchTerm }: Props = $props();
+  let { portGrid, userInteracted }: Props = $props();
 </script>
 
 <div class="port-grid">
-  {#if searchTerm && portGrid && portGrid.length === 0}
+  {#if userInteracted && portGrid && portGrid.length === 0}
     <div>
       <p>Sorry, we couldn't find any ports matching your search :(</p>
       <p>

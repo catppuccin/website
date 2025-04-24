@@ -1,14 +1,17 @@
 <script lang="ts">
   import Fuse from "fuse.js/min-basic";
-  import type { PortWithIcons } from "@data/ports";
+  import type { CategoryWithPortCount, PlatformKey, Platforms, PortWithIcons } from "@data/ports";
+  import type { CategoryName } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
 
   interface Props {
     ports: Array<PortWithIcons>;
+    platforms: Platforms;
+    categories: CategoryWithPortCount[];
   }
 
-  let { ports }: Props = $props();
+  let { ports, platforms, categories }: Props = $props();
 
   const fuse = new Fuse(ports, {
     keys: [
@@ -23,27 +26,114 @@
   });
   const url = new URL(window.location.href);
 
-  let debounceTimeout: ReturnType<typeof setTimeout> | undefined;
   let searchTerm = $state(url.searchParams.get("q") ?? "");
-  let portGrid: Array<PortWithIcons> | undefined = $state(undefined);
+  let chosenPlatforms: PlatformKey[] | [] = $state([]);
+  let chosenCategories: CategoryName[] | [] = $state([]);
 
-  handleInput();
-
-  function handleInput() {
-    // Keep the URL in sync with the search bar
+  const portGrid = $derived.by(() => {
     if (searchTerm === "") {
       url.searchParams.delete("q");
     } else {
       url.searchParams.set("q", searchTerm);
     }
+    // TODO: Store platforms and categories in URL
+    // TODO: Figure out how to get debounceTimeouts again
+
     window.history.pushState(null, "", url.toString());
 
-    clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(() => {
-      searchTerm ? (portGrid = fuse.search(searchTerm).map((key) => key.item)) : (portGrid = ports);
-    }, 25);
-  }
+    let filteredPorts = ports;
+
+    if (chosenPlatforms.length > 0) {
+      filteredPorts = ports.filter((port) =>
+        chosenPlatforms.every((platform) => (port.platform as PlatformKey[]).includes(platform)),
+      );
+    }
+
+    if (chosenCategories.length > 0) {
+      filteredPorts = filteredPorts.filter((port) =>
+        chosenCategories.every((category) => port.categories.map((c) => c.name).includes(category)),
+      );
+    }
+
+    fuse.setCollection(filteredPorts);
+
+    return searchTerm ? fuse.search(searchTerm).map((result) => result.item) : filteredPorts;
+  });
+
+  const numSearchResults = $derived(portGrid.length);
+  const userInteracted = $derived(searchTerm.length > 0 || chosenCategories.length > 0 || chosenPlatforms.length > 0);
 </script>
 
-<SearchBar bind:searchTerm {handleInput} />
-<PortGrid {portGrid} {searchTerm} />
+<div class="explorer">
+  <form class="search-filters">
+    <SearchBar bind:searchTerm results={numSearchResults} />
+    <fieldset>
+      <legend>Platforms</legend>
+      {#each platforms as platform}
+        <input id={platform.key} value={platform.key} type="checkbox" bind:group={chosenPlatforms} />
+        <label for={platform.key}>{platform.name}</label>
+      {/each}
+    </fieldset>
+    <fieldset>
+      <legend>Categories</legend>
+      {#each categories as category}
+        <input id={category.key} value={category.name} type="checkbox" bind:group={chosenCategories} />
+        <label for={category.key}>{category.name}</label>
+      {/each}
+    </fieldset>
+  </form>
+  <div class="grid">
+    <PortGrid {portGrid} {userInteracted} />
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../../../styles/utils";
+
+  .explorer {
+    position: relative;
+    @media (min-width: 56rem) {
+      display: grid;
+      align-items: start;
+      grid-template-columns: 4fr 6fr;
+      gap: var(--space-sm);
+    }
+  }
+
+  .search-filters {
+    position: sticky;
+    top: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-block-end: var(--space-sm);
+
+    input {
+      display: none;
+    }
+
+    label {
+      padding: 2px;
+    }
+
+    input:checked + label {
+      background-color: var(--blue);
+      color: var(--base);
+    }
+
+    legend {
+      color: var(--text);
+    }
+    fieldset {
+      display: none;
+      background-color: var(--base);
+      border-color: var(--overlay2);
+      border-radius: var(--border-radius-normal);
+    }
+    @media (min-width: 56rem) {
+      fieldset {
+        display: block;
+      }
+    }
+  }
+</style>

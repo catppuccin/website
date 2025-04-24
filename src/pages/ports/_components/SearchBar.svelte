@@ -3,10 +3,10 @@
 
   interface Props {
     searchTerm: string;
-    handleInput: () => void;
+    results: number;
   }
 
-  let { searchTerm = $bindable(), handleInput }: Props = $props();
+  let { searchTerm = $bindable(), results }: Props = $props();
 </script>
 
 <div class="search-bar">
@@ -17,19 +17,27 @@
     aria-label="Search"
     placeholder="Search port or category..."
     autocomplete="off"
-    bind:value={searchTerm}
-    oninput={handleInput} />
+    bind:value={searchTerm} />
+  <strong class="counter">{results}</strong>
 </div>
 
 <style lang="scss">
   @use "../../../styles/utils";
+
+  .counter {
+    display: none;
+  }
+  @media (min-width: 56rem) {
+    .counter {
+      display: inherit;
+    }
+  }
 
   .search-bar {
     background-color: var(--mantle);
     display: flex;
     gap: var(--space-xs);
     align-items: center;
-    margin-block-end: var(--space-sm);
     border-radius: var(--border-radius-normal);
     padding-inline: var(--space-xs);
 

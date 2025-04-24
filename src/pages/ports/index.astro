@@ -1,5 +1,5 @@
 ---
-import { ports } from "@data/ports";
+import { ports, platforms, categories } from "@data/ports";
 
 import Default from "@layouts/Default.astro";
 
@@ -27,7 +27,7 @@ import PortCard from "./_components/PortCard.svelte";
   </noscript>
 
   <!-- TODO: Figure out a better general solution that doesn't involve defining SVGs as Svelte components or passing in nested Svelte 5 snippets/slots -->
-  <PortExplorer {ports} client:only="svelte" />
+  <PortExplorer {ports} {platforms} {categories} client:only="svelte" />
 </Default>
 
 <style lang="scss" is:global>
