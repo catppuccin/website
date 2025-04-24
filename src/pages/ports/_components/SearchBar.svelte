@@ -3,10 +3,11 @@
 
   interface Props {
     searchTerm: string;
-    results: number;
+    scrollToTop: () => void;
+    numSearchResults: number;
   }
 
-  let { searchTerm = $bindable(), results }: Props = $props();
+  let { searchTerm = $bindable(), scrollToTop, numSearchResults }: Props = $props();
 </script>
 
 <div class="search-bar">
@@ -17,8 +18,9 @@
     aria-label="Search"
     placeholder="Search port or category..."
     autocomplete="off"
-    bind:value={searchTerm} />
-  <strong class="counter">{results}</strong>
+    bind:value={searchTerm}
+    oninput={scrollToTop} />
+  <strong class="counter">{numSearchResults}</strong>
 </div>
 
 <style lang="scss">

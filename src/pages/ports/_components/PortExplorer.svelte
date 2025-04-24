@@ -62,22 +62,31 @@
 
   const numSearchResults = $derived(portGrid.length);
   const userInteracted = $derived(searchTerm.length > 0 || chosenCategories.length > 0 || chosenPlatforms.length > 0);
+
+  function scrollToTop() {
+    document.body.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" });
+  }
 </script>
 
 <div class="explorer">
   <form class="search-filters">
-    <SearchBar bind:searchTerm results={numSearchResults} />
+    <SearchBar bind:searchTerm {scrollToTop} {numSearchResults} />
     <fieldset>
       <legend>Platforms</legend>
       {#each platforms as platform}
-        <input id={platform.key} value={platform.key} type="checkbox" bind:group={chosenPlatforms} />
+        <input id={platform.key} value={platform.key} type="checkbox" bind:group={chosenPlatforms} onchange={scrollToTop} />
         <label for={platform.key}>{platform.name}</label>
       {/each}
     </fieldset>
     <fieldset>
       <legend>Categories</legend>
       {#each categories as category}
-        <input id={category.key} value={category.name} type="checkbox" bind:group={chosenCategories} />
+        <input
+          id={category.key}
+          value={category.name}
+          type="checkbox"
+          bind:group={chosenCategories}
+          onchange={scrollToTop} />
         <label for={category.key}>{category.name}</label>
       {/each}
     </fieldset>
@@ -101,8 +110,6 @@
   }
 
   .search-filters {
-    position: sticky;
-    top: var(--space-sm);
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
@@ -130,7 +137,10 @@
       border-color: var(--overlay2);
       border-radius: var(--border-radius-normal);
     }
+
     @media (min-width: 56rem) {
+      position: sticky;
+      top: var(--space-sm);
       fieldset {
         display: block;
       }
