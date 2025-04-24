@@ -1,7 +1,7 @@
 <script lang="ts">
   import Fuse from "fuse.js/min-basic";
   import type { CategoryWithPortCount, PlatformKey, Platforms, PortWithIcons } from "@data/ports";
-  import type { CategoryName } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
+  import type { CategoryKey } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
 
@@ -27,8 +27,8 @@
   const url = new URL(window.location.href);
 
   let searchTerm = $state(url.searchParams.get("q") ?? "");
-  let chosenPlatforms: PlatformKey[] | [] = $state([]);
-  let chosenCategories: CategoryName[] | [] = $state([]);
+  let chosenPlatforms: PlatformKey[] = $state(url.searchParams.getAll("p") as PlatformKey[]);
+  let chosenCategories: CategoryKey[] = $state(url.searchParams.getAll("c") as CategoryKey[]);
 
   const portGrid = $derived.by(() => {
     if (searchTerm === "") {
@@ -36,7 +36,18 @@
     } else {
       url.searchParams.set("q", searchTerm);
     }
-    // TODO: Store platforms and categories in URL
+    url.searchParams.delete("p");
+    if (chosenPlatforms.length > 0) {
+      chosenPlatforms.forEach(platform => {
+        url.searchParams.append("p", platform);
+      });
+    }
+    url.searchParams.delete("c");
+    if (chosenCategories.length > 0) {
+      chosenCategories.forEach(category => {
+        url.searchParams.append("c", category);
+      });
+    }
     // TODO: Figure out how to get debounceTimeouts again
 
     window.history.pushState(null, "", url.toString());
@@ -51,7 +62,7 @@
 
     if (chosenCategories.length > 0) {
       filteredPorts = filteredPorts.filter((port) =>
-        chosenCategories.every((category) => port.categories.map((c) => c.name).includes(category)),
+        chosenCategories.every((category) => port.categories.map((c) => c.key).includes(category)),
       );
     }
 
@@ -74,7 +85,12 @@
     <fieldset>
       <legend>Platforms</legend>
       {#each platforms as platform}
-        <input id={platform.key} value={platform.key} type="checkbox" bind:group={chosenPlatforms} onchange={scrollToTop} />
+        <input
+          id={platform.key}
+          value={platform.key}
+          type="checkbox"
+          bind:group={chosenPlatforms}
+          onchange={scrollToTop} />
         <label for={platform.key}>{platform.name}</label>
       {/each}
     </fieldset>
@@ -83,7 +99,7 @@
       {#each categories as category}
         <input
           id={category.key}
-          value={category.name}
+          value={category.key}
           type="checkbox"
           bind:group={chosenCategories}
           onchange={scrollToTop} />
