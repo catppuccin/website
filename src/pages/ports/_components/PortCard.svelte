@@ -5,9 +5,33 @@
   import PortMaintainers from "./PortMaintainers.svelte";
 
   let { port }: { port: PortWithIcons } = $props();
+
+  let isVisible = $state(false);
+  let element: Element;
+  $effect(() => {
+    let observer = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        for (let i = 0; i < entries.length; i++) {
+          const entry = entries[i];
+          isVisible = entry.isIntersecting;
+        }
+      },
+      {
+        threshold: 0.1,
+      },
+    );
+    if (element) {
+      observer.observe(element);
+    }
+    return () => {
+      if (observer) {
+        observer.disconnect();
+      }
+    };
+  });
 </script>
 
-<a href={port.repository.url} class="port-card">
+<a bind:this={element} href={port.repository.url} class="port-card" class:port-visible={isVisible}>
   <div class="port-header">
     <p class="port-name">{Array.isArray(port.name) ? port.name.join(", ") : port.name}</p>
     <Icon
@@ -43,7 +67,13 @@
     color: var(--subtext0);
     font-size: 1.6rem;
 
-    transition: all 300ms ease-in-out;
+    transition:
+      opacity 225ms cubic-bezier(0, 0, 0, 1),
+      translate 225ms cubic-bezier(0, 0, 0, 1),
+      scale 225ms cubic-bezier(0, 0, 0, 1),
+      // Change when state-feedback merged
+      transform 300ms ease-in-out;
+    will-change: opacity, scale, transform;
 
     &:hover {
       transform: scale(102%);
@@ -55,6 +85,17 @@
       @media (prefers-reduced-motion) {
         transform: none;
       }
+    }
+
+    & {
+      opacity: 1;
+      translate: 0 0;
+    }
+
+    &:not(.port-visible) {
+      opacity: 0;
+      scale: 0.9;
+      translate: 0 10%;
     }
 
     p {
