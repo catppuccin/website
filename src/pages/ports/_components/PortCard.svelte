@@ -3,35 +3,30 @@
   import Pills from "@components/Pills.svelte";
   import Icon from "@iconify/svelte";
   import PortMaintainers from "./PortMaintainers.svelte";
+  import { intersect } from "svelte-intersection-observer-action";
 
   let { port }: { port: PortWithIcons } = $props();
 
-  let isVisible = $state(false);
-  let element: Element;
-  $effect(() => {
-    let observer = new IntersectionObserver(
-      (entries: IntersectionObserverEntry[]) => {
-        for (let i = 0; i < entries.length; i++) {
-          const entry = entries[i];
-          isVisible = entry.isIntersecting;
-        }
-      },
-      {
-        threshold: 0.1,
-      },
-    );
-    if (element) {
-      observer.observe(element);
+  const threshold = 0.1;
+  const rootMargin = "96px 0px";
+  const options = { callback, threshold, rootMargin };
+
+  function callback(entry: IntersectionObserverEntry) {
+    const target = entry.target as HTMLElement;
+    if (entry.isIntersecting) {
+      target.classList.add("visible");
+    } else {
+      target.classList.remove("visible");
     }
-    return () => {
-      if (observer) {
-        observer.disconnect();
-      }
-    };
-  });
+  }
 </script>
 
-<a bind:this={element} href={port.repository.url} class="port-card" class:port-visible={isVisible}>
+<!-- 
+  For some reason, I can't default the port cards to not visible.
+  Svelte says to use `:global` on selectors to avoid unused CSS being stripped
+  out but it's not working.
+-->
+<a href={port.repository.url} class="port-card visible" use:intersect={options}>
   <div class="port-header">
     <p class="port-name">{Array.isArray(port.name) ? port.name.join(", ") : port.name}</p>
     <Icon
@@ -67,13 +62,17 @@
     color: var(--subtext0);
     font-size: 1.6rem;
 
+    opacity: 0;
+    transform: translateY(10px);
     transition:
-      opacity 225ms cubic-bezier(0, 0, 0, 1),
-      translate 225ms cubic-bezier(0, 0, 0, 1),
-      scale 225ms cubic-bezier(0, 0, 0, 1),
-      // Change when state-feedback merged
-      transform 300ms ease-in-out;
-    will-change: opacity, scale, transform;
+      transform 0.3s cubic-bezier(0, 0, 0, 1),
+      opacity 0.1s;
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0s;
+    }
 
     &:hover {
       transform: scale(102%);
@@ -85,17 +84,6 @@
       @media (prefers-reduced-motion) {
         transform: none;
       }
-    }
-
-    & {
-      opacity: 1;
-      translate: 0 0;
-    }
-
-    &:not(.port-visible) {
-      opacity: 0;
-      scale: 0.9;
-      translate: 0 10%;
     }
 
     p {
