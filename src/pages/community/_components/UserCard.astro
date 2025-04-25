@@ -16,13 +16,13 @@ const username = href.split("/").pop() as string;
 const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username);
 ---
 
-<div class="card-user">
-  <a {href}>
+<a {href}>
+  <div class="card-user">
     <ProfilePicture {username} size={256} wxh={128} />
     <br />
-    <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name ?? username}</span></a
-  >
-</div>
+    <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name ?? username}</span>
+  </div>
+</a>
 
 <style lang="scss">
   @use "@styles/utils";
@@ -30,8 +30,81 @@ const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username)
   .card-user {
     @include utils.containerPadding(md);
     border-radius: var(--border-radius-large);
+    transition: scale 200ms cubic-bezier(0, 0, 0, 1);
+
+    will-change: scale;
+
+    // State layer
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-color: var(--surface0);
+      transition: opacity 50ms linear;
+      opacity: 0;
+
+      will-change: opacity;
+      z-index: -1;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        text-decoration: none;
+        @media (prefers-reduced-motion: no-preference) {
+          scale: 1.025;
+        }
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    &:active {
+      scale: 0.975;
+      &::after {
+        opacity: 0.65;
+      }
+    }
     background-color: var(--mantle);
     text-align: center;
+
+    transition: scale 200ms cubic-bezier(0, 0, 0, 1);
+
+    will-change: scale;
+
+    // State layer
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-color: var(--surface0);
+      transition: opacity 50ms linear;
+      opacity: 0;
+
+      will-change: opacity;
+      z-index: -1;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        text-decoration: none;
+        @media (prefers-reduced-motion: no-preference) {
+          scale: 1.05;
+        }
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    &:active {
+      scale: 0.975;
+      &::after {
+        opacity: 0.65;
+      }
+    }
 
     img {
       border-radius: 50%;

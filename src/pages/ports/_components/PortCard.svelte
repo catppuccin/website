@@ -43,17 +43,40 @@
     color: var(--subtext0);
     font-size: 1.6rem;
 
-    transition: all 300ms ease-in-out;
+    transition: scale 200ms cubic-bezier(0, 0, 0, 1);
 
-    &:hover {
-      transform: scale(102%);
+    will-change: scale;
 
-      background-position: top right;
+    // State layer
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-color: var(--surface0);
+      transition: opacity 50ms linear;
+      opacity: 0;
 
-      text-decoration: none;
+      will-change: opacity;
+      z-index: -1;
+    }
 
-      @media (prefers-reduced-motion) {
-        transform: none;
+    @media (hover: hover) {
+      &:hover {
+        text-decoration: none;
+        @media (prefers-reduced-motion: no-preference) {
+          scale: 1.05;
+        }
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    &:active {
+      scale: 0.975;
+      &::after {
+        opacity: 0.65;
       }
     }
 
