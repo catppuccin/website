@@ -6,27 +6,22 @@
   import { intersect } from "svelte-intersection-observer-action";
 
   let { port }: { port: PortWithIcons } = $props();
+  let visible = $state(false);
 
   const threshold = 0.1;
   const rootMargin = "96px 0px";
   const options = { callback, threshold, rootMargin };
 
   function callback(entry: IntersectionObserverEntry) {
-    const target = entry.target as HTMLElement;
     if (entry.isIntersecting) {
-      target.classList.add("visible");
+      visible = true;
     } else {
-      target.classList.remove("visible");
+      visible = false;
     }
   }
 </script>
 
-<!-- 
-  For some reason, I can't default the port cards to not visible.
-  Svelte says to use `:global` on selectors to avoid unused CSS being stripped
-  out but it's not working.
--->
-<a href={port.repository.url} class="port-card visible" use:intersect={options}>
+<a href={port.repository.url} class="port-card" class:visible use:intersect={options}>
   <div class="port-header">
     <p class="port-name">{Array.isArray(port.name) ? port.name.join(", ") : port.name}</p>
     <Icon
@@ -63,10 +58,12 @@
     font-size: 1.6rem;
 
     opacity: 0;
+
+    will-change: transform, opacity;
     transform: translateY(10px);
     transition:
       transform 0.3s cubic-bezier(0, 0, 0, 1),
-      opacity 0.1s;
+      opacity 0.3s cubic-bezier(0, 0, 0, 1);
 
     &.visible {
       opacity: 1;
