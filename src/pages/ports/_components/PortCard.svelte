@@ -6,7 +6,7 @@
   import { intersect } from "svelte-intersection-observer-action";
 
   let { port }: { port: PortWithIcons } = $props();
-  let visible = $state(false);
+  let visible = $state(true);
 
   const threshold = 0.1;
   const rootMargin = "96px 0px";
