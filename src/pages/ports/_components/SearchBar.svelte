@@ -11,7 +11,9 @@
 </script>
 
 <div class="search-bar">
-  {@html MagnifyingGlass}
+  <div class="magnifying-glass">
+    {@html MagnifyingGlass}
+  </div>
   <input
     type="text"
     id="search-field"
@@ -33,6 +35,10 @@
     .counter {
       display: inherit;
     }
+  }
+
+  .magnifying-glass {
+    display: flex;
   }
 
   .search-bar {
