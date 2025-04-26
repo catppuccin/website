@@ -27,56 +27,54 @@ export function debounce<T, D extends any[]>(deps: () => D, action: () => T, ini
   return () => value;
 }
 
-export function updatePorts(
-  ports: PortWithIcons[],
-  fuse: Fuse<PortWithIcons>,
-  url: URL,
-  searchTerm: string,
-  chosenPlatforms: PlatformKey[],
-  chosenCategories: CategoryKey[],
-) {
-  let filteredPorts = ports;
+export function performSearch(searchTerm: string, ports: PortWithIcons[], fuse: Fuse<PortWithIcons>, url: URL) {
+  fuse.setCollection(ports);
 
-  if (chosenPlatforms.length > 0) {
-    filteredPorts = ports.filter((port) =>
-      chosenPlatforms.every((platform) => (port.platform as PlatformKey[]).includes(platform)),
-    );
-  }
-
-  if (chosenCategories.length > 0) {
-    filteredPorts = filteredPorts.filter((port) =>
-      chosenCategories.every((category) => port.categories.map((c) => c.key).includes(category)),
-    );
-  }
-
-  fuse.setCollection(filteredPorts);
-  updateSearchParams(url, searchTerm, chosenPlatforms, chosenCategories);
-
-  return searchTerm ? fuse.search(searchTerm).map((result) => result.item) : filteredPorts;
-}
-
-export function updateSearchParams(
-  url: URL,
-  searchTerm: string,
-  chosenPlatforms: PlatformKey[],
-  chosenCategories: CategoryKey[],
-) {
   if (searchTerm === "") {
     url.searchParams.delete("q");
   } else {
     url.searchParams.set("q", searchTerm);
   }
+  window.history.pushState(null, "", url.toString());
+
+  return searchTerm ? fuse.search(searchTerm).map((result) => result.item) : ports;
+}
+
+export function filterPorts(
+  ports: PortWithIcons[],
+  platforms: PlatformKey[],
+  categories: CategoryKey[],
+  url: URL,
+): PortWithIcons[] {
+  let filtered = ports;
+
+  if (platforms.length > 0) {
+    filtered = ports.filter((port) =>
+      platforms.every((platform) => (port.platform as PlatformKey[]).includes(platform)),
+    );
+  }
+
+  if (categories.length > 0) {
+    filtered = filtered.filter((port) =>
+      categories.every((category) => port.categories.map((c) => c.key).includes(category)),
+    );
+  }
+
   url.searchParams.delete("p");
-  if (chosenPlatforms.length > 0) {
-    chosenPlatforms.forEach((platform) => {
+  if (platforms.length > 0) {
+    platforms.forEach((platform) => {
       url.searchParams.append("p", platform);
     });
   }
+
   url.searchParams.delete("c");
-  if (chosenCategories.length > 0) {
-    chosenCategories.forEach((category) => {
+  if (categories.length > 0) {
+    categories.forEach((category) => {
       url.searchParams.append("c", category);
     });
   }
+
   window.history.pushState(null, "", url.toString());
+
+  return filtered;
 }

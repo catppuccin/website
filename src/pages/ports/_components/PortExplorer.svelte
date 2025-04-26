@@ -4,7 +4,7 @@
   import type { CategoryKey } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
-  import { scrollToTop, debounce, updatePorts } from "./utils.svelte";
+  import { scrollToTop, debounce, performSearch, filterPorts } from "./utils.svelte";
 
   interface Props {
     ports: Array<PortWithIcons>;
@@ -15,10 +15,6 @@
   let { ports, platforms, categories }: Props = $props();
 
   const url = new URL(window.location.href);
-
-  let searchTerm = $state(url.searchParams.get("q") ?? "");
-  let chosenPlatforms: PlatformKey[] = $state(url.searchParams.getAll("p") as PlatformKey[]);
-  let chosenCategories: CategoryKey[] = $state(url.searchParams.getAll("c") as CategoryKey[]);
 
   const fuse = new Fuse([] as PortWithIcons[], {
     keys: [
@@ -32,15 +28,36 @@
     threshold: 0.3,
   });
 
-  const portGrid = $derived.by(
+  let searchTerm = $state(url.searchParams.get("q") ?? "");
+  let chosenPlatforms: PlatformKey[] = $state(url.searchParams.getAll("p") as PlatformKey[]);
+  let chosenCategories: CategoryKey[] = $state(url.searchParams.getAll("c") as CategoryKey[]);
+
+  // we need to recreate the port grid from search params so that it doesn't
+  // flash the page with the wrong ports when the user refreshes the page
+  const initialPortGrid = performSearch(
+    // svelte-ignore state_referenced_locally
+    searchTerm,
+    // svelte-ignore state_referenced_locally
+    filterPorts(ports, chosenPlatforms, chosenCategories, url),
+    fuse,
+    url,
+  );
+
+  // these are separate so that only searching is debounced.
+  // it means that ticking checkboxes is snappy, and searches are debounced to improve user experience
+  const filteredPorts = $derived.by(() => filterPorts(ports, chosenPlatforms, chosenCategories, url));
+  const searchedPorts = $derived.by(
     debounce(
-      () => [searchTerm, chosenPlatforms, chosenCategories],
-      () => updatePorts(ports, fuse, url, searchTerm, chosenPlatforms, chosenCategories),
-      // svelte-ignore state_referenced_locally
-      updatePorts(ports, fuse, url, searchTerm, chosenPlatforms, chosenCategories),
+      () => [searchTerm, filteredPorts],
+      () => performSearch(searchTerm, filteredPorts, fuse, url),
+      initialPortGrid,
       25,
     ),
   );
+
+  // only debounce when the user has searched for something
+  const portGrid = $derived(searchTerm.length > 0 ? searchedPorts : filteredPorts);
+
   const numSearchResults = $derived(portGrid.length);
   const userInteracted = $derived(searchTerm.length > 0 || chosenCategories.length > 0 || chosenPlatforms.length > 0);
 </script>
