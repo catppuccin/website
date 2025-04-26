@@ -1,10 +1,8 @@
 <script lang="ts">
-  import Fuse from "fuse.js/min-basic";
-  import type { CategoryWithPortCount, PlatformKey, Platforms, PortWithIcons } from "@data/ports";
-  import type { CategoryKey } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
+  import type { CategoryWithPortCount, Platforms, PortWithIcons } from "@data/ports";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
-  import { scrollToTop, debounce, performSearch, filterPorts } from "./utils.svelte";
+  import { scrollToTop, debounce, performSearch, filterPorts, searchParams } from "./state.svelte";
 
   interface Props {
     ports: Array<PortWithIcons>;
@@ -14,57 +12,35 @@
 
   let { ports, platforms, categories }: Props = $props();
 
-  const url = new URL(window.location.href);
-
-  const fuse = new Fuse([] as PortWithIcons[], {
-    keys: [
-      { name: "key", weight: 1 },
-      { name: "categories.name", weight: 0.8 },
-      { name: "name", weight: 0.4 },
-      { name: "repository.current-maintainers.username", weight: 0.1 },
-      { name: "repository.current-maintainers.name", weight: 0.1 },
-    ],
-    includeScore: false,
-    threshold: 0.3,
-  });
-
-  let searchTerm = $state(url.searchParams.get("q") ?? "");
-  let chosenPlatforms: PlatformKey[] = $state(url.searchParams.getAll("p") as PlatformKey[]);
-  let chosenCategories: CategoryKey[] = $state(url.searchParams.getAll("c") as CategoryKey[]);
-
   // we need to recreate the port grid from search params so that it doesn't
   // flash the page with the wrong ports when the user refreshes the page
   const initialPortGrid = performSearch(
-    // svelte-ignore state_referenced_locally
-    searchTerm,
-    // svelte-ignore state_referenced_locally
-    filterPorts(ports, chosenPlatforms, chosenCategories, url),
-    fuse,
-    url,
+    searchParams.searchText,
+    filterPorts(ports, searchParams.platforms, searchParams.categories),
   );
 
   // these are separate so that only searching is debounced.
   // it means that ticking checkboxes is snappy, and searches are debounced to improve user experience
-  const filteredPorts = $derived.by(() => filterPorts(ports, chosenPlatforms, chosenCategories, url));
+  const filteredPorts = $derived.by(() => filterPorts(ports, searchParams.platforms, searchParams.categories));
   const searchedPorts = $derived.by(
     debounce(
-      () => [searchTerm, filteredPorts],
-      () => performSearch(searchTerm, filteredPorts, fuse, url),
+      () => [searchParams.searchText, filteredPorts],
+      () => performSearch(searchParams.searchText, filteredPorts),
       initialPortGrid,
       25,
     ),
   );
-
   // only debounce when the user has searched for something
-  const portGrid = $derived(searchTerm.length > 0 ? searchedPorts : filteredPorts);
-
-  const numSearchResults = $derived(portGrid.length);
-  const userInteracted = $derived(searchTerm.length > 0 || chosenCategories.length > 0 || chosenPlatforms.length > 0);
+  const portGrid = $derived(searchParams.searchText.length > 0 ? searchedPorts : filteredPorts);
+  const numOfSearchResults = $derived(portGrid.length);
+  const userInteracted = $derived(
+    searchParams.searchText.length > 0 || searchParams.categories.length > 0 || searchParams.platforms.length > 0,
+  );
 </script>
 
 <div class="explorer">
   <form class="search-filters">
-    <SearchBar bind:searchTerm {numSearchResults} />
+    <SearchBar {numOfSearchResults} />
     <fieldset>
       <legend>Platforms</legend>
       {#each platforms as platform}
@@ -72,7 +48,7 @@
           id={platform.key}
           value={platform.key}
           type="checkbox"
-          bind:group={chosenPlatforms}
+          bind:group={searchParams.platforms}
           onchange={scrollToTop} />
         <label for={platform.key}>{platform.name}</label>
       {/each}
@@ -84,7 +60,7 @@
           id={category.key}
           value={category.key}
           type="checkbox"
-          bind:group={chosenCategories}
+          bind:group={searchParams.categories}
           onchange={scrollToTop} />
         <label for={category.key}>{category.name}</label>
       {/each}

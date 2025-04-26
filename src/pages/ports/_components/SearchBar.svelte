@@ -1,13 +1,12 @@
 <script lang="ts">
   import MagnifyingGlass from "@data/icons/magnifying-glass.svg?raw";
-  import { scrollToTop } from "./utils.svelte";
+  import { scrollToTop, searchParams } from "./state.svelte";
 
   interface Props {
-    searchTerm: string;
-    numSearchResults: number;
+    numOfSearchResults: number;
   }
 
-  let { searchTerm = $bindable(), numSearchResults }: Props = $props();
+  let { numOfSearchResults }: Props = $props();
 </script>
 
 <div class="search-bar">
@@ -20,9 +19,9 @@
     aria-label="Search"
     placeholder="Search port or category..."
     autocomplete="off"
-    bind:value={searchTerm}
+    bind:value={searchParams.searchText}
     oninput={scrollToTop} />
-  <strong class="counter">{numSearchResults}</strong>
+  <strong class="counter">{numOfSearchResults}</strong>
 </div>
 
 <style lang="scss">

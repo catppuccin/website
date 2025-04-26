@@ -1,6 +1,26 @@
 import type { CategoryKey } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
 import type { PlatformKey, PortWithIcons } from "@data/ports";
-import type Fuse from "fuse.js";
+import Fuse from "fuse.js";
+
+const url = new URL(window.location.href);
+
+const fuse = new Fuse([] as PortWithIcons[], {
+  keys: [
+    { name: "key", weight: 1 },
+    { name: "categories.name", weight: 0.8 },
+    { name: "name", weight: 0.4 },
+    { name: "repository.current-maintainers.username", weight: 0.1 },
+    { name: "repository.current-maintainers.name", weight: 0.1 },
+  ],
+  includeScore: false,
+  threshold: 0.3,
+});
+
+export const searchParams = $state({
+  searchText: url.searchParams.get("q") ?? "",
+  platforms: url.searchParams.getAll("p") as PlatformKey[],
+  categories: url.searchParams.getAll("c") as CategoryKey[],
+});
 
 export function scrollToTop() {
   document.body.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" });
@@ -27,7 +47,7 @@ export function debounce<T, D extends any[]>(deps: () => D, action: () => T, ini
   return () => value;
 }
 
-export function performSearch(searchTerm: string, ports: PortWithIcons[], fuse: Fuse<PortWithIcons>, url: URL) {
+export function performSearch(searchTerm: string, ports: PortWithIcons[]) {
   fuse.setCollection(ports);
 
   if (searchTerm === "") {
@@ -35,6 +55,7 @@ export function performSearch(searchTerm: string, ports: PortWithIcons[], fuse: 
   } else {
     url.searchParams.set("q", searchTerm);
   }
+
   window.history.pushState(null, "", url.toString());
 
   return searchTerm ? fuse.search(searchTerm).map((result) => result.item) : ports;
@@ -44,7 +65,6 @@ export function filterPorts(
   ports: PortWithIcons[],
   platforms: PlatformKey[],
   categories: CategoryKey[],
-  url: URL,
 ): PortWithIcons[] {
   let filtered = ports;
 
