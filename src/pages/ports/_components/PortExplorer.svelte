@@ -38,7 +38,7 @@
       () => updatePorts(ports, fuse, url, searchTerm, chosenPlatforms, chosenCategories),
       // svelte-ignore state_referenced_locally
       updatePorts(ports, fuse, url, searchTerm, chosenPlatforms, chosenCategories),
-      50,
+      25,
     ),
   );
   const numSearchResults = $derived(portGrid.length);
