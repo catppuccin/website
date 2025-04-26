@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Fuse from "fuse.js";
+  import Fuse from "fuse.js/min-basic";
   import type { PortWithIcons } from "@data/ports";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
