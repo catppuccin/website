@@ -59,7 +59,6 @@
 
     opacity: 0;
 
-    will-change: transform, opacity;
     transform: translateY(10px);
     transition:
       transform 0.3s cubic-bezier(0, 0, 0, 1),
@@ -98,6 +97,10 @@
       color: var(--text);
       font-size: 2rem;
       font-weight: 600;
+    }
+
+    @media (prefers-reduced-motion) {
+      opacity: 1;
     }
   }
 </style>
