@@ -9,7 +9,7 @@
 
 <a href={port.repository.url} class="port-card">
   <div class="port-header">
-    <p class="port-name">{Array.isArray(port.name) ? port.name.join(", ") : port.name}</p>
+    <p class="port-name">{port.name}</p>
     <Icon
       color="var(--{port.color})"
       width={32}
