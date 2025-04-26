@@ -1,13 +1,13 @@
 <script lang="ts">
   import MagnifyingGlass from "@data/icons/magnifying-glass.svg?raw";
+  import { scrollToTop } from "./utils.svelte";
 
   interface Props {
     searchTerm: string;
-    scrollToTop: () => void;
     numSearchResults: number;
   }
 
-  let { searchTerm = $bindable(), scrollToTop, numSearchResults }: Props = $props();
+  let { searchTerm = $bindable(), numSearchResults }: Props = $props();
 </script>
 
 <div class="search-bar">

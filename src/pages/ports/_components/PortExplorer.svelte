@@ -4,6 +4,7 @@
   import type { CategoryKey } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
+  import { scrollToTop, debounce, updatePorts } from "./utils.svelte";
 
   interface Props {
     ports: Array<PortWithIcons>;
@@ -13,7 +14,13 @@
 
   let { ports, platforms, categories }: Props = $props();
 
-  const fuse = new Fuse(ports, {
+  const url = new URL(window.location.href);
+
+  let searchTerm = $state(url.searchParams.get("q") ?? "");
+  let chosenPlatforms: PlatformKey[] = $state(url.searchParams.getAll("p") as PlatformKey[]);
+  let chosenCategories: CategoryKey[] = $state(url.searchParams.getAll("c") as CategoryKey[]);
+
+  const fuse = new Fuse([] as PortWithIcons[], {
     keys: [
       { name: "key", weight: 1 },
       { name: "categories.name", weight: 0.8 },
@@ -24,64 +31,23 @@
     includeScore: false,
     threshold: 0.3,
   });
-  const url = new URL(window.location.href);
 
-  let searchTerm = $state(url.searchParams.get("q") ?? "");
-  let chosenPlatforms: PlatformKey[] = $state(url.searchParams.getAll("p") as PlatformKey[]);
-  let chosenCategories: CategoryKey[] = $state(url.searchParams.getAll("c") as CategoryKey[]);
-
-  const portGrid = $derived.by(() => {
-    if (searchTerm === "") {
-      url.searchParams.delete("q");
-    } else {
-      url.searchParams.set("q", searchTerm);
-    }
-    url.searchParams.delete("p");
-    if (chosenPlatforms.length > 0) {
-      chosenPlatforms.forEach(platform => {
-        url.searchParams.append("p", platform);
-      });
-    }
-    url.searchParams.delete("c");
-    if (chosenCategories.length > 0) {
-      chosenCategories.forEach(category => {
-        url.searchParams.append("c", category);
-      });
-    }
-    // TODO: Figure out how to get debounceTimeouts again
-
-    window.history.pushState(null, "", url.toString());
-
-    let filteredPorts = ports;
-
-    if (chosenPlatforms.length > 0) {
-      filteredPorts = ports.filter((port) =>
-        chosenPlatforms.every((platform) => (port.platform as PlatformKey[]).includes(platform)),
-      );
-    }
-
-    if (chosenCategories.length > 0) {
-      filteredPorts = filteredPorts.filter((port) =>
-        chosenCategories.every((category) => port.categories.map((c) => c.key).includes(category)),
-      );
-    }
-
-    fuse.setCollection(filteredPorts);
-
-    return searchTerm ? fuse.search(searchTerm).map((result) => result.item) : filteredPorts;
-  });
-
+  const portGrid = $derived.by(
+    debounce(
+      () => [searchTerm, chosenPlatforms, chosenCategories],
+      () => updatePorts(ports, fuse, url, searchTerm, chosenPlatforms, chosenCategories),
+      // svelte-ignore state_referenced_locally
+      updatePorts(ports, fuse, url, searchTerm, chosenPlatforms, chosenCategories),
+      50,
+    ),
+  );
   const numSearchResults = $derived(portGrid.length);
   const userInteracted = $derived(searchTerm.length > 0 || chosenCategories.length > 0 || chosenPlatforms.length > 0);
-
-  function scrollToTop() {
-    document.body.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" });
-  }
 </script>
 
 <div class="explorer">
   <form class="search-filters">
-    <SearchBar bind:searchTerm {scrollToTop} {numSearchResults} />
+    <SearchBar bind:searchTerm {numSearchResults} />
     <fieldset>
       <legend>Platforms</legend>
       {#each platforms as platform}
