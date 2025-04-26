@@ -57,7 +57,7 @@
     color: var(--subtext0);
     font-size: 1.6rem;
 
-    opacity: 0;
+    opacity: 0.5;
 
     transform: translateY(10px);
     transition:
