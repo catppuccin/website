@@ -7,13 +7,12 @@ const url = new URL(window.location.href);
 const fuse = new Fuse([] as PortWithIcons[], {
   keys: [
     { name: "key", weight: 1 },
-    { name: "categories.name", weight: 0.8 },
-    { name: "name", weight: 0.4 },
+    { name: "name", weight: 0.5 },
+    { name: "categories.name", weight: 0.25 },
     { name: "repository.current-maintainers.username", weight: 0.1 },
-    { name: "repository.current-maintainers.name", weight: 0.1 },
   ],
   includeScore: false,
-  threshold: 0.3,
+  threshold: 0.2,
 });
 
 export const searchParams = $state({

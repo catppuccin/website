@@ -3,24 +3,21 @@ import maintainersWithoutAvatars from "@data/maintainers/maintainersWithoutAvata
 
 import ProfilePicture from "@components/ProfilePicture.svelte";
 
-const isProd = import.meta.env.PROD;
-
 interface Props {
   url: string;
-  name?: string;
+  name: string;
 }
 
-const { name } = Astro.props;
-const href = isProd ? Astro.props.url : "https://github.com/sgoudham";
-const username = href.split("/").pop() as string;
+const { name, url } = Astro.props;
+const username = url.split("/").pop() as string;
 const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username);
 ---
 
 <div class="card-user">
-  <a {href}>
+  <a href={url}>
     <ProfilePicture {username} size={256} wxh={128} />
     <br />
-    <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name ?? username}</span></a
+    <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name}</span></a
   >
 </div>
 

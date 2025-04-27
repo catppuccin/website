@@ -5,7 +5,7 @@
   import { scrollToTop, debounce, performSearch, filterPorts, searchParams } from "./state.svelte";
 
   interface Props {
-    ports: Array<PortWithIcons>;
+    ports: PortWithIcons[];
     platforms: Platforms;
     categories: CategoryWithPortCount[];
   }
