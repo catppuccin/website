@@ -3,13 +3,27 @@
   import Pills from "@components/Pills.svelte";
   import Icon from "@iconify/svelte";
   import PortMaintainers from "./PortMaintainers.svelte";
+  import { intersect } from "svelte-intersection-observer-action";
 
   let { port }: { port: PortWithIcons } = $props();
+  let visible = $state(false);
+
+  const threshold = 0.1;
+  const rootMargin = "96px 0px";
+  const options = { callback, threshold, rootMargin };
+
+  function callback(entry: IntersectionObserverEntry) {
+    if (entry.isIntersecting) {
+      visible = true;
+    } else {
+      visible = false;
+    }
+  }
 </script>
 
-<a href={port.repository.url} class="port-card">
+<a href={port.repository.url} class="port-card" class:visible use:intersect={options}>
   <div class="port-header">
-    <p class="port-name">{Array.isArray(port.name) ? port.name.join(", ") : port.name}</p>
+    <p class="port-name">{port.name}</p>
     <Icon
       color="var(--{port.color})"
       width={32}
@@ -43,7 +57,18 @@
     color: var(--subtext0);
     font-size: 1.6rem;
 
-    transition: all 300ms ease-in-out;
+    opacity: 0.5;
+
+    transform: translateY(10px);
+    transition:
+      transform 0.3s cubic-bezier(0, 0, 0, 1),
+      opacity 0.3s cubic-bezier(0, 0, 0, 1);
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0s;
+    }
 
     &:hover {
       transform: scale(102%);
@@ -72,6 +97,11 @@
       color: var(--text);
       font-size: 2rem;
       font-weight: 600;
+    }
+
+    @media (prefers-reduced-motion) {
+      opacity: 1;
+      transform: translateY(0px);
     }
   }
 </style>

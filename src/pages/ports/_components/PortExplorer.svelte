@@ -1,11 +1,11 @@
 <script lang="ts">
-  import Fuse from "fuse.js";
+  import Fuse from "fuse.js/min-basic";
   import type { PortWithIcons } from "@data/ports";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
 
   interface Props {
-    ports: Array<PortWithIcons>;
+    ports: PortWithIcons[];
   }
 
   let { ports }: Props = $props();
@@ -13,13 +13,12 @@
   const fuse = new Fuse(ports, {
     keys: [
       { name: "key", weight: 1 },
-      { name: "categories.name", weight: 0.8 },
-      { name: "name", weight: 0.4 },
+      { name: "name", weight: 0.5 },
+      { name: "categories.name", weight: 0.25 },
       { name: "repository.current-maintainers.username", weight: 0.1 },
-      { name: "repository.current-maintainers.name", weight: 0.1 },
     ],
     includeScore: false,
-    threshold: 0.3,
+    threshold: 0.2,
   });
   const url = new URL(window.location.href);
 

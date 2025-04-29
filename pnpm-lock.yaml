@@ -101,6 +101,9 @@ importers:
       svelte:
         specifier: ^5.28.2
         version: 5.28.2
+      svelte-intersection-observer-action:
+        specifier: ^0.0.5
+        version: 0.0.5
       tsx:
         specifier: ^4.19.2
         version: 4.19.3
@@ -3092,6 +3095,9 @@ packages:
   surge@0.24.6:
     resolution: {integrity: sha512-tfJpTBlTyrAgmEVp21cyagcszFXNBZA6Ba9SkngRHHtKtfbJdJXQ7G1udW6HTLaUkzWDB7aheiyG+NSkZy/0PQ==}
     hasBin: true
+
+  svelte-intersection-observer-action@0.0.5:
+    resolution: {integrity: sha512-d5WVlE3Dpxx554cOYBm9BkIfba0+/r1O1yKuekQH/ScXW78mNB+R7A/LSfmGTFBNHvqjPZ9Vehfx1iIJti1saw==}
 
   svelte2tsx@0.7.36:
     resolution: {integrity: sha512-nBlERuCZRwmpebC8m0vDqZ9oaKsqW8frQS2l3zwFQW1voQIkItYtHxh1F5OTZEmE0meDIH6cxU36eIOQVOxlCw==}
@@ -7324,6 +7330,8 @@ snapshots:
       xbytes: 1.9.1
     transitivePeerDependencies:
       - debug
+
+  svelte-intersection-observer-action@0.0.5: {}
 
   svelte2tsx@0.7.36(svelte@5.28.2)(typescript@5.8.3):
     dependencies:
