@@ -32,7 +32,7 @@
     "@catppuccin/palette": "^1.7.1",
     "@iconify-json/ph": "^1.2.1",
     "@iconify-json/simple-icons": "^1.2.33",
-    "@iconify/svelte": "^4.1.0",
+    "@iconify/svelte": "^5.0.0",
     "@iconify/tools": "^4.1.2",
     "@iconify/types": "^2.0.0",
     "@rollup/plugin-yaml": "^4.1.2",
@@ -59,7 +59,7 @@
     "vitest": "^3.1.2",
     "yaml": "^2.6.1"
   },
-  "packageManager": "pnpm@10.9.0",
+  "packageManager": "pnpm@10.10.0",
   "engines": {
     "node": ">=22"
   },
