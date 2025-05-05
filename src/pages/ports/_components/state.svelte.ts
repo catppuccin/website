@@ -1,5 +1,5 @@
-import type { CategoryKey } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
-import type { PlatformKey, PortWithIcons } from "@data/ports";
+import type { CategoryKey, PlatformKey } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
+import type { PortWithIcons } from "@data/ports";
 import Fuse from "fuse.js";
 
 const url = new URL(window.location.href);
@@ -55,7 +55,7 @@ export function performSearch(searchTerm: string, ports: PortWithIcons[]) {
     url.searchParams.set("q", searchTerm);
   }
 
-  window.history.pushState(null, "", url.toString());
+  window.history.replaceState(null, "", url.toString());
 
   return searchTerm ? fuse.search(searchTerm).map((result) => result.item) : ports;
 }
@@ -93,7 +93,7 @@ export function filterPorts(
     });
   }
 
-  window.history.pushState(null, "", url.toString());
+  window.history.replaceState(null, "", url.toString());
 
   return filtered;
 }

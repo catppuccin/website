@@ -5,14 +5,13 @@ import type {
   Category,
   Collaborator,
   Collaborators,
-  OperatingSystems,
+  PlatformKey,
   Port,
   PortsPorcelainSchema,
 } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
 
 export type PortWithIcons = Port & { icon: IconifyIcon };
 export type CategoryWithPortCount = Category & { portCount: number };
-export type PlatformKey = OperatingSystems | "agnostic";
 export type Platforms = Array<{
   key: PlatformKey;
   name: string;
@@ -41,7 +40,7 @@ export const platforms: Platforms = [
   { key: "windows", name: "Windows" },
   { key: "android", name: "Android" },
   { key: "ios", name: "iOS" },
-  { key: "agnostic", name: "Independent" },
+  { key: "web", name: "Web" },
 ];
 
 export const categories = porcelain.categories.map((category) => {

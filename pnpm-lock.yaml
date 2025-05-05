@@ -27,8 +27,8 @@ importers:
         specifier: ^7.0.11
         version: 7.0.13(@types/node@22.15.3)(astro@5.7.10(@types/node@22.15.3)(jiti@2.4.2)(rollup@4.40.1)(sass@1.87.0)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1))(jiti@2.4.2)(sass@1.87.0)(svelte@5.28.2)(tsx@4.19.4)(typescript@5.8.3)(yaml@2.7.1)
       '@catppuccin/catppuccin':
-        specifier: github:catppuccin/catppuccin#2e3cb5a4bd020aa5af1a8398163d313809510ab5
-        version: https://codeload.github.com/catppuccin/catppuccin/tar.gz/2e3cb5a4bd020aa5af1a8398163d313809510ab5
+        specifier: github:catppuccin/catppuccin#ad76b8d005b3497afe5df8966cd08815854d09cc
+        version: https://codeload.github.com/catppuccin/catppuccin/tar.gz/ad76b8d005b3497afe5df8966cd08815854d09cc
       '@catppuccin/palette':
         specifier: ^1.7.1
         version: 1.7.1
@@ -223,8 +223,8 @@ packages:
   '@capsizecss/unpack@2.4.0':
     resolution: {integrity: sha512-GrSU71meACqcmIUxPYOJvGKF0yryjN/L1aCuE9DViCTJI7bfkjgYDPD1zbNDcINJwSSP6UaBZY9GAbYDO7re0Q==}
 
-  '@catppuccin/catppuccin@https://codeload.github.com/catppuccin/catppuccin/tar.gz/2e3cb5a4bd020aa5af1a8398163d313809510ab5':
-    resolution: {tarball: https://codeload.github.com/catppuccin/catppuccin/tar.gz/2e3cb5a4bd020aa5af1a8398163d313809510ab5}
+  '@catppuccin/catppuccin@https://codeload.github.com/catppuccin/catppuccin/tar.gz/ad76b8d005b3497afe5df8966cd08815854d09cc':
+    resolution: {tarball: https://codeload.github.com/catppuccin/catppuccin/tar.gz/ad76b8d005b3497afe5df8966cd08815854d09cc}
     version: 0.0.0
     engines: {node: '>=22.0.0'}
 
@@ -4000,7 +4000,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@catppuccin/catppuccin@https://codeload.github.com/catppuccin/catppuccin/tar.gz/2e3cb5a4bd020aa5af1a8398163d313809510ab5': {}
+  '@catppuccin/catppuccin@https://codeload.github.com/catppuccin/catppuccin/tar.gz/ad76b8d005b3497afe5df8966cd08815854d09cc': {}
 
   '@catppuccin/palette@1.7.1': {}
 
