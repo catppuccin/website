@@ -35,7 +35,7 @@
     } else {
       url.searchParams.set("q", searchTerm);
     }
-    window.history.pushState(null, "", url.toString());
+    window.history.replaceState(null, "", url.toString());
 
     clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(() => {
