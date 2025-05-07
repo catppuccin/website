@@ -2,7 +2,13 @@ import type { CategoryKey, PlatformKey } from "@catppuccin/catppuccin/resources/
 import type { PortWithIcons } from "@data/ports";
 import Fuse from "fuse.js";
 
-const url = new URL(window.location.href);
+type UrlParamsState = {
+  query: string | null;
+  platforms: PlatformKey[];
+  category: CategoryKey | null;
+};
+
+export const url = new URL(window.location.href);
 
 const fuse = new Fuse([] as PortWithIcons[], {
   keys: [
@@ -15,11 +21,59 @@ const fuse = new Fuse([] as PortWithIcons[], {
   threshold: 0.2,
 });
 
-export const searchParams = $state({
-  searchText: url.searchParams.get("q") ?? "",
+export const urlParams: UrlParamsState = $state({
+  query: url.searchParams.get("q"),
   platforms: url.searchParams.getAll("p") as PlatformKey[],
-  categories: url.searchParams.getAll("c") as CategoryKey[],
+  category: url.searchParams.get("c") as CategoryKey | null,
 });
+
+export const updateQueryUrlParams = () => {
+  if (urlParams.query) {
+    url.searchParams.set("q", urlParams.query);
+  } else {
+    url.searchParams.delete("q");
+  }
+  window.history.replaceState(null, "", url.toString());
+};
+
+export const updatePlatformsUrlParams = () => {
+  url.searchParams.delete("p");
+  if (urlParams.platforms.length > 0) {
+    urlParams.platforms.forEach((platform) => {
+      url.searchParams.append("p", platform);
+    });
+  }
+  window.history.replaceState(null, "", url.toString());
+};
+
+export const updateCategoryUrlParams = () => {
+  if (urlParams.category) {
+    url.searchParams.set("c", urlParams.category);
+  } else {
+    url.searchParams.delete("c");
+  }
+  window.history.replaceState(null, "", url.toString());
+};
+
+export function queryPorts(ports: PortWithIcons[]) {
+  fuse.setCollection(ports);
+  return urlParams.query ? fuse.search(urlParams.query).map((result) => result.item) : ports;
+}
+
+export function filterPorts(ports: PortWithIcons[]): PortWithIcons[] {
+  const { platforms, category } = urlParams;
+  let filtered = ports;
+
+  if (platforms.length > 0) {
+    filtered = filtered.filter((port) => platforms.every((platform) => port.platform.includes(platform)));
+  }
+
+  if (category) {
+    filtered = filtered.filter((port) => port.categories.map((c) => c.key).includes(category));
+  }
+
+  return filtered;
+}
 
 export function scrollToTop() {
   document.body.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" });
@@ -44,56 +98,4 @@ export function debounce<T, D extends any[]>(deps: () => D, action: () => T, ini
   });
 
   return () => value;
-}
-
-export function performSearch(searchTerm: string, ports: PortWithIcons[]) {
-  fuse.setCollection(ports);
-
-  if (searchTerm === "") {
-    url.searchParams.delete("q");
-  } else {
-    url.searchParams.set("q", searchTerm);
-  }
-
-  window.history.replaceState(null, "", url.toString());
-
-  return searchTerm ? fuse.search(searchTerm).map((result) => result.item) : ports;
-}
-
-export function filterPorts(
-  ports: PortWithIcons[],
-  platforms: PlatformKey[],
-  categories: CategoryKey[],
-): PortWithIcons[] {
-  let filtered = ports;
-
-  if (platforms.length > 0) {
-    filtered = ports.filter((port) =>
-      platforms.every((platform) => (port.platform as PlatformKey[]).includes(platform)),
-    );
-  }
-
-  if (categories.length > 0) {
-    filtered = filtered.filter((port) =>
-      categories.every((category) => port.categories.map((c) => c.key).includes(category)),
-    );
-  }
-
-  url.searchParams.delete("p");
-  if (platforms.length > 0) {
-    platforms.forEach((platform) => {
-      url.searchParams.append("p", platform);
-    });
-  }
-
-  url.searchParams.delete("c");
-  if (categories.length > 0) {
-    categories.forEach((category) => {
-      url.searchParams.append("c", category);
-    });
-  }
-
-  window.history.replaceState(null, "", url.toString());
-
-  return filtered;
 }

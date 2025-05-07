@@ -2,7 +2,15 @@
   import type { CategoryWithPortCount, Platforms, PortWithIcons } from "@data/ports";
   import SearchBar from "./SearchBar.svelte";
   import PortGrid from "./PortGrid.svelte";
-  import { scrollToTop, debounce, performSearch, filterPorts, searchParams } from "./state.svelte";
+  import {
+    scrollToTop,
+    debounce,
+    queryPorts,
+    filterPorts,
+    urlParams,
+    updateCategoryUrlParams,
+    updatePlatformsUrlParams,
+  } from "./state.svelte";
 
   interface Props {
     ports: PortWithIcons[];
@@ -11,30 +19,26 @@
   }
 
   let { ports, platforms, categories }: Props = $props();
+  let categoryRadioButtons: HTMLInputElement[] | undefined = $state([]);
 
   // we need to recreate the port grid from search params so that it doesn't
   // flash the page with the wrong ports when the user refreshes the page
-  const initialPortGrid = performSearch(
-    searchParams.searchText,
-    filterPorts(ports, searchParams.platforms, searchParams.categories),
-  );
+  const initialPortGrid = queryPorts(filterPorts(ports));
 
-  // these are separate so that only searching is debounced.
-  // it means that ticking checkboxes is snappy, and searches are debounced to improve user experience
-  const filteredPorts = $derived.by(() => filterPorts(ports, searchParams.platforms, searchParams.categories));
-  const searchedPorts = $derived.by(
+  // searching is debounced to improve user experience
+  const queriedPorts = $derived.by(
     debounce(
-      () => [searchParams.searchText, filteredPorts],
-      () => performSearch(searchParams.searchText, filteredPorts),
+      () => [urlParams.query],
+      () => queryPorts(ports),
       initialPortGrid,
       25,
     ),
   );
-  // only debounce when the user has searched for something
-  const portGrid = $derived(searchParams.searchText.length > 0 ? searchedPorts : filteredPorts);
+
+  const portGrid = $derived(filterPorts(queriedPorts));
   const numOfSearchResults = $derived(portGrid.length);
   const userInteracted = $derived(
-    searchParams.searchText.length > 0 || searchParams.categories.length > 0 || searchParams.platforms.length > 0,
+    urlParams.query !== null || urlParams.category !== null || urlParams.platforms.length > 0,
   );
 </script>
 
@@ -43,25 +47,39 @@
     <SearchBar {numOfSearchResults} />
     <fieldset>
       <legend>Platforms</legend>
-      {#each platforms as platform}
+      {#each platforms as platform (platform.key)}
         <input
           id={platform.key}
           value={platform.key}
           type="checkbox"
-          bind:group={searchParams.platforms}
-          onchange={scrollToTop} />
+          bind:group={urlParams.platforms}
+          onchange={() => {
+            scrollToTop();
+            updatePlatformsUrlParams();
+          }} />
         <label for={platform.key}>{platform.name}</label>
       {/each}
     </fieldset>
     <fieldset>
       <legend>Categories</legend>
-      {#each categories as category}
+      {#each categories as category, i (category.key)}
         <input
           id={category.key}
           value={category.key}
-          type="checkbox"
-          bind:group={searchParams.categories}
-          onchange={scrollToTop} />
+          type="radio"
+          bind:this={categoryRadioButtons[i]}
+          bind:group={urlParams.category}
+          onclick={() => {
+            // allow categories to be deselected on the second click
+            if (categoryRadioButtons[i] && categoryRadioButtons[i].checked && urlParams.category === category.key) {
+              urlParams.category = null;
+              updateCategoryUrlParams();
+            }
+          }}
+          onchange={() => {
+            scrollToTop();
+            updateCategoryUrlParams();
+          }} />
         <label for={category.key}>{category.name}</label>
       {/each}
     </fieldset>

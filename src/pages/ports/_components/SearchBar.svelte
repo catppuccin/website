@@ -1,6 +1,12 @@
 <script lang="ts">
   import MagnifyingGlass from "@data/icons/magnifying-glass.svg?raw";
-  import { scrollToTop, searchParams } from "./state.svelte";
+  import {
+    scrollToTop,
+    urlParams,
+    updateCategoryUrlParams,
+    updatePlatformsUrlParams,
+    updateQueryUrlParams,
+  } from "./state.svelte";
 
   interface Props {
     numOfSearchResults: number;
@@ -19,8 +25,19 @@
     aria-label="Search"
     placeholder="Search port or category..."
     autocomplete="off"
-    bind:value={searchParams.searchText}
-    oninput={scrollToTop} />
+    bind:value={urlParams.query}
+    oninput={() => {
+      scrollToTop();
+      updateQueryUrlParams();
+      if (urlParams.category) {
+        urlParams.category = null;
+        updateCategoryUrlParams();
+      }
+      if (urlParams.platforms.length > 0) {
+        urlParams.platforms = [];
+        updatePlatformsUrlParams();
+      }
+    }} />
   <strong class="counter">{numOfSearchResults}</strong>
 </div>
 
