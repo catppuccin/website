@@ -1,27 +1,20 @@
 @use "./utils";
 
-@font-face {
-  font-family: "Inter";
-  src: url("/inter.woff2") format("woff2-variations");
-
-  font-display: swap;
-  font-weight: 125 950;
-  font-stretch: 75% 125%;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("/inter.woff2") format("woff2-variations");
-
-  font-display: swap;
-  font-weight: 125 950;
-  font-stretch: 75% 125%;
-  font-style: oblique;
-}
-
 body {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    avenir next,
+    avenir,
+    segoe ui,
+    helvetica neue,
+    Cantarell,
+    Ubuntu,
+    roboto,
+    noto,
+    helvetica,
+    arial,
+    sans-serif;
   font-size: clamp(15px, 4vw, 2rem);
   color: var(--subtext1);
   font-weight: 400;
