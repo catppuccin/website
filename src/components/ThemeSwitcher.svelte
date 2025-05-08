@@ -13,65 +13,6 @@
     { id: "system", name: "System", emoji: "🖥️", accent: "blue" },
   ];
 
-  const accents: { id: AccentName; name: string }[] = [
-    {
-      id: "rosewater",
-      name: "Rosewater",
-    },
-    {
-      id: "flamingo",
-      name: "Flamingo",
-    },
-    {
-      id: "pink",
-      name: "Pink",
-    },
-    {
-      id: "mauve",
-      name: "Mauve",
-    },
-    {
-      id: "red",
-      name: "Red",
-    },
-    {
-      id: "maroon",
-      name: "Maroon",
-    },
-    {
-      id: "peach",
-      name: "Peach",
-    },
-    {
-      id: "yellow",
-      name: "Yellow",
-    },
-    {
-      id: "green",
-      name: "Green",
-    },
-    {
-      id: "teal",
-      name: "Teal",
-    },
-    {
-      id: "sky",
-      name: "Sky",
-    },
-    {
-      id: "sapphire",
-      name: "Sapphire",
-    },
-    {
-      id: "blue",
-      name: "Blue",
-    },
-    {
-      id: "lavender",
-      name: "Lavender",
-    },
-  ];
-
   let currentTheme = $state((localStorage.getItem("theme") as Theme | undefined) || "system");
 
   let loading = $state(true);
