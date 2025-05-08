@@ -28,7 +28,7 @@ import { footerLinks } from "@data/links";
       <p class="divider">•</p>
       <span>/ˌkætpʊˈtʃiːn/</span>
       <button
-        class="play-pronunciation"
+        class="play-pronunciation btn btn-transparent btn-small"
         aria-label="Play pronunciation"
         onclick="document.querySelector('#pronunciation').play();">
         <SpeakerHighVolume width={20} height={20} fill="currentColor" />
@@ -83,14 +83,10 @@ import { footerLinks } from "@data/links";
     }
 
     .play-pronunciation {
-      border: none;
-      background: none;
-      color: inherit;
+      --btn-target-size: 24px;
       align-self: baseline;
 
-      &:hover {
-        cursor: pointer;
-      }
+      cursor: pointer;
     }
   </style>
 </footer>

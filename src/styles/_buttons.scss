@@ -113,6 +113,16 @@
     animation: btnFadeOut 350ms linear forwards;
     animation-delay: 500ms;
   }
+
+  @media (pointer: coarse) {
+    & {
+      min-width: var(--btn-target-size, 48px);
+      min-height: var(--btn-target-size, 44px);
+    }
+    &-small {
+      @include utils.containerPadding(xxs-y);
+    }
+  }
 }
 
 .btn,
