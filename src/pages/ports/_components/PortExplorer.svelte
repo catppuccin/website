@@ -84,7 +84,7 @@
               updateCategoryUrlParams();
             }} />
             {category.name}
-            <!-- <span class="label-pill">{category.portCount}</span> -->
+            <span class="label-pill">{category.portCount}</span>
           </label>
       {/each}
     </fieldset>
@@ -108,6 +108,9 @@
   }
 
   .search-filters {
+
+    --_checked-colour: var(--mauve);
+
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
@@ -116,91 +119,12 @@
     border-radius: var(--border-radius-normal);
     background-color: var(--mantle);
 
-    input[type="radio"],
-    input[type="checkbox"] {
-      appearance: none;
-      position: relative;
-      margin: 0;
-      width: var(--space-md); aspect-ratio: 1/1;
-      border: 2px solid var(--overlay0);
-      border-radius: 3px;
-      transform: translateY(.2em);
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        width: calc(var(--space-md) / 1.5); aspect-ratio: 1/1;
-        border-radius: 3px;
-        background-color: transparent;
-      }
-    }
-
-    input[type="radio"],
-    input[type="radio"]::before {
-      border-radius: 999px;
-    }
-
-    label {
-      padding: 3px 8px 4px 6px;
-      border: 2px solid var(--surface0);
-      white-space: nowrap;
-      font-size: 80%;
-      user-select: none;
-
-      &:hover,
-      &:focus {
-        border-color: var(--blue);
-      }
-
-      .label-pill {
-        height: 100%;
-        padding: 2px 4px;
-        border-radius: 999px;
-        background-color: var(--surface0);
-        font-size: 80%;
-        font-weight: 600;
-      }
-    }
-
-    label:has([type="checkbox"]) {
-      border-radius: var(--border-radius-normal);
-    }
-
-    label:has([type="radio"]) {
-      padding-inline-start: 8px;
-      border-radius: 999px;
-    }
-
-    label:has(input:checked) {
-      border-color: var(--blue);
-      background-color: color-mix(
-        in srgb,
-        25% var(--blue),
-        var(--base)
-      );
-      color: var(--blue);
-
-      input[type="radio"],
-      input[type="checkbox"] {
-        border-color: var(--base);
-        background-color: var(--base);
-
-        &::before { background-color: var(--blue); }
-      }
-
-      .label-pill {
-        background-color: var(--base);
-        color: var(--blue);
-      }
-    }
 
     legend {
-      margin-block: var(--space-md) var(--space-xs);
-      font-size: 80%;
+      margin-block: var(--space-lg) var(--space-sm);
       color: var(--text);
     }
+
     fieldset {
       display: none;
       padding: 0;
@@ -210,11 +134,77 @@
     @media (min-width: 56rem) {
       position: sticky;
       top: var(--space-sm);
+
       fieldset {
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-xxs);
       }
     }
+
+
+    label {
+      display: flex;
+      gap: var(--space-xxs);
+      align-items: center;
+      padding: calc(var(--space-xxs) / 2) var(--space-xxs); padding-inline-start: 0;
+      border: 2px solid var(--surface0);
+      font-size: 80%;
+      white-space: nowrap;
+      user-select: none;
+
+      &:hover,
+      &:focus-within {
+        border-color: var(--_checked-colour) !important;
+      }
+
+      .label-pill {
+        padding: 2px 6px;
+        border-radius: 999px;
+        background-color: var(--surface0);
+        font-size: 70%;
+        font-weight: 600;
+      }
+    }
+
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin: 0;
+      width: 0; height: 0;
+    }
+
+    label:has([type="checkbox"]) {
+      border-radius: var(--border-radius-normal);
+    }
+
+    label:has([type="radio"]) {
+      padding-inline-start: var(--space-xxs);
+      border-radius: 999px;
+    }
+
+    label:has(input:checked) {
+      border-color: color-mix(
+        in srgb,
+        40% var(--_checked-colour),
+        var(--base)
+      );
+      background-color: color-mix(
+        in srgb,
+        10% var(--_checked-colour),
+        var(--base)
+      );
+      color: var(--_checked-colour);
+
+      .label-pill {
+        background-color: color-mix(
+          in srgb,
+          25% var(--_checked-colour),
+          var(--base)
+        );
+        color: var(--_checked-colour);
+      }
+    }
+
   }
 </style>
