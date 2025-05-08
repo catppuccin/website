@@ -56,29 +56,50 @@
 
     color: var(--subtext0);
     font-size: 1.6rem;
-
-    opacity: 0.5;
-
-    transform: translateY(10px);
+  
     transition:
       transform 0.3s cubic-bezier(0, 0, 0, 1),
-      opacity 0.3s cubic-bezier(0, 0, 0, 1);
+      opacity 0.3s cubic-bezier(0, 0, 0, 1),
+      scale 0.2s cubic-bezier(0, 0, 0, 1);
+                          
+    opacity: 0.5;
+    transform: translateY(10px);
 
+    // State layer
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-color: var(--surface0);
+      transition: opacity 50ms linear;
+      opacity: 0;
+                          
+      z-index: -1;
+    }
+                          
     &.visible {
       opacity: 1;
       transform: translateY(0);
       transition-delay: 0s;
     }
 
-    &:hover {
-      transform: scale(102%);
+    @media (hover: hover) {
+      &:hover {
+        text-decoration: none;
+        @media (prefers-reduced-motion: no-preference) {
+          scale: 1.05;
+        }
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
 
-      background-position: top right;
-
-      text-decoration: none;
-
-      @media (prefers-reduced-motion) {
-        transform: none;
+    &:active {
+      scale: 0.975;
+      &::after {
+        opacity: 0.65;
       }
     }
 
