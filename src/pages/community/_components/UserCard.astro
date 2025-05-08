@@ -13,7 +13,7 @@ const username = url.split("/").pop() as string;
 const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username);
 ---
 
-<a {href}>
+<a href={url}>
   <div class="card-user">
     <ProfilePicture {username} size={256} wxh={128} />
     <br />
