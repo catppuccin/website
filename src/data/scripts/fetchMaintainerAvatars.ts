@@ -12,7 +12,7 @@ const SIZES = [64, 256];
 const maintainersWithoutAvatars: string[] = [];
 
 async function maintainersToFetch() {
-  const existingFiles = await fs.readdir(MAINTAINERS_DIR);
+  const existingFiles = await fs.readdir(`${PUBLIC_MAINTAINERS_DIR}/${REQUEST_SIZE}x${REQUEST_SIZE}`);
   const existingMaintainers = new Set(existingFiles.map((file) => file.split(".")[0]));
   return currentMaintainers.filter((maintainer) => !existingMaintainers.has(maintainer.username));
 }
