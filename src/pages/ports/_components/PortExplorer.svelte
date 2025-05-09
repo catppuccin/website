@@ -135,8 +135,8 @@
       top: var(--space-sm);
       max-height: calc(90svh - (var(--space-sm) * 2));
       padding: var(--space-sm);
-      overflow-y: scroll;
-      scrollbar-color: var(--mauve) var(--crust);
+      overflow-y: auto;
+      scrollbar-color: var(--mauve) transparent;
       scrollbar-width: thin;
       scrollbar-gutter: stable;
 
