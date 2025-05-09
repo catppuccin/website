@@ -115,7 +115,6 @@
     flex-direction: column;
     gap: var(--space-sm);
     margin-block-end: var(--space-sm);
-    padding: var(--space-sm);
     border-radius: var(--border-radius-normal);
     background-color: var(--mantle);
 
@@ -134,11 +133,32 @@
     @media (min-width: 56rem) {
       position: sticky;
       top: var(--space-sm);
+      max-height: calc(90svh - (var(--space-sm) * 2));
+      padding: var(--space-sm);
+      overflow-y: scroll;
+      scrollbar-color: var(--mauve) var(--crust);
+      scrollbar-width: thin;
+      scrollbar-gutter: stable;
 
       fieldset {
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-xxs);
+      }
+
+      :global(.search-bar) {
+        position: sticky;
+        top: 0;
+        background-color: var(--crust);
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: calc(var(--space-sm) * -1); left: 0; right: 0;
+          z-index: -1;
+          height: var(--space-sm);
+          background-color: var(--mantle);
+        }
       }
     }
 

@@ -58,7 +58,7 @@
   }
 
   .search-bar {
-    background-color: var(--crust);
+    background-color: var(--mantle);
     display: flex;
     gap: var(--space-xs);
     align-items: center;
