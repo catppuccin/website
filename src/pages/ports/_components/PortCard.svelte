@@ -64,6 +64,8 @@
       transform 0.3s cubic-bezier(0, 0, 0, 1),
       opacity 0.3s cubic-bezier(0, 0, 0, 1);
 
+    --focus-ring-color: var(--mauve);
+
     &.visible {
       opacity: 1;
       transform: translateY(0);

@@ -28,6 +28,8 @@
   transition: all 350ms ease-in-out;
   cursor: pointer;
 
+  --focus-ring-offset: 2px;
+
   &-small {
     @include utils.containerPadding(xxs);
 
@@ -49,60 +51,51 @@
     gap: var(--space-xs);
   }
 
-  &-peach {
-    background-color: var(--peach);
-    background-image: linear-gradient(120deg, var(--peach), var(--red));
+  &:is(a) {
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  &-peach,
+  &-mauve,
+  &-green,
+  &-blue {
+    background-color: var(--filled-btn-start);
+    background-image: linear-gradient(120deg, var(--filled-btn-start), var(--filled-btn-end));
+
     background-size: 150% 100%;
     background-position: top left;
 
     font-weight: 600;
     color: var(--inverted-text);
 
+    --focus-ring-color: var(--filled-btn-start);
+
     &:hover {
       background-position: top right;
     }
+  }
+
+  &-peach {
+    --filled-btn-start: var(--peach);
+    --filled-btn-end: var(--red);
   }
 
   &-mauve {
-    background-color: var(--mauve);
-    background-image: linear-gradient(120deg, var(--pink), var(--mauve));
-    background-size: 150% 100%;
-    background-position: top left;
-
-    font-weight: 600;
-    color: var(--inverted-text);
-
-    &:hover {
-      background-position: top right;
-    }
+    --filled-btn-start: var(--pink);
+    --filled-btn-end: var(--mauve);
   }
 
   &-green {
-    background-color: var(--green);
-    background-image: linear-gradient(120deg, var(--teal), var(--green));
-    background-size: 150% 100%;
-    background-position: top left;
-
-    font-weight: 600;
-    color: var(--inverted-text);
-
-    &:hover {
-      background-position: top right;
-    }
+    --filled-btn-start: var(--teal);
+    --filled-btn-end: var(--green);
   }
 
   &-blue {
-    background-color: var(--blue);
-    background-image: linear-gradient(120deg, var(--blue), var(--sky));
-    background-size: 150% 100%;
-    background-position: top left;
-
-    font-weight: 600;
-    color: var(--inverted-text);
-
-    &:hover {
-      background-position: top right;
-    }
+    --filled-btn-start: var(--blue);
+    --filled-btn-end: var(--sky);
   }
 
   &-success {

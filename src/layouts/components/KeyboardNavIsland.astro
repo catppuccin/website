@@ -1,0 +1,36 @@
+<div class="keyboard-nav-island keyboard-only">
+  <slot />
+</div>
+
+<style lang="scss">
+  .keyboard-nav-island {
+    position: fixed;
+    display: flex;
+
+    top: var(--space-sm);
+    left: -100lvw;
+
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    border-radius: var(--border-radius-normal);
+
+    gap: var(--space-xs);
+    padding: var(--space-xs);
+    background-color: var(--surface0);
+    z-index: 999;
+
+    min-width: 50lvw;
+
+    &:focus,
+    &:focus-within {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    :global(a) {
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: 999px;
+    }
+  }
+</style>

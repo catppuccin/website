@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation.astro";
 import Head from "./components/Head.astro";
 import Footer from "./components/Footer.astro";
 import AccentBar from "./components/AccentBar.astro";
+import KeyboardNavIsland from "./components/KeyboardNavIsland.astro";
 
 interface Props {
   title: string;
@@ -23,16 +24,20 @@ const { title, description, ogImage, accent, enableViewTransition } = Astro.prop
   <Head slot="seo" {title} {description} {ogImage} {accent} {enableViewTransition} />
 
   <section class="header-container">
+    <KeyboardNavIsland>
+      <a href="#main-content">Skip to main content</a>
+      <a href="#footer">Skip to footer</a>
+    </KeyboardNavIsland>
     <div class="content-wrapper no-padding">
       <Navigation />
     </div>
   </section>
 
-  <div class="content-wrapper main-container">
+  <div class="content-wrapper main-container" id="main-content">
     <slot />
   </div>
 
-  <section class="footer-container">
+  <section class="footer-container" id="footer">
     <div class="content-wrapper no-padding">
       <Footer />
     </div>

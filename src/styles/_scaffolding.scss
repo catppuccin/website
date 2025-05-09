@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+*:focus-visible {
+  outline: var(--focus-ring-width, 2px) var(--focus-ring-style, solid)
+    var(--focus-ring-color, var(--_accent-color, var(--mauve)));
+  outline-offset: var(--focus-ring-offset, 0);
+}
+
+.btn.focus-inward,
+.focus-inward {
+  --focus-ring-offset: -2px;
+}
+
 html {
   font-size: 62.5%;
 

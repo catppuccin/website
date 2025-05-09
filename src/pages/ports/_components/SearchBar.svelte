@@ -10,7 +10,9 @@
 </script>
 
 <div class="search-bar">
-  {@html MagnifyingGlass}
+  <div class="icon-container">
+    {@html MagnifyingGlass}
+  </div>
   <input
     type="text"
     id="search-field"
@@ -26,30 +28,32 @@
 
   .search-bar {
     background-color: var(--mantle);
-    display: flex;
-    gap: var(--space-xs);
-    align-items: center;
     margin-block-end: var(--space-sm);
     border-radius: var(--border-radius-normal);
-    padding-inline: var(--space-xs);
+
+    position: relative;
+
+    .icon-container {
+      position: absolute;
+      height: 100%;
+      margin-block: 12px;
+      padding-inline: var(--space-xs) 0;
+      pointer-events: none;
+    }
 
     input {
       padding: var(--space-sm) 0;
-      background-color: inherit;
+      background-color: transparent;
       border-color: inherit;
-      color: inherit;
       border-radius: inherit;
+      color: inherit;
+
       border: none;
-      outline: none;
       width: 100%;
       font-size: 2rem;
-    }
-  }
 
-  .search-bar:focus-within {
-    outline: solid;
-    outline-width: 2px;
-    outline-color: var(--blue);
+      padding-inline: calc(40px + var(--space-xs)) var(--space-xs);
+    }
   }
 
   input::placeholder {

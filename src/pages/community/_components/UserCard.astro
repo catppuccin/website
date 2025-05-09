@@ -13,13 +13,11 @@ const username = url.split("/").pop() as string;
 const isPlaceholder = (maintainersWithoutAvatars as string[]).includes(username);
 ---
 
-<div class="card-user">
-  <a href={url}>
-    <ProfilePicture {username} size={256} wxh={128} />
-    <br />
-    <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name}</span></a
-  >
-</div>
+<a href={url} class="card-user">
+  <ProfilePicture {username} size={256} wxh={128} />
+  <br />
+  <span class=`user-name ${isPlaceholder ? "placeholder" : ""}`>{name}</span>
+</a>
 
 <style lang="scss">
   @use "@styles/utils";

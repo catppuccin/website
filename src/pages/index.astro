@@ -11,29 +11,21 @@ import { Icon } from "astro-icon/components";
     <h1>Soothing pastel theme for the <nobr>high-spirited!</nobr></h1>
     <p>A community-driven color scheme meant for coding, designing, and much more!</p>
     <div class="btn-group">
-      <a href="/ports">
-        <button class="btn btn-has-icon btn-peach">
-          <Icon name="ph:cube-fill" width={24} height={24} />
-          Discover Ports
-        </button>
+      <a href="/ports" class="btn btn-has-icon btn-peach" role="button">
+        <Icon name="ph:cube-fill" width={24} height={24} />
+        Discover Ports
       </a>
-      <a href="/palette">
-        <button class="btn btn-has-icon btn-mauve">
-          <Icon name="ph:palette-fill" width={24} height={24} />
-          Explore Colors
-        </button>
+      <a href="/palette" class="btn btn-has-icon btn-mauve" role="button">
+        <Icon name="ph:palette-fill" width={24} height={24} />
+        Explore Colors
       </a>
-      <a href="/community">
-        <button class="btn btn-has-icon btn-green">
-          <Icon name="ph:users-three-fill" width={24} height={24} />
-          View Community
-        </button>
+      <a href="/community" class="btn btn-has-icon btn-green" role="button">
+        <Icon name="ph:users-three-fill" width={24} height={24} />
+        View Community
       </a>
-      <a href="/blog">
-        <button class="btn btn-has-icon btn-blue">
-          <Icon name="ph:article-fill" width={24} height={24} />
-          Read Blog
-        </button>
+      <a href="/blog" class="btn btn-has-icon btn-blue" role="button">
+        <Icon name="ph:article-fill" width={24} height={24} />
+        Read Blog
       </a>
     </div>
   </div>
@@ -48,12 +40,5 @@ import { Icon } from "astro-icon/components";
 
   h2 {
     color: var(--accent-color);
-  }
-
-  a {
-    &:hover,
-    &:focus {
-      text-decoration: none;
-    }
   }
 </style>
