@@ -103,6 +103,8 @@ a {
 
   color: var(--blue);
 
+  --focus-ring-color: currentColor;
+
   &:hover,
   &:focus {
     text-decoration: underline;

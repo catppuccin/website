@@ -5,16 +5,29 @@ import { flavors } from "@catppuccin/palette";
 interface Props {
   flavor: FlavorName;
   bold?: boolean;
+  link?: boolean;
 }
 
-const { flavor, bold } = Astro.props as Props;
+const { flavor, bold, link } = Astro.props as Props;
 ---
 
 {
-  bold === false ? (
-    <span data-flavor={flavor}>{flavors[flavor].name}</span>
+  link ? (
+    <a href={`#flavor-${flavor}`}>
+      {bold === false ? (
+        <span data-flavor={flavor}>{flavors[flavor].name}</span>
+      ) : (
+        <strong data-flavor={flavor}>{flavors[flavor].name}</strong>
+      )}
+    </a>
   ) : (
-    <strong data-flavor={flavor}>{flavors[flavor].name}</strong>
+    <>
+      {bold === false ? (
+        <span data-flavor={flavor}>{flavors[flavor].name}</span>
+      ) : (
+        <strong data-flavor={flavor}>{flavors[flavor].name}</strong>
+      )}
+    </>
   )
 }
 
