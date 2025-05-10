@@ -27,3 +27,9 @@ public/maintainers/64x64/*
 public/maintainers/256x256/*
 !public/maintainers/64x64/placeholder.webp
 !public/maintainers/256x256/placeholder.webp
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

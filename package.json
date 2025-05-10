@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "astro": "astro",
-    "build": "pnpm run maintainers && pnpm run test:run && astro check && astro build",
+    "build": "pnpm run maintainers && pnpm run test:ci && astro check && astro build",
     "check": "astro check",
     "dev": "astro dev",
     "fmt": "prettier --plugin=prettier-plugin-astro . --write",
@@ -15,8 +15,10 @@
     "preview": "astro preview",
     "start": "astro dev",
     "test": "vitest",
-    "test:run": "vitest run",
-    "test:cov": "vitest run --coverage"
+    "test:ui": "pnpm exec playwright test --ui",
+    "test:cov": "vitest run --coverage",
+    "test:e2e": "pnpm exec playwright test",
+    "test:ci": "vitest run && pnpm run test:e2e"
   },
   "lint-staged": {
     "src/**/*": "pnpm run fmt"
@@ -35,6 +37,7 @@
     "@iconify/svelte": "^5.0.0",
     "@iconify/tools": "^4.1.2",
     "@iconify/types": "^2.0.0",
+    "@playwright/test": "^1.52.0",
     "@rollup/plugin-yaml": "^4.1.2",
     "@types/node": "^22.15.17",
     "@vitest/coverage-v8": "^3.1.3",
@@ -43,8 +46,9 @@
     "astro-icon": "1.1.5",
     "fuse.js": "^7.1.0",
     "husky": "^9.1.7",
-    "lint-staged": "^15.5.2",
+    "lint-staged": "^16.0.0",
     "mdast-util-to-string": "^4.0.0",
+    "playwright": "^1.52.0",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "reading-time": "^1.5.0",
