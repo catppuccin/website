@@ -75,8 +75,27 @@ export function filterPorts(ports: PortWithIcons[]): PortWithIcons[] {
   return filtered;
 }
 
+/**
+  Scroll to the top of the ports explorer if it's not already in view.
+
+  The bottom edge of the ports description is used because the filters
+  box has top padding which can cause layout shifts when the user is
+  typing in the search box.
+  */
 export function scrollToTop() {
-  document.body.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" });
+  const portsExplorer = document.getElementById("ports-explorer");
+  const portsDescription = document.getElementById("ports-description");
+
+  if (!portsExplorer || !portsDescription) {
+    return;
+  }
+
+  if (portsExplorer.getBoundingClientRect().top < 0) {
+    window.scrollTo({
+      top: window.scrollY + portsDescription.getBoundingClientRect().bottom,
+      behavior: "auto",
+    });
+  }
 }
 
 export function debounce<T, D extends any[]>(deps: () => D, action: () => T, initialValue: T, delay: number): () => T {

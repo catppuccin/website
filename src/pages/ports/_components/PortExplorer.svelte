@@ -42,7 +42,7 @@
   );
 </script>
 
-<div class="explorer">
+<div class="explorer" id="ports-explorer">
   <form class="search-filters">
     <SearchBar {numOfSearchResults} />
     <fieldset>
@@ -75,6 +75,7 @@
             onclick={() => {
               // allow categories to be deselected on the second click
               if (categoryRadioButtons[i] && categoryRadioButtons[i].checked && urlParams.category === category.key) {
+                scrollToTop();
                 urlParams.category = null;
                 updateCategoryUrlParams();
               }
@@ -83,9 +84,9 @@
               scrollToTop();
               updateCategoryUrlParams();
             }} />
-            {category.name}
-            <span class="label-pill">{category.portCount}</span>
-          </label>
+          {category.name}
+          <span class="label-pill">{category.portCount}</span>
+        </label>
       {/each}
     </fieldset>
   </form>
@@ -108,7 +109,6 @@
   }
 
   .search-filters {
-
     --_checked-colour: var(--mauve);
 
     display: flex;
@@ -117,7 +117,6 @@
     margin-block-end: var(--space-sm);
     border-radius: var(--border-radius-normal);
     background-color: var(--mantle);
-
 
     legend {
       margin-block: var(--space-lg) var(--space-sm);
@@ -152,9 +151,11 @@
         background-color: var(--crust);
 
         &::before {
-          content: '';
+          content: "";
           position: absolute;
-          top: calc(var(--space-sm) * -1); left: 0; right: 0;
+          top: calc(var(--space-sm) * -1);
+          left: 0;
+          right: 0;
           z-index: -1;
           height: var(--space-sm);
           background-color: var(--mantle);
@@ -162,12 +163,12 @@
       }
     }
 
-
     label {
       display: flex;
       gap: var(--space-xxs);
       align-items: center;
-      padding: calc(var(--space-xxs) / 2) var(--space-xxs); padding-inline-start: 0;
+      padding: calc(var(--space-xxs) / 2) var(--space-xxs);
+      padding-inline-start: 0;
       border: 2px solid var(--surface0);
       font-size: 80%;
       white-space: nowrap;
@@ -187,11 +188,11 @@
       }
     }
 
-
     input[type="radio"],
     input[type="checkbox"] {
       margin: 0;
-      width: 0; height: 0;
+      width: 0;
+      height: 0;
     }
 
     label:has([type="checkbox"]) {
@@ -204,27 +205,14 @@
     }
 
     label:has(input:checked) {
-      border-color: color-mix(
-        in srgb,
-        40% var(--_checked-colour),
-        var(--base)
-      );
-      background-color: color-mix(
-        in srgb,
-        10% var(--_checked-colour),
-        var(--base)
-      );
+      border-color: color-mix(in srgb, 40% var(--_checked-colour), var(--base));
+      background-color: color-mix(in srgb, 10% var(--_checked-colour), var(--base));
       color: var(--_checked-colour);
 
       .label-pill {
-        background-color: color-mix(
-          in srgb,
-          25% var(--_checked-colour),
-          var(--base)
-        );
+        background-color: color-mix(in srgb, 25% var(--_checked-colour), var(--base));
         color: var(--_checked-colour);
       }
     }
-
   }
 </style>
