@@ -19,12 +19,24 @@
   }
 
   let { ports, platforms, categories }: Props = $props();
-  let categoryRadioButtons: HTMLInputElement[] | undefined = $state([]);
+  let categoryRadioButtons: HTMLInputElement[] = $state([]);
+
+  /**
+   * Allow categories to be deselected on another click.
+   */
+  function deselectCategory(index: number, category: CategoryWithPortCount) {
+    const isCategorySelected =
+      categoryRadioButtons[index] && categoryRadioButtons[index].checked && urlParams.category === category.key;
+    if (isCategorySelected) {
+      scrollToTop();
+      urlParams.category = null;
+      updateCategoryUrlParams();
+    }
+  }
 
   // we need to recreate the port grid from search params so that it doesn't
   // flash the page with the wrong ports when the user refreshes the page
   const initialPortGrid = queryPorts(filterPorts(ports));
-
   // searching is debounced to improve user experience
   const queriedPorts = $derived.by(
     debounce(
@@ -34,17 +46,13 @@
       25,
     ),
   );
-
   const portGrid = $derived(filterPorts(queriedPorts));
-  const numOfSearchResults = $derived(portGrid.length);
-  const userInteracted = $derived(
-    urlParams.query !== null || urlParams.category !== null || urlParams.platforms.length > 0,
-  );
+  const queryResultsNum = $derived(portGrid.length);
 </script>
 
 <div class="explorer" id="ports-explorer">
   <form class="search-filters">
-    <SearchBar {numOfSearchResults} />
+    <SearchBar {queryResultsNum} />
     <fieldset>
       <legend>Platforms</legend>
       {#each platforms as platform (platform.key)}
@@ -72,14 +80,7 @@
             type="radio"
             bind:this={categoryRadioButtons[i]}
             bind:group={urlParams.category}
-            onclick={() => {
-              // allow categories to be deselected on the second click
-              if (categoryRadioButtons[i] && categoryRadioButtons[i].checked && urlParams.category === category.key) {
-                scrollToTop();
-                urlParams.category = null;
-                updateCategoryUrlParams();
-              }
-            }}
+            onclick={() => deselectCategory(i, category)}
             onchange={() => {
               scrollToTop();
               updateCategoryUrlParams();
@@ -91,7 +92,7 @@
     </fieldset>
   </form>
   <div class="grid">
-    <PortGrid {portGrid} {userInteracted} />
+    <PortGrid {portGrid} />
   </div>
 </div>
 

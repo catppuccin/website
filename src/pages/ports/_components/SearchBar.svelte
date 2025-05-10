@@ -9,10 +9,10 @@
   } from "./state.svelte";
 
   interface Props {
-    numOfSearchResults: number;
+    queryResultsNum: number;
   }
 
-  let { numOfSearchResults }: Props = $props();
+  let { queryResultsNum }: Props = $props();
 </script>
 
 <div class="search-bar">
@@ -38,7 +38,7 @@
         updatePlatformsUrlParams();
       }
     }} />
-  <strong class="counter">{numOfSearchResults}</strong>
+  <strong class="counter">{queryResultsNum}</strong>
 </div>
 
 <style lang="scss">
