@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "astro": "astro",
-    "build": "pnpm run maintainers && pnpm run test:ci && astro check && astro build",
+    "build": "pnpm run maintainers && pnpm run test:run && astro check && astro build",
     "check": "astro check",
     "dev": "astro dev",
     "fmt": "prettier --plugin=prettier-plugin-astro . --write",
@@ -15,9 +15,10 @@
     "preview": "astro preview",
     "start": "astro dev",
     "test": "vitest",
-    "test:ui": "pnpm exec playwright test --ui",
+    "test:run": "vitest run",
     "test:cov": "vitest run --coverage",
     "test:e2e": "pnpm exec playwright test",
+    "test:e2e:ui": "pnpm exec playwright test --ui",
     "test:ci": "vitest run && pnpm run test:e2e"
   },
   "lint-staged": {
