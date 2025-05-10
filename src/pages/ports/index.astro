@@ -21,7 +21,7 @@ import PortCard from "./_components/PortCard.svelte";
 
   <!-- Display ports without search bar for browsers without JavaScript enabled -->
   <noscript>
-    <div class="port-grid">
+    <div class="port-grid noscript">
       {ports.map((port) => <PortCard {port} />)}
     </div>
   </noscript>
@@ -39,5 +39,14 @@ import PortCard from "./_components/PortCard.svelte";
 
   .port-grid {
     @include utils.grid($column: 250px, $gap: var(--space-sm));
+
+    &.noscript {
+      .port-card {
+        opacity: 1;
+        &:not(:hover) {
+          transform: unset;
+        }
+      }
+    }
   }
 </style>
