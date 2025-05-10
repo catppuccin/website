@@ -10,6 +10,7 @@
     urlParams,
     updateCategoryUrlParams,
     updatePlatformsUrlParams,
+    differentiateUserstyles,
   } from "./state.svelte";
 
   interface Props {
@@ -46,7 +47,7 @@
       25,
     ),
   );
-  const portGrid = $derived(filterPorts(queriedPorts));
+  const portGrid = $derived(differentiateUserstyles(filterPorts(queriedPorts)));
   const queryResultsNum = $derived(portGrid.length);
 </script>
 

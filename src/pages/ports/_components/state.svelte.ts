@@ -76,12 +76,35 @@ export function filterPorts(ports: PortWithIcons[]): PortWithIcons[] {
 }
 
 /**
-  Scroll to the top of the ports explorer if it's not already in view.
+ * Some ports also have userstyles. Unfortunately, the keys, so far, are different for ports and userstyles.
+ *
+ * This function will append "(userstyle)" to the userstyle if the port and userstyle are both present.
+ */
+export function differentiateUserstyles(ports: PortWithIcons[]): PortWithIcons[] {
+  const portKeys = ports.map((port) => port.key);
+  const userstylesToPorts = {
+    mdbook: "mdBook",
+    "keybr.com": "keybr",
+  };
+  let results = ports;
 
-  The bottom edge of the ports description is used because the filters
-  box has top padding which can cause layout shifts when the user is
-  typing in the search box.
-  */
+  for (const [userstyleDir, portSlug] of Object.entries(userstylesToPorts)) {
+    if (portKeys.includes(userstyleDir) && portKeys.includes(portSlug)) {
+      const index = portKeys.indexOf(userstyleDir);
+      results = results.with(index, { ...ports[index], name: `${ports[index].name} (userstyle)` });
+    }
+  }
+
+  return results;
+}
+
+/**
+ * Scroll to the top of the ports explorer if it's not already in view.
+ *
+ * The bottom edge of the ports description is used because the filters
+ * box has top padding which can cause layout shifts when the user is
+ * typing in the search box.
+ */
 export function scrollToTop() {
   const portsExplorer = document.getElementById("ports-explorer");
   const portsDescription = document.getElementById("ports-description");
