@@ -23,7 +23,7 @@
     type="text"
     id="search-field"
     aria-label="Search"
-    placeholder="Search port or category..."
+    placeholder="Search port..."
     autocomplete="off"
     bind:value={urlParams.query}
     oninput={() => {
