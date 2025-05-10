@@ -3,15 +3,14 @@
   import PortCard from "./PortCard.svelte";
 
   interface Props {
-    portGrid: Array<PortWithIcons> | undefined;
-    searchTerm: string;
+    portGrid: PortWithIcons[];
   }
 
-  let { portGrid, searchTerm }: Props = $props();
+  let { portGrid }: Props = $props();
 </script>
 
 <div class="port-grid">
-  {#if searchTerm && portGrid && portGrid.length === 0}
+  {#if portGrid.length === 0}
     <div>
       <p>Sorry, we couldn't find any ports matching your search :(</p>
       <p>
@@ -21,7 +20,7 @@
         >.
       </p>
     </div>
-  {:else if portGrid && portGrid.length > 0}
+  {:else if portGrid.length > 0}
     {#each portGrid as port (port.key)}
       <PortCard {port} />
     {/each}
