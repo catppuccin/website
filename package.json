@@ -54,7 +54,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "reading-time": "^1.5.0",
     "rehype-autolink-headings": "^7.1.0",
-    "sass": "^1.87.0",
+    "sass": "^1.88.0",
     "sharp": "^0.34.0",
     "surge": "^0.24.6",
     "svelte": "^5.28.2",

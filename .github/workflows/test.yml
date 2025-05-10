@@ -19,4 +19,5 @@ jobs:
           cache: pnpm
       - run: pnpm i --frozen-lockfile
       - run: pnpm dlx playwright install --with-deps
+      - run: pnpm run maintainers
       - run: pnpm run test:e2e
