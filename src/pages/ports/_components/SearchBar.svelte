@@ -81,7 +81,7 @@
   .search-bar:focus-within {
     outline: solid;
     outline-width: 2px;
-    outline-color: var(--blue);
+    outline-color: var(--mauve);
   }
 
   input::placeholder {
