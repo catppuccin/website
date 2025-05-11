@@ -52,7 +52,7 @@
 </script>
 
 <div class="explorer" id="ports-explorer">
-  <form class="search-filters">
+  <form class="search-filters" onsubmit={(e) => e.preventDefault()}>
     <SearchBar {queryResultsNum} />
     <fieldset>
       <legend>Platforms</legend>
