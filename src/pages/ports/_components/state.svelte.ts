@@ -1,6 +1,6 @@
 import type { CategoryKey, PlatformKey } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
 import type { PortWithIcons } from "@data/ports";
-import Fuse from "fuse.js";
+import Fuse from "fuse.js/min-basic";
 
 type UrlParamsState = {
   query: string | null;
