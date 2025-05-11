@@ -1,35 +1,67 @@
 <script lang="ts">
   import MagnifyingGlass from "@data/icons/magnifying-glass.svg?raw";
+  import {
+    scrollToTop,
+    urlParams,
+    updateCategoryUrlParams,
+    updatePlatformsUrlParams,
+    updateQueryUrlParams,
+  } from "./state.svelte";
 
   interface Props {
-    searchTerm: string;
-    handleInput: () => void;
+    queryResultsNum: number;
   }
 
-  let { searchTerm = $bindable(), handleInput }: Props = $props();
+  let { queryResultsNum }: Props = $props();
 </script>
 
 <div class="search-bar">
-  {@html MagnifyingGlass}
+  <div class="magnifying-glass">
+    {@html MagnifyingGlass}
+  </div>
   <input
     type="text"
     id="search-field"
     aria-label="Search"
-    placeholder="Search port or category..."
+    placeholder="Search port..."
     autocomplete="off"
-    bind:value={searchTerm}
-    oninput={handleInput} />
+    bind:value={urlParams.query}
+    oninput={() => {
+      scrollToTop();
+      updateQueryUrlParams();
+      if (urlParams.category) {
+        urlParams.category = null;
+        updateCategoryUrlParams();
+      }
+      if (urlParams.platforms.length > 0) {
+        urlParams.platforms = [];
+        updatePlatformsUrlParams();
+      }
+    }} />
+  <strong class="counter">{queryResultsNum}</strong>
 </div>
 
 <style lang="scss">
   @use "../../../styles/utils";
+
+  .counter {
+    display: none;
+  }
+  @media (min-width: 56rem) {
+    .counter {
+      display: inherit;
+    }
+  }
+
+  .magnifying-glass {
+    display: flex;
+  }
 
   .search-bar {
     background-color: var(--mantle);
     display: flex;
     gap: var(--space-xs);
     align-items: center;
-    margin-block-end: var(--space-sm);
     border-radius: var(--border-radius-normal);
     padding-inline: var(--space-xs);
 
@@ -49,7 +81,7 @@
   .search-bar:focus-within {
     outline: solid;
     outline-width: 2px;
-    outline-color: var(--blue);
+    outline-color: var(--mauve);
   }
 
   input::placeholder {

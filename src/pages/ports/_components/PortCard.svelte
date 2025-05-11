@@ -1,9 +1,8 @@
 <script lang="ts">
   import type { PortWithIcons } from "@data/ports";
-  import Pills from "@components/Pills.svelte";
   import Icon from "@iconify/svelte";
-  import PortMaintainers from "./PortMaintainers.svelte";
   import { intersect } from "svelte-intersection-observer-action";
+  import PortMaintainers from "./PortMaintainers.svelte";
 
   let { port }: { port: PortWithIcons } = $props();
   let visible = $state(false);
@@ -34,9 +33,6 @@
         height: port.icon.height,
       }} />
   </div>
-
-  <Pills list={port.categories.map((category) => `${category.name}`)} />
-
   <PortMaintainers {port} />
 </a>
 
@@ -44,7 +40,7 @@
   @use "../../../styles/utils";
 
   .port-card {
-    @include utils.flex($direction: column, $gap: var(--space-md));
+    @include utils.flex($direction: column, $gap: var(--space-sm));
     justify-content: space-between;
 
     @include utils.containerPadding();
@@ -55,7 +51,7 @@
     background-position: top left;
 
     color: var(--subtext0);
-    font-size: 1.6rem;
+    font-size: 1.4rem;
 
     opacity: 0.5;
 
