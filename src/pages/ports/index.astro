@@ -1,5 +1,5 @@
 ---
-import { ports } from "@data/ports";
+import { ports, platforms, categories } from "@data/ports";
 
 import Default from "@layouts/Default.astro";
 
@@ -13,7 +13,7 @@ import PortCard from "./_components/PortCard.svelte";
   title="Ports • Catppuccin"
   description="Explore Catppuccin's extensive range of ports. From applications and tools to websites, we have a port for just about anything!">
   <PageIntro title="Ports">
-    <p>
+    <p id="ports-description">
       Catppuccin provides <strong>{ports.length}</strong> ports, covering a wide range of applications, tools, websites,
       and just about anything you can imagine!
     </p>
@@ -21,13 +21,13 @@ import PortCard from "./_components/PortCard.svelte";
 
   <!-- Display ports without search bar for browsers without JavaScript enabled -->
   <noscript>
-    <div class="port-grid">
+    <div class="port-grid noscript">
       {ports.map((port) => <PortCard {port} />)}
     </div>
   </noscript>
 
   <!-- TODO: Figure out a better general solution that doesn't involve defining SVGs as Svelte components or passing in nested Svelte 5 snippets/slots -->
-  <PortExplorer {ports} client:only="svelte" />
+  <PortExplorer {ports} {platforms} {categories} client:only="svelte" />
 </Default>
 
 <style lang="scss" is:global>
@@ -38,6 +38,15 @@ import PortCard from "./_components/PortCard.svelte";
   }
 
   .port-grid {
-    @include utils.grid($column: 300px, $gap: var(--space-sm));
+    @include utils.grid($column: 250px, $gap: var(--space-sm));
+
+    &.noscript {
+      .port-card {
+        opacity: 1;
+        &:not(:hover) {
+          transform: unset;
+        }
+      }
+    }
   }
 </style>
