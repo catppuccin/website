@@ -121,7 +121,7 @@
     background-color: var(--mantle);
 
     legend {
-      margin-block: var(--space-lg) var(--space-sm);
+      margin-block-end: var(--space-sm);
       color: var(--text);
     }
 
