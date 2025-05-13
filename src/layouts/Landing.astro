@@ -57,13 +57,24 @@ const { title, description, ogImage, accent } = Astro.props;
       color-mix(in srgb, var(--base), var(--mauve) 10%)
     );
 
-    @media (prefers-color-scheme: dark) {
-      background-color: color-mix(in srgb, var(--base), var(--mantle) 30%);
-      background-image: none;
-    }
-
     + .footer-container {
       margin-block-start: 0;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :where([data-theme="system"]) {
+      #hero {
+        background-color: color-mix(in srgb, var(--base), var(--mantle) 30%);
+        background-image: none;
+      }
+    }
+  }
+
+  :where([data-theme="macchiato"], [data-theme="frappe"], [data-theme="mocha"]) {
+    #hero {
+      background-color: color-mix(in srgb, var(--base), var(--mantle) 30%);
+      background-image: none;
     }
   }
 

@@ -1,0 +1,27 @@
+---
+import ThemeSelect from "@components/ThemeSelect.svelte";
+---
+
+<noscript>
+  <span> Enable JavaScript to change the theme. </span>
+</noscript>
+
+<ThemeSelect client:only="svelte">
+  <div slot="fallback" class="fallback" aria-label="Loading theme selector...">
+    Theme
+    <div class="fallbackSelect"></div>
+  </div>
+</ThemeSelect>
+
+<style>
+  .fallback {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-xs);
+    height: 40px;
+  }
+  .fallbackSelect {
+    height: 32px;
+  }
+</style>
