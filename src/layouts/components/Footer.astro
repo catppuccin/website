@@ -1,6 +1,6 @@
 ---
 import SpeakerHighVolume from "@data/icons/speaker-high-volume.svg";
-import ThemeSwitcher from "@components/ThemeSwitcher.svelte";
+import ThemeSwitcher from "@components/ThemeSwitcher.astro";
 
 import { footerLinks } from "@data/links";
 ---
@@ -44,7 +44,7 @@ import { footerLinks } from "@data/links";
     <p>
       &copy; {new Date(Date.now()).getFullYear()} • <a href="/licensing">Licensing</a>
     </p>
-    <ThemeSwitcher client:load />
+    <ThemeSwitcher />
   </div>
 
   <style lang="scss">

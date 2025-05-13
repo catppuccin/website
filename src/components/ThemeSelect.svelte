@@ -1,8 +1,5 @@
 <script lang="ts">
   import type { AccentName, FlavorName } from "@catppuccin/palette";
-  import Icon from "@iconify/svelte";
-  import { onMount } from "svelte";
-
   type Theme = FlavorName | "system";
 
   const themes: { id: Theme; name: string; emoji: string; accent: AccentName }[] = [
@@ -14,16 +11,8 @@
   ];
 
   let currentTheme = $state(
-    import.meta.env.SSR ?
-    'system' :
     (localStorage.getItem("theme") as Theme | undefined) || "system"
   );
-
-  let loading = $state(true);
-
-  onMount(() => {
-    loading = false;
-  });
 
   function setTheme(ev: Event) {
     const selectedTheme = (ev.target as HTMLSelectElement).value as Theme;
@@ -33,12 +22,9 @@
   }
 </script>
 
-<noscript>
-  Enable JavaScript to change the theme.
-</noscript>
 <label for="themeSelector">
   Theme
-  <select name="Change theme" id="themeSelector" value={currentTheme} disabled={loading} onchange={setTheme}>
+  <select name="Change theme" id="themeSelector" value={currentTheme} onchange={setTheme}>
     {#each themes as option}
       <option value={option.id}>
         {option.emoji} {option.name}
@@ -54,6 +40,7 @@
     flex-direction: row;
     align-items: center;
     gap: var(--space-xs);
+    height: 40px;
   }
   select {
     @include utils.containerPadding(xxs);
@@ -64,6 +51,8 @@
     font: inherit;
     font-size: 90%;
     position: relative;
+    width: 128px;
+    height: 32px;
     &:focus, &:focus-visible {
       outline: 3px solid var(--mauve);
       outline-offset: -3px;
