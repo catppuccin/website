@@ -11,7 +11,7 @@
   ];
 
   let currentTheme = $state(
-    (localStorage.getItem("theme") as Theme | undefined) || "system"
+    (localStorage.getItem("theme") as Theme | undefined) ?? "system"
   );
 
   function setTheme(ev: Event) {

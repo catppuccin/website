@@ -15,7 +15,7 @@ import "@styles/global.scss";
     <slot name="seo" />
     <script is:inline>
       (function () {
-        const theme = localStorage.getItem("theme") || "system";
+        const theme = localStorage.getItem("theme") ?? "system";
         document.documentElement.setAttribute("data-theme", theme);
       })();
     </script>
