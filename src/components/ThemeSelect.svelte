@@ -10,9 +10,7 @@
     { id: "mocha", name: "Mocha", emoji: "🌿", accent: "green" },
   ];
 
-  let currentTheme = $state(
-    (localStorage.getItem("theme") as Theme | undefined) ?? "system"
-  );
+  let currentTheme = $state((localStorage.getItem("theme") as Theme | undefined) ?? "system");
 
   function setTheme(ev: Event) {
     const selectedTheme = (ev.target as HTMLSelectElement).value as Theme;
@@ -27,14 +25,16 @@
   <select name="Change theme" id="themeSelector" value={currentTheme} onchange={setTheme}>
     {#each themes as option}
       <option value={option.id}>
-        {option.emoji} {option.name}
+        {option.emoji}
+        {option.name}
       </option>
     {/each}
   </select>
 </label>
 
 <style lang="scss">
-  @use '../styles/utils';
+  @use "../styles/utils";
+
   label {
     display: flex;
     flex-direction: row;
@@ -42,6 +42,7 @@
     gap: var(--space-xs);
     height: 40px;
   }
+
   select {
     @include utils.containerPadding(xxs);
     border-radius: var(--border-radius-normal);
@@ -53,7 +54,9 @@
     position: relative;
     width: 128px;
     height: 32px;
-    &:focus, &:focus-visible {
+
+    &:focus,
+    &:focus-visible {
       outline: 3px solid var(--mauve);
       outline-offset: -3px;
     }
