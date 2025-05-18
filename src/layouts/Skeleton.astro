@@ -3,7 +3,7 @@ import "@styles/global.scss";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +13,16 @@ import "@styles/global.scss";
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="Catppuccin Blog" href={new URL("rss.xml", Astro.site)} />
     <slot name="seo" />
+    <script is:inline>
+      function updateTheme(document) {
+        const theme = localStorage.getItem("theme") ?? "system";
+        document.documentElement.setAttribute("data-theme", theme);
+      }
+      document.addEventListener("astro:before-swap", (event) => {
+        updateTheme(event.newDocument);
+      });
+      updateTheme(document);
+    </script>
   </head>
   <body>
     <slot />

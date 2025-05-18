@@ -49,6 +49,13 @@ const { title, description, ogImage, accent } = Astro.props;
 <style lang="scss" is:global>
   @use "@styles/utils";
 
+  @mixin dark-background-color() {
+    #hero {
+      background-color: color-mix(in srgb, var(--base), var(--mantle) 30%);
+      background-image: none;
+    }
+  }
+
   #hero {
     background-color: color-mix(in srgb, var(--base), var(--mauve) 10%);
     background-image: linear-gradient(
@@ -57,14 +64,19 @@ const { title, description, ogImage, accent } = Astro.props;
       color-mix(in srgb, var(--base), var(--mauve) 10%)
     );
 
-    @media (prefers-color-scheme: dark) {
-      background-color: color-mix(in srgb, var(--base), var(--mantle) 30%);
-      background-image: none;
-    }
-
     + .footer-container {
       margin-block-start: 0;
     }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :where([data-theme="system"]) {
+      @include dark-background-color();
+    }
+  }
+
+  :where([data-theme="macchiato"], [data-theme="frappe"], [data-theme="mocha"]) {
+    @include dark-background-color();
   }
 
   .hero-logo {
