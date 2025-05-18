@@ -43,7 +43,6 @@ const isProduction = import.meta.env.CATPPUCCIN_PROD;
 
 <script is:inline>
   document.addEventListener("astro:before-swap", (event) => {
-    const theme = localStorage.getItem("theme") || "system";
-    event.newDocument.documentElement.setAttribute("data-theme", theme);
+    updateTheme(event.newDocument);
   });
 </script>

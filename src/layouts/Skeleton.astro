@@ -14,10 +14,11 @@ import "@styles/global.scss";
     <link rel="alternate" type="application/rss+xml" title="Catppuccin Blog" href={new URL("rss.xml", Astro.site)} />
     <slot name="seo" />
     <script is:inline>
-      (function () {
+      function updateTheme(document) {
         const theme = localStorage.getItem("theme") ?? "system";
         document.documentElement.setAttribute("data-theme", theme);
-      })();
+      }
+      updateTheme(document);
     </script>
   </head>
   <body>
