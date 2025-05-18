@@ -18,6 +18,9 @@ import "@styles/global.scss";
         const theme = localStorage.getItem("theme") ?? "system";
         document.documentElement.setAttribute("data-theme", theme);
       }
+      document.addEventListener("astro:before-swap", (event) => {
+        updateTheme(event.newDocument);
+      });
       updateTheme(document);
     </script>
   </head>
