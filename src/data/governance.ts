@@ -82,4 +82,6 @@ const governanceYml = (await fetch(
   .then((r) => r.text())
   .then((t) => parse(t))) as GovernanceSchema;
 
-export const leadership = governanceYml.leadership;
+export const leadership = governanceYml.leadership.filter(
+  (team) => team["current-members"].length > 0,
+) as AllLeadershipTeams;
