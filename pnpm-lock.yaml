@@ -37,7 +37,7 @@ importers:
         version: 1.2.2
       '@iconify-json/simple-icons':
         specifier: ^1.2.39
-        version: 1.2.40
+        version: 1.2.41
       '@iconify/svelte':
         specifier: ^5.0.0
         version: 5.0.0(svelte@5.34.7)
@@ -580,8 +580,8 @@ packages:
   '@iconify-json/ph@1.2.2':
     resolution: {integrity: sha512-PgkEZNtqa8hBGjHXQa4pMwZa93hmfu8FUSjs/nv4oUU6yLsgv+gh9nu28Kqi8Fz9CCVu4hj1MZs9/60J57IzFw==}
 
-  '@iconify-json/simple-icons@1.2.40':
-    resolution: {integrity: sha512-sr2fbrS8rRhJNap41ucTStctxTcWQ3lcsHkY3loc4Yt1KNOne6D+l1JTOQCDj9f/VrUktVIEdaRQoYTvqfuSSw==}
+  '@iconify-json/simple-icons@1.2.41':
+    resolution: {integrity: sha512-4tt29cKzNsxvt6rjAOVhEgpZV0L8jleTDTMdtvIJjF14Afp9aH8peuwGYyX35l6idfFwuzbvjSVfVyVjJtfmYA==}
 
   '@iconify/svelte@5.0.0':
     resolution: {integrity: sha512-Bm5iKnNpIWHuUlWaaf16QgVL1tcbQUUSdPdkvDlpmYXg3nFJSA1SLY9V4rRTd+K4h3QT12ZS7JHFLkf8khQd8Q==}
@@ -4112,7 +4112,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/simple-icons@1.2.40':
+  '@iconify-json/simple-icons@1.2.41':
     dependencies:
       '@iconify/types': 2.0.0
 
