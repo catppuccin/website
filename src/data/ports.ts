@@ -41,6 +41,7 @@ export const platforms: Platforms = [
   { key: "android", name: "Android" },
   { key: "ios", name: "iOS" },
   { key: "web", name: "Web" },
+  { key: "xbox360", name: "Xbox 360" },
 ];
 
 export const categories = porcelain.categories.map((category) => {
