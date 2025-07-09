@@ -65,7 +65,7 @@
     "vite": "^6.3.5",
     "yaml": "^2.8.0"
   },
-  "packageManager": "pnpm@10.12.4",
+  "packageManager": "pnpm@10.13.1",
   "engines": {
     "node": ">=22"
   },
