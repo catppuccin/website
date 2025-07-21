@@ -8,6 +8,7 @@ import Default from "@layouts/Default.astro";
 import PageIntro from "@components/PageIntro.astro";
 
 import CopyToClipboardIcon from "./_components/CopyToClipboardButton.svelte";
+import QuerySynchronizedDetails from "./_components/QuerySynchronizedDetails.astro";
 import FlavorName from "./_components/FlavorName.astro";
 
 const toRgb = (rgb: ColorFormat["rgb"]) => {
@@ -53,13 +54,13 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
       {
         flavorEntries.map(([flavorName, flavor]) => (
           <div class="flavor">
-            <details open>
-              <summary>
+            <QuerySynchronizedDetails flavor={flavorName}>
+              <summary slot="summary">
                 <h2 id={`flavor-${flavorName}`} class="flavor-name">
                   <FlavorName flavor={flavorName} bold={false} />
                 </h2>
               </summary>
-              <table class="color-list" cellspacing="0">
+              <table class="color-list" cellspacing="0" slot="info">
                 <thead>
                   <tr class="color-list-header">
                     <th>Color</th>
@@ -93,7 +94,7 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
                   ))}
                 </tbody>
               </table>
-            </details>
+            </QuerySynchronizedDetails>
           </div>
         ))
       }
