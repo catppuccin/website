@@ -40,7 +40,7 @@ importers:
         version: 1.2.43
       '@iconify/svelte':
         specifier: ^5.0.0
-        version: 5.0.0(svelte@5.35.3)
+        version: 5.0.1(svelte@5.35.3)
       '@iconify/tools':
         specifier: ^4.1.2
         version: 4.1.2
@@ -430,8 +430,8 @@ packages:
   '@iconify-json/simple-icons@1.2.43':
     resolution: {integrity: sha512-JERgKGFRfZdyjGyTvVBVW5rftahy9tNUX+P+0QUnbaAEWvEMexXHE9863YVMVrIRhoj/HybGsibg8ZWieo/NDg==}
 
-  '@iconify/svelte@5.0.0':
-    resolution: {integrity: sha512-Bm5iKnNpIWHuUlWaaf16QgVL1tcbQUUSdPdkvDlpmYXg3nFJSA1SLY9V4rRTd+K4h3QT12ZS7JHFLkf8khQd8Q==}
+  '@iconify/svelte@5.0.1':
+    resolution: {integrity: sha512-nR1ApafyeRDcsx6ytd+0mzaY0ASYfG5YBW9dN8rUWxwi792/HX401qAZEkXSjT0iHm2Dgua+PwXDs/3ttJhkqQ==}
     peerDependencies:
       svelte: '>4.0.0'
 
@@ -3820,7 +3820,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify/svelte@5.0.0(svelte@5.35.3)':
+  '@iconify/svelte@5.0.1(svelte@5.35.3)':
     dependencies:
       '@iconify/types': 2.0.0
       svelte: 5.35.3
