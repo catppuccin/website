@@ -68,7 +68,7 @@
   "dependenciesComments": {
     "svelte": "Svelte is pinned due to the following issue: https://github.com/sveltejs/svelte/issues/16423"
   },
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.14.0",
   "engines": {
     "node": ">=22"
   },
