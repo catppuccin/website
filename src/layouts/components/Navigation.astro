@@ -39,6 +39,8 @@ import { navigationLinks } from "@data/links";
     width: 4rem;
     height: 4rem;
 
+    position: relative;
+
     /*  The SVG is playing the animation by default; To avoid a
      *  constantly playing animation the playstate is set to paused.
      *  The :global() selector is necessary to avoid Astro's auto scoping.
@@ -50,6 +52,15 @@ import { navigationLinks } from "@data/links";
     /*  Start playing the animation again on hover. */
     &:hover :global(svg *) {
       animation-play-state: running;
+    }
+
+    // Touch target
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: inherit;
+      pointer-events: all;
     }
   }
 
@@ -102,6 +113,15 @@ import { navigationLinks } from "@data/links";
 
       transform: scaleX(1);
       transform-origin: top left;
+    }
+
+    // Touch target
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -14px -8px;
+      border-radius: inherit;
+      pointer-events: all;
     }
   }
 </style>
