@@ -59,6 +59,7 @@
     "surge": "^0.24.6",
     "svelte": "5.35.3",
     "svelte-intersection-observer-action": "^0.0.5",
+    "svelte-virtuallists": "^1.4.2",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2",
     "vite": "^6.3.5",

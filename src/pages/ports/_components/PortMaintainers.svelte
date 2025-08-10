@@ -2,13 +2,17 @@
   import type { PortWithIcons } from "@data/ports";
   import ProfilePicture from "@components/ProfilePicture.svelte";
   import NoMaintainerIcon from "@data/icons/lucide-user-round-x.svg?raw";
+  import type { RepositoryCurrentMaintainers } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
 
-  let { port }: { port: PortWithIcons } = $props();
+  let {
+    currentMaintainers,
+    currentMaintainersLength,
+  }: { currentMaintainers: RepositoryCurrentMaintainers; currentMaintainersLength: number } = $props();
 </script>
 
-{#if port.repository["current-maintainers"].length > 0}
+{#if currentMaintainersLength > 0}
   <div class="current-maintainers" title="All users who currently maintain this port">
-    {#each port.repository["current-maintainers"] as maintainer}
+    {#each currentMaintainers as maintainer}
       <ProfilePicture username={maintainer.username} size={64} wxh={32} />
     {/each}
   </div>
