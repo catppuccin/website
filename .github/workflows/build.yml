@@ -16,7 +16,7 @@ jobs:
       - uses: withastro/action@v4
       - name: Build & Deploy To Surge
         if: ${{ env.surge_token != '' }}
-        uses: afc163/surge-preview@a17bbee72e236f18b248797bbf21f1f9f06900e6
+        uses: afc163/surge-preview@2eeb59677bf6ace680164a2f3f69795ceff6d486
         id: preview_step
         with:
           surge_token: ${{ secrets.SURGE_TOKEN }}
