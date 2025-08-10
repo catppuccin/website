@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { PortWithIcons } from "@data/ports";
   import PortCard from "./PortCard.svelte";
+  import { VirtualList, type VLSlotSignature } from "svelte-virtuallists";
 
   interface Props {
     portGrid: PortWithIcons[];
@@ -21,8 +22,17 @@
       </p>
     </div>
   {:else if portGrid.length > 0}
-    {#each portGrid as port (port.key)}
-      <PortCard {port} />
-    {/each}
+    <VirtualList items={portGrid}>
+      {#snippet vl_slot({ item }: VLSlotSignature<(typeof portGrid)[0]>)}
+        <PortCard
+          name={item.name}
+          url={item.repository.url}
+          color={item.color}
+          iconBody={item.icon.body}
+          iconWidth={item.icon.width}
+          iconHeight={item.icon.height}
+          currentMaintainers={item.repository["current-maintainers"]} />
+      {/snippet}
+    </VirtualList>
   {/if}
 </div>

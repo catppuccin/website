@@ -110,6 +110,9 @@ importers:
       svelte-intersection-observer-action:
         specifier: ^0.0.5
         version: 0.0.5
+      svelte-virtuallists:
+        specifier: ^1.4.2
+        version: 1.4.2(svelte@5.35.3)
       tsx:
         specifier: ^4.20.3
         version: 4.20.3
@@ -411,6 +414,10 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@eslint/js@9.33.0':
+    resolution: {integrity: sha512-5K1/mKhWaMfreBGJTwval43JJmkip0RmM+3+IuqupeSKNC/Th2Kc7ucaq5ovTSra/OOKB9c58CGSz3QMVbWt0A==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@expressive-code/core@0.41.3':
     resolution: {integrity: sha512-9qzohqU7O0+JwMEEgQhnBPOw5DtsQRBXhW++5fvEywsuX44vCGGof1SL5OvPElvNgaWZ4pFZAFSlkNOkGyLwSQ==}
@@ -2933,6 +2940,11 @@ packages:
   svelte-intersection-observer-action@0.0.5:
     resolution: {integrity: sha512-d5WVlE3Dpxx554cOYBm9BkIfba0+/r1O1yKuekQH/ScXW78mNB+R7A/LSfmGTFBNHvqjPZ9Vehfx1iIJti1saw==}
 
+  svelte-virtuallists@1.4.2:
+    resolution: {integrity: sha512-ZvBU1BMmt2uY/spjuZn+XOtHVxOpU/Cfiy+dajxrOXe6KysjAY2O0R1cLonEGl+/AMy0or6/dO+KA3/C6R3l2A==}
+    peerDependencies:
+      svelte: ^5.20.5
+
   svelte2tsx@0.7.42:
     resolution: {integrity: sha512-PSNrKS16aVdAajoFjpF5M0t6TA7ha7GcKbBajD9RG3M+vooAuvLnWAGUSC6eJL4zEOVbOWKtcS2BuY4rxPljoA==}
     peerDependencies:
@@ -3788,6 +3800,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.8':
     optional: true
+
+  '@eslint/js@9.33.0': {}
 
   '@expressive-code/core@0.41.3':
     dependencies:
@@ -6981,6 +6995,11 @@ snapshots:
       - debug
 
   svelte-intersection-observer-action@0.0.5: {}
+
+  svelte-virtuallists@1.4.2(svelte@5.35.3):
+    dependencies:
+      '@eslint/js': 9.33.0
+      svelte: 5.35.3
 
   svelte2tsx@0.7.42(svelte@5.35.3)(typescript@5.9.2):
     dependencies:

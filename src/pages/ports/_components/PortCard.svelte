@@ -1,10 +1,20 @@
 <script lang="ts">
-  import type { PortWithIcons } from "@data/ports";
   import Icon from "@iconify/svelte";
   import { intersect } from "svelte-intersection-observer-action";
   import PortMaintainers from "./PortMaintainers.svelte";
+  import type { Collaborator } from "@catppuccin/catppuccin/resources/types/ports.porcelain.schema";
 
-  let { port }: { port: PortWithIcons } = $props();
+  interface Props {
+    url: string;
+    name: string;
+    color: string;
+    iconBody: string;
+    iconWidth: number | undefined;
+    iconHeight: number | undefined;
+    currentMaintainers: Collaborator[];
+  }
+
+  let { url, name, color, iconBody, iconWidth, iconHeight, currentMaintainers }: Props = $props();
   let visible = $state(false);
 
   const threshold = 0.1;
@@ -20,20 +30,20 @@
   }
 </script>
 
-<a href={port.repository.url} class="port-card" class:visible use:intersect={options}>
+<a href={url} class="port-card" class:visible use:intersect={options}>
   <div class="port-header">
-    <p class="port-name">{port.name}</p>
+    <p class="port-name">{name}</p>
     <Icon
-      color="var(--{port.color})"
+      color="var(--{color})"
       width={32}
       height={32}
       icon={{
-        body: port.icon.body,
-        width: port.icon.width,
-        height: port.icon.height,
+        body: iconBody,
+        width: iconWidth,
+        height: iconHeight,
       }} />
   </div>
-  <PortMaintainers {port} />
+  <!-- <PortMaintainers {currentMaintainers} currentMaintainersLength={currentMaintainers.length} /> -->
 </a>
 
 <style lang="scss">
