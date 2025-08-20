@@ -31,7 +31,7 @@
     "@astrojs/rss": "^4.0.12",
     "@astrojs/sitemap": "^3.4.2",
     "@astrojs/svelte": "^7.1.0",
-    "@catppuccin/catppuccin": "github:catppuccin/catppuccin#7e4506607b8a6c298ce0876e385c52281e879245",
+    "@catppuccin/catppuccin": "github:catppuccin/catppuccin#2b96942677bcf4097e4c56172fb2ed6b7e2ada86",
     "@catppuccin/palette": "^1.7.1",
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.46",
