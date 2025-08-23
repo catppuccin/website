@@ -57,7 +57,7 @@
     "sass": "^1.90.0",
     "sharp": "^0.34.3",
     "surge": "^0.24.6",
-    "svelte": "5.35.3",
+    "svelte": "5.38.3",
     "svelte-intersection-observer-action": "^0.0.5",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2",
