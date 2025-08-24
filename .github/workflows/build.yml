@@ -12,7 +12,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: withastro/action@v4
       - name: Build & Deploy To Surge
         if: ${{ env.surge_token != '' }}
