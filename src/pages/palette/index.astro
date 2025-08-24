@@ -108,11 +108,11 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
     }
 
     summary {
+      @include utils.containerPadding(md);
       cursor: pointer;
     }
 
     .flavor {
-      @include utils.containerPadding();
       margin-block-start: var(--space-md);
 
       border-radius: var(--border-radius-normal);
@@ -131,12 +131,20 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
     }
 
     .color-list {
-      margin-block-start: var(--space-md);
+      // margin-block-start: var(--space-sm);
       margin-inline: auto;
+      padding: var(--space-md);
+      padding-block-start: 0;
     }
 
     .color-list-entry {
       --__current-color: var(--current-color, var(--text));
+      @media (pointer: coarse) {
+        & > td {
+          --btn-target-size: 50px;
+          padding-block: calc(0 * var(--base-unit));
+        }
+      }
     }
 
     .color-name {
