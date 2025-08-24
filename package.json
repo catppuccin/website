@@ -61,7 +61,7 @@
     "svelte-intersection-observer-action": "^0.0.5",
     "tsx": "^4.20.5",
     "typescript": "^5.9.2",
-    "vite": "^6.3.5",
+    "vite": "^7.0.0",
     "vitest": "^3.2.4",
     "yaml": "^2.8.1"
   },
