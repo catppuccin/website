@@ -16,6 +16,34 @@ const toRgb = (rgb: ColorFormat["rgb"]) => {
 const toHsl = (hsl: ColorFormat["hsl"]) => {
   return `hsl(${Math.round(hsl.h)}deg, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%)`;
 };
+
+const toOklch = (rgb: ColorFormat["rgb"]) => {
+  const srgbToLinear = (c: number) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+  const rLin = srgbToLinear(rgb.r / 255);
+  const gLin = srgbToLinear(rgb.g / 255);
+  const bLin = srgbToLinear(rgb.b / 255);
+
+  // Convert linear RGB to LMS
+  const l = 0.4122214708 * rLin + 0.5363325363 * gLin + 0.0514459929 * bLin;
+  const m = 0.2119034982 * rLin + 0.6806995451 * gLin + 0.1073969566 * bLin;
+  const s = 0.0883024619 * rLin + 0.2817188376 * gLin + 0.6299787005 * bLin;
+
+  // Convert LMS to OKLab
+  const l_ = Math.cbrt(l);
+  const m_ = Math.cbrt(m);
+  const s_ = Math.cbrt(s);
+
+  const L = 0.2104542553 * l_ + 0.793617785 * m_ - 0.0040720468 * s_;
+  const a = 1.9779984951 * l_ - 2.428592205 * m_ + 0.4505937099 * s_;
+  const b_ = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.808675766 * s_;
+
+  // Convert OKLab to OKLCH
+  const C = Math.sqrt(a * a + b_ * b_);
+  const h = Math.atan2(b_, a) * (180 / Math.PI);
+  const H = h < 0 ? h + 360 : h;
+
+  return `oklch(${(L * 100).toFixed(2)}% ${(C * 100).toFixed(2)} ${H.toFixed(2)}deg)`;
+};
 ---
 
 <Default
@@ -66,6 +94,7 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
                     <th>Hex</th>
                     <th>RGB</th>
                     <th>HSL</th>
+                    <th>OKLCH</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -87,6 +116,11 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
                       <td class="color-hsl">
                         <CopyToClipboardIcon client:load value={toHsl(hsl)}>
                           {toHsl(hsl)}
+                        </CopyToClipboardIcon>
+                      </td>
+                      <td>
+                        <CopyToClipboardIcon client:load value={toOklch(rgb)}>
+                          {toOklch(rgb)}
                         </CopyToClipboardIcon>
                       </td>
                     </tr>
