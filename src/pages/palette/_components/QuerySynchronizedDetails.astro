@@ -1,0 +1,84 @@
+---
+import type { FlavorName } from "@catppuccin/palette";
+
+interface Props {
+  flavor: FlavorName;
+}
+
+const { flavor } = Astro.props as Props;
+---
+
+<script>
+  const flavors = ["mocha", "frappe", "latte", "macchiato"];
+
+  const query_key = "hidden";
+  const listSeperator = "-";
+
+  flavors.map((flavorName) => {
+    const details = document.querySelector(`details.${flavorName}`) as HTMLDetailsElement | null;
+    if (!details) {
+      console.warn("Details not found for flavor: " + flavorName);
+      return;
+    }
+    details.open = flavorIsOpen(flavorName);
+    details.addEventListener("toggle", () => {
+      changeFlavorOpen(flavorName, details.open);
+    });
+  });
+
+  function flavorIsOpen(flavor: string) {
+    const query = new URLSearchParams(window.location.search);
+    const hiddenFlavors = query.get(query_key) ?? "";
+    return hiddenFlavors.indexOf(flavor) === -1;
+  }
+
+  function changeFlavorOpen(flavor: string, open: boolean) {
+    const query = new URLSearchParams(window.location.search);
+    let hiddenFlavors = query.get(query_key) ?? "";
+
+    if (open) {
+      // show flavor
+
+      if (hiddenFlavors.indexOf(flavor) === -1) {
+        return; // flavor already shown
+      }
+
+      hiddenFlavors = hiddenFlavors
+        .split(listSeperator)
+        .filter((hiddenFlavor) => hiddenFlavor != flavor)
+        .join(listSeperator);
+    } else {
+      // hide flavor
+
+      if (hiddenFlavors.indexOf(flavor) !== -1) {
+        return; // flavor already hidden
+      }
+
+      if (hiddenFlavors !== "") {
+        hiddenFlavors += listSeperator;
+      }
+
+      hiddenFlavors += flavor;
+    }
+
+    if (hiddenFlavors === "") {
+      query.delete(query_key);
+    } else {
+      query.set(query_key, hiddenFlavors);
+    }
+
+    let nextUrl = location.pathname;
+    if (query.toString() !== "") {
+      nextUrl += "?" + query.toString();
+    }
+    if (location.hash !== "") {
+      nextUrl += "#" + location.hash;
+    }
+    history.pushState(history.state, "", nextUrl);
+  }
+</script>
+
+<details class={flavor}>
+  <slot name="summary" />
+  <slot name="info" />
+</details>
