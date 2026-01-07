@@ -19,7 +19,23 @@ Website: https://unseen.ninja
 Discord: unseen.ninja
 From: Germany
 
-/* STAFF */
+pigeon
+GitHub: https://github.com/backwardspy
+Website: https://pigeon.life
+From: UK
+
+
+/* USERSTYLES STAFF */
+uncenter
+GitHub: https://github.com/uncenter
+Website: https://uncenter.dev
+From: USA
+
+WalkQuackBack
+GitHub: https://github.com/WalkQuackBack
+
+
+/* STAFF ALUMNI */
 Spooky
 GitHub: https://github.com/ghostx31
 From: India
@@ -32,25 +48,10 @@ Isabel
 GitHub: https://github.com/isabelincorp
 From: USA
 
-pigeon
-GitHub: https://github.com/backwardspy
-Website: https://pigeon.life
-From: UK
-
 Amy
 GitHub: https://github.com/nullishamy
 From: UK
 
-/* USERSTYLES STAFF */
-Bell
-GitHub: https://github.com/isabelroses
-Website: https://isabelroses.com
-From: UK
-
-uncenter
-GitHub: https://github.com/uncenter
-Website: https://uncenter.dev
-From: USA
 
 /* MODERATOR */
 Nyx
@@ -62,3 +63,13 @@ Etzelia
 GitHub: https://github.com/jolheiser
 Website: https://jolheiser.com
 From: USA
+
+Bell
+GitHub: https://github.com/isabelroses
+Website: https://isabelroses.com
+From: UK
+
+Amnesia
+GitHub: https://github.com/iruzo
+From: Spain
+
