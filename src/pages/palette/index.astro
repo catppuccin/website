@@ -16,6 +16,9 @@ const toRgb = (rgb: ColorFormat["rgb"]) => {
 const toHsl = (hsl: ColorFormat["hsl"]) => {
   return `hsl(${Math.round(hsl.h)}deg, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%)`;
 };
+const toOklch = (oklch: ColorFormat["oklch"]) => {
+  return `oklch(${Math.round(oklch.l * 100)}%, ${Math.round(oklch.c * 100)}% ${Math.round(oklch.h)}deg)`;
+};
 ---
 
 <Default
@@ -66,10 +69,11 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
                     <th>Hex</th>
                     <th>RGB</th>
                     <th>HSL</th>
+                    <th>OKLCH</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {Object.values(flavor.colors).map(({ hex, rgb, hsl, name }) => (
+                  {Object.values(flavor.colors).map(({ hex, rgb, hsl, oklch, name }) => (
                     <tr class="color-list-entry" style={`--current-color: ${hex}`}>
                       <td class="color">
                         <h5 class="color-name">{name}</h5>
@@ -87,6 +91,11 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
                       <td class="color-hsl">
                         <CopyToClipboardIcon client:load value={toHsl(hsl)}>
                           {toHsl(hsl)}
+                        </CopyToClipboardIcon>
+                      </td>
+                      <td class="color-oklch">
+                        <CopyToClipboardIcon client:load value={toOklch(oklch)}>
+                          {toOklch(oklch)}
                         </CopyToClipboardIcon>
                       </td>
                     </tr>
