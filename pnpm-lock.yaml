@@ -30,8 +30,8 @@ importers:
         specifier: github:catppuccin/catppuccin#7e4506607b8a6c298ce0876e385c52281e879245
         version: https://codeload.github.com/catppuccin/catppuccin/tar.gz/7e4506607b8a6c298ce0876e385c52281e879245
       '@catppuccin/palette':
-        specifier: ^1.7.1
-        version: 1.7.1
+        specifier: ^1.8.0
+        version: 1.8.0
       '@iconify-json/ph':
         specifier: ^1.2.2
         version: 1.2.2
