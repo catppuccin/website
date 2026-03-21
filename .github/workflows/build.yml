@@ -12,8 +12,8 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: actions/checkout@v5
-      - uses: withastro/action@v4
+      - uses: actions/checkout@v6
+      - uses: withastro/action@v6
       - name: Build & Deploy To Surge
         if: ${{ env.surge_token != '' }}
         uses: afc163/surge-preview@a17bbee72e236f18b248797bbf21f1f9f06900e6
