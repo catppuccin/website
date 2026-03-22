@@ -40,7 +40,7 @@
     "@iconify/types": "^2.0.0",
     "@playwright/test": "^1.58.2",
     "@rollup/plugin-yaml": "^4.1.2",
-    "@types/node": "^22.19.15",
+    "@types/node": "^24.0.0",
     "@vitest/coverage-v8": "^3.2.4",
     "astro": "^5.18.1",
     "astro-expressive-code": "^0.41.7",
