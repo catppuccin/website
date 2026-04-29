@@ -62,7 +62,7 @@ export default defineConfig({
         return `[data-theme='${themeName}']`;
       },
       useDarkModeMediaQuery: true,
-      // Stop it from auto-correcting colour contrast
+      // Stop it from autocorrecting colour contrast
       minSyntaxHighlightingColorContrast: 0,
       styleOverrides: {
         frames: {
