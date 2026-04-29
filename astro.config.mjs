@@ -1,4 +1,9 @@
+/** @type {import('sass').Importer} */
 import { defineConfig } from "astro/config";
+import { fileURLToPath, pathToFileURL } from "url";
+import path, { dirname } from "path";
+import fs from "fs";
+
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import mdx from "@astrojs/mdx";
@@ -10,6 +15,9 @@ import astroExpressiveCode from "astro-expressive-code";
 import getReadingTime from "reading-time";
 import { toString } from "mdast-util-to-string";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const remarkReadingTime = () => {
   return function (tree, { data }) {
     const textOnPage = toString(tree);
@@ -18,7 +26,41 @@ const remarkReadingTime = () => {
   };
 };
 
-// https://astro.build/config
+const stylesImporter = {
+  canonicalize(url) {
+    if (!url.startsWith("@styles/")) return null;
+
+    const importPath = url.slice(8);
+    const basePath = path.resolve(__dirname, "src/styles", importPath);
+
+    const candidates = [
+      basePath + ".scss",
+      basePath + ".sass",
+      path.join(path.dirname(basePath), "_" + path.basename(basePath) + ".scss"),
+      path.join(path.dirname(basePath), "_" + path.basename(basePath) + ".sass"),
+    ];
+
+    for (const filePath of candidates) {
+      if (fs.existsSync(filePath)) {
+        return pathToFileURL(filePath);
+      }
+    }
+
+    return null;
+  },
+
+  load(canonicalUrl) {
+    const filePath = fileURLToPath(canonicalUrl);
+    try {
+      const contents = fs.readFileSync(filePath, "utf-8");
+      const syntax = filePath.endsWith(".sass") ? "sass" : "scss";
+      return { contents, syntax }; // <- Add syntax field
+    } catch {
+      return null;
+    }
+  },
+};
+
 export default defineConfig({
   site: "https://catppuccin.com",
   vite: {
@@ -28,12 +70,8 @@ export default defineConfig({
         scss: {
           api: "modern-compiler",
           silenceDeprecations: ["mixed-decls"],
+          importers: [stylesImporter],
         },
-      },
-    },
-    resolve: {
-      alias: {
-        "@styles": new URL("./src/styles", import.meta.url).pathname,
       },
     },
   },
