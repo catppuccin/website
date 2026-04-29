@@ -46,7 +46,8 @@ export default defineConfig({
       themes: ["catppuccin-latte", "catppuccin-mocha", "catppuccin-frappe", "catppuccin-macchiato"],
       themeCssSelector: (theme) => {
         const themeName = theme.name.split("-")[1];
-        return `[data-theme='${themeName}']`;
+        const selector = `[data-theme='${themeName}']`;
+        return selector;
       },
       useDarkModeMediaQuery: true,
       // Stop it from auto-correcting colour contrast
