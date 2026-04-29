@@ -23,6 +23,19 @@ export default defineConfig({
   site: "https://catppuccin.com",
   vite: {
     plugins: [yaml()],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: "modern-compiler",
+          silenceDeprecations: ["mixed-decls"],
+        },
+      },
+    },
+    resolve: {
+      alias: {
+        "@styles": new URL("./src/styles", import.meta.url).pathname,
+      },
+    },
   },
   markdown: {
     rehypePlugins: [
@@ -46,8 +59,7 @@ export default defineConfig({
       themes: ["catppuccin-latte", "catppuccin-mocha", "catppuccin-frappe", "catppuccin-macchiato"],
       themeCssSelector: (theme) => {
         const themeName = theme.name.split("-")[1];
-        const selector = `[data-theme='${themeName}']`;
-        return selector;
+        return `[data-theme='${themeName}']`;
       },
       useDarkModeMediaQuery: true,
       // Stop it from auto-correcting colour contrast
