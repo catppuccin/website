@@ -1,7 +1,6 @@
 /** @type {import('sass').Importer} */
 import { defineConfig } from "astro/config";
-import { fileURLToPath, pathToFileURL } from "url";
-import path, { dirname } from "path";
+import path from "path";
 import fs from "fs";
 
 import sitemap from "@astrojs/sitemap";
@@ -14,9 +13,9 @@ import yaml from "@rollup/plugin-yaml";
 import astroExpressiveCode from "astro-expressive-code";
 import getReadingTime from "reading-time";
 import { toString } from "mdast-util-to-string";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = import.meta.dirname;
 
 const remarkReadingTime = () => {
   return function (tree, { data }) {
@@ -26,6 +25,7 @@ const remarkReadingTime = () => {
   };
 };
 
+// Workaround until astro importing sass bug is fixed: https://github.com/withastro/astro/issues/15897
 const stylesImporter = {
   canonicalize(url) {
     if (!url.startsWith("@styles/")) return null;
