@@ -17,7 +17,7 @@ const toHsl = (hsl: ColorFormat["hsl"]) => {
   return `hsl(${Math.round(hsl.h)}deg, ${Math.round(hsl.s * 100)}%, ${Math.round(hsl.l * 100)}%)`;
 };
 const toOklch = (oklch: ColorFormat["oklch"]) => {
-  return `oklch(${Math.round(oklch.l * 100)}%, ${Math.round(oklch.c * 100)}% ${Math.round(oklch.h)}deg)`;
+  return `oklch(${Math.round(oklch.l * 100)}%, ${Math.round(oklch.c * 100)}%, ${Math.round(oklch.h)}deg)`;
 };
 ---
 
