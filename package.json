@@ -56,7 +56,7 @@
     "rehype-autolink-headings": "^7.1.0",
     "sass": "^1.99.0",
     "sharp": "^0.34.5",
-    "surge": "^0.24.7",
+    "surge": "^0.27.0",
     "svelte": "^5.55.1",
     "svelte-intersection-observer-action": "^0.0.5",
     "tsx": "^4.21.0",
