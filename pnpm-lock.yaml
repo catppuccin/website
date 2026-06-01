@@ -27,8 +27,8 @@ importers:
         specifier: ^7.2.5
         version: 7.2.5(@types/node@24.12.2)(astro@5.18.1(@types/node@24.12.2)(jiti@2.4.2)(lightningcss@1.32.0)(rollup@4.60.1)(sass@1.99.0)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.3))(jiti@2.4.2)(lightningcss@1.32.0)(sass@1.99.0)(svelte@5.55.1)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.3)
       '@catppuccin/catppuccin':
-        specifier: github:catppuccin/catppuccin#7e4506607b8a6c298ce0876e385c52281e879245
-        version: https://codeload.github.com/catppuccin/catppuccin/tar.gz/7e4506607b8a6c298ce0876e385c52281e879245
+        specifier: github:catppuccin/catppuccin#61900f1850710d3b3a1519376d59a5db1e6c98e2
+        version: https://codeload.github.com/catppuccin/catppuccin/tar.gz/61900f1850710d3b3a1519376d59a5db1e6c98e2
       '@catppuccin/palette':
         specifier: ^1.8.0
         version: 1.8.0
@@ -221,8 +221,8 @@ packages:
     resolution: {integrity: sha512-VERIM64vtTP1C4mxQ5thVT9fK0apjPFobqybMtA1UdUujWka24ERHbRHFGmpbbhp73MhV+KSsHQH9C6uOTdEQA==}
     engines: {node: '>=18'}
 
-  '@catppuccin/catppuccin@https://codeload.github.com/catppuccin/catppuccin/tar.gz/7e4506607b8a6c298ce0876e385c52281e879245':
-    resolution: {tarball: https://codeload.github.com/catppuccin/catppuccin/tar.gz/7e4506607b8a6c298ce0876e385c52281e879245}
+  '@catppuccin/catppuccin@https://codeload.github.com/catppuccin/catppuccin/tar.gz/61900f1850710d3b3a1519376d59a5db1e6c98e2':
+    resolution: {tarball: https://codeload.github.com/catppuccin/catppuccin/tar.gz/61900f1850710d3b3a1519376d59a5db1e6c98e2}
     version: 0.0.0
     engines: {node: '>=22.0.0'}
 
@@ -1261,6 +1261,7 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
+    deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
   '@vitest/coverage-v8@3.2.4':
     resolution: {integrity: sha512-EyF9SXU6kS5Ku/U82E259WSnvg6c8KTjppUncuNdm5QHpe17mwREHnjDzozC8x9MZ0xfBUFSaLkRv4TMA75ALQ==}
@@ -3409,7 +3410,7 @@ packages:
 
   uuid@3.4.0:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
-    deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   verror@1.10.0:
@@ -3934,7 +3935,7 @@ snapshots:
     dependencies:
       fontkitten: 1.0.3
 
-  '@catppuccin/catppuccin@https://codeload.github.com/catppuccin/catppuccin/tar.gz/7e4506607b8a6c298ce0876e385c52281e879245': {}
+  '@catppuccin/catppuccin@https://codeload.github.com/catppuccin/catppuccin/tar.gz/61900f1850710d3b3a1519376d59a5db1e6c98e2': {}
 
   '@catppuccin/palette@1.8.0': {}
 
