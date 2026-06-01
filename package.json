@@ -42,7 +42,7 @@
     "@rollup/plugin-yaml": "^4.1.2",
     "@types/node": "^24.12.2",
     "@vitest/coverage-v8": "^3.2.4",
-    "astro": "^5.18.1",
+    "astro": "^6.0.0",
     "astro-expressive-code": "^0.41.7",
     "astro-icon": "1.1.5",
     "fuse.js": "^7.3.0",
