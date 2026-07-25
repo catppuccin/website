@@ -1,14 +1,15 @@
-import { defineConfig } from "astro/config";
+import { rehypeHeadingIds, unified } from "@astrojs/markdown-remark";
+import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
-import mdx from "@astrojs/mdx";
-import icon from "astro-icon";
-import { rehypeHeadingIds } from "@astrojs/markdown-remark";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import yaml from "@rollup/plugin-yaml";
 import astroExpressiveCode from "astro-expressive-code";
-import getReadingTime from "reading-time";
+import icon from "astro-icon";
+import { defineConfig } from "astro/config";
 import { toString } from "mdast-util-to-string";
+import getReadingTime from "reading-time";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import { fileURLToPath } from "url";
 
 const remarkReadingTime = () => {
   return function (tree, { data }) {
@@ -23,23 +24,31 @@ export default defineConfig({
   site: "https://catppuccin.com",
   vite: {
     plugins: [yaml()],
+    resolve: {
+      alias: {
+        "@styles": fileURLToPath(new URL("./src/styles", import.meta.url)),
+      },
+    },
   },
   markdown: {
-    rehypePlugins: [
-      rehypeHeadingIds,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "wrap",
-          headingProperties: {
-            className: ["rehype-heading"],
+    processor: unified({
+      remarkPlugins: [remarkReadingTime],
+      rehypePlugins: [
+        rehypeHeadingIds,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: "wrap",
+            headingProperties: {
+              className: ["rehype-heading"],
+            },
+            properties: {
+              className: ["rehype-heading-link"],
+            },
           },
-          properties: {
-            className: ["rehype-heading-link"],
-          },
-        },
+        ],
       ],
-    ],
+    }),
   },
   integrations: [
     astroExpressiveCode({
@@ -74,8 +83,6 @@ export default defineConfig({
       iconDir: "src/data/icons",
     }),
     svelte(),
-    mdx({
-      remarkPlugins: [remarkReadingTime],
-    }),
+    mdx(),
   ],
 });

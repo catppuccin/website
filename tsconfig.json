@@ -4,12 +4,12 @@
   "exclude": ["dist"],
   "compilerOptions": {
     "strictNullChecks": true,
-    "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@data/*": ["src/data/*"],
-      "@styles/*": ["src/styles/*"]
+      "@src/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@data/*": ["./src/data/*"],
+      "@styles/*": ["./src/styles/*"]
     },
     "esModuleInterop": true
   }

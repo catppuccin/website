@@ -28,6 +28,7 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       transition:name=`${post.data.title}${post.data.featured}`
       transition:animate={fade({ duration: "0.4s" })}>
       <Picture
+        class:list={"blog-hero-picture"}
         src={post.data.hero.image}
         alt={post.data.hero.alt}
         formats={["avif", "webp"]}
@@ -105,20 +106,20 @@ const formattedDatePosted = new Date(post.data.datePosted).toLocaleDateString("e
       }
     }
 
-    figure {
+    .blog-hero-image {
       max-width: 100%;
       aspect-ratio: 16 / 5;
       margin: 0;
       overflow: clip;
+    }
 
-      :global(.blog-hero-image picture, .blog-hero-image img) {
-        width: 100%;
-        max-width: 100%;
-        height: 100%;
-        max-height: 100%;
-        aspect-ratio: 16 / 5;
-        object-fit: cover;
-      }
+    .blog-hero-picture {
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      max-height: 100%;
+      aspect-ratio: 16 / 5;
+      object-fit: cover;
     }
 
     a h3,
