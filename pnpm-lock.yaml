@@ -51,8 +51,8 @@ importers:
         specifier: ^1.61.1
         version: 1.61.1
       '@rollup/plugin-yaml':
-        specifier: ^4.1.2
-        version: 4.1.2(rollup@4.62.2)
+        specifier: ^5.0.0
+        version: 5.0.0(rollup@4.62.2)
       '@types/node':
         specifier: ^24.13.3
         version: 24.13.3
@@ -339,7 +339,7 @@ packages:
     engines: {node: '>=18'}
 
   '@catppuccin/catppuccin@https://codeload.github.com/catppuccin/catppuccin/tar.gz/7e4506607b8a6c298ce0876e385c52281e879245':
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/catppuccin/catppuccin/tar.gz/7e4506607b8a6c298ce0876e385c52281e879245}
+    resolution: {gitHosted: true, integrity: sha512-rfvs3VPd5Xso+Ve4+yzqK1iv2O9aKq6il7us1KFX9r9RvHz9VP9+PGT6zupBw/0X5iqkTbv3FH70dTBBer+Dnw==, tarball: https://codeload.github.com/catppuccin/catppuccin/tar.gz/7e4506607b8a6c298ce0876e385c52281e879245}
     version: 0.0.0
     engines: {node: '>=22.0.0'}
 
@@ -977,11 +977,11 @@ packages:
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
-  '@rollup/plugin-yaml@4.1.2':
-    resolution: {integrity: sha512-RpupciIeZMUqhgFE97ba0s98mOFS7CWzN3EJNhJkqSv9XLlWYtwVdtE6cDw6ASOF/sZVFS7kRJXftaqM2Vakdw==}
+  '@rollup/plugin-yaml@5.0.0':
+    resolution: {integrity: sha512-9XOiRGYJjDwmEwR15kuxw+RytZFKtEWshoXuITrtS6+57BVMQMzDfhmSO/xfQOAY5psQv1IrxhQTUqPNppe4lQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+      rollup: ^2.78.0||^3.0.0||^4.0.0
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -4073,7 +4073,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@rollup/plugin-yaml@4.1.2(rollup@4.62.2)':
+  '@rollup/plugin-yaml@5.0.0(rollup@4.62.2)':
     dependencies:
       '@rollup/pluginutils': 5.4.0(rollup@4.62.2)
       js-yaml: 4.3.0
