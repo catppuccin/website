@@ -1,4 +1,4 @@
-import type { BlogAuthor } from "src/content.config";
+import type { BlogAuthor } from "@src/content.config";
 
 const toLink = (author: BlogAuthor) => `<a href="https://github.com/${author.github}">${author.name}</a>`;
 
